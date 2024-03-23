@@ -1,6 +1,12 @@
 <?php
 
+//CONECCION BBDD    
+define('db_host', 'localhost');
+define('db_name', 'redleones');
 define('BASE_URL', 'http://localhost/');
+define('db_user', 'root');
+define('de_pass', '12345678');
+
 
 define('HOME_URL', BASE_URL . '/');
 define('ADMIN_URL', BASE_URL . 'admin/');

@@ -16,7 +16,7 @@ body {
 }
 
 .right {
-    background: orange;
+    background: white;
     flex: 3;
     /* Hace que el div izquierdo ocupe 2 partes */
 }
@@ -37,7 +37,7 @@ body {
 
 .contForm {
     width: 500px;
-    height: 300px;
+    height: 350px;
     text-align: center;
     background: orange;
     padding-top: 20px;

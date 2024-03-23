@@ -8,7 +8,7 @@ class Router
         // Definir el contexto de base
         $base_path = '/localhost';
 
-        // Asegúrate de que la URL comience con "/labMuest/"
+       
         if (strpos($_SERVER['REQUEST_URI'], $base_path) === 0) {
             $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base_path));
         }
