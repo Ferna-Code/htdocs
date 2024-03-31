@@ -11,9 +11,43 @@
 <body>
     <div class="contenedor">
         <div class="mitad right">
-           <div class="btn-form">
-                
-           </div>
+            <div class="btn-form">
+                <button id="btn-abrir-modal">Ingresar oferta laboral</button>
+
+                <dialog id="modal">
+                    <h2>Ingrese los datos de la oferta</h2>
+                    <form method="post" action="">
+
+                        <table>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" value="Ingresar oferta"></td>
+                                <td><button id="btn-cerrar-modal">Cerrar modal</button></td>
+                            </tr>
+                        </table>
+                    </form>
+                    
+                </dialog>
+            </div>
         </div>
         <div class="mitad left">
             <div class="logo">
@@ -41,7 +75,7 @@
             </div>
         </div>
     </div>
-
+    <script src="../../../../public/js/login.js"></script>
 </body>
 
 </html>

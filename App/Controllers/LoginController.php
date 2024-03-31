@@ -60,7 +60,7 @@ class LoginController
 
         if ($isUserValid) {
             $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
-           
+            //$_SESSION['pagina_local'] = 'Administrador';
             $this->checklevelPage($_SESSION['nivelUsuario']);
         } else {
             echo "<script>alert('Usuario o contraseña incorrectos');</script>";
@@ -69,17 +69,21 @@ class LoginController
 
     private function checklevelPage($userLevel)//segun nivel se abre la sesion correspondiente
     {
-        switch ($userLevel) {
-            case 1:
-                $_SESSION['pagina_local'] = 'Administrador';
-                break;
-            case 2:
-                $_SESSION['pagina_local'] = 'Perfil';
-                break;
-            case 3:
-                $_SESSION['pagina_local'] = 'Home';
-                break;
+
+        if($userLevel == 1 || $userLevel == 2 || $userLevel == 3){
+            $_SESSION['pagina_local'] = 'Home';
         }
+        // switch ($userLevel) {
+        //     case 1:
+        //         $_SESSION['pagina_local'] = 'Administrador';
+        //         break;
+        //     case 2:
+        //         $_SESSION['pagina_local'] = 'Perfil';
+        //         break;
+        //     case 3:
+        //         $_SESSION['pagina_local'] = 'Home';
+        //         break;
+        // }
 
         echo"<script language='javascript'>window.location='".$_SESSION['pagina_local']."'</script>;";
         exit();

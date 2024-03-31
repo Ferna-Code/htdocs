@@ -1,6 +1,7 @@
 :root {
     --color-naranja: #F8B619;
     --color-blanco: #FFFFFF;
+    --color-rojo: #ED1C24;
 }
 
 body {
@@ -91,3 +92,28 @@ h2 {
 img {
     width: 100%;
 }
+
+
+/*MODAL*/
+
+#modal::backdrop{
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#modal{
+    max-width: 100ch;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/*FORM*/
+
+
+td{
+    width: 150px;
+}
+/*END FORM*/
+
+
+/*END MODAL*/
