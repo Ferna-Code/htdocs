@@ -7,7 +7,7 @@ define('BASE_URL', 'http://localhost/');
 define('db_user', 'root');
 define('de_pass', '12345678');
 
-
+//Vistas
 define('HOME_URL', BASE_URL . '/');
 define('ADMIN_URL', BASE_URL . 'admin/');
 define('RECEPCION_DIAGNOSTICO_URL', BASE_URL . 'recepcion/');

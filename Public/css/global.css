@@ -1,0 +1,19 @@
+body{
+    margin: 0px;
+    padding: 0px;
+  }
+  
+
+  /*Barra navegación*/
+  .nav-link{
+      text-decoration: none;
+      margin: 0px 10px 0px 10px;
+  }
+  
+  ul{
+   list-style-type: none;
+    display: -webkit-box;
+    border: 1px solid black;
+    margin-top: 0px;
+    padding-top: 15px;
+  }
