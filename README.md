@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS $tableName(
     curriculum varchar(100) null
 );
 ```
-Trate de crear la base de datos y la tabla pero se me creo solo la base de datos xD asi que tengo que solucionar ese error.
+
 
 Deje condigurada la coneccion a la base de datos, para cambiar el usuario, password, host o database hay que realizarlo en config.php.
 
