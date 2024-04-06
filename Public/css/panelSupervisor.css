@@ -1,3 +1,71 @@
-body{
+body {
     background: lightgray;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    display: flex;
+    height: 93.7vh;
+}
+
+.container-panel {
+    background-color: blue;
+    flex: 0.4;
+}
+
+.container-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex: 2;
+}
+
+.enlace-nav{
+    color: black;
+}
+
+/*Menu*/
+
+.btn-sspp{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 100%;
+    height: 70px;
+    margin: 10px 0px 10px 0px;
+}
+
+.btn-sspp a{
+    text-decoration: none;
+}
+
+.btn-sspp:hover{
+    background: rgba(255, 255, 255, .3);
+}
+
+/*Container body*/
+
+.btn-panel{
+    width: 90%;
+    height: 12%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.body-panel{
+    margin-top: 5%;
+    width: 90%;
+    height: 70%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+/*Pie de pagina*/
+
+.footer{
+    width: 100%;
+    height: 20%;
+    background: orange;
 }

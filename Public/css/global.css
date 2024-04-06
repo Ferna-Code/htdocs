@@ -1,19 +1,32 @@
-body{
+body {
     margin: 0px;
     padding: 0px;
-  }
-  
+}
 
-  /*Barra navegación*/
-  .nav-link{
-      text-decoration: none;
-      margin: 0px 10px 0px 10px;
-  }
-  
-  ul{
-   list-style-type: none;
+
+/*Barra navegación*/
+.nav-link {
+    text-decoration: none;
+    margin: 0px 10px 0px 10px;
+}
+
+ul {
+    list-style-type: none;
     display: -webkit-box;
     border: 1px solid black;
-    margin-top: 0px;
+    margin: 0px;
+}
+
+.item {
+    margin: 0px 5px 0px 5px;
+    padding: 15px 10px;
+}
+.item-btn {
+    margin: 0px 5px -10px 5px;
     padding-top: 15px;
-  }
+}
+
+.item:hover {
+    background-color: rgba(0, 0, 0, .3);
+    transition: 1s;
+}

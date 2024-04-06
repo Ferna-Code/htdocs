@@ -13,29 +13,37 @@
 
             if (isset($_SESSION['nivelUsuario'])) {
                 ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo "/" . $_SESSION['pagina_local'] ?>">Inicio
-                    </a>
-                </li>
+                <div class="item">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo "/" . $_SESSION['pagina_local'] ?>">Inicio
+                        </a>
+                    </li>
+                </div>
                 <?php
             }
             if ($_SESSION['nivelUsuario'] == 1):
                 ?>
-
-                <li class="nav-item"><a class="nav-link" href="<?php echo SERVICIOS_URL; ?>">Administrador</a></li>
+                <div class="item">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo SERVICIOS_URL; ?>">Administrador</a></li>
+                </div>
             <?php elseif ($_SESSION['nivelUsuario'] == 2): ?>
-
-                <li class="nav-item"><a class="nav-link" href="<?php echo SERVICIOS_URL; ?>">Supervisor</a></li>
+                <div class="item">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo SERVICIOS_URL; ?>">Supervisor</a></li>
+                </div>
             <?php elseif ($_SESSION['nivelUsuario'] == 3): ?>
-
-                <li class="nav-item"><a class="nav-link" href="<?php echo SERVICIOS_URL; ?>">Estudiante</a>
-                </li>
+                <div class="item">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo SERVICIOS_URL; ?>">Estudiante</a>
+                    </li>
+                </div>
             <?php endif; ?>
-            <li class="nav-item">
-                <form method="post" action="/Login">
-                    <input type="submit" value="Cerrar sesión">
-                    <input type="hidden" name="op" value="CERRAR_SESION">
-                </form>
-            </li>
+            <div class="item-btn">
+                <li class="nav-item">
+
+                    <form method="post" action="/Login">
+                        <input type="submit" value="Cerrar sesión">
+                        <input type="hidden" name="op" value="CERRAR_SESION">
+                    </form>
+                </li>
+            </div>
         </ul>
     </div>
