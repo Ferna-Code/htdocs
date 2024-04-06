@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <h1>Muro</h1>
+    <h1>Muro publico</h1>
     <a href="./Administrador/index">Administrador</a>
     <br>
     <a href="./Perfil/index">Estudiante</a>
