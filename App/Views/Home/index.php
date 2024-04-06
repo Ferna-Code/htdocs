@@ -14,6 +14,8 @@
     <a href="./Perfil/index">Estudiante</a>
     <br>
     <a href="./Supervisor/index">Supervisor</a>
+    <br>
+    <a href="./Home/maqueta">Maqueta</a>
     <!--ESTAMOS ACA-->
 </body>
 </html>

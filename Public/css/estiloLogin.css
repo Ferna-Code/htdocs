@@ -12,6 +12,7 @@ body {
 
 .contenedor {
     display: flex;
+    background: var(--color-blanco);
     height: 100vh;
     /* Toma el 100% de la altura de la ventana */
 }

@@ -6,18 +6,53 @@
     <?php
     session_start(); ?>
 
+<header class="navbar navbar-light fixed-top" style="background-color: #9CD0FE;">
+        <div class="container">
+            <a class="navbar-brand" href="">
+                <img src="" alt="" width="110" height="35">
+            </a>
+            <nav class="nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href=""><i class="fa-solid fa-house"></i>inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href=""> <i class="">Opcion</i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href=""> <i class="">Opcion</i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-blue" href=""> <i class="">Opcion</i></a>
+                    </li>
 
-    <div class="contenedor">
+                    <div class="m-1">
+                        <button type="button" class="btn btn-outline-primary btn-sm ">Mi Perfil</button>
+                    </div>
+                    <div class="m-1">
+                        <button type="button" class="btn btn-outline-warning btn-sm">Cerrar sesión</button>
+                    </div>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <div class="">
         <ul>
             <?php
 
             if (isset($_SESSION['nivelUsuario'])) {
                 ?>
-                <div class="item">
+                <div class="item" id="item">
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo "/" . $_SESSION['pagina_local'] ?>">Inicio
                         </a>
+                        <div id="line"></div>
                     </li>
+                   
                 </div>
                 <?php
             }
