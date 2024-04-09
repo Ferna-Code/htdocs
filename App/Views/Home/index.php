@@ -7,11 +7,10 @@
     <title>RedLeones</title>
 </head>
 <body>
-    
-    <h1>Muro</h1>
+    <h1>Muro publico</h1>
     <a href="./Administrador/index">Administrador</a>
     <br>
-    <a href="./alumno/index">Alumno</a>
+    <a href="./Alumno/index">Estudiante</a>
     <br>
     <a href="./Supervisor/index">Supervisor</a>
     <br>
