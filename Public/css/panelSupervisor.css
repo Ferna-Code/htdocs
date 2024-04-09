@@ -154,3 +154,65 @@ body {
     background: #bb2d3b;
     color: white;
 }
+
+
+/* Reglas de CSS para hacer la página responsive */
+
+/* Media query para pantallas pequeñas */
+@media only screen and (max-width: 768px) {
+    .contenedor {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .container-panel {
+      flex: 1;
+    }
+  
+    .contenedor-body {
+      flex: 3;
+    }
+    
+    .btn-panel, .body-panel {
+      width: 90%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  
+  /* Media query para pantallas aún más pequeñas, como teléfonos móviles */
+  @media only screen and (max-width: 480px) {
+    .contenedor-body {
+      flex: 4;
+    }
+    
+    .btn-panel, .body-panel {
+      width: 100%;
+    }
+  }
+
+
+
+  /* Reglas de CSS para hacer la tabla responsive */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 8px;
+   
+    text-align: left;
+}
+
+/* Media query para ajustar la tabla en pantallas pequeñas */
+@media only screen and (max-width: 768px) {
+    .table-responsive {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+}

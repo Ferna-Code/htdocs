@@ -1,4 +1,5 @@
 <section style="margin: 10px;">
+    <div class="table-responsive">
         <table id="tableUsers" class="tabla table">           
             <thead>
                 <tr>
@@ -53,4 +54,5 @@
                     </td>
             </tbody>
         </table>
+        </div>
     </section>
