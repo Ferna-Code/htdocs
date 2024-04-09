@@ -11,11 +11,11 @@
     <h1>Muro</h1>
     <a href="./Administrador/index">Administrador</a>
     <br>
-    <a href="./Perfil/index">Estudiante</a>
+    <a href="./alumno/index">Alumno</a>
     <br>
     <a href="./Supervisor/index">Supervisor</a>
     <br>
     <a href="./Home/maqueta">Maqueta</a>
-    <!--ESTAMOS ACA-->
+    
 </body>
 </html>

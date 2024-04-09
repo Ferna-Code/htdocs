@@ -4,44 +4,6 @@ body {
 }
 
 
-/*Barra navegación*/
-.nav-link {
-    text-decoration: none;
-    margin: 0px 10px 0px 10px;
-}
-
-ul {
-    list-style-type: none;
-    display: -webkit-box;
-   
-    margin: 0px;
-    background: var(--color-blanco);
-  
-}
-
-.item {
-    margin: 5px 5px 5px 5px;
-    padding: 15px 10px;
-}
-.item-btn {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    margin: 0px 5px -10px 5px;
-    padding-top: 15px;
-}
-
-.item:hover {
-    background-color: rgba(0, 0, 0, .3);
-    transition: 1s;
-}
 
 
-/*Lineas barra navegacion*/
 
-#line{
-    position: absolute;
-    top: 0;
-    right: 100%;
-    width: 100%;
-}

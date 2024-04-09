@@ -13,5 +13,7 @@
         </nav>
     </div>
 
-    <div class="body-panel"></div>
+    <div class="body-panel">
+        <?php include 'tablas/tablaReporte.php' ?>
+    </div>
 </body>

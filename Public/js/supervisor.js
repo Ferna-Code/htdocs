@@ -104,7 +104,7 @@ function controlVisi8() {
 
 
 function ocultarModulos() {
-  var modulos = document.getElementsByClassName("container-body");
+  var modulos = document.getElementsByClassName("contenedor-body");
   for (var i = 0; i < modulos.length; i++) {
       modulos[i].style.display = "none"; // Oculta todos los módulos
   }
