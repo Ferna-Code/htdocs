@@ -1,10 +1,11 @@
 <?php
 
-class AlumnoController{
+class alumnocontroller{
     function index(){
         include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Alumno/index.php';
+        include VIEWS_PATH . 'Alumnos/index.php';
         include VIEWS_PATH . 'Layout/footer.php';
+
     }
 
 }
