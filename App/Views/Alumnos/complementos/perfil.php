@@ -34,39 +34,40 @@
             </div>
             <div class="formulario">
                 <h3>Datos Personales</h3><br>
-                <div class="formulario-experiencia">
-                    <div class="columna">
-                        <label for="rut">Rut:</label>
-                        <input type="text" class="form-control" name="rut" disabled>
-                    </div>
-                    <div class="columna">
-                        <label for="email">Correo:</label>
-                        <input type="email" class="form-control" name="email">
+                <form method="POST" class="form">
+                    <div class="formulario-experiencia">
+                        <div class="columna">
+                            <label for="rut">Rut:</label>
+                            <input type="text" class="form-control" name="rut" disabled>
+                        </div>
+                        <div class="columna">
+                            <label for="email">Correo:</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+
+                        <div class="columna">
+                            <label for="fechanac">Fecha de nacimiento:</label>
+                            <input type="date" class="form-control" name="fechanac">
+                        </div>
+                        <div class="columna">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="text" class="form-control" name="telefono">
+                        </div>
+
+                        <div class="columna">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" class="form-control" name="direccion">
+                        </div>
+                        <div class="columna">
+                            <label for="clave">Clave:</label>
+                            <input type="password" class="form-control" name="clave">
+                        </div>
                     </div>
 
-                    <div class="columna">
-                        <label for="fechanac">Fecha de nacimiento:</label>
-                        <input type="date" class="form-control" name="fechanac">
-                    </div>
-                    <div class="columna">
-                        <label for="telefono">Teléfono:</label>
-                        <input type="text" class="form-control" name="telefono">
-                    </div>
+                    <div class="experiencialaboral">
+                        <h3>Experiencia Laboral</h3><br>
+                        <div class="conteiner">
 
-                    <div class="columna">
-                        <label for="direccion">Dirección:</label>
-                        <input type="text" class="form-control" name="direccion">
-                    </div>
-                    <div class="columna">
-                        <label for="clave">Clave:</label>
-                        <input type="password" class="form-control" name="clave">
-                    </div>
-                </div>
-
-                <div class="experiencialaboral">
-                    <h3>Experiencia Laboral</h3><br>
-                    <div class="conteiner">
-                        <form method="POST" class="form">
                             <div class="clientes-contenedor">
                                 <!-- Contenedor de formularios de experiencia laboral -->
                                 <div id="experiencia-laboral-container">
@@ -127,117 +128,24 @@
                                 </div>
                                 <!-- Botón para agregar nuevo formulario de educación -->
                                 <div class="botones-container">
-                                <button type="button" class="btn-agregar-trabajo" onclick="agregarEducacion()">Agregar
-                                    educación</button>
+                                    <button type="button" class="btn-agregar-trabajo"
+                                        onclick="agregarEducacion()">Agregar
+                                        educación</button>
                                 </div>
                             </div>
                             <br>
+                            <div class="container">
+                            <h3>Adjuntar Curriculum</h3><br>
+                            <input type="file" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
+
+</div>
                             <button type="submit" class="btn-guardar" name="crearRegistro">Guardar
                                 Cambios</button>
-                        </form>
-                    </div>
-                </div>
+                </form>
+            </div>
+    </div>
 
-                <script>
-                    let contadorFormularios = 1;
-
-                    function agregarTrabajo() {
-                        if (contadorFormularios <= 2) {
-                            // Clona el primer formulario de experiencia laboral
-                            const nuevoFormulario = document.querySelector('.formulario-experiencia.visible').cloneNode(true);
-
-                            // Incrementa el contador de formularios
-                            contadorFormularios++;
-
-                            // Asigna un ID único al nuevo formulario
-                            const nuevoId = `experiencia${contadorFormularios}`;
-                            nuevoFormulario.id = nuevoId;
-
-                            // Modifica los atributos "for" de las etiquetas <label> para asociarlos con los nuevos inputs
-                            nuevoFormulario.querySelectorAll('label').forEach(label => {
-                                const inputId = label.getAttribute('for');
-                                if (inputId) {
-                                    const nuevoInputId = `${inputId}-${contadorFormularios}`;
-                                    label.setAttribute('for', nuevoInputId);
-                                }
-                            });
-
-                            // Modifica los atributos "id" y "name" de los inputs del nuevo formulario
-                            nuevoFormulario.querySelectorAll('input, textarea').forEach(input => {
-                                const inputName = input.getAttribute('name');
-                                if (inputName) {
-                                    const nuevoInputName = `${inputName}-${contadorFormularios}`;
-                                    input.setAttribute('id', nuevoInputName);
-                                    input.setAttribute('name', nuevoInputName);
-                                }
-                            });
-
-                            // Oculta el nuevo formulario
-                            nuevoFormulario.classList.remove('visible');
-                            nuevoFormulario.classList.add('oculto');
-
-                            // Agrega el nuevo formulario clonado al contenedor
-                            document.getElementById('experiencia-laboral-container').appendChild(nuevoFormulario);
-
-                            // Muestra el nuevo formulario
-                            setTimeout(() => {
-                                nuevoFormulario.classList.add('visible');
-                            }, 10);
-                        } else {
-                            alert("Solo se permiten agregar hasta 3 trabajos.");
-                        }
-                    }
-                </script>
-                <script>
-                    let contadorFormulariosEducacion = 1;
-
-                    function agregarEducacion() {
-                        if (contadorFormulariosEducacion <= 2) {
-                            // Clona el primer formulario de educación
-                            const nuevoFormulario = document.querySelector('.formulario-educacion').cloneNode(true);
-
-                            // Incrementa el contador de formularios de educación
-                            contadorFormulariosEducacion++;
-
-                            // Asigna un ID único al nuevo formulario de educación
-                            const nuevoId = `educacion${contadorFormulariosEducacion}`;
-                            nuevoFormulario.id = nuevoId;
-
-                            // Modifica los atributos "for" de las etiquetas <label> para asociarlos con los nuevos inputs
-                            nuevoFormulario.querySelectorAll('label').forEach(label => {
-                                const inputId = label.getAttribute('for');
-                                if (inputId) {
-                                    const nuevoInputId = `${inputId}-${contadorFormulariosEducacion}`;
-                                    label.setAttribute('for', nuevoInputId);
-                                }
-                            });
-
-                            // Modifica los atributos "id" y "name" de los inputs del nuevo formulario de educación
-                            nuevoFormulario.querySelectorAll('input, textarea').forEach(input => {
-                                const inputName = input.getAttribute('name');
-                                if (inputName) {
-                                    const nuevoInputName = `${inputName}-${contadorFormulariosEducacion}`;
-                                    input.setAttribute('id', nuevoInputName);
-                                    input.setAttribute('name', nuevoInputName);
-                                }
-                            });
-
-                            // Oculta el nuevo formulario de educación
-                            nuevoFormulario.classList.remove('visible');
-                            nuevoFormulario.classList.add('oculto');
-
-                            // Agrega el nuevo formulario de educación clonado al contenedor
-                            document.getElementById('educacion-container').appendChild(nuevoFormulario);
-
-                            // Muestra el nuevo formulario de educación
-                            setTimeout(() => {
-                                nuevoFormulario.classList.add('visible');
-                            }, 10);
-                        } else {
-                            alert("Solo se permiten agregar hasta 3 formularios de educación.");
-                        }
-                    }
-                </script>
+    <script src="../../../../public/js/perfilalumno.js"></script>
 
 
 </body>
