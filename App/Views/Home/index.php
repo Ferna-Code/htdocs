@@ -9,11 +9,13 @@
 <body>
     
     <h1>Muro</h1>
-    <a href="./Administrador/index">Administrador</a>
+    <a href="./Administrador/index">Administrador</a><!--nombre del controlador y funcion a la que quiero entrar-->
     <br>
     <a href="./Perfil/index">Estudiante</a>
     <br>
     <a href="./Supervisor/index">Supervisor</a>
+    <br>
+    <a href="./Home/maqueta">maquetas</a>
     <!--ESTAMOS ACA-->
 </body>
-</html>
+<html>

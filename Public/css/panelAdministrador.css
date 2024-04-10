@@ -2,17 +2,19 @@ body {
     background: lightgray;
     margin: 0px;
     padding: 0px;
+    
 }
 
 .container {
     display: flex;
     height: 93.7vh;
- 
+    width: 100%;
 }
 
 .container-panel {
-    background-color: blue;
+    background-color: rgb(233, 47, 23);
     flex: 0.4;
+    border-radius: 5%;
 }
 
 .container-body {
