@@ -18,6 +18,7 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
+    <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
 </head>
 
 <body id="page-top">
@@ -32,20 +33,13 @@
         </div>
 
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php include "complementos/perfil.php"; ?>
+            <?php include 'complementos/perfil.php' ?>
         </div>
 
-        <div class="contenedor-body" id="modulo3" >
-        <h1>POR EJ HP LLEGO AQUI</h1>
+        <div class="contenedor-body" id="modulo3" style="display:none">
+            <h1>Otro contenedor</h1>
         </div>
-
-        <div class="contenedor-body" id="modulo4" style="display:none">
-            <h1>CURSOS</h1>
-        </div>
-
-        <div class="contenedor-body" id="modulo5" style="display:none">
-            <h1>OFERTAS LABORALES</h1>
-        </div>
+       
 
     </div>
 
@@ -74,7 +68,8 @@
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
-    <script src="../../../../public/js/alumnos.js"></script>
+    <script src="../../../../Public/js/alumnos.js"></script>
+    <script src="../../../../public/js/perfilalumno.js"></script>
 
 </body>
 

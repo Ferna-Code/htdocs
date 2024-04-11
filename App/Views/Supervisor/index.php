@@ -89,7 +89,7 @@
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
-    <script src="../../../../public/js/supervisor.js"></script>
+    <script src="../../../../Public/js/supervisor.js"></script>
 
 </body>
 
