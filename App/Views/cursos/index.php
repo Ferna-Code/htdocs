@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
+    <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
 </head>
-<body>
-    <div id="curso">
-        <?php
-        include "complementos/formulario.php";
-        ?>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+        <div class="contenedor-body" id="modulo1">
+        <h1>HOME PERFIL</h1>
+        </div>
+
+        <div class="contenedor-body" id="modulo2" style="display:none">
+            <?php  include "complementos/perfil.php"; ?>
+        </div>
     </div>
+
+
+
+    <?php include_once 'complementos/body-page/parteInferior.php'; ?>
+
+
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../../../../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../../../../public/js/sb-admin-2.min.js"></script>
+    <script src="../../../../public/js/sb-admin-2.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="../../../../public/js/demo/chart-area-demo.js"></script>
+    <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
+
+    <script src="../../../../public/js/alumnos.js"></script>
+
 </body>
+
 </html>
