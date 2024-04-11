@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
+                    <td>luis yañez.....</td>
                     <td>17426433-5</td>
                     <td>12-12-2024</td>
                     <td>Arturo prat 269</td>
