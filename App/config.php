@@ -12,9 +12,9 @@ define('HOME_URL', BASE_URL . '/');
 define('ADMIN_URL', BASE_URL . 'admin/');
 define('RECEPCION_DIAGNOSTICO_URL', BASE_URL . 'recepcion/');
 define('TINCION_URL', BASE_URL . 'tincion/');
-define('DIAGNOSTICO_URL', BASE_URL . 'diagnostico/');
-define('ACCESO_CLIENTE_URL', BASE_URL . 'accesoCliente/');
-define('SERVICIOS_URL', BASE_URL . 'servicios');
+define('PANEL_ALUMNO', BASE_URL . 'alumno');
+define('PANEL_ADMINISTRADOR', BASE_URL . 'Administrador');
+define('PANEL_SUPERVISOR', BASE_URL . 'Supervisor');
 define('PREGUNTAS_FRECUENTES_URL', BASE_URL . 'preguntas');
 
 

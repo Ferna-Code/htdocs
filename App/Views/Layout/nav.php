@@ -29,17 +29,17 @@ session_start(); ?>
         if ($_SESSION['nivelUsuario'] == 1):
             ?>
             <div class="item">
-                <li class="nav-item"><a class="enlace-nav" href="<?php echo SERVICIOS_URL; ?>">Panel administrador</a></li>
+                <li class="nav-item"><a class="enlace-nav" href="<?php echo PANEL_ADMINISTRADOR; ?>">Panel administrador</a></li>
             </div>
         <?php elseif ($_SESSION['nivelUsuario'] == 2): ?>
             
-                <li class="nav-item"><a class="enlace-nav " href="<?php echo SERVICIOS_URL; ?>">Panel supervisor</a>
+                <li class="nav-item"><a class="enlace-nav " href="<?php echo PANEL_SUPERVISOR; ?>">Panel supervisor</a>
                     
                 </li>
            
         <?php elseif ($_SESSION['nivelUsuario'] == 3): ?>
             <div class="item">
-                <li class="nav-item"><a class="enlace-nav" href="<?php echo SERVICIOS_URL; ?>">Panel estudiante</a>
+                <li class="nav-item"><a class="enlace-nav" href="<?php echo PANEL_ALUMNO; ?>">Panel estudiante</a>
                 </li>
             </div>
         <?php endif; ?>
