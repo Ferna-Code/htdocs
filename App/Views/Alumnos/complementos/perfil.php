@@ -12,7 +12,7 @@
 <body>
     <div class="conteiner">
         <form method="POST" class="form">
-            <div class="clientes-contenedor">
+            <div class="">
                 <div class="cards">
                     <div class="card">
                         <div class="imagen-container">
@@ -149,7 +149,11 @@
             </div>
     </div>
 
-    <script src="../../../../public/js/perfilalumno.js"></script>
+    <script src="../../../../public/js/perfilalumno.js">
+
+
+
+    </script>
 
 
 </body>
