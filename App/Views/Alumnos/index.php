@@ -18,6 +18,7 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
+    <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
 </head>
 
 <body id="page-top">
@@ -28,15 +29,15 @@
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
 
         <div class="contenedor-body" id="modulo1">
-            <h1>HOME PERFIL</h1>
+            <h1>HOME Principal</h1>
         </div>
 
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php include "complementos/perfil.php"; ?>
+            <h1>Mi muro</h1>
         </div>
 
-        <div class="contenedor-body" id="modulo3" >
-        <h1>POR EJ HP LLEGO AQUI</h1>
+        <div class="contenedor-body" id="modulo3" style="display:none">
+        <?php require_once "complementos/perfil.php"; ?>
         </div>
 
         <div class="contenedor-body" id="modulo4" style="display:none">
@@ -44,9 +45,20 @@
         </div>
 
         <div class="contenedor-body" id="modulo5" style="display:none">
-            <h1>OFERTAS LABORALES</h1>
+        <h1>OFERTAS LABORALES</h1>
         </div>
 
+        <div class="contenedor-body" id="modulo6" style="display:none">
+            <?php include 'complementos/usuarios.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo7" style="display:none">
+            <?php include 'complementos/categorias.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo8" style="display:none">
+            <?php include 'complementos/diccionario.php' ?>
+        </div>
     </div>
 
 
@@ -75,6 +87,10 @@
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
     <script src="../../../../public/js/alumnos.js"></script>
+
+    <script src="../../../../public/js/perfilalumno.js">
+
+    </script>
 
 </body>
 
