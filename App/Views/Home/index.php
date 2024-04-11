@@ -11,11 +11,11 @@
     <h1>Muro</h1>
     <a href="./Administrador/index">Administrador</a><!--nombre del controlador y funcion a la que quiero entrar-->
     <br>
-    <a href="./Perfil/index">Estudiante</a>
+    <a href="./Alumno/index">Estudiante</a>
     <br>
     <a href="./Supervisor/index">Supervisor</a>
     <br>
-    <a href="./Home/maqueta">maquetas</a>
-    <!--ESTAMOS ACA-->
+    <a href="./Home/maqueta">Maqueta</a>
+    
 </body>
 <html>

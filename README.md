@@ -1,18 +1,28 @@
-# htdocs
+# Comandos GIT
+### Agregen sus comandos
+-----------------------------------------------
 
-Hay que crear la tabla Perfiles con la siguiente estructura:
-
-```sql
-CREATE TABLE IF NOT EXISTS $tableName(
-    rut varchar(10) primary key not null,
-    nombre varchar(50) not null,
-    apellido varchar(50) not null,
-    nivel int not null,
-    curriculum varchar(100) null
-);
-```
+Para actualizar los datos de la rama X con los datos de la rama Y 
 
 
-Deje condigurada la coneccion a la base de datos, para cambiar el usuario, password, host o database hay que realizarlo en config.php.
+- Asegurate de estar en la rama X<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git checkout X
 
-Al archivo .htaccess no hay que modificarle nada ya que es el archivo que permite que todo se vea desde el index principal.
+- Actualiza la rama X con los datos de la rama Y<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git merge Y
+
+-----------------------------------------------
+
+SUBIR CAMBIOS A LA RAMA
+
+- Prepara los cambios<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git add .
+
+- Crear el commit<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git commit -m "Tu-mensaje"
+
+- Subes los cambios al repositorio<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git push
+
+- Actualizar proyecto con los cambios de otra rama<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git pull origin nombre-rama
