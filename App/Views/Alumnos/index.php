@@ -17,23 +17,37 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
-    <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
+    <link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
 </head>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
+
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+
         <div class="contenedor-body" id="modulo1">
-        <h1>HOME PERFIL</h1>
+            <h1>HOME PERFIL</h1>
         </div>
 
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php  include "complementos/perfil.php"; ?>
+            <?php include "complementos/perfil.php"; ?>
         </div>
-    </div>
 
+        <div class="contenedor-body" id="modulo3" >
+        <h1>POR EJ HP LLEGO AQUI</h1>
+        </div>
+
+        <div class="contenedor-body" id="modulo4" style="display:none">
+            <h1>CURSOS</h1>
+        </div>
+
+        <div class="contenedor-body" id="modulo5" style="display:none">
+            <h1>OFERTAS LABORALES</h1>
+        </div>
+
+    </div>
 
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>

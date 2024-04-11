@@ -28,9 +28,17 @@
         <div class="contenedor-body" id="modulo1">
         <h1>HOME PERFIL</h1>
         </div>
-
         <div class="contenedor-body" id="modulo2" style="display:none">
             <?php  include "complementos/perfil.php"; ?>
+        </div>
+        <div class="contenedor-body" id="modulo3" style="display:none">
+        <h1>MURO PERSONAL</h1>
+        </div>
+        <div class="contenedor-body" id="modulo4" style="display:none">
+        <h1>CURSOS</h1>
+        </div>
+        <div class="contenedor-body" id="modulo5" style="display:none">
+        <h1>OFERTAS LABORALES</h1>
         </div>
     </div>
 
