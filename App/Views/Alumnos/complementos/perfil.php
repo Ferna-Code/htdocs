@@ -17,10 +17,7 @@
                         <p>Técnico Analista Programador.</p>
                     </div>
                 </div>
-                <div class="contenido-texto-card">
-                    <h1>Luis Yañez R</h1>
-                    <p>Técnico Analista Programador.</p>
-                </div>
+                
             </div>
         </div>
         <div class="formulario">

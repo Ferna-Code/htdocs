@@ -18,6 +18,11 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
+
+    <!-- Estilo card -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body id="page-top">
@@ -60,7 +65,7 @@
         </div>
 
         <div class="contenedor-body" id="modulo9" style="display:none">
-            <h1>Ofertas laborales</h1>
+            <?php include VIEWS_PATH . 'ofertasLaborales/index.php' ?>
         </div>
     </div>
 
@@ -80,7 +85,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../../../public/js/sb-admin-2.min.js"></script>
-    
+
 
     <!-- Page level plugins -->
     <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
@@ -90,6 +95,10 @@
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
     <script src="../../../../Public/js/supervisor.js"></script>
+
+    <!-- JS card -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 

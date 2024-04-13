@@ -24,3 +24,10 @@ SUBIR CAMBIOS A LA RAMA
 
 - Ver ultimos commit<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git log
+
+- colores<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:root {<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --color-naranja: #F8B619;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--color-blanco: #FFFFFF;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--color-rojo: #ED1C24;
+}
