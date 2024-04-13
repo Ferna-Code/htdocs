@@ -1,20 +1,23 @@
-<div class="container">
+<div class="conteiner">
     <form method="POST" class="form">
-        <div class="cards">
-            <div class="card">
-                <div class="imagen-container">
-                    <img src="../../../../Public/img/profe1.jpeg" alt="">
-                    <input type="file" id="upload-foto" title="Subir foto" onchange="Main.perfil.changeFoto(event)">
-                    <div class="profile-container__header__wrapper-icon">
-                        <div class="profile-container__header__file-upload">
-                            <span class="icon-camera"></span>
+        <div class="">
+            <div class="cards">
+                <div class="card">
+                    <div class="imagen-container">
+                        <img src="../../../../Public/img/profe1.jpeg" alt="">
+                        <input type="file" id="upload-foto" title="Subir foto" onchange="Main.perfil.changeFoto(event)">
+                        <div class="profile-container__header__wrapper-icon">
+                            <div class="profile-container__header__file-upload">
+                                <span class="icon-camera"></span>
+                            </div>
                         </div>
                     </div>
+                    <div class="contenido-texto-card">
+                        <h1>Luis Yañez R</h1>
+                        <p>Técnico Analista Programador.</p>
+                    </div>
                 </div>
-                <div class="contenido-texto-card">
-                    <h1>Luis Yañez R</h1>
-                    <p>Técnico Analista Programador.</p>
-                </div>
+                
             </div>
         </div>
         <div class="formulario">
