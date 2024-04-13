@@ -13,7 +13,7 @@
 
         <div class="mitad right">
             <div class="btn-form">
-                <button id="btn-abrir-modal"><a href="empresa/index"></a></button>
+                <button class="btn-oferta" id=""><a href="./empresa/index">Ingresar oferta</a></button>
             </div>
         </div>
         
