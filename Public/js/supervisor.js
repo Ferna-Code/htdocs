@@ -102,6 +102,19 @@ function controlVisi8() {
   centrarModulo(elemento8);
 }
 
+function controlVisi9() {
+  var elemento9 = document.getElementById("modulo9");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento9.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento9);
+}
+
 
 function ocultarModulos() {
   var modulos = document.getElementsByClassName("contenedor-body");

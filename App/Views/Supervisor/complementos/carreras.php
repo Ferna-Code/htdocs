@@ -1,6 +1,6 @@
 <body>
-    <div class="btn-panel">
+    <h1>Carreras</h1>
+    <div class="body-panel">
+        <?php include 'tablas/tablaReporte.php' ?>
     </div>
-   
-    <div class="body-panel"></div>
 </body>

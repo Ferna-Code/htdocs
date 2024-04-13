@@ -47,6 +47,7 @@
         <div class="contenedor-body" id="modulo5" style="display:none">
         <h1>OFERTAS LABORALES</h1>
         </div>
+       
 
         <div class="contenedor-body" id="modulo6" style="display:none">
             <?php include 'complementos/usuarios.php' ?>
@@ -86,7 +87,8 @@
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
-    <script src="../../../../public/js/alumnos.js"></script>
+    <script src="../../../../Public/js/alumnos.js"></script>
+    <script src="../../../../public/js/perfilalumno.js"></script>
 
     <script src="../../../../public/js/perfilalumno.js">
 

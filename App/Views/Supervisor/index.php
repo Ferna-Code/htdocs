@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Panel supervisor</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -58,6 +58,10 @@
         <div class="contenedor-body" id="modulo8" style="display:none">
             <?php include 'complementos/diccionario.php' ?>
         </div>
+
+        <div class="contenedor-body" id="modulo9" style="display:none">
+            <h1>Ofertas laborales</h1>
+        </div>
     </div>
 
 
@@ -76,7 +80,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../../../public/js/sb-admin-2.min.js"></script>
-    <script src="../../../../public/js/sb-admin-2.js"></script>
+    
 
     <!-- Page level plugins -->
     <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
@@ -85,7 +89,7 @@
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
-    <script src="../../../../public/js/supervisor.js"></script>
+    <script src="../../../../Public/js/supervisor.js"></script>
 
 </body>
 

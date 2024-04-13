@@ -163,6 +163,14 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi9()" data-toggle="collapse" data-target="#collapseUtilities8"
+            aria-expanded="true" aria-controls="collapseUtilities8">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Ofertas laborales</span>
+        </a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -370,10 +378,10 @@
                             Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
-                        </a>
+                        </a> -->
                     </div>
                 </li>
                 <!--FIN OPCIONES USUARIO-->
