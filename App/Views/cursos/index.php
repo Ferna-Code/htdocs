@@ -17,7 +17,8 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
-    <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
+    <link rel="stylesheet" href="../../../../Public/css/categorias.css">
+    <link rel="stylesheet" href="../../../../Public/css/panelalumnos.css">
 </head>
 
 <body id="page-top">
@@ -26,10 +27,10 @@
     <div id="wrapper">
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
         <div class="contenedor-body" id="modulo1">
-        <h1>HOME PERFIL</h1>
+        <?php  include "complementos/categorias.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php  include "complementos/perfil.php"; ?>
+            
         </div>
         <div class="contenedor-body" id="modulo3" style="display:none">
         <h1>MURO PERSONAL</h1>
