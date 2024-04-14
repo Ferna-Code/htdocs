@@ -32,7 +32,7 @@
         <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo" onclick="controlVisi1()">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Muro pricnila</span>
+            <span>Cursos Categorias</span>
         </a>
     </li>
 
@@ -41,7 +41,7 @@
         <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapse2" aria-expanded="true"
             aria-controls="collapse2" onclick="controlVisi2()">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Perfil</span>
+            <span>Educación y bienestar</span>
         </a>
     </li>
 
@@ -49,7 +49,7 @@
         <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
             aria-controls="collapse3" onclick="controlVisi3()">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Curso</span>
+            <span>Informática</span>
         </a>
     </li>
 
@@ -57,7 +57,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
             aria-expanded="true" aria-controls="collapseUtilities3" onclick="controlVisi4()">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>vista 4</span>
+            <span>Negocios</span>
         </a>
     </li>
 
@@ -65,7 +65,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4"
             aria-expanded="true" aria-controls="collapseUtilities4"  onclick="controlVisi5()">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>vista 5</span>
+            <span>Formulario creación</span>
         </a>
     </li>
 

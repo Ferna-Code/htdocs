@@ -10,43 +10,47 @@
         <div class="row">
             <!-- Team member -->
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip">
-                    <div class="mainflip flip-0">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid"
-                                            src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png"
-                                            alt="card image"></p>
-                                    <h4 class="card-title">Educación, bienestar y calidad</h4>
-                                    <p class="card-text"></p><br><br><br>
-                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-danger btn-sm"><i
-                                            class="fa fa-plus"></i></a>
+                <a href="./complementos" class="card-link">
+                    <div class="image-flip">
+                        <div class="mainflip flip-0">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <p><img class=" img-fluid"
+                                                src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png"
+                                                alt="card image"></p>
+                                        <h4 class="card-title">Educación, bienestar y calidad</h4>
+                                        <p class="card-text"></p><br><br><br>
+                                        <a href="./complementos" class="btn btn-danger btn-sm"><i
+                                                class="fa fa-plus"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Educación, bienestar y calidad</h4>
-                                    <p class="card-text"> <br> -Técnico en Farmacia.
-                                        <br> -Psicodefagogía.
-                                        <br> -Técnico en estética Integral.
-                                        <br> -Servicio Social.
-                                        <br> -Masoterapia.
-                                        <br> -Laborista Dental.
-                                        <br> -PET Educación Parvularia.
-                                        <br> -Técnico en educación Parvularia.
-                                        <br> -Técnico en Naturopatía y terapias Naturales.
-                                        <br> -Técnico en servicio social.
-                                        <br> -Naturopatía y terapias naturales.
-                                    </p>
+                            <div class="backside">
+                                <a href="./complementos" class="card-link">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title">Educación, bienestar y calidad</h4>
+                                            <p class="card-text"> <br> -Técnico en Farmacia.
+                                                <br> -Psicodefagogía.
+                                                <br> -Técnico en estética Integral.
+                                                <br> -Servicio Social.
+                                                <br> -Masoterapia.
+                                                <br> -Laborista Dental.
+                                                <br> -PET Educación Parvularia.
+                                                <br> -Técnico en educación Parvularia.
+                                                <br> -Técnico en Naturopatía y terapias Naturales.
+                                                <br> -Técnico en servicio social.
+                                                <br> -Naturopatía y terapias naturales.
+                                            </p>
 
-                                </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <!-- ./Team member -->
             <!-- Team member -->

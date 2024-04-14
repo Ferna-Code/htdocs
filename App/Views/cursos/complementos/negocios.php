@@ -1,12 +1,7 @@
-<head>
-	<link rel="stylesheet" href="../../../../Public/css/cursoslista.css">
-</head>
-
-
 <div class="box">
 	<div class="container">
 		<div>
-			<h1>Educación, bienestar y calidad de vida.</h1><br>
+			<h1>Negocios.</h1><br>
 		</div>
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

@@ -30,16 +30,16 @@
         <?php  include "complementos/categorias.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo2" style="display:none">
-            
+        <?php  include "complementos/educacionbienestar.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo3" style="display:none">
-        <h1>MURO PERSONAL</h1>
+        <?php  include "complementos/informatica.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo4" style="display:none">
-        <h1>CURSOS</h1>
+        <?php  include "complementos/negocios.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo5" style="display:none">
-        <h1>OFERTAS LABORALES</h1>
+        <?php  include "complementos/formulario.php"; ?>
         </div>
     </div>
 
