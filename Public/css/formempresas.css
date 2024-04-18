@@ -60,5 +60,14 @@ h1{
     padding: 20px;
     margin-bottom: 20px;
     cursor: pointer;
-    width: 100%;
+}
+
+.btnGuardar{
+    margin-left: 25%;
+    width: 12%;
+}
+
+.btnGeneral{
+    margin-left: 1%;
+    width: 12%;
 }

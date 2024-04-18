@@ -4,7 +4,7 @@ span {
 
 .container {
     width: calc(100% - 20px); /* Establece el ancho del contenedor */
-    height: 440px; /* Altura fija del contenedor */
+    height: 600px; /* Altura fija del contenedor */
     overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
     overflow-x: hidden; /* Oculta la barra de desplazamiento horizontal */
     white-space: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */

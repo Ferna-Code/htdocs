@@ -59,8 +59,22 @@
                         <input type="number" id="rango-salarial" name="rango-salarial" required>
                     </div>
                 </div>
-                <button type="submit" class="btn-guardar" name="crearRegistro">Enviar Oferta</button>
+                <input type="reset" class="btn-guardar btnGuardar" name="resetForm" value="Borrar formulario" >
+                <button type="submit" class="btn-guardar btnGeneral" name="crearRegistro">Enviar Oferta</button>
             </form>
+            <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Verificamos si se ha enviado un formulario para eliminar
+                    if (isset($_POST['btnCancelar'])) {
+                        // Redirigir al formulario de inicio de sesión
+                        header("Location: Login/index.php");
+                        exit; // Importante: detener la ejecución del script después de redirigir
+                    } elseif (isset($_POST['crearRegistro'])) {
+                        // Si se envió el formulario para enviar una oferta, realizar las acciones correspondientes
+                        // Por ejemplo: guardar los datos en la base de datos
+                    }
+                }
+            ?>
         </div>
     </div>
 </body>
