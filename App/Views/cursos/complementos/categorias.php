@@ -5,12 +5,12 @@
 
 <!-- Team -->
 <section id="team" class="pb-5">
-    <div class="container">
+    <div>
         <h1 class="section-title h1">Categorías</h1><br><br><br>
         <div class="row">
             <!-- Team member -->
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="./complementos" class="card-link">
+                <a class="card-link">
                     <div class="image-flip">
                         <div class="mainflip flip-0">
                             <div class="frontside">
@@ -27,26 +27,26 @@
                                 </div>
                             </div>
                             <div class="backside">
-                                <a href="./complementos" class="card-link">
-                                    <div class="card">
-                                        <div class="card-body text-center mt-4">
-                                            <h4 class="card-title">Educación, bienestar y calidad</h4>
-                                            <p class="card-text"> <br> -Técnico en Farmacia.
-                                                <br> -Psicodefagogía.
-                                                <br> -Técnico en estética Integral.
-                                                <br> -Servicio Social.
-                                                <br> -Masoterapia.
-                                                <br> -Laborista Dental.
-                                                <br> -PET Educación Parvularia.
-                                                <br> -Técnico en educación Parvularia.
-                                                <br> -Técnico en Naturopatía y terapias Naturales.
-                                                <br> -Técnico en servicio social.
-                                                <br> -Naturopatía y terapias naturales.
-                                            </p>
-
-                                        </div>
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title">Educación, bienestar y calidad</h4>
+                                        <p class="card-text"> <br> -Técnico en Farmacia.
+                                            <br> -Psicodefagogía.
+                                            <br> -Técnico en estética Integral.
+                                            <br> -Servicio Social.
+                                            <br> -Masoterapia.
+                                            <br> -Laborista Dental.
+                                            <br> -PET Educación Parvularia.
+                                            <br> -Técnico en educación Parvularia.
+                                            <br> -Técnico en Naturopatía y terapias Naturales.
+                                            <br> -Técnico en servicio social.
+                                            <br> -Naturopatía y terapias naturales.
+                                        </p>
+                                        <button class="btn btn-danger btn-sm" onclick="controlVisi2()"> ver más</button>
+                                        <br><br>
                                     </div>
-                                </a>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,8 @@
                                         <br> -Analista Programador.
                                         <br> -Técnico en Construcción.
                                     </p>
-
+                                    <button class="btn btn-danger btn-sm" onclick="controlVisi3()"> ver más</button>
+                                    <br><br>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +121,8 @@
                                         <br> -Contador Auditor.
                                         <br> -Ingeniería en Marketing.
                                     </p>
-
+                                    <button class="btn btn-danger btn-sm" onclick="controlVisi4()"> ver más</button>
+                                    <br><br>
                                 </div>
                             </div>
                         </div>

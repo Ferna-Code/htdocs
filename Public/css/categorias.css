@@ -124,3 +124,15 @@ section .section-title {
     border-radius: 50%;
 }
 
+.listadocursos{
+    margin-top: 5%;
+    padding: 3%;
+}
+
+.box-part {
+    background: #FFF;
+    border: 1px solid orange;
+    border-radius: 0;
+    padding: 60px 10px;
+    margin: 30px 0px;
+}
