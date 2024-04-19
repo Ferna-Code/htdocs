@@ -7,8 +7,9 @@
     <title>RedLeones</title>
 </head>
 <body>
-    <h1>Muro publico</h1>
-    <a href="./Administrador/index">Administrador</a>
+    
+    <h1>Muro</h1>
+    <a href="./Administrador/index">Administrador</a><!--nombre del controlador y funcion a la que quiero entrar-->
     <br>
     <a href="./Alumno/index">Estudiante</a>
     <br>
@@ -21,4 +22,4 @@
     <a href="./cursos/index">cursos</a>
     
 </body>
-</html>
+<html>
