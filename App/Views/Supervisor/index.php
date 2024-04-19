@@ -65,7 +65,10 @@
         </div>
 
         <div class="contenedor-body" id="modulo9" style="display:none">
-            <?php include VIEWS_PATH . 'ofertasLaborales/index.php' ?>
+            <?php 
+                //include VIEWS_PATH . 'ofertasLaborales/index.php' 
+                include 'complementos/ofertasLaborales.php'
+            ?>
         </div>
     </div>
 
