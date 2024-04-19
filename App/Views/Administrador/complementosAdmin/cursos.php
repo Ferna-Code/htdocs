@@ -6,49 +6,68 @@
 
     <title>Document</title>
 <body>
-    <div class="btn-panel">Cursos</div>
+    <div class="btn-panel">        
+        <div>
+            <a href="creaCursos" class="btn  btn-primary">Crear Categoria</a>
+            <label for="filtroUsuario">Filtrar por ID:</label>
+            <input type="text" id="filtroUsuario">
+        </div>
+        <div>
+            <label for="filtroCentro">Filtrar por Categoría:</label>
+            <input type="text" id="filtroCentro">
+        </div>
+    </div>
    
     <div class="body-panel">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Fecha de Ingreso</th>
-                    <th>Dimicilio</th>
+                    <th>Id Cursos</th>
+                    <th>Nombre Curso</th>
+                    <th>Descripción</th>
+                    <th>ID Carrera</th>
+                    <th>Fecha de Creación</th>
+                    <th>Activo</th>
+                    <th>Fecha de Eliminación</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>01</td>
+                    <td>Diplomado en Gestión de Proyectos TI</td>
+                    <td>1DEscripcion del curso</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>Si</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarCursos" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>01</td>
+                    <td>Diplomado en metodologia Scrum</td>
+                    <td>Descripcion del curso</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>Si</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarCursos" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                <td>01</td>
+                    <td>Networking Essentials</td>
+                    <td>Descripcion del curso</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>Si</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarCursos" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 

@@ -4,16 +4,16 @@
     rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Crear Perfiles</title>
+    <title>Administraor de Ofertas</title>
 <body>
 <div class="btn-panel">        
         <div>
-            <a href="creaPerfiles" class="btn  btn-primary">Crear Perfil</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
+            <a href="creaOfertas" class="btn  btn-primary">Ingresar Oferta</a>
+            <label for="filtroUsuario">Filtrar por Título:</label>
             <input type="text" id="filtroUsuario">
         </div>
         <div>
-            <label for="filtroCentro">Filtrar por Perfil:</label>
+            <label for="filtroCentro">Filtrar por Carrera:</label>
             <input type="text" id="filtroCentro">
         </div>
     </div>
@@ -23,50 +23,58 @@
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th>Id Perfil</th>
-                    <th>Nombre</th>
-                    <th>Rut Usuario</th>
-                    <th>Fecha de Ingreso</th>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Descripción</th>
+                    <th>Contacto</th>
+                    <th>ID Carrera</th>
+                    <th>Fecha de Creación</th>
                     <th>Activo</th>
-                    <th>Fecha de Eliminacion</th>
+                    <th>Fecha de Eliminación</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
                     <td>01</td>
-                    <td>Administrador</td>
-                    <td>11111111-1</td>
+                    <td>Oferta de Practica</td>
+                    <td>Descripcion de la Oferta</td>
+                    <td>Dato de Contacto</td>
+                    <td>45</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarOfertas" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
-                    <td>02</td>
-                    <td>Supervisor</td>
-                    <td>22222222-2</td>
+                    <td>01</td>
+                    <td>Oferta de Trabajo</td>
+                    <td>Descripcion de la Oferta</td>
+                    <td>Dato de Contacto</td>
+                    <td>33</td>
                     <td>12-12-2024</td>
-                    <td>No</td>
+                    <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarOfertas" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                    <td>02</td>
-                    <td>Alumno</td>
-                    <td>33333333-3</td>
+                    <td>01</td>
+                    <td>Oferta de Practica</td>
+                    <td>Descripcion de la Oferta</td>
+                    <td>Dato de Contacto</td>
+                    <td>03</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarOfertas" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 

@@ -4,51 +4,85 @@
     rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>Usuarios</title>
 <body>
-    <div class="btn-panel">Usuarios</div>
+<div class="btn-panel">         
+        <div>
+            <a href="creaUsuarios" class="btn  btn-primary">Crear Usuario</a>
+            <label for="filtroUsuario">Filtrar por ID:</label>
+            <input type="text" id="filtroUsuario">
+        </div>
+        <div>
+            <label for="filtroCentro">Filtrar por XXX:</label>
+            <input type="text" id="filtroCentro">
+        </div>
+    </div>
    
     <div class="body-panel">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
+                    <th>Rut</th>
                     <th>Nombre</th>
-                    <th>Categoria</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Correo</th>
+                    <th>Carrera</th>
+                    <th>Avance</th>
+                    <th>Cargo</th>
                     <th>Fecha de Ingreso</th>
-                    <th>Dimicilio</th>
+                    <th>Activo</th>
+                    <th>Feha de Eliminación</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>11111111-1</td>
+                    <td>Luis Yañez Carreño</td>
+                    <td>12-12-1954</td>
+                    <td>Profesor@leones.cl</td>
+                    <td>Analista Programador</td>
+                    <td>5</td>
+                    <td>Docente</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>Si</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarUsuario" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>33333333-3</td>
+                    <td>Ivan Rojas</td>
+                    <td>12-12-1930</td>
+                    <td>JefeCarrera@leones.cl</td>
+                    <td>Otra Carrera</td>
+                    <td>5</td>
+                    <td>Docente</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>Si</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarUsuario" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>22222222-2</td>
+                    <td>Ramon Vasquez</td>
+                    <td>12-12-1986</td>
+                    <td>Profesor2@leones.cl</td>
+                    <td>Analista Programador</td>
+                    <td>5</td>
+                    <td>Docente</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>Si</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarUsuario" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 

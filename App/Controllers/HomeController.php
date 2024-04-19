@@ -22,9 +22,7 @@ class HomeController{
         include VIEWS_PATH . 'Layout/tabla.php';
     }
 
-    public function maqueta(){
-        include  VIEWS_PATH . 'maquetas.php';
-    }
+
 }
 
 

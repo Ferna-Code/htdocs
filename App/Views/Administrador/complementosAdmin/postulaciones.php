@@ -4,16 +4,16 @@
     rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Crear Perfiles</title>
+    <title>Postulaciones</title>
 <body>
 <div class="btn-panel">        
         <div>
-            <a href="creaPerfiles" class="btn  btn-primary">Crear Perfil</a>
+            <a href="creaPostulaciones" class="btn  btn-primary">Crear Postulaciones</a>
             <label for="filtroUsuario">Filtrar por ID:</label>
             <input type="text" id="filtroUsuario">
         </div>
         <div>
-            <label for="filtroCentro">Filtrar por Perfil:</label>
+            <label for="filtroCentro">Filtrar por XXX:</label>
             <input type="text" id="filtroCentro">
         </div>
     </div>
@@ -23,11 +23,11 @@
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th>Id Perfil</th>
-                    <th>Nombre</th>
+                    <th>Id Postulaciones</th>
                     <th>Rut Usuario</th>
+                    <th>ID Carrera</th>
+                    <th>ID Oferta</th>
                     <th>Fecha de Ingreso</th>
-                    <th>Activo</th>
                     <th>Fecha de Eliminacion</th>
                     <th>Acciones</th>
                 </tr>
@@ -35,38 +35,41 @@
             <tbody>
                 <tr class="table table-striped">
                     <td>01</td>
-                    <td>Administrador</td>
-                    <td>11111111-1</td>
+                    <td>44444444-4</td>
+                    <td>21</td>
+                    <td>32</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarPostulaciones" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
                     <td>02</td>
-                    <td>Supervisor</td>
-                    <td>22222222-2</td>
+                    <td>55555555-5</td>
+                    <td>21</td>
+                    <td>32</td>
                     <td>12-12-2024</td>
-                    <td>No</td>
+                    <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarPostulaciones" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                    <td>02</td>
-                    <td>Alumno</td>
-                    <td>33333333-3</td>
+                    <td>03</td>
+                    <td>66666666-6</td>
+                    <td>34</td>
+                    <td>12</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarPostulaciones" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 

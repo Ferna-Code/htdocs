@@ -4,51 +4,65 @@
     rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>Diccionario</title>
 <body>
-    <div class="btn-panel">Diccionario</div>
+<div class="btn-panel">     
+        <div>
+            <a href="creaDiccionario" class="btn  btn-primary">Ingreso nueva Palabra</a>
+            <label for="filtroUsuario">Filtrar por ID:</label>
+            <input type="text" id="filtroUsuario">
+        </div>
+        <div>
+            <label for="filtroCentro">Filtrar por Categoría:</label>
+            <input type="text" id="filtroCentro">
+        </div>
+    </div>
    
     <div class="body-panel">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Fecha de Ingreso</th>
-                    <th>Dimicilio</th>
-                    <th>Acciones</th>
+                    <th>ID Diccionario</th>
+                    <th>Palabra</th>
+                    <th>Fecha  de Creación</th>
+                    <th>Activo</th>
+                    <th>Fecha de Eliminación</th>
+                    <td>Acciones</td>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
-                    <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>01</td>
+                    <td>Palabra restringida</td>
+                    <td>13-04-2024</td>
+                    <td>Si</td>
+                    <td>13-04-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarDiccionario" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
-                    <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>02</th>
+                    <td>Palabra restringida</th>
+                    <td>13-04-2024</th>
+                    <td>No</th>
+                    <td>13-04-2024</th>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarDiccionario.php" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
-                    <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>03</th>
+                    <td>Palabra restringida</th>
+                    <td>13-04-2024</th>
+                    <td>Si</th>
+                    <td>13-04-2024</th>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarDiccionario.php" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 

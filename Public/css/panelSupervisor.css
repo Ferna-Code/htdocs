@@ -2,7 +2,7 @@
     --color-naranja: #F8B619;
     --color-blanco: #FFFFFF;
     --color-rojo: #dc3545;
-    --letra-panel: #16336A;
+    --letra-panel: #000000;
     --color-btnRojo: #b02a37;
     --color-btnAzul: #0d6efd;;
 }
@@ -15,12 +15,8 @@ body {
 
 .contenedor {
     display: flex;
-<<<<<<< HEAD
-    height: 93.7vh;
- 
-=======
     height: 90vh;
->>>>>>> 77e43c3af5db633e01001f9ac5f36e07d0729fbc
+
 }
 
 .container-panel {
@@ -34,7 +30,7 @@ body {
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
     flex: 2;
-    background: lightgray;
+
 }
 
 .link-nav{

@@ -4,51 +4,73 @@
     rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>Reportes</title>
 <body>
-    <div class="btn-panel">Reportes</div>
+<div class="btn-panel">        
+        <div>
+            <a href="creaReportes" class="btn  btn-primary">Crear Reporte</a>
+            <label for="filtroUsuario">Filtrar por ID:</label>
+            <input type="text" id="filtroUsuario">
+        </div>
+        <div>
+            <label for="filtroCentro">Filtrar por XXX:</label>
+            <input type="text" id="filtroCentro">
+        </div>
+    </div>
    
     <div class="body-panel">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
+                    <th>ID Reporte</th>
+                    <th>Id Comentario</th>
+                    <th>Rut usuario</th>
+                    <th>Id Publicación</th>
                     <th>Fecha de Ingreso</th>
-                    <th>Dimicilio</th>
+                    <th>Activo</th>
+                    <th>Fecha de Eliminacion</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>01</td>
+                    <td>554</td>
+                    <td>77777777-7</td>
+                    <td>878</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>No</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarReportes" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>02</td>
+                    <td>5758</td>
+                    <td>77777777-7</td>
+                    <td>8768</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>No</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarReportes" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                    <td>luis yañez</td>
-                    <td>17426433-5</td>
+                    <td>03</td>
+                    <td>5342</td>
+                    <td>77777777-7</td>
+                    <td>673</td>
                     <td>12-12-2024</td>
-                    <td>Arturo prat 269</td>
+                    <td>No</td>
+                    <td>12-12-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarReportes" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 

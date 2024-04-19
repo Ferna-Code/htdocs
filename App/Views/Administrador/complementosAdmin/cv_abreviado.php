@@ -4,16 +4,16 @@
     rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Crear Perfiles</title>
+    <title>Document</title>
 <body>
-<div class="btn-panel">        
+    <div class="btn-panel">        
         <div>
-            <a href="creaPerfiles" class="btn  btn-primary">Crear Perfil</a>
+            <a href="creaCVabreviado" class="btn  btn-primary">Crear Categoria</a>
             <label for="filtroUsuario">Filtrar por ID:</label>
             <input type="text" id="filtroUsuario">
         </div>
         <div>
-            <label for="filtroCentro">Filtrar por Perfil:</label>
+            <label for="filtroCentro">Filtrar por Categoría:</label>
             <input type="text" id="filtroCentro">
         </div>
     </div>
@@ -23,55 +23,51 @@
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th>Id Perfil</th>
-                    <th>Nombre</th>
+                    <th>Id Archivo CV</th>
                     <th>Rut Usuario</th>
+                    <th>Documento</th>
                     <th>Fecha de Ingreso</th>
-                    <th>Activo</th>
-                    <th>Fecha de Eliminacion</th>
+                    <th>Fecha de Eliminación</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
                     <td>01</td>
-                    <td>Administrador</td>
-                    <td>11111111-1</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
+                    <td>77777777-7</td>
+                    <td>fdf$$%DOCUMENTO$&F</td>
+                    <td>23-04-2024</td>
+                    <td>23-04-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarCVabreviado" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
-                    <td>02</td>
-                    <td>Supervisor</td>
-                    <td>22222222-2</td>
-                    <td>12-12-2024</td>
-                    <td>No</td>
-                    <td>12-12-2024</td>
+                    <td>01</td>
+                    <td>55555555-5</td>
+                    <td>fdf$$%DOCUMENTO$&F</td>
+                    <td>23-04-2024</td>
+                    <td>23-04-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarCVabreviado" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                    <td>02</td>
-                    <td>Alumno</td>
-                    <td>33333333-3</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
+                    <td>01</td>
+                    <td>99999999-9</td>
+                    <td>fdf$$%DOCUMENTO$&F</td>
+                    <td>23-04-2024</td>
+                    <td>23-04-2024</td>
                     <td>
-                        <a href="editarPerfiles" class="btn w-100 m-1 btn-primary">editar</a>
+                        <a href="editarCVabreviado" class="btn w-100 m-1 btn-primary">editar</a>
                         <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
                     </td>
 
                 </tr>
-            </tbody>
+            </tbody>  
         </table>
     </div>
 </body>
