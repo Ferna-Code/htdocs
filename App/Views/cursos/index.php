@@ -17,7 +17,8 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
-    <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
+    <link rel="stylesheet" href="../../../../Public/css/categorias.css">
+    <link rel="stylesheet" href="../../../../Public/css/panelalumnos.css">
 </head>
 
 <body id="page-top">
@@ -26,19 +27,19 @@
     <div id="wrapper">
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
         <div class="contenedor-body" id="modulo1">
-        <h1>HOME PERFIL</h1>
+        <?php  include "complementos/categorias.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php  include "complementos/perfil.php"; ?>
+        <?php  include "complementos/educacionbienestar.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo3" style="display:none">
-        <h1>MURO PERSONAL</h1>
+        <?php  include "complementos/informatica.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo4" style="display:none">
-        <h1>CURSOS</h1>
+        <?php  include "complementos/negocios.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo5" style="display:none">
-        <h1>OFERTAS LABORALES</h1>
+        <?php  include "complementos/formulario.php"; ?>
         </div>
     </div>
 
@@ -53,22 +54,17 @@
     <!-- Bootstrap core JavaScript-->
     <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
     <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="../../../../public/vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom scripts for all pages-->
     <script src="../../../../public/js/sb-admin-2.min.js"></script>
     <script src="../../../../public/js/sb-admin-2.js"></script>
-
     <!-- Page level plugins -->
     <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
-
     <!-- Page level custom scripts -->
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
-
-    <script src="../../../../public/js/alumnos.js"></script>
+    <script src="../../../../public/js/cursos.js"></script>
 
 </body>
 

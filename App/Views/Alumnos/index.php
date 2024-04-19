@@ -33,11 +33,19 @@
         </div>
 
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php include 'complementos/perfil.php' ?>
+            <h1>Mi muro</h1>
         </div>
 
         <div class="contenedor-body" id="modulo3" style="display:none">
-            <h1>Otro contenedor</h1>
+        <?php require_once "complementos/perfil.php"; ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo4" style="display:none">
+            <h1>CURSOS</h1>
+        </div>
+
+        <div class="contenedor-body" id="modulo5" style="display:none">
+        <h1>OFERTAS LABORALES</h1>
         </div>
        
 
