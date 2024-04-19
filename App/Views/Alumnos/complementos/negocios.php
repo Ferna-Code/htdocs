@@ -1,8 +1,6 @@
 <div class="">
 <div class="box">
 <div class="listadocursos">
-    <div > <button  class="btn btn-danger btn-sm" onclick="controlVisi1()"> Volver a categorias</button> </div>
-
 		<div>
 			<h1>NEGOCIOS.</h1><br><br><br>
 		</div>

@@ -1,10 +1,8 @@
 <div class="">
 <div class="box">
 <div class="listadocursos">
-    <div > <button  class="btn btn-danger btn-sm" onclick="controlVisi1()"> Volver a categorias</button> </div>
-
 		<div>
-			<h1>EDUCACIÓN Y BIENESTAR.</h1><br><br><br>
+			<h1>INFORMÁTICA.</h1><br><br><br>
 		</div>
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">

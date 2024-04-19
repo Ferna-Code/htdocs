@@ -27,7 +27,7 @@ section .section-title {
     text-transform: uppercase;
 }
 
-#team .card {
+#team .cardc {
     border: none;
 }
 
@@ -103,22 +103,22 @@ section .section-title {
     transform-style: preserve-3d;
 }
 
-.frontside .card,
-.backside .card {
+.frontside .cardc,
+.backside .cardc {
     min-height: 50px;
 }
 
-.backside .card a {
+.backside .cardc a {
     font-size: 18px;
     color:  #ED1C24 !important;
 }
 
-.frontside .card .card-title,
-.backside .card .card-title {
+.frontside .cardc .cardc-title,
+.backside .cardc .cardc-title {
     color:  #ED1C24 !important;
 }
 
-.frontside .card .card-body img {
+.frontside .cardc .cardc-body img {
     width: 50;
     height: 50;
     border-radius: 50%;
