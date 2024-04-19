@@ -32,7 +32,7 @@
         <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo" onclick="controlVisi1()">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Muro pricnila</span>
+            <span>Muro pricinpal</span>
         </a>
     </li>
 
@@ -49,7 +49,7 @@
         <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
             aria-controls="collapse3" onclick="controlVisi3()">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Curso</span>
+            <span>Cursos</span>
         </a>
     </li>
 
@@ -57,7 +57,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
             aria-expanded="true" aria-controls="collapseUtilities3" onclick="controlVisi4()">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>vista 4</span>
+            <span>Ofertas Laborales</span>
         </a>
     </li>
 
