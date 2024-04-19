@@ -7,27 +7,21 @@
 body {
     margin: 0px;
     padding: 0px;
-
 }
 
 .contenedor {
     display: flex;
-    background: var(--color-blanco);
     height: 100vh;
     /* Toma el 100% de la altura de la ventana */
 }
 
 .right {
     background: white;
+    background-image: url("../img/FondoLogin.PNG");
     flex: 3;
+    
+    background-position: center; /* Centra la imagen horizontal y verticalmente */
     /* Hace que el div izquierdo ocupe 2 partes */
-}
-
-.right img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
 }
 
 .left {
@@ -90,31 +84,16 @@ h2 {
     margin: auto;
 }
 
-img {
+img {/*Logo*/
     width: 100%;
 }
 
-
-/*MODAL*/
-
-#modal::backdrop{
-    background-color: rgba(0, 0, 0, .5);
+.btn-oferta{
+    padding: 10px 40px;
+    float: right;
+    margin: 10px 10px 0px 0px;
 }
 
-#modal{
-    max-width: 100ch;
-    border: 1px solid black;
-    border-radius: 5px;
-    text-align: center;
+.btn-oferta a {
+    text-decoration: none;
 }
-
-/*FORM*/
-
-
-td{
-    width: 150px;
-}
-/*END FORM*/
-
-
-/*END MODAL*/

@@ -59,8 +59,10 @@
                         <input type="number" id="rango-salarial" name="rango-salarial" required>
                     </div>
                 </div>
-                <button type="submit" class="btn-guardar" name="crearRegistro">Enviar Oferta</button>
+                <input type="reset" class="btn-guardar btnGuardar" name="resetForm" value="Borrar formulario" >
+                <button type="submit" class="btn-guardar btnGeneral" name="crearRegistro">Enviar Oferta</button>
             </form>
+            
         </div>
     </div>
 </body>
