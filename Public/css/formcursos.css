@@ -26,7 +26,7 @@ h1{
 .formulario-cursos {
     display: flex;
     flex-wrap: wrap;
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto;
 }
 

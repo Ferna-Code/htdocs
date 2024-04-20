@@ -88,7 +88,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Utilities:</h6>
                 <a class="collapse-item" href="#" onclick="controlVisi4()">Ver Cursos</a>
-                <a class="collapse-item" href="#">Agregar curso</a>
+                <a class="collapse-item" href="#" onclick="controlCurso()">Agregar curso</a>
                 <a class="collapse-item" href="#">Animations</a>
                 <a class="collapse-item" href="#">Other</a>
             </div>

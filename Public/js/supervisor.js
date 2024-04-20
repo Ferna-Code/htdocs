@@ -175,6 +175,45 @@ function controlVisi9() {
   centrarModulo(elemento9);
 }
 
+function controlVisit1() {
+  var eleme = document.getElementById("moduloOfertas");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
+function controlCurso() {
+  var eleme = document.getElementById("moduloCurso");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
+function controlVerCurso() {
+  var eleme = document.getElementById("moduloVerCurso");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
 
 function ocultarModulos() {
   var modulos = document.getElementsByClassName("contenedor-body");
