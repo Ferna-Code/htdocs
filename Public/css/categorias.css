@@ -29,6 +29,7 @@ section .section-title {
 
 #team .cardc {
     border: none;
+    color: black;
 }
 
 .image-flip:hover .backside,
@@ -136,3 +137,4 @@ section .section-title {
     padding: 60px 10px;
     margin: 30px 0px;
 }
+

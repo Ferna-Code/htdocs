@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Luis Yañez <sup></sup></div>
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
@@ -29,6 +29,13 @@
             <span>Muro principal</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapsepe" aria-expanded="true"
+            aria-controls="collapsepe" onclick="controlVisi1()">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Mi Muro</span>
+        </a>
+    </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapse2" aria-expanded="true"
@@ -47,7 +54,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
             aria-expanded="true" aria-controls="collapse4" onclick="vistaofertas()">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fas fa-fw fa-cog"></i>
             <span>Ofertas Laborales</span>
         </a>
     </li>

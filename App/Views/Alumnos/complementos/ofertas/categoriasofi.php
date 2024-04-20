@@ -1,4 +1,5 @@
-<section style="margin: 10px;">
+<link rel="stylesheet" href="../../../../Public/css/ofertasalumnos.css">
+<section class="seccion">
     <h1 class="section-title h1">Ofertas Laborales</h1><br>
     <form method="post" action="Registro.php">
         <div class="form-row">
