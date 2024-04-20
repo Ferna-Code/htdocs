@@ -21,6 +21,8 @@ class HomeController{
     public function tabla(){
         include VIEWS_PATH . 'Layout/tabla.php';
     }
+
+
 }
 
 

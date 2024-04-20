@@ -14,7 +14,10 @@
                     <td>PRÁCTICA TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y CONTROL</td>
                     <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
                     <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
+                        <a class="btn-supervisor color-a" href="#" onclick="controlVisit1()"
+                            data-target="#collapseUtilities10" aria-expanded="true" aria-controls="collapseUtilities10">
+                            Ver oferta
+                        </a>
                     </td>
                     <td class="tr-table">
                         <a href="#" class="btn-supervisor color-b">Eliminar</a>
@@ -68,7 +71,7 @@
                     <td>6</td>
                     <td>Práctica Profesional para Departamento Programación Física y Control</td>
                     <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                   <td class="tr-table">
+                    <td class="tr-table">
                         <a href="#" class="btn-supervisor color-a">Ver oferta</a>
                     </td>
                     <td class="tr-table">
@@ -97,7 +100,7 @@
                         <a href="#" class="btn-supervisor color-b">Eliminar</a>
                     </td>
                 </tr>
-                
+
             </tbody>
         </table>
     </div>

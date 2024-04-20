@@ -20,8 +20,9 @@ body {
 }
 
 .container-panel {
-    background-color: var(--color-naranja);
+    background-color: var(--color-rojo);
     flex: 0.4;
+
 }
 
 .contenedor-body {
@@ -46,6 +47,8 @@ body {
     width: 100%;
     height: 70px;
     margin: 10px 0px 10px 0px;
+    
+    
 }
 
 .btn-sspp a{
@@ -123,9 +126,7 @@ body {
 
 .tr-table{
     text-align: center;
-    width: 100px;
 }
-
 
 .btn-supervisor{
     border: 1px solid green;

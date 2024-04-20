@@ -70,6 +70,19 @@
                 include 'complementos/ofertasLaborales.php'
             ?>
         </div>
+
+        <div class="contenedor-body" id="moduloOfertas" style="display:none">
+            <?php include 'complementos/formularios/verOferta.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="moduloCurso" style="display:none">
+            <?php include 'complementos/formularios/ingresarCurso.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="moduloVerCurso" style="display:none">
+            <?php include 'complementos/formularios/verCurso.php' ?>
+        </div>
+
     </div>
 
 
