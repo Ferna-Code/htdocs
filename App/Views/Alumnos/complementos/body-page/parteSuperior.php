@@ -45,8 +45,8 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
-            aria-expanded="true" aria-controls="collapseUtilities3" onclick="">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
+            aria-expanded="true" aria-controls="collapse4" onclick="vistaofertas()">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Ofertas Laborales</span>
         </a>

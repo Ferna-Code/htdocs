@@ -37,7 +37,6 @@
                                         <button class="btn btn-danger btn-sm" onclick="controlVisi4()"> ver más</button>
                                         <br><br>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

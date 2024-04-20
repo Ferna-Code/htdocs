@@ -87,7 +87,7 @@ function controlVisi7() {
   centrarModulo(elemento7);
 }
 
-function controlVisi8() {
+function vistaofertas() {
   var elemento8 = document.getElementById("modulo8");
   
   // Oculta todos los módulos

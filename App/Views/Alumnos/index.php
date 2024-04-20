@@ -48,9 +48,8 @@
         <div class="contenedor-body" id="modulo7" style="display:none">
             <?php include 'complementos/categorias.php' ?>
         </div>
-
         <div class="contenedor-body" id="modulo8" style="display:none">
-            <?php include 'complementos/diccionario.php' ?>
+        <?php include 'complementos/ofertas/categoriasofi.php' ?>
         </div>
     </div>
 
