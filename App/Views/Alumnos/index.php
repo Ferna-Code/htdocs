@@ -51,6 +51,9 @@
         <div class="contenedor-body" id="modulo8" style="display:none">
         <?php include 'complementos/ofertas/categoriasofi.php' ?>
         </div>
+        <div class="contenedor-body" id="modulo9" style="display:none">
+        <?php include 'complementos/ofertas/veroferta.php' ?>
+        </div>
     </div>
 
 
