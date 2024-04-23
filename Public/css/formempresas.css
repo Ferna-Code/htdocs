@@ -1,0 +1,73 @@
+.banner {
+    background-color: red;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.banner img {
+    width: 100%; /* Ancho del 80% del contenedor */
+    max-width: 900px; /* Ancho máximo para evitar que la imagen sea demasiado grande en pantallas grandes */
+    height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
+}
+
+.formulario {
+    padding: 0px;
+}
+
+h1{
+    color: red;
+    text-align: center;
+}
+
+/* ESTilos form */
+.formulario-empresas {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.columna {
+    width: calc(100% - 10px); /* con el % controlamos si un campo queda al lado o uno debajo del otro */ 
+    margin-bottom: 20px; 
+}
+
+.columna label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.columna input[type="text"],
+.columna input[type="date"],
+.columna textarea,
+.columna select,
+.columna input[type="number"] {
+    width: 100%; 
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn-guardar {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.btnGuardar{
+    margin-left: 25%;
+    width: 12%;
+}
+
+.btnGeneral{
+    margin-left: 1%;
+    width: 12%;
+}

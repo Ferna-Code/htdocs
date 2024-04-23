@@ -1,0 +1,48 @@
+span {
+    font-size: 15px;
+}
+
+.container {
+    width: calc(100% - 20px); /* Establece el ancho del contenedor */
+    height: 600px; /* Altura fija del contenedor */
+    overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
+    overflow-x: hidden; /* Oculta la barra de desplazamiento horizontal */
+    white-space: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+    padding-right: 20px; /* Añade espacio para la barra de desplazamiento vertical */
+}
+
+.row {
+    white-space: nowrap; /* Evita que los elementos se envuelvan a la siguiente línea */
+}
+
+.col-lg-4 {
+    display: inline-block; /* Permite que los elementos se desplacen horizontalmente */
+    vertical-align: top; /* Alinea los elementos en la parte superior */
+    white-space: normal; /* Restaura el comportamiento normal del texto dentro de las columnas */
+}
+
+.box a {
+    text-decoration: none;
+    color: #0062cc;
+    border-bottom: 2px solid #0062cc;
+}
+
+.box {
+    padding: 60px 10px; /* Se ajusta el padding para dar espacio al contenedor */
+}
+
+.box-part {
+    background: #FFF;
+    border: 1px solid orange;
+    border-radius: 0;
+    padding: 60px 10px;
+    margin: 30px 0px;
+}
+
+.text {
+    margin: 20px 0px;
+}
+
+.fa {
+    color: #4183D7;
+}
