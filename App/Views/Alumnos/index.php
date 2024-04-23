@@ -34,19 +34,19 @@
             <?php require_once "complementos/perfil.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo3" style="display:none">
-        <?php require_once "complementos/categorias.php"; ?>
+        <?php require_once "complementos/cursos/categorias.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo4" style="display:none">
-        <?php require_once "complementos/educacionbienestar.php"; ?>
+        <?php require_once "complementos/cursos/educacionbienestar.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo5" style="display:none">
-        <?php require_once "complementos/informatica.php"; ?>
+        <?php require_once "complementos/cursos/informatica.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo6" style="display:none">
-        <?php require_once "complementos/negocios.php"; ?>
+        <?php require_once "complementos/cursos/negocios.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo7" style="display:none">
-            <?php include 'complementos/categorias.php' ?>
+            <?php include 'complementos/cursos/categorias.php' ?>
         </div>
         <div class="contenedor-body" id="modulo8" style="display:none">
         <?php include 'complementos/ofertas/categoriasofi.php' ?>

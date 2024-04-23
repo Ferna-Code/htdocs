@@ -70,7 +70,6 @@
 						<a href="#">Ver</a>
 					</div>
 				</div>
-
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 					<div class="box-part text-center">
 						<div class="title">
@@ -83,7 +82,6 @@
 						<a href="#">Ver</a>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
