@@ -2,17 +2,6 @@
 ### Agregen sus comandos
 -----------------------------------------------
 
-Para actualizar los datos de la rama X con los datos de la rama Y 
-
-
-- Asegurate de estar en la rama X<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git checkout X
-
-- Actualiza la rama X con los datos de la rama Y<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git merge Y
-
------------------------------------------------
-
 SUBIR CAMBIOS A LA RAMA
 
 - Prepara los cambios<br>
@@ -26,3 +15,12 @@ SUBIR CAMBIOS A LA RAMA
 
 - Actualizar proyecto con los cambios de otra rama<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git pull origin nombre-rama
+
+- Ver rama actual<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git branch
+
+- Cambiar de rama<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git checkout nombre-rama
+
+- Ver ultimos commit<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git log
