@@ -186,9 +186,7 @@
                     <div class="col-md-6">
                         <div class="titlepage">
                             <h2>Nosotros</h2>
-                            <p> Somos estudiantes del último año de la carrera de Analista programador, Quienes
-                                desarrollaron este sitio con el fin de mantenernos en contacto una vez finalizada
-                                nuestra fase académica
+                            <p> Somos estudiantes del último año de la carrera de Analista Programador y hemos creado esta red para que los egresados puedan manterse en contacto, facilitando la colaboración y el apoyo continuo tras finalizar sus estudios.
                             </p>
                             <a class="read_more" href="#"></a>
                         </div>
