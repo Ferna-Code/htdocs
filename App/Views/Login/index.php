@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./Public/css/bootstrap.min.css">
     <!-- style css -->
     <link rel="stylesheet" href="./Public/css/style.css">
+    <link href="./Public/css/estiloLogin.css" rel="stylesheet">
     <!-- Responsive-->
     <link rel="stylesheet" href="./Public/css/responsive.css">
     <!-- fevicon -->
@@ -89,33 +90,35 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <form class="transfot">
+                                            <div class="contForm">
+                                                <h2>Ingrese sus datos:</h2>
                                                 <div class="col-md-12">
-                                                    <h1>Ingresa a la Red</h1>
-                                                </div>
-                                                <div class="col-md-12">
+                                                <form method="post" action="">
                                                     <input type="text" name="nombre" id="nombre"
                                                         placeholder="Ingrese su nombre">
-                                                </div>
-                                                <div class="col-md-12">
+                                                        </div>
+                                                        <div class="col-md-12">
                                                     <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
-                                                </div>
-                                                <div class="col-md-12">
+                                                    </div>
+                                                    <div class="col-md-12">
                                                     <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
                                                         ?</a>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <php if ($showCreateTableButton): ?>
+                                                        </div>
+                                                    <?php
+                                                    if ($showCreateTableButton):
+                                                        ?>
+                                                        <div class="col-md-12">
                                                         <input type="submit" value="Ingresar">
                                                         <input type="hidden" name="op" value="VALIDAR">
-                                                        <php else: ?>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="submit" value="Ingresar">
-                                                    <input type="hidden" name="op" value="VALIDAR">
-                                                    <php endif; ?>
-                                                </div>
-                                            </form>
+                                                        </div>
+                                                    <?php else: ?>
+                                                        <div class="col-md-12">
+                                                        <input type="submit" value="Ingresar">
+                                                        <input type="hidden" name="op" value="VALIDAR">
+                                                        </div>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +189,9 @@
                     <div class="col-md-6">
                         <div class="titlepage">
                             <h2>Nosotros</h2>
-                            <p> Somos estudiantes del último año de la carrera de Analista Programador y hemos creado esta red para que los egresados puedan manterse en contacto, facilitando la colaboración y el apoyo continuo tras finalizar sus estudios.
+                            <p> Somos estudiantes del último año de la carrera de Analista Programador y hemos creado
+                                esta red para que los egresados puedan manterse en contacto, facilitando la colaboración
+                                y el apoyo continuo tras finalizar sus estudios.
                             </p>
                             <a class="read_more" href="#"></a>
                         </div>
@@ -200,12 +205,13 @@
     <footer>
         <div class="footer bottom_cross1">
             <div class="container">
-            
+
                 <div class="row">
                     <div class="col-md-4">
-                    <h2>Contáctanos</h2>
+                        <h2>Contáctanos</h2>
                         <ul class="location_icon">
-                            <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra Palacios
+                            <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra
+                                Palacios
                             </li>
                             <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Fernando Reyes
                             </li>

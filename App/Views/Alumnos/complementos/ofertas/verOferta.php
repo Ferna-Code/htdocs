@@ -3,7 +3,6 @@
 </head>
 
 <div class="contenedor-principal">
-
     <div class="contenedor-oferta">
         <div class="seccion">
             <div class="contenedor-seccion">PRÁCTICA TÉCNICA PARA DEPARTAMENTO TIC, PROGRAMACIÓN Y ANÁLISIS DE SISTEMAS. <br> <span>Código: OP-16707</span></div>
@@ -18,13 +17,10 @@
                 <br>
                 Competencias técnicas: Manejo de sistemas computacionales y de desarrollo de tecnologías de la información<br> 
                 <br>
-
             </div>
             <div class="contenedor-btn">
                 <a href="#" class="btn-oferta">Postular</a>
             </div>
         </div>
-       
-
     </div>
 </div>

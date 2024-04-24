@@ -35,14 +35,13 @@ body {
     width: 500px;
     height: 350px;
     text-align: center;
-    background: orange;
     padding-top: 20px;
 
-    /* Centrar el contenido horizontal y verticalmente */
+    /* Centrar el contenido horizontal y verticalmente
     position: absolute;
     top: 50%;
     left: 80%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 .contForm input {
@@ -53,7 +52,7 @@ body {
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--color-blanco);
-    color: var(--color-blanco)
+    color: black;
 }
 
 h2 {
