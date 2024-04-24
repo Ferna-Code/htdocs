@@ -151,7 +151,7 @@ a,
      transition: all .3s ease-in-out;
 }
 
-img {
+.imglogo {
      max-width: 50%;
      height: auto;
 }
@@ -160,6 +160,11 @@ img {
      max-width: 100%;
      height: auto;
 }
+
+.fondored{
+     background-image: url('./img/fondored.jpg');
+
+ }
 
  :focus {
      outline: 0;
@@ -335,7 +340,7 @@ ul.conat_info li a:hover {
 /** banner section **/
 
 .banner_main {
-     background: url(../images/banner.png);
+     background: url(../img/fondored.jpg)  no-repeat center top / cover;
      padding: 300px 0px 0px 0px;
      background-size: auto 78%;
      background-repeat: no-repeat;

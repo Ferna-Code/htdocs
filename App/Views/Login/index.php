@@ -47,7 +47,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
-                        <div class="logo">
+                        <div class="imglogo">
                             <a href="index.html"><img src="./Public/img/logo.png" alt="#" /></a>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                             </ul>
-                            <button class="btn btn-danger" onclick="">Publica
+                            <button class="btn btn-danger" href="./empresa/index">Publica
                                 tu oferta laboral </button>
                         </div>
                     </div>
@@ -70,12 +70,12 @@
     <!-- LOGIN -->
     <section class="banner_main">
         <div id="banner1" class="" data-ride="">
-            <div class="">
+            <div class="fondored">
                 <div class="">
                     <div class="container-fluid">
-                        <div class="">
+                        <div >
                             <div class="row">
-                                <div class="col-md-7 col-lg-5">
+                                <div class="col-md-7 col-lg-5 ">
                                     <div class="text-bg">
                                         <h1>RedLeones</h1>
                                         <span>Conecta con egresados, comparte información, Mantente en línea.</span>
@@ -181,12 +181,12 @@
         <div id="about" class="about">
             <div class="container">
                 <div class="row d_flex">
-                    <div class="col-md-6">
+                    <div class="col-sm-8">
                         <div class="about_right">
                             <figure><img class="imgnosotros" src="./Public/img/nosotros1.jpg" alt="#" /></figure>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-4">
                         <div class="titlepage">
                             <h2>Nosotros</h2>
                             <p> Somos estudiantes del último año de la carrera de Analista Programador y hemos creado
