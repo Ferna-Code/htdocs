@@ -1765,7 +1765,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #858796
+  color: black;
 }
 
 .table td,
@@ -11775,6 +11775,14 @@ a:focus {
       overflow: visible;
       width: 6.5rem !important
   }
+  .imagen-menu{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin-top: 80px;
+}
 
   .sidebar.toggled .nav-item .collapse {
       position: absolute;
