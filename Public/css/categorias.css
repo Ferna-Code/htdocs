@@ -27,8 +27,10 @@ section .section-title {
     text-transform: uppercase;
 }
 
-#team .card {
+#team .cardc {
     border: none;
+    color: black;
+    height: 350px !important; 
 }
 
 .image-flip:hover .backside,
@@ -103,22 +105,24 @@ section .section-title {
     transform-style: preserve-3d;
 }
 
-.frontside .card,
-.backside .card {
-    min-height: 50px;
+.frontside .cardc,
+.backside .cardc {
+    height: 350px !important; 
 }
 
-.backside .card a {
+.backside .cardc a {
     font-size: 18px;
     color:  #ED1C24 !important;
+
 }
 
-.frontside .card .card-title,
-.backside .card .card-title {
+.frontside .cardc .cardc-title,
+.backside .cardc .cardc-title {
     color:  #ED1C24 !important;
+
 }
 
-.frontside .card .card-body img {
+.frontside .cardc .cardc-body img {
     width: 50;
     height: 50;
     border-radius: 50%;
@@ -129,10 +133,17 @@ section .section-title {
     padding: 3%;
 }
 
-.box-part {
+
+
+.box-cursos {
+    width: 350px; /* Ancho fijo para las tarjetas */
+    height: 260px; /* Alto fijo para las tarjetas */
+    margin: 20px; /* Espacio alrededor para evitar que las tarjetas se toquen */
+    padding: 9%;
     background: #FFF;
-    border: 1px solid orange;
-    border-radius: 0;
-    padding: 60px 10px;
-    margin: 30px 0px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Opcional: añade sombra para mejor estética */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Esconde cualquier contenido que exceda el tamaño del contenedor */
 }
