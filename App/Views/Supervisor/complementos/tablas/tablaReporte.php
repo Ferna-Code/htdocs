@@ -1,5 +1,12 @@
 <section style="margin: 10px;">
     <div class="table-responsive">
+    <form method="POST" action="#">
+            <div class="containerFiltro">
+            <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+            <input type="text" class="ofertaFiltro" name="idFiltro" placeholder="Filtrar por ID">
+            <input type="submit" class="btnFiltro" value="Filtrar">
+            </div>
+        </form>
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>

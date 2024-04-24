@@ -79,8 +79,8 @@ h2 {
 }
 
 .logo {
-    width: 300px;
-    margin: auto;
+    width: 600px;
+    text-align: center;
 }
 
 img {/*Logo*/
@@ -91,9 +91,20 @@ img {/*Logo*/
     padding: 10px 40px;
     float: right;
     margin: 10px 10px 0px 0px;
+    background: orange;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
-.btn-oferta a {
-    text-decoration: none;
+.btn-oferta:hover {
+   background:  #FFFF00 ;
+   color: orange;
+   border-color: orange;
 }
 
+.separador{
+    width: 100%;
+    height: 10px;
+    background: black;
+}

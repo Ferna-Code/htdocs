@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RedLeones</title>
+    <title>Login - RedLeones</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -26,8 +26,7 @@
     <link rel="stylesheet" href="./Public/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-        media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -128,7 +127,35 @@
                 </div>
             </div>
         </div>
-    </section>
+        
+        <div class="mitad left">
+            <div class="logo">
+                <img src="./Public/img/Logo.png" alt="Logo_los_leones">
+                <a href=""></a>
+            </div>
+            <div class="contForm">
+                <h2>Ingrese sus datos:</h2>
+                <form method="post" action="">
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+                    <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
+                    <br>
+                    <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña ?</a>
+                    <br>
+                    <?php
+                    if ($showCreateTableButton):
+                        ?>
+                        <input type="submit" value="Ingresar">
+                        <input type="hidden" name="op" value="VALIDAR">
+                    <?php else: ?>
+                        <input type="submit" value="Ingresar">
+                        <input type="hidden" name="op" value="VALIDAR">
+                    </form>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="separador"></div>
+    
     <!-- end banner -->
     <!-- service section -->
     <section>
