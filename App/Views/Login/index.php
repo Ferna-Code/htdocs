@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>RedLeones</title>
+    <title>Login - RedLeones</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./Public/css/bootstrap.min.css">
     <!-- style css -->
     <link rel="stylesheet" href="./Public/css/style.css">
+    <link href="./Public/css/estiloLogin.css" rel="stylesheet">
     <!-- Responsive-->
     <link rel="stylesheet" href="./Public/css/responsive.css">
     <!-- fevicon -->
@@ -25,8 +26,7 @@
     <link rel="stylesheet" href="./Public/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-        media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -38,94 +38,44 @@
     <div class="loader_bg">
         <div class="loader"><img src="./Public/img/loading.gif" alt="#" /></div>
     </div>
-    <!-- end loader -->
-    <!-- header -->
-    <header>
-        <!-- header inner -->
-        <div class="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                        <div class="logo">
-                            <a href="index.html"><img src="./Public/img/logo.png" alt="#" /></a>
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-sm-8">
-                        <div class="right_bottun">
-                            <ul class="conat_info d_none ">
-                                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                            </ul>
-                            <button class="btn btn-danger" onclick="">Publica
-                                tu oferta laboral </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- end header inner -->
-    <!-- end header -->
+    
     <!-- LOGIN -->
-    <section class="banner_main">
-        <div id="banner1" class="" data-ride="">
-            <div class="">
-                <div class="">
-                    <div class="container-fluid">
-                        <div class="">
-                            <div class="row">
-                                <div class="col-md-7 col-lg-5">
-                                    <div class="text-bg">
-                                        <h1>RedLeones</h1>
-                                        <span>Conecta con egresados, comparte información, Mantente en línea.</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-lg-7"
-                                    style="background-color: #F8B619; padding: 30px; height: 400px;">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="ban_track">
-                                                <figure></figure>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <form class="transfot">
-                                                <div class="col-md-12">
-                                                    <h1>Ingresa a la Red</h1>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="text" name="nombre" id="nombre"
-                                                        placeholder="Ingrese su nombre">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
-                                                        ?</a>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <php if ($showCreateTableButton): ?>
-                                                        <input type="submit" value="Ingresar">
-                                                        <input type="hidden" name="op" value="VALIDAR">
-                                                        <php else: ?>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="submit" value="Ingresar">
-                                                    <input type="hidden" name="op" value="VALIDAR">
-                                                    <php endif; ?>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="contenedor">
+
+        <div class="mitad right">
+            <div class="btn-form">
+                <a href="./empresa/index" class="btn-oferta">Ingresar oferta</a>
             </div>
         </div>
-    </section>
+        
+        <div class="mitad left">
+            <div class="logo">
+                <img src="./Public/img/Logo.png" alt="Logo_los_leones">
+                <a href=""></a>
+            </div>
+            <div class="contForm">
+                <h2>Ingrese sus datos:</h2>
+                <form method="post" action="">
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+                    <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
+                    <br>
+                    <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña ?</a>
+                    <br>
+                    <?php
+                    if ($showCreateTableButton):
+                        ?>
+                        <input type="submit" value="Ingresar">
+                        <input type="hidden" name="op" value="VALIDAR">
+                    <?php else: ?>
+                        <input type="submit" value="Ingresar">
+                        <input type="hidden" name="op" value="VALIDAR">
+                    </form>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="separador"></div>
+    
     <!-- end banner -->
     <!-- service section -->
     <section>
@@ -200,10 +150,10 @@
     <footer>
         <div class="footer bottom_cross1">
             <div class="container">
-            
+
                 <div class="row">
                     <div class="col-md-4">
-                    <h2>Contáctanos</h2>
+                        <h2>Contáctanos</h2>
                         <ul class="location_icon">
                             <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra Palacios
                             </li>
