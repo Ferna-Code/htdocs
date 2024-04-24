@@ -340,7 +340,7 @@ ul.conat_info li a:hover {
 /** banner section **/
 
 .banner_main {
-     background: url(../img/fondored.jpg)  no-repeat center top / cover;
+     /**background: url(../img/fondored.jpg)  no-repeat center top / cover;**/
      padding: 300px 0px 0px 0px;
      background-size: auto 78%;
      background-repeat: no-repeat;
@@ -562,7 +562,7 @@ ul.conat_info li a:hover {
 .service_box {
      text-align: center;
      width: 16.3%;
-     margin-top: 30px !important;
+     margin-top: 0px !important;
 }
 
 .service_box i {
@@ -574,7 +574,7 @@ ul.conat_info li a:hover {
 
 .service_box i img {
      text-align: center;
-     padding-top: 33%;
+     padding-top: 3%;
 }
 
 .service_box h4 {
