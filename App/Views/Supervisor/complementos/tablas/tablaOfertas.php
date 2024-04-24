@@ -1,5 +1,23 @@
 <section style="margin: 10px;">
     <div class="table-responsive">
+        <form method="POST" action="#">
+            <div class="containerFiltro">
+            <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+            <select class="ofertaFiltro">
+                    <option value="Práctica">Práctica</option>
+                    <option value="Práctica">Part Time</option>
+                    <option value="Práctica">Full Time</option>
+                </select>
+
+                <select class="categoriaFiltro">
+                    <option value="Práctica">Educación y Bienestar</option>
+                    <option value="Práctica">Tecnología y productividad</option>
+                    <option value="Práctica">Negocios e Innovación</option>
+                </select>
+
+            <input type="submit" class="btnFiltro" value="Filtrar">
+            </div>
+        </form>
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>

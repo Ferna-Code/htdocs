@@ -50,6 +50,7 @@ ul {
     background: var(--color-blanco);
     padding: 0px;
     border: 1px solid black;
+    width: 100%;
 }
 
 
