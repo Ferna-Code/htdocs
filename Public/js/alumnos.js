@@ -126,6 +126,19 @@ function vistacorreo() {
   centrarModulo(elemento8);
 }
 
+function vistapostulacion() {
+  var elemento8 = document.getElementById("modulo11");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento8.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento8);
+}
+
 
 
 function ocultarModulos() {

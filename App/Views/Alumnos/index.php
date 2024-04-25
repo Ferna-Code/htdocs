@@ -58,6 +58,9 @@
         <div class="contenedor-body" id="modulo10" style="display:none">
         <?php include 'complementos/correobienvenida.php' ?>
         </div>
+        <div class="contenedor-body" id="modulo11" style="display:none">
+        <?php include 'complementos/correoPostulacion.php' ?>
+        </div>
     </div>
 
 
