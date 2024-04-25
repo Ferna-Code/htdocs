@@ -12,6 +12,7 @@
     <title>SB Admin 2 - Dashboard</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -25,49 +26,38 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
-
         <div class="contenedor-body" id="modulo1">
-            <h1>HOME Principal</h1>
+            <h1>Home Principal</h1>
         </div>
-
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <h1>Mi muro</h1>
+            <?php require_once "complementos/perfil.php"; ?>
         </div>
-
         <div class="contenedor-body" id="modulo3" style="display:none">
-        <?php require_once "complementos/perfil.php"; ?>
+        <?php require_once "complementos/cursos/categorias.php"; ?>
         </div>
-
         <div class="contenedor-body" id="modulo4" style="display:none">
-            <h1>CURSOS</h1>
+        <?php require_once "complementos/cursos/educacionbienestar.php"; ?>
         </div>
-
         <div class="contenedor-body" id="modulo5" style="display:none">
-        <h1>OFERTAS LABORALES</h1>
+        <?php require_once "complementos/cursos/informatica.php"; ?>
         </div>
-       
-
         <div class="contenedor-body" id="modulo6" style="display:none">
-            <?php include 'complementos/usuarios.php' ?>
+        <?php require_once "complementos/cursos/negocios.php"; ?>
         </div>
-
         <div class="contenedor-body" id="modulo7" style="display:none">
-            <?php include 'complementos/categorias.php' ?>
+            <?php include 'complementos/cursos/categorias.php' ?>
         </div>
-
         <div class="contenedor-body" id="modulo8" style="display:none">
-            <?php include 'complementos/diccionario.php' ?>
+        <?php include 'complementos/ofertas/categoriasofi.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo9" style="display:none">
+        <?php include 'complementos/ofertas/veroferta.php' ?>
         </div>
     </div>
 
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
-
-
-
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
@@ -86,12 +76,9 @@
     <!-- Page level custom scripts -->
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
-
     <script src="../../../../Public/js/alumnos.js"></script>
     <script src="../../../../public/js/perfilalumno.js"></script>
-
-    <script src="../../../../public/js/perfilalumno.js">
-
+    <script src="../../../../Public/js/cursos.js"></script>
     </script>
 
 </body>

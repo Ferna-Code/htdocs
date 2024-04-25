@@ -70,20 +70,20 @@ class LoginController
     private function checklevelPage($userLevel)//segun nivel se abre la sesion correspondiente
     {
 
-        if($userLevel == 1 || $userLevel == 2 || $userLevel == 3){
-            $_SESSION['pagina_local'] = 'Home';
-        }
-        // switch ($userLevel) {
-        //     case 1:
-        //         $_SESSION['pagina_local'] = 'Administrador';
-        //         break;
-        //     case 2:
-        //         $_SESSION['pagina_local'] = 'Perfil';
-        //         break;
-        //     case 3:
-        //         $_SESSION['pagina_local'] = 'Home';
-        //         break;
+        // if($userLevel == 1 || $userLevel == 2 || $userLevel == 3){
+        //     $_SESSION['pagina_local'] = 'Home';
         // }
+        switch ($userLevel) {
+            case 1:
+                $_SESSION['pagina_local'] = 'Administrador';
+                break;
+            case 2:
+                $_SESSION['pagina_local'] = 'Supervisor';
+                break;
+            case 3:
+                $_SESSION['pagina_local'] = 'alumno';
+                break;
+        }
 
         echo"<script language='javascript'>window.location='".$_SESSION['pagina_local']."'</script>;";
         exit();

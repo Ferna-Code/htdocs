@@ -35,14 +35,13 @@ body {
     width: 500px;
     height: 350px;
     text-align: center;
-    background: orange;
     padding-top: 20px;
 
-    /* Centrar el contenido horizontal y verticalmente */
+    /* Centrar el contenido horizontal y verticalmente
     position: absolute;
     top: 50%;
     left: 80%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 .contForm input {
@@ -53,7 +52,7 @@ body {
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--color-blanco);
-    color: var(--color-blanco)
+    color: black;
 }
 
 h2 {
@@ -80,20 +79,32 @@ h2 {
 }
 
 .logo {
-    width: 300px;
-    margin: auto;
+    width: 600px;
+    text-align: center;
 }
 
 img {/*Logo*/
-    width: 100%;
+    width: 80%;
 }
 
 .btn-oferta{
     padding: 10px 40px;
     float: right;
     margin: 10px 10px 0px 0px;
+    background: orange;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
-.btn-oferta a {
-    text-decoration: none;
+.btn-oferta:hover {
+   background:  #FFFF00 ;
+   color: orange;
+   border-color: orange;
+}
+
+.separador{
+    width: 100%;
+    height: 10px;
+    background: black;
 }

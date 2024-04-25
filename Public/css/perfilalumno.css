@@ -41,6 +41,8 @@
     cursor: pointer;
 }
 
+
+
 .profile-container__header__wrapper-icon {
     position: absolute;
     top: 10%;
@@ -143,7 +145,7 @@ h3 {
 
 .btn-agregar-trabajo {
     background-color: red;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -154,13 +156,17 @@ h3 {
 
 .btn-guardar {
     background-color: red;
-    color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
     cursor: pointer;
     width: 100%;
+}
+
+label{
+    color: black; 
 }
 /* Estilos para los formularios de educación */
 .formulario-educacion {
