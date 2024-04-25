@@ -18,6 +18,8 @@
 
 section {
     padding: 30px 0;
+    background-color:#F7F7F7;
+    margin-top: 5%;
 }
 
 section .section-title {
@@ -137,11 +139,11 @@ section .section-title {
 
 
 .box-cursos {
-    width: 350px; /* Ancho fijo para las tarjetas */
+    width: 300px; /* Ancho fijo para las tarjetas */
     height: 260px; /* Alto fijo para las tarjetas */
     margin: 20px; /* Espacio alrededor para evitar que las tarjetas se toquen */
     padding: 9%;
-    background: #FFF;
+    background: #F7F7F7;
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Opcional: añade sombra para mejor estética */
     display: flex;
     flex-direction: column;
