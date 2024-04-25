@@ -49,16 +49,18 @@
             <span>Cursos</span>
         </a>
     </li>
+
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
-            aria-expanded="true" aria-controls="collapse4" onclick="vistaofertas()">
-            <i class="fas fa-fw fa-cog"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
+            aria-expanded="true" aria-controls="collapseUtilities3" onclick="controlVisi4()">
+            <i class="fas fa-fw fa-wrench"></i>
             <span>Ofertas Laborales</span>
         </a>
     </li>
+
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-            aria-expanded="true" aria-controls="collapse5"  onclick="">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4"
+            aria-expanded="true" aria-controls="collapseUtilities4"  onclick="controlVisi5()">
             <i class="fas fa-fw fa-wrench"></i>
             <span>vista 5</span>
         </a>

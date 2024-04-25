@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
     <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
-
 </head>
 
 <body id="page-top">
