@@ -29,23 +29,21 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" onclick="controlVisi1()"  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi1()" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Reportes</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="#" >Ver Reportes</a>
+                <a class="collapse-item" href="#">Ver Reportes</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Publicaciones</span>
         </a>
@@ -61,8 +59,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
-            aria-expanded="true" aria-controls="collapseUtilities2">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true" aria-controls="collapseUtilities2">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Carreras</span>
         </a>
@@ -78,8 +75,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
-            aria-expanded="true" aria-controls="collapseUtilities3">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Curso</span>
         </a>
@@ -95,8 +91,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4"
-            aria-expanded="true" aria-controls="collapseUtilities4">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities4">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Perfiles</span>
         </a>
@@ -112,8 +107,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities5"
-            aria-expanded="true" aria-controls="collapseUtilities5">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities5" aria-expanded="true" aria-controls="collapseUtilities5">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Usuarios</span>
         </a>
@@ -129,8 +123,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities6"
-            aria-expanded="true" aria-controls="collapseUtilities6">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities6" aria-expanded="true" aria-controls="collapseUtilities6">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Categorias</span>
         </a>
@@ -146,8 +139,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities7"
-            aria-expanded="true" aria-controls="collapseUtilities7">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities7" aria-expanded="true" aria-controls="collapseUtilities7">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Diccionario</span>
         </a>
@@ -163,11 +155,18 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" onclick="controlVisi9()" data-toggle="collapse" data-target="#collapseUtilities8"
-            aria-expanded="true" aria-controls="collapseUtilities8">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi9()" data-toggle="collapse" data-target="#collapseUtilities8" aria-expanded="true" aria-controls="collapseUtilities8">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Ofertas laborales</span>
         </a>
+    </li>
+
+    <li class="nav-item">
+        <form method="post" action="/">
+        
+            <input type="submit"  value="Cerrar sesión">
+            <input type="hidden" name="op" value="CERRAR_SESION">
+        </form>
     </li>
 
     <!-- Divider -->
@@ -188,5 +187,3 @@
 
     <!-- Main Content -->
     <div id="content">
-
-        
