@@ -113,6 +113,19 @@ function veroferta() {
   centrarModulo(elemento8);
 }
 
+function vistacorreo() {
+  var elemento8 = document.getElementById("modulo10");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento8.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento8);
+}
+
 
 
 function ocultarModulos() {

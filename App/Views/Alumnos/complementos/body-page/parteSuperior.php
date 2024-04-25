@@ -58,7 +58,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-            aria-expanded="true" aria-controls="collapse5"  onclick="">
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistacorreo()">
             <i class="fas fa-fw fa-wrench"></i>
             <span>vista 5</span>
         </a>
