@@ -38,44 +38,94 @@
     <div class="loader_bg">
         <div class="loader"><img src="./Public/img/loading.gif" alt="#" /></div>
     </div>
-    
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+        <!-- header inner -->
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="logo">
+                            <a href="index.html"><img src="./Public/img/logo.png" alt="#" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        <div class="right_bottun">
+                            <ul class="conat_info d_none ">
+                                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                            </ul>
+                            
+                            <button class="btn btn-danger"><a href="./empresa/index">Publica tu oferta laboral</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header inner -->
+    <!-- end header -->
     <!-- LOGIN -->
-    <div class="contenedor">
+    <section class="banner_main">
+        <div id="banner1" class="" data-ride="">
+            <div class="">
+                <div class="">
+                    <div class="container-fluid">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-7 col-lg-5">
+                                    <div class="text-bg">
+                                        <h1>RedLeones</h1>
+                                        <span>Conecta con egresados, comparte información, Mantente en línea.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-7" style="background-color: #F8B619; padding: 30px; height: 400px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="ban_track">
+                                                <figure></figure>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <form method="post" action="" class="transfot">
+                                                <div class="col-md-12">
+                                                    <h1>Ingresa a la Red</h1>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
+                                                        ?</a>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <?php if ($showCreateTableButton): ?>
+                                                        <input type="submit" value="Ingresar">
+                                                        <input type="hidden" name="op" value="VALIDAR">
+                                                        <?php else: ?>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="submit" value="Ingresar">
+                                                    <input type="hidden" name="op" value="VALIDAR">
+                                                    <?php endif; ?>
+                                                </div>
+                                            </form>
 
-        <div class="mitad right">
-            <div class="btn-form">
-                <a href="./empresa/index" class="btn-oferta">Ingresar oferta</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="mitad left">
-            <div class="logo">
-                <img src="./Public/img/Logo.png" alt="Logo_los_leones">
-                <a href=""></a>
-            </div>
-            <div class="contForm">
-                <h2>Ingrese sus datos:</h2>
-                <form method="post" action="">
-                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
-                    <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
-                    <br>
-                    <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña ?</a>
-                    <br>
-                    <?php
-                    if ($showCreateTableButton):
-                        ?>
-                        <input type="submit" value="Ingresar">
-                        <input type="hidden" name="op" value="VALIDAR">
-                    <?php else: ?>
-                        <input type="submit" value="Ingresar">
-                        <input type="hidden" name="op" value="VALIDAR">
-                    </form>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-    <div class="separador"></div>
-    
+    </section>
     <!-- end banner -->
     <!-- service section -->
     <section>
