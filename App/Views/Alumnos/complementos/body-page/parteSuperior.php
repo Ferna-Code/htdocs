@@ -65,6 +65,13 @@
             <span>vista 5</span>
         </a>
     </li>
+
+    <li class="nav-item">
+        <form method="post" action="/">
+            <input type="submit"  value="Cerrar sesión">
+            <input type="hidden" name="op" value="CERRAR_SESION">
+        </form>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

@@ -17,10 +17,10 @@
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
-                    <th style="text-align: center;">ID</th>
-                    <th style="text-align: center;">Nombre curso</th>
-                    <th style="text-align: center;">Centro de capacitación</th>
-                    <th style="text-align: center;">Fecha publicación</th>
+                    <th>ID</th>
+                    <th>Nombre curso</th>
+                    <th>Centro de capacitación</th>
+                    <th>Fecha publicación</th>
                    
                 </tr>
             </thead>

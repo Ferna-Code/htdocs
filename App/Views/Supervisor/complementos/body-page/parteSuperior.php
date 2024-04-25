@@ -163,7 +163,6 @@
 
     <li class="nav-item">
         <form method="post" action="/">
-        
             <input type="submit"  value="Cerrar sesión">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form>
