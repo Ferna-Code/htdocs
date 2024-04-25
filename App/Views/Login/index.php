@@ -46,7 +46,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
-                        <div class="logo">
+                        <div class="imglogo">
                             <a href="index.html"><img src="./Public/img/logo.png" alt="#" /></a>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                             </div>
                             <div class="service_box ">
                                 <i><img src="./public/img/empresario.png" alt="#" /></i>
-                                <h4>Encuentra ofertas Laborales</h4>
+                                <h4>Ofertas Laborales</h4>
                             </div>
                             <div class="service_box ">
                                 <i><img src="./public/img/curriculum.png" alt="#" /></i>
@@ -176,15 +176,17 @@
         <div id="about" class="about">
             <div class="container">
                 <div class="row d_flex">
-                    <div class="col-md-6">
+                    <div class="col-sm-8">
                         <div class="about_right">
                             <figure><img class="imgnosotros" src="./Public/img/nosotros1.jpg" alt="#" /></figure>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-4">
                         <div class="titlepage">
                             <h2>Nosotros</h2>
-                            <p> Somos estudiantes del último año de la carrera de Analista Programador y hemos creado esta red para que los egresados puedan manterse en contacto, facilitando la colaboración y el apoyo continuo tras finalizar sus estudios.
+                            <p> Somos estudiantes del último año de la carrera de Analista Programador y hemos creado
+                                esta red para que los egresados puedan manterse en contacto, facilitando la colaboración
+                                y el apoyo continuo tras finalizar sus estudios.
                             </p>
                             <a class="read_more" href="#"></a>
                         </div>
@@ -203,7 +205,8 @@
                     <div class="col-md-4">
                         <h2>Contáctanos</h2>
                         <ul class="location_icon">
-                            <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra Palacios
+                            <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra
+                                Palacios
                             </li>
                             <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Fernando Reyes
                             </li>
