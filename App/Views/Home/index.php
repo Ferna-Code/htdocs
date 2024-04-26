@@ -16,6 +16,10 @@
     <a href="./Supervisor/index">Supervisor</a>
     <br>
     <a href="./Home/maqueta">Maqueta</a>
+    <br>
+    <a href="./empresa/index">FORM EMPRESAS</a>
+    <br>
+    <a href="./cursos/index">cursos</a>
     
 </body>
 <html>

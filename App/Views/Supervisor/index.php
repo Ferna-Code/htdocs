@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Panel supervisor</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -18,6 +18,14 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
+    <link rel="stylesheet" href="../../../../Public/css/global.css">
+
+    <!-- Estilo card -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
 </head>
 
 <body id="page-top">
@@ -58,7 +66,28 @@
         <div class="contenedor-body" id="modulo8" style="display:none">
             <?php include 'complementos/diccionario.php' ?>
         </div>
+
+        <div class="contenedor-body" id="modulo9" style="display:none">
+            <?php 
+                //include VIEWS_PATH . 'ofertasLaborales/index.php' 
+                include 'complementos/ofertasLaborales.php'
+            ?>
+        </div>
+
+        <div class="contenedor-body" id="moduloOfertas" style="display:none">
+            <?php include 'complementos/formularios/verOferta.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="moduloCurso" style="display:none">
+            <?php include 'complementos/formularios/ingresarCurso.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="moduloVerCurso" style="display:none">
+            <?php include 'complementos/formularios/verCurso.php' ?>
+        </div>
+
     </div>
+
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
 
@@ -75,7 +104,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../../../public/js/sb-admin-2.min.js"></script>
-    <script src="../../../../public/js/sb-admin-2.js"></script>
+
 
     <!-- Page level plugins -->
     <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
@@ -84,7 +113,11 @@
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
-    <script src="../../../../public/js/supervisor.js"></script>
+    <script src="../../../../Public/js/supervisor.js"></script>
+
+    <!-- JS card -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </body>
 

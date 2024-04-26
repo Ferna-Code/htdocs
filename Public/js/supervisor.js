@@ -162,6 +162,58 @@ function controlVisi13() {
   centrarModulo(elemento13);
 }
 
+function controlVisi9() {
+  var elemento9 = document.getElementById("modulo9");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento9.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento9);
+}
+
+function controlVisit1() {
+  var eleme = document.getElementById("moduloOfertas");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
+function controlCurso() {
+  var eleme = document.getElementById("moduloCurso");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
+function controlVerCurso() {
+  var eleme = document.getElementById("moduloVerCurso");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
 
 function ocultarModulos() {
   var modulos = document.getElementsByClassName("contenedor-body");

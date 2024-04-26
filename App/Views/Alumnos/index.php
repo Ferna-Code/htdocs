@@ -1,36 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <title>Document</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
+    <link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
+    <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
 </head>
-<body>
-    <div id="perfil">
-   <?php
-include "complementos/perfil.php";
-   ?>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+        <div class="contenedor-body" id="modulo1">
+            <h1>Home Principal</h1>
+        </div>
+        <div class="contenedor-body" id="modulo2" style="display:none">
+            <?php require_once "complementos/perfil.php"; ?>
+        </div>
+        <div class="contenedor-body" id="modulo3" style="display:none">
+        <?php require_once "complementos/cursos/categorias.php"; ?>
+        </div>
+        <div class="contenedor-body" id="modulo4" style="display:none">
+        <?php require_once "complementos/cursos/educacionbienestar.php"; ?>
+        </div>
+        <div class="contenedor-body" id="modulo5" style="display:none">
+        <?php require_once "complementos/cursos/informatica.php"; ?>
+        </div>
+        <div class="contenedor-body" id="modulo6" style="display:none">
+        <?php require_once "complementos/cursos/negocios.php"; ?>
+        </div>
+        <div class="contenedor-body" id="modulo7" style="display:none">
+            <?php include 'complementos/cursos/categorias.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo8" style="display:none">
+        <?php include 'complementos/ofertas/categoriasofi.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo9" style="display:none">
+        <?php include 'complementos/ofertas/veroferta.php' ?>
+        </div>
     </div>
+
+
+    <?php include_once 'complementos/body-page/parteInferior.php'; ?>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../../../../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../../../../public/js/sb-admin-2.min.js"></script>
+    <script src="../../../../public/js/sb-admin-2.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="../../../../public/js/demo/chart-area-demo.js"></script>
+    <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
+    <script src="../../../../Public/js/alumnos.js"></script>
+    <script src="../../../../public/js/perfilalumno.js"></script>
+    <script src="../../../../Public/js/cursos.js"></script>
+    </script>
+
 </body>
+
 </html>
-
-
-<script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-zi8n3R9KXZxT7DmWxvBkfpMKZIcdGZ9xyyDBqF+2tcQFh0cL4DBB9cbcrZxy4xXr"
-        crossorigin="anonymous"></script>

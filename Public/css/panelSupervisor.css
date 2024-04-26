@@ -29,6 +29,8 @@ body {
     flex-direction: column;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
+    flex: 2;
+
 }
 
 .link-nav{
@@ -121,38 +123,11 @@ body {
 
 .tr-table{
     text-align: center;
+    width: 100px;
 }
 
-.btn-supervisor{
-    border: 1px solid green;
-    padding: 5px 15px 5px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    color: black;
-    font-size: 13px;
-}
 
-.color-a{
-    background: var(--color-btnAzul);
-    color: white;
-    border-color: #0a58ca;
-}
 
-.color-a:hover{
-    background: #0b5ed7;
-    color: white;
-}
-
-.color-b{
-    background: var(--color-rojo);
-    color: white;
-    border-color: #b02a37;
-}
-
-.color-b:hover{
-    background: #bb2d3b;
-    color: white;
-}
 
 
 /* Reglas de CSS para hacer la página responsive */
@@ -212,7 +187,6 @@ body {
 @media only screen and (max-width: 768px) {
     .table-responsive {
         overflow-x: scroll;
-        overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
     }
 }
