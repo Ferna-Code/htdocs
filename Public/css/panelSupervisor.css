@@ -126,11 +126,9 @@ body {
     width: 100px;
 }
 
-
-
-
-
-/* Reglas de CSS para hacer la página responsive */
+.marginBtn{
+    margin-bottom: 10px;
+}
 
 /* Media query para pantallas pequeñas */
 @media only screen and (max-width: 768px) {
@@ -171,7 +169,7 @@ body {
 .table th,
 .table td {
     padding: 8px;
-    text-align: left;
+    text-align: center;
     font-size: 14px;
     white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
     overflow: hidden;
@@ -185,12 +183,22 @@ body {
     max-width: 100%; /* Establecer un ancho máximo para el contenedor */
 }
 
+.widthName{
+    width: 36%;
+}
+
+.widthCheck{
+    width: 16%;
+}
+
 /* Media query para ajustar la tabla en pantallas pequeñas */
 @media only screen and (max-width: 768px) {
     .table th,
     .table td {
-        font-size: 18px;
+        font-size: 13px;
     }
+
+    
 }
 
 /* Ajustar el tamaño de los botones en pantallas pequeñas */

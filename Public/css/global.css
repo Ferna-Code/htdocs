@@ -32,9 +32,15 @@
     text-decoration: none;
     border-radius: 5px;
     background: orange;
-    ;
+    display: inline-block;
+    text-align: center;
+    width: 110px;
     color: white;
-    font-size: 13px;
+    font-size: 15px;
+}
+
+.btnAgregar{
+    width: 165px;
 }
 
 .btn-supervisor:hover {

@@ -113,70 +113,48 @@ function controlVisi9() {
   // Centra el módulo 1
   centrarModulo(elemento9);
 }
+
 function controlVisi10() {
-  var elemento10 = document.getElementById("modulo10");
+  var eleme = document.getElementById("modulo10");
   
   // Oculta todos los módulos
   ocultarModulos();
 
-  // Muestra el módulo 1
-  elemento10.style.display = "flex";
+  // Muestra el módulo correspondiente
+  eleme.style.display = "flex";
   
-  // Centra el módulo 1
-  centrarModulo(elemento10);
+  // Centra el módulo mostrado
+  centrarModulo(eleme);
 }
+
 function controlVisi11() {
-  var elemento11 = document.getElementById("modulo11");
+  var eleme = document.getElementById("modulo11");
   
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
-  elemento11.style.display = "flex";
+  eleme.style.display = "flex";
   
   // Centra el módulo 1
-  centrarModulo(elemento11);
+  centrarModulo(eleme);
 }
+
 function controlVisi12() {
-  var elemento12 = document.getElementById("modulo12");
+  var eleme = document.getElementById("modulo12");
   
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
-  elemento12.style.display = "flex";
+  eleme.style.display = "flex";
   
   // Centra el módulo 1
-  centrarModulo(elemento12);
+  centrarModulo(eleme);
 }
+
 function controlVisi13() {
-  var elemento13 = document.getElementById("modulo13");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento13.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento13);
-}
-
-function controlVisi9() {
-  var elemento9 = document.getElementById("modulo9");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento9.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento9);
-}
-
-function controlVisit1() {
-  var eleme = document.getElementById("moduloOfertas");
+  var eleme = document.getElementById("modulo13");
   
   // Oculta todos los módulos
   ocultarModulos();
@@ -188,8 +166,8 @@ function controlVisit1() {
   centrarModulo(eleme);
 }
 
-function controlCurso() {
-  var eleme = document.getElementById("moduloCurso");
+function controlVisi14() {
+  var eleme = document.getElementById("modulo14");
   
   // Oculta todos los módulos
   ocultarModulos();
@@ -201,21 +179,11 @@ function controlCurso() {
   centrarModulo(eleme);
 }
 
-function controlVerCurso() {
-  var eleme = document.getElementById("moduloVerCurso");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
 
-  // Muestra el módulo 1
-  eleme.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(eleme);
-}
 
 
 function ocultarModulos() {
+  console.log("estoy aqui");
   var modulos = document.getElementsByClassName("contenedor-body");
   for (var i = 0; i < modulos.length; i++) {
       modulos[i].style.display = "none"; // Oculta todos los módulos
