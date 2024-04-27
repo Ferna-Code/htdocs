@@ -45,7 +45,7 @@
             <?php include 'complementos/publicaciones.php' ?>
         </div>
 
-        <div class="contenedor-body" id="modulo1">
+        <div class="contenedor-body" id="modulo1"  style="display:none">
             <?php include 'complementos/reportes.php' ?>
         </div>
 
@@ -92,15 +92,25 @@
             <?php include 'complementos/formularios/carrerasCategorias.php' ?>
         </div>
 
-    </div>
+        <div class="contenedor-body" id="modulo15" style="display:none">
+            <?php include 'complementos/formularios/verReporte.php' ?>
+        </div>
 
+        <div class="contenedor-body" id="modulo16" style="display:none">
+            <?php include 'complementos/formularios/verPublicacion.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo17" style="display:none">
+            <?php include 'complementos/formularios/verUsuario.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo18">
+            <?php include 'complementos/formularios/perfilSupervisor.php' ?>
+        </div>
+
+    </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
-
-    </div>
-
-
-
     <!-- Bootstrap core JavaScript-->
     <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
     <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -14,9 +14,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="" onclick="controlVisi18()">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Panel principal</span></a>
     </li>
 
     <!-- Divider -->
@@ -25,6 +25,7 @@
     <!-- Heading -->
     <div class="sidebar-heading">
         Menú
+        
     </div>
 
     <li class="nav-item">

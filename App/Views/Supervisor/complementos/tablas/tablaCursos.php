@@ -16,12 +16,11 @@
 
         <form action="#">
             <a href="#" onclick="controlVisi11()" class="btn-supervisor marginBtn btnAgregar">Agregar curso</a>
-            <a href="#" class="btn-supervisor marginBtn">Modificar</a>
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="checkAllCurso" name="select-all"></th><!--CHECKBOX PRINCIPAL-->
+                        <th  class="widthCheck"><input type="checkbox" id="checkAllCurso" name="select-all"></th><!--CHECKBOX PRINCIPAL-->
                         <th class="widthName">Nombre curso</th>
                         <th>Centro de capacitación</th>
                         <th>Fecha publicación</th>

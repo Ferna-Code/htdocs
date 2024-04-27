@@ -179,6 +179,57 @@ function controlVisi14() {
   centrarModulo(eleme);
 }
 
+function controlVisi15() {
+  var eleme = document.getElementById("modulo15");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
+function controlVisi16() {
+  var eleme = document.getElementById("modulo16");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
+function controlVisi17() {
+  var eleme = document.getElementById("modulo17");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
+function controlVisi18() {
+  var eleme = document.getElementById("modulo18");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
 
 
 
