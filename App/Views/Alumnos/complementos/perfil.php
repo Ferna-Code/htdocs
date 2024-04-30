@@ -103,6 +103,15 @@
                                 <label for="fecha-finalizado">Fecha de Finalización:</label>
                                 <input type="date" id="fecha-finalizado" name="fecha-finalizado">
                             </div>
+                            <div class="columna">
+                                <label for="trabaja-actualmente">¿Cursa actualmente?</label>
+                                <div class="opciones">
+                                    <input type="radio" id="si" name="trabaja-actualmente" value="si">
+                                    <label for="si">Sí</label>
+                                    <input type="radio" id="no" name="trabaja-actualmente" value="no">
+                                    <label for="no">No</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- Botón para agregar nuevo formulario de educación -->
