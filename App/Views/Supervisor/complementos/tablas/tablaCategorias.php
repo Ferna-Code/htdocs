@@ -1,7 +1,10 @@
 <section style="margin: 10px;">
     <div class="">
         <form action="">
-        <a href="#" class="btn-supervisor marginBtn btnAgregar">Agregar categoria</a>
+            <a href="#" class="btn-supervisor marginBtn btnAgregar">Agregar categoria</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Lanzar demo de modal
+            </button>
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
                 <thead>
@@ -13,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
+
                     <tr class="table table-striped">
                         <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
                         <td><a href="#" class="linkTabla" onclick="controlVisi14()">Educación y Bienestar</a></td>
@@ -37,3 +40,25 @@
         </form>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <label for="nuevaCategoria">Nombre categoria</label>
+                    <input type="text" name="nuevaCategoria" id="nuevaCategoria">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" >Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
