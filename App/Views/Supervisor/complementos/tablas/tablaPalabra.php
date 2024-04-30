@@ -1,12 +1,14 @@
 <section style="margin: 10px;">
     <div class="">
         <form action="#">
-            <a href="#" onclick="" class="btn-supervisor marginBtn btnAgregar">Agregar palabra</a>
+            <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                Nuevo perfil
+            </button>
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
                 <thead>
                     <tr>
-                        <th  class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></th><!--CHECKBOX PRINCIPAL-->
+                        <th class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></th><!--CHECKBOX PRINCIPAL-->
                         <th>Palabra</th>
                         <th>Fecha creación</th>
                         <th>Fecha eliminación</th>
@@ -55,3 +57,25 @@
         </form>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva palabra</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <label for="nuevaCategoria">Palabra: </label>
+                    <input type="text" name="nuevaPalabra" id="nuevaCategoria">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn-supervisor marginBtn">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>

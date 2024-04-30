@@ -1,10 +1,12 @@
 <section style="margin: 10px;">
     <div class="">
         <form action="">
-            <a href="#" class="btn-supervisor marginBtn btnAgregar">Agregar categoria</a>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Lanzar demo de modal
+
+
+            <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Nueva categoria
             </button>
+
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
                 <thead>
@@ -51,13 +53,13 @@
             </div>
             <div class="modal-body">
                 <form action="">
-                    <label for="nuevaCategoria">Nombre categoria</label>
+                    <label for="nuevaCategoria">Nueva categoria: </label>
                     <input type="text" name="nuevaCategoria" id="nuevaCategoria">
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" >Agregar</button>
+                <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn-supervisor marginBtn">Agregar</button>
             </div>
         </div>
     </div>

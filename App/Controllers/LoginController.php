@@ -38,9 +38,9 @@ class LoginController
 
     private function logout()
     {
+        session_start();
         session_destroy();
-        echo "<script language='javascript'>window.location='/'</script>;";
-        exit();
+        header("Location: /");
     }
 
     private function createTable()
@@ -52,6 +52,7 @@ class LoginController
     
     private function handleAuthentication()//verificamos existencia y nivel de usuario
     {
+        //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $nombre = htmlspecialchars($_POST['nombre'] ?? '');
 
@@ -60,7 +61,6 @@ class LoginController
 
         if ($isUserValid) {
             $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
-            //$_SESSION['pagina_local'] = 'Administrador';
             $this->checklevelPage($_SESSION['nivelUsuario']);
         } else {
             echo "<script>alert('Usuario o contraseña incorrectos');</script>";
@@ -70,9 +70,6 @@ class LoginController
     private function checklevelPage($userLevel)//segun nivel se abre la sesion correspondiente
     {
 
-        // if($userLevel == 1 || $userLevel == 2 || $userLevel == 3){
-        //     $_SESSION['pagina_local'] = 'Home';
-        // }
         switch ($userLevel) {
             case 1:
                 $_SESSION['pagina_local'] = 'Administrador';
