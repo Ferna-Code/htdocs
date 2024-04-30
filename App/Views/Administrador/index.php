@@ -8,106 +8,78 @@
     <!--BOOSTRAPS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
+    <link rel="stylesheet" href="../../../../Public/css/global.css">
+
+    <!-- Estilo card -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Panel Administrador</title>
 </head>
 
-<body>
-    <div class="contenedor">
-        <div class="container-panel">
-            <nav class="nav-ok">
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi1()">Carreras</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi2()">Categorias</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi3()">Cursos</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi4()">Diccionario</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi5()">Perfiles</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi6()">Publicaciones</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi7()">Reportes</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi8()">Usuarios</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi9()">Archivos</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi10()">Comentarios</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi11()">Ofertas</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi12()">Postulaciones</a>
-                </div>
-                <div class="btn-sspp">
-                    <a class="link-nav" href="#" onclick="controlVisi13()">CV Abreviado</a>
-                </div>
-            </nav>
-        </div>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <?php include_once 'complementosAdmin/body-page/parteSuperior.php'; ?>
 
         
         <div class="contenedor-body" id="modulo1">
-            <?php include 'complementosAdmin/carreras.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/carreras.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php include 'complementosAdmin/categorias.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/categorias.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo3" style="display:none">
-            <?php include 'complementosAdmin/cursos.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/cursos.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo4" style="display:none">
-            <?php include 'complementosAdmin/diccionario.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/diccionario.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo5" style="display:none">
-            <?php include 'complementosAdmin/perfiles.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/perfiles.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo6" style="display:none">
-            <?php include 'complementosAdmin/publicaciones.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/publicaciones.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo7" style="display:none">
-            <?php include 'complementosAdmin/reportes.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/reportes.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo8" style="display:none">
-            <?php include 'complementosAdmin/usuarios.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/usuarios.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo9" style="display:none">
-            <?php include 'complementosAdmin/archivos.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/archivos.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo10" style='display:none'>
-            <?php include 'complementosAdmin/comentarios.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/comentarios.php' ?>
         </div>
         <div class="contenedor-body" id="modulo11" style='display:none'>
-            <?php include 'complementosAdmin/ofertas.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/ofertas.php' ?>
         </div>
         
         <div class="contenedor-body" id="modulo12" style='display:none'>
-            <?php include 'complementosAdmin/Postulaciones.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/Postulaciones.php' ?>
         </div>
 
         <div class="contenedor-body" id="modulo13" style='display:none'>
-            <?php include 'complementosAdmin/cv_abreviado.php' ?>
+            <?php include 'complementosAdmin/panelesAdmin/cv_abreviado.php' ?>
         </div>
             
     </div>

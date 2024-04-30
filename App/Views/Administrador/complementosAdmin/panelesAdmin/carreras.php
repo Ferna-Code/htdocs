@@ -54,8 +54,8 @@
                     <td>Si</td>
                     <td>23-04-2024</td>
                     <td>
-                        <a href="editar.php" class="btn w-100 m-1 btn-warning">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
+                        <a href="editar.php" class="btn-supervisor">editar</a>
+
                     </td>
 
                 </tr>

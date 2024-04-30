@@ -55,8 +55,8 @@
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarUsuario" class="btn w-100 m-1 btn-primary">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
+                        <a href="editarUsuario" class="btn w-100 m-1 btn-warning">editar</a>
+                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
                     </td>
 
                 </tr>
@@ -72,8 +72,8 @@
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarUsuario" class="btn w-100 m-1 btn-primary">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-danger">borrar</a>
+                        <a href="editarUsuario" class="btn w-100 m-1 btn-warning">editar</a>
+                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
                     </td>
 
                 </tr>

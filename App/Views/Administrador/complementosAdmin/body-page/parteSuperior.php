@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Administrador</div>
     </a>
 
     <!-- Divider -->
@@ -16,16 +16,11 @@
     <li class="nav-item active">
         <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Panel Admin</span></a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
 
@@ -83,7 +78,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapseUtilities7" aria-expanded="true"
             aria-controls="collapseUtilities7">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-fw fa-wrench"></i>
             <span href="#" onclick="controlVisi7()">Reportes</span>
         </a>
     </li>
