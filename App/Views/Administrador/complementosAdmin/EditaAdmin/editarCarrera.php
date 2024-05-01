@@ -9,9 +9,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" type="image/svg+xml" href="~/favicon.ico" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="../../../../Public/css/global.css">
     <title>Crear Carrera</title>
 </head>
 
@@ -40,7 +39,7 @@
             </div>
                 <br>
                 <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearCarrera" value="Crear">
+                <input type="submit" class="btn-supervisor" name="CrearCarrera" value="Crear">
                           
             
         </div>

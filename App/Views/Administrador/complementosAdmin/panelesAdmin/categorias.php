@@ -17,12 +17,29 @@
             <input type="text" id="filtroCentro">
         </div>
     </div>-->
+    <hr>
     <h1>Categorías</h1>
     <div class="body-panel">
+    <div style="margin: 10px;">
+    <form method="POST" action="#">
+            <div class="containerFiltro">
+                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+                <select class="categoriaFiltro">
+                    <option value="Práctica">Educación y Bienestar</option>
+                    <option value="Práctica">Tecnología y productividad</option>
+                    <option value="Práctica">Negocios e Innovación</option>
+                </select>
+                <input type="submit" class="btnFiltro" value="Filtrar">
+                <a href="Administrador/editarCategoria" class="btn-supervisor marginBtn">Editar</a>
+                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            </div>
+        </form>
+
+        <form action="">
         <table id="tableUsers" class="tabla table">
-            <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
                     <th>Id Categoría</th>
                     <th>Categoría</th>
                     <th>Fecha de Creación</th>
@@ -33,41 +50,49 @@
             </thead>
             <tbody>
                 <tr class="table table-striped">
+                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
                     <td>01</td>
                     <td>Educación Bienestar y Calidad de vida</td>
                     <td>12-04-2024</td>
                     <td>Si</td>
                     <td>23-04-2024</td>
                     <td>
-                        <a href="editarCategoria" class="btn w-100 m-1 btn-warning">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
-                    </td>
+                        <a href="Administrador/editarCategoria" class="btn-supervisor marginBtn">Editar</a>
+                     </td>
                 </tr>
                 <tr class="table table-striped">
+                <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
                     <td>02</td>
                     <td>Informática Tecnología y Productividad</td>
                     <td>12-04-2024</td>
                     <td>Si</td>
                     <td>23-04-2024</td>
                     <td>
-                        <a href="editarCategoria" class="btn w-100 m-1 btn-warning">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
+                    <a href="Administrador/editarCategoria" class="btn-supervisor">Editar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
+                <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
                     <td>03</td>
                     <td>Negocios Gestión e Innovación</td>
                     <td>12-04-2024</td>
                     <td>Si</td>
                     <td>23-04-2024</td>
                     <td>
-                        <a href="editarCategoria" class="btn w-100 m-1 btn-warning">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
+                        <a href="Administrador/editarCategoria" class="btn-supervisor">editar</a>
                     </td>
 
                 </tr>
             </tbody>  
         </table>
+        </form>
     </div>
+    </div>
+
+    <script src="../../../../Public/js/check.js"></script>
+    <script>
+        // Llamada en una vista
+        initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
+    </script>
 </body>

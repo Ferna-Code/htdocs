@@ -23,7 +23,7 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Pages Collapse Menu -->
-
+    <div class="overflow-auto" style="max-height: 60vh;">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
@@ -131,9 +131,15 @@
             <span  href="#" onclick="controlVisi13()">C.V. Abreviado</span>
         </a>
     </li>
-
+</div>
 
 <!-- ------------------- -->
+
+        <form method="post" action="/">
+            <input type="submit" class="btn-supervisor" value="Cerrar Sesión">
+            <input type="hidden" name="op" value="CERRAR_SESION">
+        </form> 
+        
 
 
     <!-- Divider -->

@@ -17,12 +17,30 @@
             <input type="text" id="filtroCentro">
         </div>
     </div>-->
+    <hr>
     <h1>Cursos</h1>
     <div class="body-panel">
+    <div style="margin: 10px;">
+    <form method="POST" action="#">
+            <div class="containerFiltro">
+                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+                <select class="categoriaFiltro">
+                    <option value="Práctica">Diplomado en Gestión de Proyectos TI</option>
+                    <option value="Práctica">Diplomado en metodologia Scrum</option>
+                    <option value="Práctica">Networking Essentials</option>
+                </select>
+                <input type="submit" class="btnFiltro" value="Filtrar">
+                <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
+                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            </div>
+        </form>
+
+        <form action="">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
+                <th class="widthCheck"><input type="checkbox" id="checkAllCursos" name="select-all"></th>
                     <th>Id Cursos</th>
                     <th>Nombre Curso</th>
                     <th>Descripción</th>
@@ -35,44 +53,53 @@
             </thead>
             <tbody>
                 <tr class="table table-striped">
+                    <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
                     <td>01</td>
                     <td>Diplomado en Gestión de Proyectos TI</td>
-                    <td>1DEscripcion del curso</td>
+                    <td>Descripcion del curso</td>
+                    <td>02</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarCursos" class="btn w-100 m-1 btn-warning">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
+                        <a href="Administrador/editarCursos" class="btn-supervisor">Editar</a>
                     </td>
                 </tr>
                 <tr class="table table-striped">
+                    <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
                     <td>01</td>
                     <td>Diplomado en metodologia Scrum</td>
                     <td>Descripcion del curso</td>
+                    <td>02</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarCursos" class="btn w-100 m-1 btn-warning">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
+                    <a href="Administrador/editarCursos" class="btn-supervisor">Editar</a>
                     </td>
 
                 </tr>
                 <tr class="table table-striped">
-                <td>01</td>
+                    <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
+                    <td>01</td>
                     <td>Networking Essentials</td>
                     <td>Descripcion del curso</td>
+                    <td>02</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
                     <td>
-                        <a href="editarCursos" class="btn w-100 m-1 btn-warning">editar</a>
-                        <a href="borrar.php" class="btn w-100 m-1 btn-warning">borrar</a>
+                    <a href="Administrador/editarCursos" class="btn-supervisor">Editar</a>
                     </td>
 
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
+    <script src="../../../../Public/js/check.js"></script>
+    <script>
+        // Llamada en una vista
+        initializeCheckboxMaster('checkAllCursos', 'checkboxCursos');
+    </script>
 </body>

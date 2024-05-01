@@ -73,7 +73,9 @@ class AdministradorController{
         //include VIEWS_PATH . 'Layout/footer.php';
     }
 
+
     //-------------------------LLAMA A EDITAR---------------------------//
+    
 
     public function editarArchivo(){
         include VIEWS_PATH . 'Layout/nav.php';
