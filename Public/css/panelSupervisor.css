@@ -126,17 +126,16 @@ body {
     width: 100px;
 }
 
-
-
-
-
-/* Reglas de CSS para hacer la página responsive */
+.marginBtn{
+    margin-bottom: 10px;
+}
 
 /* Media query para pantallas pequeñas */
 @media only screen and (max-width: 768px) {
     .contenedor {
       flex-direction: column;
       height: auto;
+     
     }
   
     .container-panel {
@@ -154,39 +153,58 @@ body {
     }
   }
   
-  /* Media query para pantallas aún más pequeñas, como teléfonos móviles */
-  @media only screen and (max-width: 480px) {
-    .contenedor-body {
-      flex: 4;
-    }
-    
-    .btn-panel, .body-panel {
-      width: 100%;
-    }
-  }
-
-
-
   /* Reglas de CSS para hacer la tabla responsive */
 .table-responsive {
     overflow-x: auto;
 }
 
+/* Estilos para hacer que el texto y los botones sean responsive dentro de la tabla */
 .table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* Fijar el ancho de la tabla */
 }
 
-.table th, .table td {
+/* Ajustes para las columnas */
+.table th,
+.table td {
     padding: 8px;
-   
-    text-align: left;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Mostrar puntos suspensivos (...) cuando el texto sea demasiado largo */
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    overflow-x: auto;
+    min-width: 320px; /* Establecer un ancho mínimo para el contenedor */
+    max-width: 100%; /* Establecer un ancho máximo para el contenedor */
+}
+
+.widthName{
+    width: 36%;
+}
+
+.widthCheck{
+    width: 5%;
 }
 
 /* Media query para ajustar la tabla en pantallas pequeñas */
 @media only screen and (max-width: 768px) {
-    .table-responsive {
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
+    .table th,
+    .table td {
+        font-size: 13px;
+    }
+
+    
+}
+
+/* Ajustar el tamaño de los botones en pantallas pequeñas */
+@media only screen and (max-width: 768px) {
+    .table a.btn-supervisor {
+        font-size: 12px; /* Reducir el tamaño de los botones en pantallas pequeñas */
+        padding: 6px 10px; /* Ajustar el padding de los botones */
     }
 }

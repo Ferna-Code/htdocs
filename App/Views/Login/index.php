@@ -57,8 +57,8 @@
                                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                             </ul>
-                            <a class="btn btn-danger" href="./empresa/index">Publica tu oferta laboral</a>
-
+                            
+                            <button class="btn btn-danger"><a href="./empresa/index">Publica tu oferta laboral</a></button>
                         </div>
                     </div>
                 </div>
@@ -70,21 +70,18 @@
     <!-- LOGIN -->
     <section class="banner_main">
         <div id="banner1" class="" data-ride="">
-            <div class="fondored">
+            <div class="">
                 <div class="">
                     <div class="container-fluid">
-                        <div>
+                        <div class="">
                             <div class="row">
-                                <div style="">
-                                    <div class="col-md-7 col-lg-5">
-                                        <div class="text-bg">
-                                            <h1>RedLeones</h1>
-                                            <span>Conecta con egresados, comparte información, Mantente en línea.</span>
-                                        </div>
+                                <div class="col-md-7 col-lg-5">
+                                    <div class="text-bg">
+                                        <h1>RedLeones</h1>
+                                        <span>Conecta con egresados, comparte información, Mantente en línea.</span>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-lg-7"
-                                    style="background-color: #F8B619; padding: 30px; height: 400px;">
+                                <div class="col-md-12 col-lg-7" style="background-color: #F8B619; padding: 30px; height: 400px;">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="ban_track">
@@ -92,35 +89,32 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="contForm">
-                                                <h2>Ingrese sus datos:</h2>
+                                            <form method="post" action="" class="transfot">
                                                 <div class="col-md-12">
-                                                    <form method="post" action="">
-                                                        <input type="text" name="nombre" id="nombre"
-                                                            placeholder="Ingrese su nombre">
+                                                    <h1>Ingresa a la Red</h1>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
+                                                    <input type="text" name="rut" id="rut" placeholder="Ingrese su RUT">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" name="clave" id="clave" placeholder="Ingrese su clave">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
                                                         ?</a>
                                                 </div>
-                                                <?php
-                                                if ($showCreateTableButton):
-                                                    ?>
-                                                    <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <?php if ($showCreateTableButton): ?>
                                                         <input type="submit" value="Ingresar">
                                                         <input type="hidden" name="op" value="VALIDAR">
-                                                    </div>
-                                                <?php else: ?>
-                                                    <div class="col-md-12">
-                                                        <input type="submit" value="Ingresar">
-                                                        <input type="hidden" name="op" value="VALIDAR">
-                                                    </div>
-                                                    </form>
-                                                <?php endif; ?>
-                                            </div>
+                                                        <?php else: ?>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="submit" value="Ingresar">
+                                                    <input type="hidden" name="op" value="VALIDAR">
+                                                    <?php endif; ?>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -130,6 +124,83 @@
                 </div>
             </div>
         </div>
+    </section>
+    <!-- end banner -->
+    <!-- service section -->
+    <section>
+        <div id="service" class="service">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="titlepage">
+                            <h2>¿Qué podrás encontrar?</h2>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="service_main">
+                            <div class="service_box ">
+                                <i><img src="./public/img/aprender-en-linea.png" alt="#" /></i>
+                                <h4>Cursos con Certificaciones</h4>
+                            </div>
+                            <div class="service_box ">
+                                <i><img src="./public/img/red.png" alt="#" /></i>
+                                <h4>Amplía tu red</h4>
+                            </div>
+                            <div class="service_box ">
+                                <i><img src="./public/img/empresario.png" alt="#" /></i>
+                                <h4>Ofertas Laborales</h4>
+                            </div>
+                            <div class="service_box ">
+                                <i><img src="./public/img/curriculum.png" alt="#" /></i>
+                                <h4>Mantente informado</h4>
+                            </div>
+                            <div class="service_box">
+                                <i><img src="./public/img/periodico.png" alt="#" /></i>
+                                <h4>Actualiza tu información</h4>
+                            </div>
+                            <div class="service_box">
+                                <i><img src="./public/img/diario.png" alt="#" /></i>
+                                <h4>Potencia tu alcance</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end service section -->
+    <!-- sobre nosotros -->
+    <section style="margin-top: 380px;">
+        <div id="about" class="about">
+            <div class="container">
+                <div class="row d_flex">
+                    <div class="col-sm-8">
+                        <div class="about_right">
+                            <figure><img class="imgnosotros" src="./Public/img/nosotros1.jpg" alt="#" /></figure>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="titlepage">
+                            <h2>Nosotros</h2>
+                            <p> Somos estudiantes del último año de la carrera de Analista Programador y hemos creado
+                                esta red para que los egresados puedan manterse en contacto, facilitando la colaboración
+                                y el apoyo continuo tras finalizar sus estudios.
+                            </p>
+                            <a class="read_more" href="#"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end about section -->
+    <!--  footer -->
+    <footer>
+        <div class="footer bottom_cross1">
+            <div class="container">
 
 
         <!-- end banner -->

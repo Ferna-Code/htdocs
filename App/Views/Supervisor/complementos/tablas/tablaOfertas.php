@@ -1,9 +1,9 @@
 <section style="margin: 10px;">
-    <div class="table-responsive">
+    <div class="">
         <form method="POST" action="#">
             <div class="containerFiltro">
-            <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-            <select class="ofertaFiltro">
+                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+                <select class="ofertaFiltro">
                     <option value="Práctica">Práctica</option>
                     <option value="Práctica">Part Time</option>
                     <option value="Práctica">Full Time</option>
@@ -15,111 +15,71 @@
                     <option value="Práctica">Negocios e Innovación</option>
                 </select>
 
-            <input type="submit" class="btnFiltro" value="Filtrar">
+                <input type="submit" class="btnFiltro" value="Filtrar">
             </div>
         </form>
-        <table id="tableUsers" class="tabla table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Cargo</th>
-                    <th>Empresa</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="table table-striped">
-                    <td>1</td>
-                    <td>PRÁCTICA TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y CONTROL</td>
-                    <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
-                    <td class="tr-table">
-                        <a class="btn-supervisor color-a" href="#" onclick="controlVisit1()"
-                            data-target="#collapseUtilities10" aria-expanded="true" aria-controls="collapseUtilities10">
-                            Ver oferta
-                        </a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>2</td>
-                    <td>Práctica Profesional para Departamento Programación Física y Control</td>
-                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>3</td>
-                    <td>Práctica Técnica para Estudiantes de Programación y Conectividad Soporte Informático HRLBO</td>
-                    <td>Servicio de Salud O'Higgins</td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>4</td>
-                    <td>Práctica Profesional para Departamento Programación Física y Control</td>
-                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>5</td>
-                    <td>PRÁCTICA TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y CONTROL</td>
-                    <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>6</td>
-                    <td>Práctica Profesional para Departamento Programación Física y Control</td>
-                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>7</td>
-                    <td>Práctica Técnica para Estudiantes de Programación y Conectividad Soporte Informático HRLBO</td>
-                    <td>Servicio de Salud O'Higgins</td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
-                <tr class="table table-striped">
-                    <td>8</td>
-                    <td>Práctica Profesional para Departamento Programación Física y Control</td>
-                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-a">Ver oferta</a>
-                    </td>
-                    <td class="tr-table">
-                        <a href="#" class="btn-supervisor color-b">Eliminar</a>
-                    </td>
-                </tr>
 
-            </tbody>
-        </table>
+        <form action="">
+            <a href="#" class="btn-supervisor marginBtn">Eliminar</i></a>
+            <table id="tableUsers" class="tabla table">
+                <thead>
+                    <tr>
+                        <th class="widthCheck"><input type="checkbox" id="checkAllOferta" name="select-all"></th>
+                        <th>Cargo</th>
+                        <th>Empresa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td><a href="#" class="linkTabla" onclick="controlVisi10()">Diseño Web Profesional El Curso Completo, Práctico y desde 0</a></td>
+                        <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
+                    </tr>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td>Práctica Profesional para Departamento Programación Física y Control</td>
+                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+
+                    </tr>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td>Práctica Técnica para Estudiantes de Programación y Conectividad Soporte Informático HRLBO</td>
+                        <td>Servicio de Salud O'Higgins</td>
+
+                    </tr>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td>Práctica Profesional para Departamento Programación Física y Control</td>
+                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+
+                    </tr>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td>PRÁCTICA TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y CONTROL</td>
+                        <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
+
+                    </tr>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td>Práctica Profesional para Departamento Programación Física y Control</td>
+                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+
+                    </tr>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td>Práctica Técnica para Estudiantes de Programación y Conectividad Soporte Informático HRLBO</td>
+                        <td>Servicio de Salud O'Higgins</td>
+
+                    </tr>
+                    <tr class="table table-striped">
+                        <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+                        <td>Práctica Profesional para Departamento Programación Física y Control</td>
+                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
     </div>
 </section>
