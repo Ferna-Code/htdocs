@@ -4,6 +4,7 @@
             <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal3">
                 Nuevo usuario
             </button>
+           
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
                 <thead>
@@ -104,3 +105,5 @@
         </div>
     </div>
 </div>
+
+<!-- composer require phpoffice/phpspreadsheet -->
