@@ -86,6 +86,13 @@
             <span>Correo de resumen CV</span>
         </a>
     </li>
+    <li class="nav-item">
+        <form method="post" action="/">
+            <input type="submit" class="btnCerrar" value="">
+            <input type="hidden" name="op" value="CERRAR_SESION">
+        </form> 
+        
+    </li>
     <!-- Divider --> 
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

@@ -1,3 +1,5 @@
+<?php
+?>
 <div class="conteiner">
     <form method="POST" class="form">
         <div class="">
@@ -124,6 +126,7 @@
                     <h3 class="mb-3">Adjuntar Curriculum</h3>
                     <input type="file" accept=".pdf" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
                 </div>
+                <input type="hidden" name="op" value="guardardatos"><br>
                 <button type="submit" class="btn-guardar mt-5" name="crearRegistro">Guardar Cambios</button>
             </div>
         </div>

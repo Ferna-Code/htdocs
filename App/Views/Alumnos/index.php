@@ -1,3 +1,11 @@
+<?php
+require_once("../../Controllers/accessController.php");
+$perfilesPermitidos = 3;
+session_start();
+verificarAcceso($perfilesPermitidos);
+echo $_SESSION['nivelUsuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

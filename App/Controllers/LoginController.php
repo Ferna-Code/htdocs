@@ -52,16 +52,21 @@ class LoginController
     
     private function handleAuthentication()//verificamos existencia y nivel de usuario
     {
+        
         //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $clave = htmlspecialchars($_POST['clave'] ?? '');
 
         $accessModel = new Access_model();
         $isUserValid = $accessModel->validateUser($rut, $clave);
+        $_SESSION['nivelUsuario'] = $accessModel->getnivelusuario();
+
 
         if ($isUserValid) {
+            
             $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
             $this->checklevelPage($_SESSION['nivelUsuario']);
+            
         } else {
             echo "<script>alert('Usuario o contraseña incorrectos');</script>";
         }

@@ -46,7 +46,7 @@ class Access_model
         //  el que un atacante inserta código malicioso en las consultas SQL de una aplicación.
 
         $tableName = "usuarios";
-        $validateQuery = "SELECT idperfil FROM $tableName WHERE nombre = ? and rut = ?";
+        $validateQuery = "SELECT idperfil FROM $tableName WHERE rut = ? and clave = ?";
 
         $stmt = mysqli_prepare($this->db->getConnection(), $validateQuery);
         mysqli_stmt_bind_param($stmt, 'ss', $rut, $clave);

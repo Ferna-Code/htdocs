@@ -1,3 +1,9 @@
+<?php
+session_destroy();
+
+echo $_SESSION['nivelUsuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
