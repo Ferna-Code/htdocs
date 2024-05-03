@@ -121,10 +121,10 @@
                 </div>
                 <br>
                 <div class="container">
-                    <h3>Adjuntar Curriculum</h3>
-                    <input type="file" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
+                    <h3 class="mb-3">Adjuntar Curriculum</h3>
+                    <input type="file" accept=".pdf" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
                 </div>
-                <button type="submit" class="btn-guardar" name="crearRegistro">Guardar Cambios</button>
+                <button type="submit" class="btn-guardar mt-5" name="crearRegistro">Guardar Cambios</button>
             </div>
         </div>
     </form>

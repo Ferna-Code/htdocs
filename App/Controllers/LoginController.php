@@ -81,7 +81,7 @@ class LoginController
                 $_SESSION['pagina_local'] = 'Supervisor';
                 break;
             case 3:
-                $_SESSION['pagina_local'] = 'alumno';
+                $_SESSION['pagina_local'] = 'Alumno';
                 break;
         }
 

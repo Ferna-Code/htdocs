@@ -43,7 +43,7 @@ class Access_model
         //$claveHasheada = hash('sha256', $clave);
 
         $tableName = "usuarios";
-        $validateQuery = "SELECT cargo FROM $tableName WHERE nombre = ? and rut = ?";
+        $validateQuery = "SELECT idperfil FROM $tableName WHERE nombre = ? and rut = ?";
 
         $stmt = mysqli_prepare($this->db->getConnection(), $validateQuery);
         mysqli_stmt_bind_param($stmt, 'ss', $nombre, $rut);
@@ -58,8 +58,8 @@ class Access_model
         $row = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
 
-        if ($row && isset ($row['cargo'])) {
-            $this->nivelUsuario = $row['cargo'];
+        if ($row && isset ($row['idperfil'])) {
+            $this->nivelUsuario = $row['idperfil'];
             return true;
         }
 
