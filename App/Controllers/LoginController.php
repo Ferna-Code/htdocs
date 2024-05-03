@@ -54,10 +54,10 @@ class LoginController
     {
         //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
         $rut = htmlspecialchars($_POST['rut'] ?? '');
-        $nombre = htmlspecialchars($_POST['nombre'] ?? '');
+        $clave = htmlspecialchars($_POST['clave'] ?? '');
 
         $accessModel = new Access_model();
-        $isUserValid = $accessModel->validateUser($nombre, $rut);
+        $isUserValid = $accessModel->validateUser($rut, $clave);
 
         if ($isUserValid) {
             $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();

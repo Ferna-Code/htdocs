@@ -5,7 +5,7 @@ define('db_host', 'localhost');
 define('db_name', 'redleones');
 define('BASE_URL', 'http://localhost/');
 define('db_user', 'root');
-define('de_pass', '12345678');
+define('de_pass', '');
 
 //Vistas
 define('HOME_URL', BASE_URL . '/');
