@@ -94,14 +94,15 @@
     </li>
 
    
-
+    
     <li class="nav-item">
-        <form method="post" action="/">
-            <input type="submit" class="btnCerrar" value="">
-            <input type="hidden" name="op" value="CERRAR_SESION">
+        <form method="post" action="" >
+            <input type="submit" class="" value="cerrar session">
+            <!-- <input type="hidden" name="op" value="CERRAR_SESION"> -->
         </form> 
         
     </li>
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

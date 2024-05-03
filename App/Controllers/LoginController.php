@@ -19,13 +19,10 @@ class LoginController
         require VIEWS_PATH . 'Login/index.php';
     }
 
-    private function handlePostRequests()//creamos la tabla, validamos user o logout
+    private function handlePostRequests() //creamos la tabla, validamos user o logout
     {
-        if (isset ($_POST['op'])) {
+        if (isset($_POST['op'])) {
             switch ($_POST['op']) {
-                case 'CREAR_TABLA':
-                    $this->createTable();
-                    break;
                 case 'VALIDAR':
                     $this->handleAuthentication();
                     break;
@@ -39,18 +36,13 @@ class LoginController
     private function logout()
     {
         session_start();
-        session_destroy();
+        session_unset();
+        session_destroy();  
         header("Location: /");
+        exit();
     }
 
-    private function createTable()
-    {
-        $accessModel = new Access_model();
-        $accessModel->createTable();
-    }
-
-    
-    private function handleAuthentication()//verificamos existencia y nivel de usuario
+    private function handleAuthentication() //verificamos existencia y nivel de usuario
     {
         //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
         $rut = htmlspecialchars($_POST['rut'] ?? '');
@@ -67,7 +59,7 @@ class LoginController
         }
     }
 
-    private function checklevelPage($userLevel)//segun nivel se abre la sesion correspondiente
+    private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente
     {
 
         switch ($userLevel) {
@@ -82,9 +74,7 @@ class LoginController
                 break;
         }
 
-        echo"<script language='javascript'>window.location='".$_SESSION['pagina_local']."'</script>;";
+        echo "<script language='javascript'>window.location='" . $_SESSION['pagina_local'] . "'</script>;";
         exit();
     }
-
-    
 }
