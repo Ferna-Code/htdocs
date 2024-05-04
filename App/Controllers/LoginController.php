@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../Models/access_model.php';
+require_once __DIR__ . '/../Models/usuarioModel.php';
 
 class LoginController
 {
@@ -10,7 +11,7 @@ class LoginController
         $_SESSION['pagina_local'] = '/';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->handlePostRequests();
+            $this->ValidarSesion();
         }
 
         $accessModel = new Access_model();
@@ -50,46 +51,75 @@ class LoginController
     }
 
     
-    private function handleAuthentication()//verificamos existencia y nivel de usuario
-    {
-        
-        //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
+   // private function handleAuthentication()//verificamos existencia y nivel de usuario
+   // {
+   //     
+   //     //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
+   //     $rut = htmlspecialchars($_POST['rut'] ?? '');
+   //     $clave = htmlspecialchars($_POST['clave'] ?? '');
+//
+   //     $accessModel = new Access_model();
+   //     $isUserValid = $accessModel->validateUser($rut, $clave);
+   //     $_SESSION['nivelUsuario'] = $accessModel->getnivelusuario();
+//
+//
+   //     if ($isUserValid) {
+   //         
+   //         $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
+   //         $this->checklevelPage($_SESSION['nivelUsuario']);
+   //         
+   //     } else {
+   //         echo "<script>alert('Usuario o contraseña incorrectos');</script>";
+   //     }
+   // }
+
+private function checklevelPage($userLevel)//segun nivel se abre la sesion correspondiente
+{
+
+    switch ($userLevel) {
+        case 1:
+            $_SESSION['pagina_local'] = 'Administrador';
+            break;
+        case 2:
+            $_SESSION['pagina_local'] = 'Supervisor';
+            break;
+        case 3:
+            $_SESSION['pagina_local'] = 'Alumno';
+            break;
+    }
+
+    echo"<script language='javascript'>window.location='".$_SESSION['pagina_local']."'</script>;";
+    exit();
+}
+
+    
+    private function ValidarSesion() {
+        session_start(); // Iniciar sesión al principio
+    
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $clave = htmlspecialchars($_POST['clave'] ?? '');
-
+    
         $accessModel = new Access_model();
-        $isUserValid = $accessModel->validateUser($rut, $clave);
-        $_SESSION['nivelUsuario'] = $accessModel->getnivelusuario();
+        $loginResult = $accessModel->iniciarSesion($rut, $clave);
+    
+        if ($loginResult) {
+            $idperfil = $loginResult['idperfil']; 
+    
+            // Almacenar valores en la sesión
+            $_SESSION['idperfil'] = $idperfil;
 
+            $this->checklevelPage($idperfil);
 
-        if ($isUserValid) {
-            
-            $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
-            $this->checklevelPage($_SESSION['nivelUsuario']);
-            
         } else {
-            echo "<script>alert('Usuario o contraseña incorrectos');</script>";
+            // Autenticación fallida
+            $_SESSION['error'] = 'Usuario no existe o clave inválida';
+            echo 'Usuario no existe o clave inválida ';
+            echo " rut: " . $rut . " clave: " . $clave;
+            if (isset($_SESSION['idPerfil'])) {
+                echo $_SESSION['idPerfil'];
+            }
+            exit();
         }
     }
-
-    private function checklevelPage($userLevel)//segun nivel se abre la sesion correspondiente
-    {
-
-        switch ($userLevel) {
-            case 1:
-                $_SESSION['pagina_local'] = 'Administrador';
-                break;
-            case 2:
-                $_SESSION['pagina_local'] = 'Supervisor';
-                break;
-            case 3:
-                $_SESSION['pagina_local'] = 'Alumno';
-                break;
-        }
-
-        echo"<script language='javascript'>window.location='".$_SESSION['pagina_local']."'</script>;";
-        exit();
-    }
-
     
 }

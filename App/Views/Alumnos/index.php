@@ -1,9 +1,8 @@
 <?php
-require_once("../../Controllers/accessController.php");
+require_once 'App/Controllers/accessController.php';
 $perfilesPermitidos = 3;
 session_start();
 verificarAcceso($perfilesPermitidos);
-echo $_SESSION['nivelUsuario'];
 ?>
 
 <!DOCTYPE html>
