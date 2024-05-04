@@ -22,7 +22,8 @@ class Access_model
         $this->db->createTableAndInsert();
     }
 
-    public function tableExists($tableName){
+    public function tableExists($tableName)
+    {
         //Verificamos si la tabla existe
         $queryCheck = "SHOW TABLES LIKE '$tableName'";
         $verify = mysqli_query($this->db->getConnection(), $queryCheck);
@@ -35,7 +36,7 @@ class Access_model
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             return false;
         }
-       
+
 
         $rut = mysqli_real_escape_string($this->db->getConnection(), $rut);
         $clave = mysqli_real_escape_string($this->db->getConnection(), $clave);
@@ -61,7 +62,7 @@ class Access_model
         $row = mysqli_fetch_assoc($result);
         mysqli_stmt_close($stmt);
 
-        if ($row && isset ($row['idperfil'])) {
+        if ($row && isset($row['idperfil'])) {
             $this->nivelUsuario = $row['idperfil'];
             return true;
         }
@@ -80,19 +81,16 @@ class Access_model
         mysqli_stmt_bind_param($query, "s", $rut);
         if (mysqli_stmt_execute($query)) {
             mysqli_stmt_bind_result($query, $resultadorut, $idPerfil, $resultadoClave);
-    
             if (mysqli_stmt_fetch($query)) {
                 if ($resultadorut === $rut && $resultadoClave === $clave) {
-                    mysqli_stmt_close($query); // Cerrar la consulta antes de retornar
+                    mysqli_stmt_close($query);
                     return array('idperfil' => $idPerfil);
                 }
             }
         }
-        
-        // Cerrar la consulta en caso de falla en cualquier punto anterior
         mysqli_stmt_close($query);
         return false;
     }
-    
+
 
 }

@@ -94,22 +94,16 @@ private function checklevelPage($userLevel)//segun nivel se abre la sesion corre
 
     
     private function ValidarSesion() {
-        session_start(); // Iniciar sesión al principio
-    
+        session_start();
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $clave = htmlspecialchars($_POST['clave'] ?? '');
-    
         $accessModel = new Access_model();
         $loginResult = $accessModel->iniciarSesion($rut, $clave);
-    
         if ($loginResult) {
-            $idperfil = $loginResult['idperfil']; 
-    
+            $idperfil = $loginResult['idperfil'];
             // Almacenar valores en la sesión
             $_SESSION['idperfil'] = $idperfil;
-
-            $this->checklevelPage($idperfil);
-
+            $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
         } else {
             // Autenticación fallida
             $_SESSION['error'] = 'Usuario no existe o clave inválida';
