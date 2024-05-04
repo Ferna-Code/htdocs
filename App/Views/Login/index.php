@@ -93,11 +93,11 @@
                                                 <h2>Ingrese sus datos:</h2>
                                                 <div class="col-md-12">
                                                 <form method="post" action="">
-                                                    <input type="text" name="nombre" id="nombre"
-                                                        placeholder="Ingrese su nombre">
+                                                    <input type="text" name="rut" id="rut"
+                                                        placeholder="Ingrese su rut">
                                                         </div>
                                                         <div class="col-md-12">
-                                                    <input type="text" name="rut" id="rut" placeholder="Ingrese su rut">
+                                                    <input type="text" name="clave" id="clave" placeholder="Ingrese su clave">
                                                     </div>
                                                     <div class="col-md-12">
                                                     <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña

@@ -21,7 +21,6 @@
     <h1>Diccionario</h1>
     <div class="body-panel">
     <div style="margin: 10px;">
-    <form method="POST" action="#">
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <select class="categoriaFiltro">
@@ -33,9 +32,6 @@
                 <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
-        </form>
-
-        <form action="">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
@@ -46,7 +42,6 @@
                     <th>Fecha  de Creación</th>
                     <th>Activo</th>
                     <th>Fecha de Eliminación</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,9 +52,6 @@
                     <td>13-04-2024</td>
                     <td>Si</td>
                     <td>13-04-2024</td>
-                    <td>
-                    <a href="Administrador/editarDiccionario" class="btn-supervisor">Editar</a>
-                    </td>
                 </tr>
                 
                 <tr class="table table-striped">
@@ -69,10 +61,6 @@
                     <td>13-04-2024</th>
                     <td>No</th>
                     <td>13-04-2024</th>
-                    <td>
-                    <a href="Administrador/editarDiccionario" class="btn-supervisor">Editar</a>
-                    </td>
-
                 </tr>
                 <tr class="table table-striped">
                 <td><input type="checkbox" class="checkboxDiccionario" name="checkId"></td>
@@ -81,13 +69,32 @@
                     <td>13-04-2024</th>
                     <td>Si</th>
                     <td>13-04-2024</th>
-                    <td>
-                        <a href="Administrador/editarDiccionario" class="btn-supervisor">Editar</a>
-                    </td>
-
                 </tr>
             </tbody>
         </table>
+                      <!-- seccion footer -->
+                      <div class="footer-tools">
+                <div class="list-items">
+                    Mostrar
+                    <select name="n-entries" id="n-entries" class="n-entries">
+                        <option value="10">10</option>
+                        <option value="15" selected>20</option>
+                        <option value="20">50</option>
+                    </select>
+                    Entradas
+                </div>   
+                <div class="pages">
+                    <ul>
+                        <li><span class="active">1</span></li>
+                        <li><button>2</button></li>
+                        <li><button>3</button></li>
+                        <li><span>...</span></li>
+                        <li><button>9</button></li>
+                        <li><button>10</button></li>
+                    </ul>
+
+                </div>
+        </div>
         </div>
     </div>
     <script src="../../../../Public/js/check.js"></script>

@@ -18,8 +18,6 @@
 <body>
     <form method="POST" class="form" style="padding: 100px 300px 0 300px; width: 100%;">
         <h2 style="text-align: center;">Crear Nueva Carrera</h2><br>
-      
-            
             <label for="rut" style="text-align: center;">Carrera:</label>
             <input type="text" class="form-control" name="NombreCarrera" value="<?php echo "Ingrese Carrera"; ?>"placeholder="Nombre Carrera" Required><br>
             <div class="row">

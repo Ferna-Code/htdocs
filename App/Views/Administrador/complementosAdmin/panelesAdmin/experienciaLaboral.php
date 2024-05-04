@@ -4,21 +4,21 @@
     rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Administrador de Comentarios</title>
+    <title>Diccionario</title>
 <body>
-<!--<div class="btn-panel">        
+<!--<div class="btn-panel">     
         <div>
-            <a href="creaComentarios" class="btn  btn-primary">Crear Comentario</a>
+            <a href="creaDiccionario" class="btn  btn-primary">Ingreso nueva Palabra</a>
             <label for="filtroUsuario">Filtrar por ID:</label>
             <input type="text" id="filtroUsuario">
         </div>
         <div>
-            <label for="filtroCentro">Filtrar por Rut:</label>
+            <label for="filtroCentro">Filtrar por Categoría:</label>
             <input type="text" id="filtroCentro">
         </div>
     </div>-->
     <hr>
-    <h1>Comentarios</h1>
+    <h1>Experiencia Laboral</h1>
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
@@ -28,7 +28,7 @@
                     <option value="Práctica">Tecnología y productividad</option>
                     <option value="Práctica">Negocios e Innovación</option>
                 </select>
-                <a href="Administrador/editarComentarios" class="btn-supervisor marginBtn">Editar</a>
+                <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
 
@@ -36,12 +36,14 @@
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                <th class="widthCheck"><input type="checkbox" id="checkAllComentarios" name="select-all"></th>
+                <th class="widthCheck"><input type="checkbox" id="checkAllLaboral" name="select-all"></th>
                     <th>ID</th>
-                    <th>Rut</th>
-                    <th>ID Publicación</th>
-                    <th>Comentario</th>
-                    <th>N° de Reportes</th>
+                    <th>Rut Usuario</th>
+                    <th>Fecha  de Inicio</th>
+                    <th>Fecha  de Fin</th>
+                    <th>Cargo</th>
+                    <th>Descripción</th>
+                    <th>Trabajo Actual</th>
                     <th>Fecha  de Creación</th>
                     <th>Activo</th>
                     <th>Fecha de Eliminación</th>
@@ -49,42 +51,49 @@
             </thead>
             <tbody>
                 <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxComentarios" name="checkId"></td>
+                <td><input type="checkbox" class="checkboxLaboral" name="checkId"></td>
                     <td>01</td>
-                    <td>09999999-9</td>
-                    <td>67</td>
-                    <td>Este es un comentario</td>
-                    <td>2</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxComentarios" name="checkId"></td>
-                    <td>02</td>
-                    <td>04444444-4</td>
-                    <td>45</td>
-                    <td>Este es otro comentario</td>
-                    <td>3</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxComentarios" name="checkId"></td>
-                    <td>03</td>
-                    <td>05555555-5</td>
-                    <td>34</td>
-                    <td>Este es otro comentario mwe</td>
+                    <td>26013039-0</td>
+                    <td>2011-01-01</td>
+                    <td>2015-12-31</td>
+                    <td>Ingeniero de Proyectos</td>
+                    <td>Desarrollo de proyectos civiles</td>
                     <td>0</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
+                    <td>13-04-2024</td>
+                    <td>1</td>
+                    <td>13-04-2024</td>
+                </tr>
+                
+                <tr class="table table-striped">
+                <td><input type="checkbox" class="checkboxLaboral" name="checkId"></td>
+                    <td>02</th>
+                    <td>26013039-0</td>
+                    <td>2016-01-01</td>
+                    <td>2020-12-31</td>
+                    <td>Gerente de Proyectos</td>
+                    <td>Gestión y liderazgo de proyectos de construcción</td>
+                    <td>1</td>
+                    <td>13-04-2024</td>
+                    <td>1</td>
+                    <td>13-04-2024</td>
+                </tr>
+                <tr class="table table-striped">
+                <td><input type="checkbox" class="checkboxLaboral" name="checkId"></td>
+                    <td>03</td>
+                    <td>26013039-1</td>
+                    <td>2012-04-01</td>
+                    <td>2017-03-30</td>
+                    <td>Administradora</td>
+                    <td>Administración de oficinas</td>
+                    <td>0</td>
+                    <td>13-04-2024</td>
+                    <td>1</td>
+                    <td>13-04-2024</td>
                 </tr>
             </tbody>
-</table>
-              <!-- seccion footer -->
-              <div class="footer-tools">
+        </table>
+                      <!-- seccion footer -->
+                      <div class="footer-tools">
                 <div class="list-items">
                     Mostrar
                     <select name="n-entries" id="n-entries" class="n-entries">
@@ -108,10 +117,9 @@
         </div>
         </div>
     </div>
-
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista
-        initializeCheckboxMaster('checkAllComentarios', 'checkboxComentarios');
+        initializeCheckboxMaster('checkAllLaboral', 'checkboxLaboral');
     </script>
 </body>

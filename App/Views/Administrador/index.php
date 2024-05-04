@@ -80,6 +80,14 @@
         <div class="contenedor-body" id="modulo13" style='display:none'>
             <?php include 'complementosAdmin/panelesAdmin/cv_abreviado.php' ?>
         </div>
+
+        <div class="contenedor-body" id="modulo14" style='display:none'>
+            <?php include 'complementosAdmin/panelesAdmin/experienciaAcademica.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo15" style='display:none'>
+            <?php include 'complementosAdmin/panelesAdmin/experienciaLaboral.php' ?>
+        </div>
             
     </div>
 
@@ -103,7 +111,7 @@
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
 
-    <script src="../../../../Public/js/supervisor.js"></script>
+    <script src="../../../../Public/js/administrador.js"></script>
 
 
 

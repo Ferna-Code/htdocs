@@ -162,8 +162,6 @@ function controlVisi13() {
   centrarModulo(elemento13);
 }
 
-//-------------------------crear modulos--------------//
-
 function controlVisi14() {
   var elemento14 = document.getElementById("modulo14");
   
@@ -177,6 +175,7 @@ function controlVisi14() {
   centrarModulo(elemento14);
 }
 
+
 function controlVisi15() {
   var elemento15 = document.getElementById("modulo15");
   
@@ -189,6 +188,8 @@ function controlVisi15() {
   // Centra el módulo 1
   centrarModulo(elemento15);
 }
+
+//-------------------------crear modulos--------------//
 
 function controlVisi16() {
   var elemento16 = document.getElementById("modulo16");

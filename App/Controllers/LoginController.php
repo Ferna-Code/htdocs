@@ -14,7 +14,7 @@ class LoginController
         }
 
         $accessModel = new Access_model();
-        $tableName = "usuario";
+        $tableName = "usuarios";
         $showCreateTableButton = $accessModel->tableExists($tableName);
         require VIEWS_PATH . 'Login/index.php';
     }
@@ -53,10 +53,10 @@ class LoginController
     private function handleAuthentication()//verificamos existencia y nivel de usuario
     {
         $rut = htmlspecialchars($_POST['rut'] ?? '');
-        $nombre = htmlspecialchars($_POST['nombre'] ?? '');
+        $clave = htmlspecialchars($_POST['clave'] ?? '');
 
         $accessModel = new Access_model();
-        $isUserValid = $accessModel->validateUser($nombre, $rut);
+        $isUserValid = $accessModel->validateUser($rut, $clave);
 
         if ($isUserValid) {
             $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();

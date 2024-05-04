@@ -10,8 +10,7 @@
 <hr>
     <h1>Usuarios</h1>
     <div class="body-panel">
-    <div style="margin: 10px;">
-    <form method="POST" action="#">
+    <div style="margin: 10px 10px;">
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <select class="categoriaFiltro">
@@ -19,13 +18,15 @@
                     <option value="Práctica">Tecnología y productividad</option>
                     <option value="Práctica">Negocios e Innovación</option>
                 </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
                 <a href="Administrador/editarUsuario" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
-        </form>
+        <form action="procesar_archivo.php" method="post" enctype="multipart/form-data">
+    <label for="archivo_excel">Selecciona un archivo Excel:</label>
+    <input type="file" name="archivo_excel"  id="archivo_excel">
+    <input type="submit" value="Cargar" class="btn-supervisor" name="submit">
+</form>
 
-        <form action="">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
@@ -41,7 +42,6 @@
                     <th>Fecha de Ingreso</th>
                     <th>Activo</th>
                     <th>Feha de Eliminación</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,13 +57,10 @@
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
-                    <td>
-                    <a href="Administrador/editarUsuario" class="btn-supervisor">Editar</a>
-                    </td>
                 </tr>
                 
                 <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
+                    <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
                     <td>33333333-3</td>
                     <td>Ivan Rojas</td>
                     <td>12-12-1930</td>
@@ -74,13 +71,10 @@
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
-                    <td>
-                    <a href="Administrador/editarUsuario" class="btn-supervisor">Editar</a>
-                    </td>
 
                 </tr>
                 <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
+                    <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
                     <td>22222222-2</td>
                     <td>Ramon Vasquez</td>
                     <td>12-12-1986</td>
@@ -91,13 +85,32 @@
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
-                    <td>
-                        <a href="Administrador/editarUsuario" class="btn-supervisor">Editar</a>
-                    </td>
-
                 </tr>
             </tbody>
         </table>
+                        <!-- seccion footer -->
+                        <div class="footer-tools">
+                <div class="list-items">
+                    Mostrar
+                    <select name="n-entries" id="n-entries" class="n-entries">
+                        <option value="10">10</option>
+                        <option value="15" selected>20</option>
+                        <option value="20">50</option>
+                    </select>
+                    Entradas
+                </div>   
+                <div class="pages">
+                    <ul>
+                        <li><span class="active">1</span></li>
+                        <li><button>2</button></li>
+                        <li><button>3</button></li>
+                        <li><span>...</span></li>
+                        <li><button>9</button></li>
+                        <li><button>10</button></li>
+                    </ul>
+
+                </div>
+        </div>
         </div>
     </div>
 

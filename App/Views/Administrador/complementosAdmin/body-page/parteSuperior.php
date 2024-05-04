@@ -23,7 +23,7 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <div class="overflow-auto" style="max-height: 60vh;">
+    <div class="overflow-auto " style="max-height: 60vh;">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
@@ -45,7 +45,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
             aria-expanded="true" aria-controls="collapseUtilities3">
             <i class="fas fa-fw fa-wrench"></i>
-            <span href="#" onclick="controlVisi3()">Curso</span>
+            <span href="#" onclick="controlVisi3()">Cursos</span>
         </a>
 
     </li>
@@ -131,7 +131,22 @@
             <span  href="#" onclick="controlVisi13()">C.V. Abreviado</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities14"
+            aria-expanded="true" aria-controls="collapseUtilities14">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span  href="#" onclick="controlVisi14()">Experiencia Académica</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities15"
+            aria-expanded="true" aria-controls="collapseUtilities15">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span  href="#" onclick="controlVisi15()">Experiencia Laboral</span>
+        </a>
+    </li>
 </div>
+
 
 <!-- ------------------- -->
 

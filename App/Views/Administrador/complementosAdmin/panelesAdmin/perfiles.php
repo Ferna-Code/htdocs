@@ -21,7 +21,6 @@
     <h1>Perfiles</h1>
     <div class="body-panel">
     <div style="margin: 10px;">
-    <form method="POST" action="#">
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <select class="categoriaFiltro">
@@ -29,25 +28,20 @@
                     <option value="Práctica">Tecnología y productividad</option>
                     <option value="Práctica">Negocios e Innovación</option>
                 </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
                 <a href="Administrador/editarPerfiles" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
-        </form>
 
-        <form action="">
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllPerfiles" name="select-all"></th>
-                    <th>Id Perfil</th>
+                    <th>ID</th>
                     <th>Nombre</th>
-                    <th>Rut Usuario</th>
                     <th>Fecha de Ingreso</th>
                     <th>Activo</th>
                     <th>Fecha de Eliminacion</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,42 +49,51 @@
                 <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
                     <td>01</td>
                     <td>Administrador</td>
-                    <td>11111111-1</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
-                    <td>
-                    <a href="Administrador/editarPerfiles" class="btn-supervisor">Editar</a>
-                    </td>
                 </tr>
                 <tr class="table table-striped">
                 <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
                     <td>02</td>
                     <td>Supervisor</td>
-                    <td>22222222-2</td>
                     <td>12-12-2024</td>
                     <td>No</td>
                     <td>12-12-2024</td>
-                    <td>
-                    <a href="Administrador/editarPerfiles" class="btn-supervisor">Editar</a>
-                    </td>
-
                 </tr>
                 <tr class="table table-striped">
                 <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
                     <td>02</td>
-                    <td>Alumno</td>
-                    <td>33333333-3</td>
+                    <td>Egresado</td>
                     <td>12-12-2024</td>
                     <td>Si</td>
                     <td>12-12-2024</td>
-                    <td>
-                        <a href="Administrador/editarPerfiles" class="btn-supervisor">Editar</a>
-                    </td>
-
                 </tr>
             </tbody>
         </table>
+                        <!-- seccion footer -->
+                        <div class="footer-tools">
+                <div class="list-items">
+                    Mostrar
+                    <select name="n-entries" id="n-entries" class="n-entries">
+                        <option value="10">10</option>
+                        <option value="15" selected>20</option>
+                        <option value="20">50</option>
+                    </select>
+                    Entradas
+                </div>   
+                <div class="pages">
+                    <ul>
+                        <li><span class="active">1</span></li>
+                        <li><button>2</button></li>
+                        <li><button>3</button></li>
+                        <li><span>...</span></li>
+                        <li><button>9</button></li>
+                        <li><button>10</button></li>
+                    </ul>
+
+                </div>
+        </div>
         </div>
     </div>
 
