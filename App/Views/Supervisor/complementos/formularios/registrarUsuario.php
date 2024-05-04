@@ -3,7 +3,7 @@ require("./App/Models/conexion.php");
 require("./App/Models/importarDatos.php");
 $conec = new conexion();
 $conexion = $conec->conec();
-//$import = new ImportarDatos($conexion);
+
 $importador = new ImportarDatos($conexion);
 if (isset($_POST['send'])) {
     if ($_FILES['excel']['size'] > 0) {
@@ -17,7 +17,6 @@ if (isset($_POST['send'])) {
     } else {
         echo "<script>alert('No se a seleccionado ningun archivo')</script>";
     }
-    //echo "<script>window.location.href = '/App/Views/Supervisor/index.php';</script>";
 }
 
 if (isset($_POST["crearRegistro"])) {
@@ -110,10 +109,13 @@ if (isset($_POST["crearRegistro"])) {
                         <input type="text" class="form-control" name="cargo" required>
                     </div>
                 </div>
-                <button type="submit" class="btn-oferta" name="crearRegistro">Crear Curso</button>
+                <button type="submit" class="btn-oferta" name="crearRegistro">Agregar usuario</button>
+                <a href="/Supervisor" class="btn-oferta">Volver</a>
             </form>
         </div>
     </div>
 </body>
 
 </html>
+
+<!--$_SESSION['pagina_local'] = 'Supervisor'-->

@@ -97,7 +97,7 @@
     
     <li class="nav-item">
         <form method="POST" action="App/Models/cerrar_session.php" >
-            <input type="submit" class="" value="cerrar session">
+            <input type="submit" class="btnCerrar" value="">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form> 
         
