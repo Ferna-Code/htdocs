@@ -1,7 +1,13 @@
-
+<?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    require_once 'App/Controllers/accessController.php';
+    $perfilesPermitidos = 2;
+    verificarAcceso($perfilesPermitidos);
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">

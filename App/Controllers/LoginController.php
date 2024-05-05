@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 require_once __DIR__ . '/../Models/access_model.php';
 
 class LoginController
@@ -10,11 +10,11 @@ class LoginController
         $_SESSION['pagina_local'] = '/';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->handlePostRequests();
+            $this->ValidarSesion();
         }
 
         $accessModel = new Access_model();
-        $tableName = "usuario";
+        $tableName = "usuarios";
         $showCreateTableButton = $accessModel->tableExists($tableName);
         require VIEWS_PATH . 'Login/index.php';
     }
@@ -24,7 +24,7 @@ class LoginController
         if (isset($_POST['op'])) {
             switch ($_POST['op']) {
                 case 'VALIDAR':
-                    $this->handleAuthentication();
+                    $this->ValidarSesion();
                     break;
                 case 'CERRAR_SESION':
                     $this->logout();
@@ -40,22 +40,22 @@ class LoginController
         exit();
     }
 
-    private function handleAuthentication() //verificamos existencia y nivel de usuario
-    {
-        //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
-        $rut = htmlspecialchars($_POST['rut'] ?? '');
-        $clave = htmlspecialchars($_POST['clave'] ?? '');
+    // private function handleAuthentication() //verificamos existencia y nivel de usuario
+    // {
+    //     //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
+    //     $rut = htmlspecialchars($_POST['rut'] ?? '');
+    //     $clave = htmlspecialchars($_POST['clave'] ?? '');
 
-        $accessModel = new Access_model();
-        $isUserValid = $accessModel->validateUser($rut, $clave);
+    //     $accessModel = new Access_model();
+    //     $isUserValid = $accessModel->validateUser($rut, $clave);
 
-        if ($isUserValid) {
-            $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
-            $this->checklevelPage($_SESSION['nivelUsuario']);
-        } else {
-            echo "<script>alert('Usuario o contraseña incorrectos');</script>";
-        }
-    }
+    //     if ($isUserValid) {
+    //         $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
+    //         $this->checklevelPage($_SESSION['nivelUsuario']);
+    //     } else {
+    //         echo "<script>alert('Usuario o contraseña incorrectos');</script>";
+    //     }
+    // }
 
     private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente
     {
@@ -74,5 +74,28 @@ class LoginController
 
         echo "<script language='javascript'>window.location='" . $_SESSION['pagina_local'] . "'</script>;";
         exit();
+    }
+
+    private function ValidarSesion() {
+        session_start();
+        $rut = htmlspecialchars($_POST['rut'] ?? '');
+        $clave = htmlspecialchars($_POST['clave'] ?? '');
+        $accessModel = new Access_model();
+        $loginResult = $accessModel->iniciarSesion($rut, $clave);
+        if ($loginResult) {
+            $idperfil = $loginResult['idperfil'];
+            // Almacenar valores en la sesión
+            $_SESSION['idperfil'] = $idperfil;
+            $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
+        } else {
+            // Autenticación fallida
+            $_SESSION['error'] = 'Usuario no existe o clave inválida';
+            echo 'Usuario no existe o clave inválida ';
+            echo " rut: " . $rut . " clave: " . $clave;
+            if (isset($_SESSION['idPerfil'])) {
+                echo $_SESSION['idPerfil'];
+            }
+            exit();
+        }
     }
 }

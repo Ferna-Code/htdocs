@@ -1,3 +1,9 @@
+<?php
+    require_once 'App/Controllers/accessController.php';
+    $perfilesPermitidos = 3;
+    session_start();
+    verificarAcceso($perfilesPermitidos);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
