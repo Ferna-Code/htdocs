@@ -4,6 +4,8 @@ require("./App/Models/importarDatos.php");
 $conec = new conexion();
 $conexion = $conec->conec();
 
+$archivoContenedor = "";
+
 $importador = new ImportarDatos($conexion);
 if (isset($_POST['send'])) {
     if ($_FILES['excel']['size'] > 0) {

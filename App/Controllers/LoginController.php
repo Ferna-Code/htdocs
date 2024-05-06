@@ -40,23 +40,7 @@ class LoginController
         exit();
     }
 
-    // private function handleAuthentication() //verificamos existencia y nivel de usuario
-    // {
-    //     //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
-    //     $rut = htmlspecialchars($_POST['rut'] ?? '');
-    //     $clave = htmlspecialchars($_POST['clave'] ?? '');
-
-    //     $accessModel = new Access_model();
-    //     $isUserValid = $accessModel->validateUser($rut, $clave);
-
-    //     if ($isUserValid) {
-    //         $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
-    //         $this->checklevelPage($_SESSION['nivelUsuario']);
-    //     } else {
-    //         echo "<script>alert('Usuario o contraseña incorrectos');</script>";
-    //     }
-    // }
-
+   
     private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente
     {
 
@@ -90,8 +74,9 @@ class LoginController
         } else {
             // Autenticación fallida
             $_SESSION['error'] = 'Usuario no existe o clave inválida';
-            echo 'Usuario no existe o clave inválida ';
-            echo " rut: " . $rut . " clave: " . $clave;
+            echo "<script>alert('Usuario o contraseña incorrecta')</script>";
+            // echo 'Usuario no existe o clave inválida ';AUNQUE DEJE QUE MOSTRARA UN ALERT AL INGRESAR DATOS INCORRECTOS ME SIGUE REDIRIGIENDO A UNA PAG EN BLANCO
+            // echo " rut: " . $rut . " clave: " . $clave;
             if (isset($_SESSION['idPerfil'])) {
                 echo $_SESSION['idPerfil'];
             }
