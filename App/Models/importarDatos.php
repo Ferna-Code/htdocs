@@ -1,8 +1,6 @@
 <?php
 //recuperar archivo
 require './vendor/autoload.php';
-
-
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ImportarDatos
@@ -96,10 +94,6 @@ class ImportarDatos
             $ejecutar = mysqli_stmt_execute($prepareQuery);
             mysqli_stmt_close($prepareQuery);
 
-            //  if ($ejecutar) {
-            //     header("Location: " . VIEWS_PATH ."Supervivor/complementos/confirmacion.php");
-            //     exit();
-            //  }
         } else {
             echo "<script>alert('El rut $rut_ ingresado ya se encuentra en la base de datos')</script>";
         }
