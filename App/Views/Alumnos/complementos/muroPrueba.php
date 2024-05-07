@@ -1,16 +1,24 @@
 <?php
-
-$Publicacion='';
+session_start();
+require_once("App/Controllers/publicacionesController.php");  
+$comentario='';
 $sw = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-    if(!isset($_POST['Publicacion']))	    {$Publicacion='';       }else{$Publicacion=$_POST['Publicacion'];}
+    if(!isset($_POST['comentario']))	    {$comentario='';       }else{$comentario=$_POST['comentario'];}
     if(!isset($_POST['sw']))                {$sw='';                }else{$sw=$_POST['sw'];}
 
-    $rutUsuario = isset($_SESSION['rut']) ? $_SESSION['rut'] : '';
 }
-?>
 
+
+if ($sw === 'publicar') {
+    // Crear una instancia del controlador de publicaciones
+    $controlador = new PublicacionesController();
+    // Procesar la publicación
+    $controlador->procesarPublicacion($_SESSION['rut'], $comentario);
+}
+
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,26 +37,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <form method="POST" class="form" style="padding: 100px 300px 0 300px;">
+<?php if(isset($_GET['mensaje'])) :  ?>
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong><?php echo  $_GET['mensaje'] ?></strong> 
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<?php endif ?>
+
+    <form method="POST"  class="form" style="padding: 100px 300px 0 300px;">
         <h2 style="text-align: center;">Publicación</h2>
         <br>
         <div class="row">
             <div class="col">
-                <label for="Publicacion " style="text-align: center;">Publicación:</label>
-                <input type="textarea" class="form-control" name="Publicacion" value="<?php echo "$Publicacion"; ?>"placeholder="Tus comentarios" Required><br>
+                <label for="comentario" style="text-align: center;">Publicación:</label>
+                <textarea class="form-control" name="comentario" value="<?php echo htmlspecialchars($comentario); ?>"placeholder="Tus comentarios" Required></textarea><br>
                 <input type="hidden" name="sw" value="publicar"><br>
                 <input type="submit" class="btn btn-warning w-100 center-block" name="Publicar" value="Publicar">
                           
             </div>
             </div>
     </form>
-
-    <?php
-
-    if ($sw == "publicar") {
-        require_once("App/Controllers/publicacionesController.php");       
-    }
-    ?> 
 
 
 

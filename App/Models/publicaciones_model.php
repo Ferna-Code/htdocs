@@ -1,42 +1,42 @@
 <?php
+require_once __DIR__ . '/../Database.php';
 
-class publicaciones_model
-{
+class PublicacionesModel {
     private $db;
 
-    public function __construct($db)
-    {
+    public function __construct($db) {
         $this->db = $db;
     }
 
-
-    public function conteoPublicaciones($rutUsuario)
-    {
+    public function contarPublicacionesHoy($rutUsuario) {
         $fecha_actual = date("Y-m-d");
-        $sql = "select count(*) as cantidad from publicaciones where rut = ? and fechaCreacion = '$fecha_actual'";
-
-        $result = $this->db->query($sql);
-        if ($result) {
-            $row = $result->fetch_assoc();
-            return ($row) ? $row['cantidad'] : 0;
-        } else {
-            die("Error al obtener el conteo de publicaciones: " . $this->db->error);
+        $sql = "SELECT COUNT(*) AS cantidad FROM publicaciones WHERE rutusuario = ? AND fechaCreacion = ?";
+        if ($stmt = mysqli_prepare($this->db->getConnection(), $sql)) {
+            mysqli_stmt_bind_param($stmt, "ss", $rutUsuario, $fecha_actual);
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_bind_result($stmt, $cantidad);
+                mysqli_stmt_fetch($stmt);
+                mysqli_stmt_close($stmt);
+                return $cantidad;
+            } else {
+                die("Error al obtener el conteo de publicaciones: " . $this->db->error);
+            }
         }
     }
 
-    public function InsertaPublicacion($rutUsuario,$usuario_Publicacion,$fecha_actual)
-    {
-        
-        $consulta="insert into publicaciones (rut, publicaciones,fechaCreacion) values (?,?,?)";
+    public function guardarPublicacion($rutUsuario, $usuario_Publicacion) {
+        $fecha_actual = date("Y-m-d");
+        $consulta = "INSERT INTO publicaciones (rutusuario, publicacion, fechaCreacion) VALUES (?, ?, ?)";
         if ($stmt = mysqli_prepare($this->db->getConnection(), $consulta)) {
             mysqli_stmt_bind_param($stmt, "sss", $rutUsuario, $usuario_Publicacion, $fecha_actual);
             if (mysqli_stmt_execute($stmt)) {
-                 return true;
+                return true;
             } else {
                 return false;
             }
+        } else {
+            die("Error al preparar la consulta: " . $this->db->error);
         }
-
     }
 }
 ?>
