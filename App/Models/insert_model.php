@@ -20,11 +20,10 @@ class Insert_model
         $tableName = 'Perfiles';
 
         $buildTable = "CREATE TABLE IF NOT EXISTS $tableName(
-                rut varchar(10) primary key not null,
-                nombre varchar(50) not null,
-                apellido varchar(50) not null,
-                nivel int not null,
-                curriculum varchar(100) null
+               id int auto_increment primary key,
+               descripcion varchar(255) not null,
+               fecha_creacion date not null,
+               fecha_eliminacion date null
             )";
 
         $Create = mysqli_query($this->db->getConnection(), $buildTable);
@@ -37,11 +36,11 @@ class Insert_model
 
     private function insertDefaultDataPerfiles($tableName)
     {
-        $defaultData = "INSERT INTO $tableName(rut, nombre, apellido, nivel) 
+        $defaultData = "INSERT INTO $tableName(descripcion, fecha_creacion) 
             values
-            ('11111111-2', 'Oscar', 'Godoy', 1),
-            ('22222222-3', 'Jose', 'Fuentes', 2),
-            ('33333333-4', 'pedro', 'Lopez', 3)";
+            ('Administrador', NOW()),
+            ('Supervisor', NOW()),
+            ('Usuario', NOW())";
 
         $InsertData = mysqli_query($this->db->getConnection(), $defaultData);
 

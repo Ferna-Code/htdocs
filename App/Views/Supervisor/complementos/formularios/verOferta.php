@@ -26,9 +26,9 @@
 
             </div>
             <div class="contenedor-btn">
-                <a href="#" class="btn-oferta">Eliminar</a>
-                <a href="#" class="btn-oferta">Volver</a>
-                <a href="#" class="btn-oferta">Publicar</a>
+                <a href="" class="btn-oferta">Eliminar</a>
+                <a href="" class="btn-oferta">Volver</a>
+                <a href="" class="btn-oferta">Publicar</a>
             </div>
         </div>
        

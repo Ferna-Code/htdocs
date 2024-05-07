@@ -1,15 +1,19 @@
+<?php
+require_once 'App/Controllers/accessController.php';
+$perfilesPermitidos = 3;
+session_start();
+verificarAcceso($perfilesPermitidos);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Egresado - RedLeones</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -54,6 +58,18 @@
         </div>
         <div class="contenedor-body" id="modulo9" style="display:none">
         <?php include 'complementos/ofertas/veroferta.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo10" style="display:none">
+        <?php include 'complementos/correobienvenida.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo11" style="display:none">
+        <?php include 'complementos/correoPostulacion.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo12" style="display:none">
+        <?php include 'complementos/correorecuperarclave.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo13" style="display:none">
+        <?php include 'complementos/correoresumencv.php' ?>
         </div>
     </div>
 

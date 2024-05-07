@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="../../../../Public/css/ofertasalumnos.css">
 <section class="seccion" style="padding: 3%; color: black;">
     <h1 class="section-title h1">Ofertas Laborales</h1><br>
@@ -50,7 +51,7 @@
                         <td class="tr-table">
                             13/09/20
                         </td>
-                    </tr>
+                      </tr>
                     <tr class="table table-striped">
                         <td>Práctica</td>
                         <td><a onclick="veroferta()"><b> Profesional para Departamento Programación Física y

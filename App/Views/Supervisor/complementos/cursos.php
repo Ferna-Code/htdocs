@@ -3,4 +3,9 @@
     <div class="body-panel">
         <?php include 'tablas/tablaCursos.php' ?>
     </div>
+    <script src="../../../../Public/js/check.js"></script>
+    <script>
+        // Llamada en una vista
+        initializeCheckboxMaster('checkAllCurso', 'checkbox-item');
+    </script>
 </body>
