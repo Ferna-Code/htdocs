@@ -1,21 +1,20 @@
 <?php
 session_start();
 require_once("App/Controllers/publicacionesController.php");  
+
 $comentario='';
 $sw = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     if(!isset($_POST['comentario']))	    {$comentario='';       }else{$comentario=$_POST['comentario'];}
     if(!isset($_POST['sw']))                {$sw='';                }else{$sw=$_POST['sw'];}
-
 }
-
 
 if ($sw === 'publicar') {
     // Crear una instancia del controlador de publicaciones
     $controlador = new PublicacionesController();
     // Procesar la publicación
-    $controlador->procesarPublicacion($_SESSION['rut'], $comentario);
+    $controlador->procesarPublicacion($comentario);
 }
 
 ?> 
@@ -59,9 +58,6 @@ if ($sw === 'publicar') {
             </div>
             </div>
     </form>
-
-
-
 
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

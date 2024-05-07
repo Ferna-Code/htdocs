@@ -18,6 +18,7 @@ class PublicacionesModel {
                 mysqli_stmt_fetch($stmt);
                 mysqli_stmt_close($stmt);
                 return $cantidad;
+
             } else {
                 die("Error al obtener el conteo de publicaciones: " . $this->db->error);
             }
