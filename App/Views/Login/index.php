@@ -103,7 +103,7 @@ echo $_SESSION['nivelUsuario'];
                                                     <input type="text" name="rut" id="rut" placeholder="Ingrese su RUT">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="text" name="clave" id="clave" placeholder="Ingrese su clave">
+                                                    <input type="password" name="clave" id="clave" placeholder="Ingrese su clave">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
