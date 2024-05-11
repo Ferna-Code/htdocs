@@ -92,7 +92,7 @@ private function checklevelPage($userLevel)//segun nivel se abre la sesion corre
     exit();
 }
 
-    
+    //
     private function ValidarSesion() {
         session_start();
         $rut = htmlspecialchars($_POST['rut'] ?? '');
