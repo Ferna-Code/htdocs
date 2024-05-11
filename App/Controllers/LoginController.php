@@ -60,8 +60,7 @@ class LoginController
         exit();
     }
 
-    //
-    private function ValidarSesion() {
+
     private function ValidarSesion()
     {
         session_start();
