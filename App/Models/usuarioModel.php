@@ -15,7 +15,8 @@ class Usuario
     private $activo;
     private $fechaEliminacion;
 
-
+    private $db;
+    private $usuario;
     public function __construct()
     {
         
@@ -31,14 +32,27 @@ class Usuario
         $this->fechaCreacion = "";
         $this->activo = "";
         $this->fechaEliminacion = "";
+        $this->usuario = array();
     }
 
-    public function verUsuarios()
+    public function verUsuario($rut)
     {
-        $consulta = mysqli_query($this->db, "SELECT * FROM Usuarios");
-        while ($filas = mysqli_fetch_array($consulta)) {
-            $this->Usuario[] = $filas;
+        $link = $this->db;
+        $query = mysqli_prepare($link,"SELECT * FROM Usuarios where rut = ?");
+        mysqli_stmt_bind_param($query, "s", $rut);
+        if (mysqli_stmt_execute($query)) {
+            mysqli_stmt_bind_result($query,$rut,$nombre,$fechaNacimiento,$idPerfil,$correo,$idCarrera,$avance);
+            return array(
+            'rut' => $rut, 
+            'nombre' => $nombre, 
+            'fechaNacimiento' =>$fechaNacimiento,
+            'idPerfil' => $idPerfil,
+            'correo' =>$correo,
+            'idCarrera' =>$idCarrera,
+            'avance' =>$avance);
         }
-        return $this->Usuario;
+        mysqli_stmt_close($query);
+        return false;
+
     }
 }

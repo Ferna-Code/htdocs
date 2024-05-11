@@ -84,7 +84,7 @@ class Access_model
             if (mysqli_stmt_fetch($query)) {
                 if ($resultadorut === $rut && $resultadoClave === $clave) {
                     mysqli_stmt_close($query);
-                    return array('idperfil' => $idPerfil);
+                    return array('idperfil' => $idPerfil,'rut' => $resultadorut);
                 }
             }
         }

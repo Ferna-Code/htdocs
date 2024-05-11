@@ -110,15 +110,9 @@ echo $_SESSION['nivelUsuario'];
                                                         ?</a>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <?php if ($showCreateTableButton): ?>
-                                                        <input type="submit" value="Ingresar">
-                                                        <input type="hidden" name="op" value="LOGIN">
-                                                        <?php else: ?>
-                                                </div>
-                                                <div class="col-md-12">
                                                     <input type="submit" value="Ingresar">
                                                     <input type="hidden" name="op" value="LOGIN">
-                                                    <?php endif; ?>
+                                                    <?php  ?>
                                                 </div>
                                             </form>
                                         </div>

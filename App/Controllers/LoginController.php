@@ -41,7 +41,7 @@ class LoginController
     {
         session_start();
         session_destroy();
-        header("Location: /");
+        header('Location: http://localhost:8080/');
     }
 
     private function createTable()
@@ -100,15 +100,15 @@ private function checklevelPage($userLevel)//segun nivel se abre la sesion corre
         $accessModel = new Access_model();
         $loginResult = $accessModel->iniciarSesion($rut, $clave);
         if ($loginResult) {
-            $idperfil = $loginResult['idperfil'];
-            // Almacenar valores en la sesión
+            $idperfil = $loginResult['idperfil'];// Almacenar valores en la sesión
+            $rut = $loginResult['rut'];// Almacenar valores en la sesión 
             $_SESSION['idperfil'] = $idperfil;
+            $_SESSION['rut'] = $rut;
             $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
         } else {
-            // Autenticación fallida
             $_SESSION['error'] = 'Usuario no existe o clave inválida';
             echo 'Usuario no existe o clave inválida ';
-            echo " rut: " . $rut . " clave: " . $clave;
+            header('Location: http://localhost:8080/');
             if (isset($_SESSION['idPerfil'])) {
                 echo $_SESSION['idPerfil'];
             }
