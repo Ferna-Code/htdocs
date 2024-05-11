@@ -1,3 +1,10 @@
+<?php
+    if(isset($_POST['crearRegistro']) && $_POST['crearRegistro'] == 'crearRegistro'){
+        echo"<script>alert('Oferta registrada')</script>";
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,10 +68,16 @@
                 </div>
                 <input type="reset" class="btn-guardar btnGuardar" name="resetForm" value="Borrar formulario" >
                 <button type="submit" class="btn-guardar btnGeneral" name="crearRegistro">Enviar Oferta</button>
+          
+                
             </form>
-            
+           
         </div>
     </div>
+    <script>
+  
+</script>
+
 </body>
 
 </html>

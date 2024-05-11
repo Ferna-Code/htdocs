@@ -35,12 +35,12 @@ class LoginController
 
     private function logout()
     {
-        session_destroy();  
+        session_destroy();
         header("Location: /");
         exit();
     }
 
-   
+
     private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente
     {
 
@@ -60,7 +60,8 @@ class LoginController
         exit();
     }
 
-    private function ValidarSesion() {
+    private function ValidarSesion()
+    {
         session_start();
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $clave = htmlspecialchars($_POST['clave'] ?? '');
@@ -74,9 +75,9 @@ class LoginController
         } else {
             // Autenticación fallida
             $_SESSION['error'] = 'Usuario no existe o clave inválida';
-            echo "<script>alert('Usuario o contraseña incorrecta')</script>";
-            // echo 'Usuario no existe o clave inválida ';AUNQUE DEJE QUE MOSTRARA UN ALERT AL INGRESAR DATOS INCORRECTOS ME SIGUE REDIRIGIENDO A UNA PAG EN BLANCO
-            // echo " rut: " . $rut . " clave: " . $clave;
+            //echo "<script>alert('Usuario o contraseña incorrecta')</script>";
+            echo 'Usuario no existe o clave inválida '; //AUNQUE DEJE QUE MOSTRARA UN ALERT AL INGRESAR DATOS INCORRECTOS ME SIGUE REDIRIGIENDO A UNA PAG EN BLANCO
+            echo " rut: " . $rut . " clave: " . $clave;
             if (isset($_SESSION['idPerfil'])) {
                 echo $_SESSION['idPerfil'];
             }
