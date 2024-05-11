@@ -72,6 +72,7 @@ class LoginController
             $idperfil = $loginResult['idperfil'];
             // Almacenar valores en la sesión
             $_SESSION['idperfil'] = $idperfil;
+            $_SESSION['rut'] = $rut;
             $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
         } else {
             // Autenticación fallida

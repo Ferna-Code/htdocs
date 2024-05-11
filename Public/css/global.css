@@ -37,10 +37,64 @@
     width: 110px;
     color: white;
     font-size: 15px;
+    margin-top: 20%;
+}
+
+.btn-CSesion {
+    border: 1px solid white;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: orange;
+    display: inline-block;
+    text-align: center;
+    width: 123px;
+    color: white;
+    font-size: 15px;
+}
+.btn-CSesion:hover {
+    background: white;
+    color: orange;
+    border-color: orange;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.btn-editar {
+    border: 1px solid white;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: orange;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-size: 15px;
+}
+.btn-editar:hover {
+    background: white;
+    color: orange;
+    border-color: orange;
+    text-decoration: none;
+    transition: .5s;
 }
 
 .btnAgregar{
     width: 165px;
+}
+
+.widthCheck{
+    width: 5%;
+}
+.anchoId{
+    width: 5%;
+}
+.anchoActiv{
+    width: 7%;
+}
+.anchoFecha{
+    width: 15%;
 }
 
 .btn-supervisor:hover {
@@ -59,6 +113,8 @@
 .linkTabla:hover {
     text-decoration: none;
     color: orange;
+    justify-content: center;
+    text-align: center;
 }
 
 .btnCerrar{
@@ -69,4 +125,6 @@
     border: none; /* Si no quieres mostrar un borde */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 }
+
+
 

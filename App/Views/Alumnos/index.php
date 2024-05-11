@@ -35,6 +35,8 @@
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
         <div class="contenedor-body" id="modulo1">
             <?php require_once "complementos/muroprincipal.php"; ?>
+            <h1>Home Principal</h1>
+            <?php require_once "complementos/muroPrueba.php"; ?><!--VISTA PARA PRUEBAS DE CONTROL DE PUBLIACIONES-->
         </div>
         <div class="contenedor-body" id="modulo2" style="display:none">
             <?php require_once "complementos/perfil.php"; ?>
