@@ -115,6 +115,7 @@ function veroferta() {
 
 
 
+
 function ocultarModulos() {
   var modulos = document.getElementsByClassName("contenedor-body");
   for (var i = 0; i < modulos.length; i++) {
