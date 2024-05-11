@@ -37,13 +37,13 @@
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllComentarios" name="select-all"></th>
-                    <th>ID</th>
+                    <th class="anchoId">ID</th>
                     <th>Rut</th>
                     <th>ID Publicación</th>
                     <th>Comentario</th>
                     <th>N° de Reportes</th>
                     <th>Fecha  de Creación</th>
-                    <th>Activo</th>
+                    <th class="anchoActiv">Activo</th>
                     <th>Fecha de Eliminación</th>
                 </tr>
             </thead>
@@ -56,7 +56,7 @@
                     <td>Este es un comentario</td>
                     <td>2</td>
                     <td>12-12-2024</td>
-                    <td>Si</td>
+                    <td class="anchoActiv">1</td>
                     <td>12-12-2024</td>
                 </tr>
                 <tr class="table table-striped">
@@ -67,7 +67,7 @@
                     <td>Este es otro comentario</td>
                     <td>3</td>
                     <td>12-12-2024</td>
-                    <td>Si</td>
+                    <td class="anchoActiv">1</td>
                     <td>12-12-2024</td>
                 </tr>
                 <tr class="table table-striped">
@@ -78,7 +78,7 @@
                     <td>Este es otro comentario mwe</td>
                     <td>0</td>
                     <td>12-12-2024</td>
-                    <td>Si</td>
+                    <td class="anchoActiv">1</td>
                     <td>12-12-2024</td>
                 </tr>
             </tbody>

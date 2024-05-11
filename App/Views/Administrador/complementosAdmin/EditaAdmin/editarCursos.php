@@ -20,6 +20,12 @@
         <h2 style="text-align: center;">Editar Curso</h2><br>
       
             
+        <label  style="text-align: center;">Selecione Categoría:</label>
+        <select class="form-select">
+                    <option value="Práctica">Categoría 1</option>
+                    <option value="Práctica">Categoría 2</option>
+                    <option value="Práctica">Categoría 3</option>
+                </select></br>
             <label for="rut" style="text-align: center;">Curso:</label>
             <input type="text" class="form-control" name="NombreCurso" placeholder="Nombre Curso" Required><br>
             <label for="rut" style="text-align: center;">Descripción:</label>
@@ -42,7 +48,7 @@
             </div>
                 <br>
                 <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearCarrera" value="Crear">
+                <input type="submit" class="btn btn-warning w-100 center-block" name="CrearCarrera" value="Crear">
                           
             
         </div>

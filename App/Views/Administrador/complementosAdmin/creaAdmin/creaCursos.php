@@ -18,8 +18,13 @@
 <body>
     <form method="POST" class="form" style="padding: 100px 300px 0 300px; width: 100%;">
         <h2 style="text-align: center;">Crear Nuevo Curso</h2><br>
-      
-            
+        
+        <label  style="text-align: center;">Selecione Categoría:</label>
+        <select class="form-select">
+                    <option value="Práctica">Categoría 1</option>
+                    <option value="Práctica">Categoría 2</option>
+                    <option value="Práctica">Categoría 3</option>
+                </select></br>
             <label for="rut" style="text-align: center;">Ingrese Curso:</label>
             <input type="text" class="form-control" name="NombreCurso" placeholder="Nombre Curso" Required><br>
             <label for="rut" style="text-align: center;">Descripción:</label>

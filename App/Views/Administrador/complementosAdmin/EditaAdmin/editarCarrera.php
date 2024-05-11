@@ -39,7 +39,7 @@
             </div>
                 <br>
                 <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn-supervisor" name="CrearCarrera" value="Crear">
+                <input type="submit" class="btn-editar" name="CrearCarrera" value="Crear">
                           
             
         </div>

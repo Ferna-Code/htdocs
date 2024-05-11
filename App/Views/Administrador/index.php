@@ -26,6 +26,7 @@ verificarAcceso($perfilesPermitidos);
     <link rel="stylesheet" href="../../../../Public/css/panelAdministrador.css">
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/global.css">
+    
 
     <title>Panel Administrador</title>
 </head>

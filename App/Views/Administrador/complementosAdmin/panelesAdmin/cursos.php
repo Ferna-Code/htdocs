@@ -22,23 +22,31 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+            <select class="categoriaFiltro">
+                    <option value="Práctica">Categoría 1</option>
+                    <option value="Práctica">Categoría 2</option>
+                    <option value="Práctica">Categoría 3</option>
+                </select>
+                <input type="submit" class="btnFiltro" value="Filtrar">
                 <select class="categoriaFiltro">
                     <option value="Práctica">Diplomado en Gestión de Proyectos TI</option>
                     <option value="Práctica">Diplomado en metodologia Scrum</option>
                     <option value="Práctica">Networking Essentials</option>
                 </select>
-                <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <input type="submit" class="btnFiltro" value="Filtrar">
             </div>
 
-            
+            <form action="#">
+                <a href="Administrador/CreaCursos" class="btn-supervisor marginBtn">Crear</a>
+                <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
+                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllCursos" name="select-all"></th>
-                    <th>ID</th>
+                    <th class="anchoId">ID</th>
+                    <th>Categoría</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Institución</th>
@@ -53,6 +61,7 @@
                 <tr class="table table-striped">
                     <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
                     <td>01</td>
+                    <td>Categoría 1</td>
                     <td>Curso de Farmacología Avanzada</td>
                     <td>Estudio profundo sobre los efectos y reacciones de los fármacos.</td>
                     <td>Universidad de Ciencias de la Salud</td>
@@ -66,6 +75,7 @@
                 <tr class="table table-striped">
                     <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
                     <td>01</td>
+                    <td>Categoría 1</td>
                     <td>Curso de Gestión en Prevención de Riesgos</td>
                     <td>Curso para mejorar las competencias en la gestión de riesgos laborales.</td>
                     <td>Instituto Técnico de Seguridad Laboral</td>
@@ -79,6 +89,7 @@
                 <tr class="table table-striped">
                     <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
                     <td>01</td>
+                    <td>Categoría 1</td>
                     <td>Curso de Estrategias Comerciales</td>
                     <td>Técnicas avanzadas para impulsar las ventas y mejorar la gestión comercial.</td>
                     <td>Escuela de Negocios</td>
@@ -116,6 +127,7 @@
         </div>
         </div>
     </div>
+</form>
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista

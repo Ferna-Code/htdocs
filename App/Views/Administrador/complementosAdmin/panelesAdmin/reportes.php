@@ -31,8 +31,8 @@
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                <th class="widthCheck"><input type="checkbox" id="checkAllReportes" name="select-all"></th>
-                    <th>ID</th>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllReportes" name="select-all"></th>
+                    <th class="anchoId">ID</th>
                     <th>Id Comentario</th>
                     <th>Rut usuario</th>
                     <th>Id Publicación</th>

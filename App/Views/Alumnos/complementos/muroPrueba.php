@@ -2,6 +2,7 @@
 session_start();
 require_once("App/Controllers/publicacionesController.php");  
 
+
 $comentario='';
 $sw = "";
 
@@ -34,8 +35,46 @@ if ($sw === 'publicar') {
 
     <title>Muro Principal Red Leones</title>
 </head>
+<style>
+.contenedorPublicaciones{
+  width: 80%;
+  height: 300px;
+  background-color: #fbdf93;
+  border-radius: 47px 47px 47px 47px;
+  -moz-border-radius: 47px 47px 47px 47px;
+  -webkit-border-radius: 47px 47px 47px 47px;
+  border: 0px solid #000000;
+  text-align: center;
+  margin-top: 5%;
+}
+.btn-publicar {
+    border: 1px solid white;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    background: orange;
+    display: inline-block;
+    text-align: center;
+    width: 123px;
+    color: white;
+    font-size: 15px;
+}
+.tablaPublicaciones{
+  width: 80%;
+  height: 300px;
+  background-color: #fbdf93;
+  border-radius: 47px 47px 47px 47px;
+  -moz-border-radius: 47px 47px 47px 47px;
+  -webkit-border-radius: 47px 47px 47px 47px;
+  border: 0px solid #000000;
+  text-align: center;
+  margin-top: 5%;
+}
+  </style>
+
 
 <body>
+
 <?php if(isset($_GET['mensaje'])) :  ?>
 
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -45,20 +84,65 @@ if ($sw === 'publicar') {
 
 <?php endif ?>
 
-    <form method="POST"  class="form" style="padding: 100px 300px 0 300px;">
-        <h2 style="text-align: center;">Publicación</h2>
+<div class="contenedorPublicaciones">
+    <form method="POST"  class="form" style="padding: 30px 30px 0 30px;">
+        <h4 style="text-align: center;">Publicación</h4>
         <br>
         <div class="row">
             <div class="col">
-                <label for="comentario" style="text-align: center;">Publicación:</label>
-                <textarea class="form-control" name="comentario" value="<?php echo htmlspecialchars($comentario); ?>"placeholder="Tus comentarios" Required></textarea><br>
-                <input type="hidden" name="sw" value="publicar"><br>
-                <input type="submit" class="btn btn-warning w-100 center-block" name="Publicar" value="Publicar">
+                <textarea  class="form-control dimensiones" name="comentario" value="<?php echo htmlspecialchars($comentario); ?>"placeholder="Tus comentarios" Required></textarea><br>
+                <input type="hidden" name="sw" value="publicar">
+                <input type="submit" class="btn btn-publicar w-100 center-block" name="Publicar" value="Publicar"><br>
                           
             </div>
             </div>
     </form>
+    </div>
+<!--
+    <div>
+    <section style="margin: 10px;">
 
+
+<table id="tableUsers" class="tabla table ">
+    <style>
+        .tabla {
+            width: 100%;
+        }
+    </style>
+
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Publicación </th>
+            <th>Fecha </th>
+        </tr>
+    </thead>
+
+    <?php
+    foreach ($DetallePubliaciones as $fila) {
+        ?>
+        <tbody>
+            <tr>
+                <td>
+                    <?= $fila['rutusuario'] ?>
+                </td>
+                <td>
+                    <?= $fila['publicacion'] ?>
+                </td>
+                <td>
+                <?= $fila['fechaCreacion'] ?>
+                </td>
+                </td>
+            </tr>
+        </tbody>
+        <?php
+    }
+    ?>
+</table>
+</section>
+
+    </div>
+-->
     <script src="https://kit.fontawesome.com/4652dbea50.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

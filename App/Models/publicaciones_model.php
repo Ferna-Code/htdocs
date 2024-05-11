@@ -3,10 +3,14 @@ require_once __DIR__ . '/../Database.php';
 
 class PublicacionesModel {
     private $db;
-
+    private $publicacionesModel;
+    
     public function __construct($db) {
         $this->db = $db;
+        $this->publicacionesModel = array();
     }
+
+
 
     public function contarPublicacionesHoy($rutUsuario) {
         $fecha_actual = date("Y-m-d");
@@ -17,13 +21,12 @@ class PublicacionesModel {
                 mysqli_stmt_bind_result($stmt, $cantidad);
                 mysqli_stmt_fetch($stmt);
                 mysqli_stmt_close($stmt);
-                return $cantidad;
-
+                return $cantidad;}
             } else {
                 die("Error al obtener el conteo de publicaciones: " . $this->db->error);
             }
         }
-    }
+    
 
     public function guardarPublicacion($rutUsuario, $usuario_Publicacion) {
         $fecha_actual = date("Y-m-d");
@@ -39,5 +42,6 @@ class PublicacionesModel {
             die("Error al preparar la consulta: " . $this->db->error);
         }
     }
+
 }
 ?>

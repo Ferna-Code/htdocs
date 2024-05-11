@@ -5,29 +5,15 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Administrador Archivos</title>
+    
 <body>
-<!--<div class="btn-panel">        
-        <div>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Categoría:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-</div>-->
 <hr>
 <h1>Archivos</h1>
 <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
+                <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Propietario">
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
 
@@ -36,7 +22,7 @@
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllArchivo" name="select-all"></th>
-                    <th>ID Archivo</th>
+                    <th class="anchoId">ID</th>
                     <th>Rut Usuario</th>
                     <th>Documento</th>
                     <th>Fecha de Ingreso</th>

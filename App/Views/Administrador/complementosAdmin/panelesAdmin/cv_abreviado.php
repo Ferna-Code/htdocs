@@ -38,7 +38,7 @@
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllCVabreviado" name="select-all"></th>
-                    <th>Id Archivo CV</th>
+                    <th class="anchoId">Id Archivo CV</th>
                     <th>Rut Usuario</th>
                     <th>Documento</th>
                     <th>Fecha de Ingreso</th>

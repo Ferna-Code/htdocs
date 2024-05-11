@@ -4,7 +4,6 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Administrador</div>
     </a>
@@ -15,7 +14,6 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Panel Admin</span></a>
     </li>
 
@@ -151,7 +149,7 @@
 <!-- ------------------- -->
 
         <form method="post" action="/">
-            <input type="submit" class="btn-supervisor" value="Cerrar Sesión">
+            <input type="submit" class="btn-CSesion" value="Cerrar Sesión">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form> 
         

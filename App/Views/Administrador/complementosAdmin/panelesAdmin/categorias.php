@@ -28,6 +28,9 @@
                     <option value="Práctica">Tecnología y productividad</option>
                     <option value="Práctica">Negocios e Innovación</option>
                 </select>
+                <input type="submit" class="btnFiltro" value="Filtrar">
+
+                <a href="Administrador/crearCategoria" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCategoria" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
@@ -36,37 +39,37 @@
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
-                    <th>ID</th>
+                    <th class="anchoId">ID</th>
                     <th>Categoría</th>
-                    <th>Fecha de Creación</th>
-                    <th>Activo</th>
-                    <th>Fecha de Eliminación</th>
+                    <th class="anchoFecha">Fecha de Creación</th>
+                    <th class="anchoActiv">Activo</th>
+                    <th class="anchoFecha">Fecha de Eliminación</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
                     <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td>01</td>
+                    <td class="anchoId">01</td>
                     <td>Educación Bienestar y Calidad de vida</td>
-                    <td>12-04-2024</td>
-                    <td>Si</td>
-                    <td>23-04-2024</td>
+                    <td class="anchoFecha">12-04-2024</td>
+                    <td class="anchoActiv">1</td>
+                    <td class="anchoFecha">23-04-2024</td>
                 </tr>
                 <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td>02</td>
+                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
+                    <td class="anchoId">02</td>
                     <td>Informática Tecnología y Productividad</td>
-                    <td>12-04-2024</td>
-                    <td>Si</td>
-                    <td>23-04-2024</td>
+                    <td class="anchoFecha">12-04-2024</td>
+                    <td class="anchoActiv">1</td>
+                    <td class="anchoFecha">23-04-2024</td>
                 </tr>
                 <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td>03</td>
+                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
+                    <td class="anchoId">03</td>
                     <td>Negocios Gestión e Innovación</td>
-                    <td>12-04-2024</td>
-                    <td>Si</td>
-                    <td>23-04-2024</td>
+                    <td class="anchoFecha">12-04-2024</td>
+                    <td class="anchoActiv">1</td>
+                    <td class="anchoFecha">23-04-2024</td>
                 </tr>
             </tbody>  
         </table>

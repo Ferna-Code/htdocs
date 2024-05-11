@@ -25,6 +25,8 @@ body {
 
 }
 
+
+
 .contenedor-body {
     display: flex;
     flex-direction: column;
@@ -273,4 +275,7 @@ body {
     color: #FFFFFF;
     padding: 6 12;
 }
+
+
+
 

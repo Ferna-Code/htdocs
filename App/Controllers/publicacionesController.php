@@ -9,6 +9,7 @@ class PublicacionesController {
     private $db;
     private $publicaciones_model;
 
+
     public function __construct() {
         $this->db = new Database();
         $this->publicaciones_model = new PublicacionesModel($this->db);
@@ -16,18 +17,24 @@ class PublicacionesController {
 
     public function procesarPublicacion($comentario) {
         $rutUsuario = $_SESSION['rut']; // Obtenemos el rut de sesión
-
+         $comentario = htmlspecialchars($comentario);
         if ($this->verificarLimitePublicaciones($rutUsuario)) {
+            $mensaje = "Has alcanzado el límite diario de publicaciones..";
+            //header("Location: http://localhost:8080/Alumno#?mensaje=".urlencode($mensaje)); 
             echo "<script>alert('Has alcanzado el límite diario de publicaciones.')</script>";
-            exit();
+
         } else {
             $resultado = $this->publicaciones_model->guardarPublicacion($rutUsuario, $comentario);
             if ($resultado) {
+                //$mensaje = "Publicación realizada exitosamente.";
+                //header("Location: muroPrueba.php?mensaje=".urlencode($mensaje)); 
                 echo "<script>alert('Publicación realizada exitosamente.')</script>";
             } else {
+                //$mensaje = "Error al guardar la publicación.";
+                //header("Location: muroPrueba.php?mensaje=".urlencode($mensaje)); 
                 echo "<script>alert('Error al guardar la publicación.')</script>";
             }
-            exit();
+
         }
     }
     
@@ -35,6 +42,12 @@ class PublicacionesController {
         $numPublicaciones = $this->publicaciones_model->contarPublicacionesHoy($rutUsuario);
         return $numPublicaciones >= 3;
     }
+
+
+
+    private function mostrarPublicaciones() {
+    $DetallePubliaciones = $this->publicaciones_model->MostrarPublicaciones();
+    return $DetallePubliaciones;
+    }
 }
 
-?>

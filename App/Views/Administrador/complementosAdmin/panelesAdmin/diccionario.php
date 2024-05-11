@@ -28,7 +28,6 @@
                     <option value="Práctica">Tecnología y productividad</option>
                     <option value="Práctica">Negocios e Innovación</option>
                 </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
                 <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
@@ -36,8 +35,8 @@
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                <th class="widthCheck"><input type="checkbox" id="checkAllDiccionario" name="select-all"></th>
-                    <th>ID Diccionario</th>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllDiccionario" name="select-all"></th>
+                    <th class="anchoId">ID</th>
                     <th>Palabra</th>
                     <th>Fecha  de Creación</th>
                     <th>Activo</th>

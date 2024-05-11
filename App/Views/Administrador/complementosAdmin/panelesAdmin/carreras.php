@@ -12,14 +12,21 @@
     <div class="body-panel" >
     <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                
-                <select class="categoriaFiltro">
+            <select class="categoriaFiltro">
                     <option value="Práctica">Analista Programador</option>
                     <option value="Práctica">Técnico en Construcción</option>
                     <option value="Práctica">Psicopedagogía</option>
                 </select>
-
+                <input type="submit" class="btnFiltro" value="Filtrar">
+                <select class="categoriaFiltro">
+                    <option value="Práctica">Informática Tecnología y Productividad</option>
+                    <option value="Práctica">Educación Bienestar y Calidad de vida</option>
+                    <option value="Práctica">Informática Tecnología y Productividad</option>
+                </select>
+                <input type="submit" class="btnFiltro" value="Filtrar">
+            </div>
+            <div>                
+                <a href="Administrador/crearCarrera" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCarrera" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
@@ -28,43 +35,43 @@
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllCarrera" name="select-all"></th>
-                    <th>ID</th>
+                    <th class="anchoId">ID</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
-                    <th>Fecha de Ingreso</th>
-                    <th>Activo</th>
-                    <th>Fecha de Eliminacion</th>
+                    <th class="anchoFecha">Fecha de Ingreso</th>
+                    <th class="anchoActiv">Activo</th>
+                    <th class="anchoFecha">Fecha de Eliminacion</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="table table-striped">
                     <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>01</td>
+                    <td class="widthCheck">01</td>
                     <td>Analista Programador</td>
                     <td>Informática Tecnología y Productividad</td>
-                    <td>12-04-2024</td>
-                    <td>Si</td>
-                    <td>23-04-2024</td>
+                    <td  class="anchoFecha">12-04-2024</td>
+                    <td  class="anchoActiv">1</td>
+                    <td class="anchoFecha">23-04-2024</td>
                 </tr>
 
                 <tr class="table table-striped">
                     <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>02</td>
+                    <td class="widthCheck">02</td>
                     <td>Técnico en Construcción</td>
                     <td>Informática Tecnología y Productividad</td>
-                    <td>12-04-2024</td>
-                    <td>Si</td>
-                    <td>23-04-2024</td>
+                    <td  class="anchoFecha">12-04-2024</td>
+                    <td class="anchoActiv">1</td>
+                    <td class="anchoFecha">23-04-2024</td>
                 </tr>
                 
                 <tr class="table table-striped">
                     <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>03</td>
+                    <td class="widthCheck">03</td>
                     <td>Psicopedagogía</td>
                     <td>Educación Bienestar y Calidad de vida</td>
-                    <td>12-04-2024</td>
-                    <td>Si</td>
-                    <td>23-04-2024</td>
+                    <td  class="anchoFecha">12-04-2024</td>
+                    <td  class="anchoActiv">1</td>
+                    <td class="anchoFecha">23-04-2024</td>
                 </tr>
             </tbody>
         </table>
