@@ -1,9 +1,7 @@
 <section style="margin: 10px;">
     <div class="">
-        <form action="#">
-            <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-                Nuevo usuario
-            </button>
+        <form action="">
+            <a href="/importarExcel" class="btn-supervisor marginBtn btnAgregar">Agregar usuario</a>
            
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
@@ -105,5 +103,6 @@
         </div>
     </div>
 </div>
+
 
 <!-- composer require phpoffice/phpspreadsheet -->

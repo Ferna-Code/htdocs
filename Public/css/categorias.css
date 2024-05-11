@@ -18,7 +18,6 @@
 
 section {
     padding: 30px 0;
-    margin-top: 5%;
 }
 
 section .section-title {
@@ -28,15 +27,10 @@ section .section-title {
     text-transform: uppercase;
 }
 
-.cardc {
+#team .cardc {
+    border: none;
     color: black;
-    height: 300px !important; 
-    border: 4px solid transparent; /* Inicialmente el borde es transparente */
-    transition: border-color 0.3s; /* Transición suave del color del borde */
-}
-
-.cardc:hover {
-    border-color: orange; /* Cambia el color del borde a naranja cuando se hace hover */
+    height: 350px !important; 
 }
 
 .image-flip:hover .backside,
@@ -75,9 +69,8 @@ section .section-title {
     -webkit-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
     z-index: 2;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background: white;
-    box-shadow: 0 15px 15px rgba(0,0,0,0.1);
 }
 
 .backside {
@@ -115,7 +108,7 @@ section .section-title {
 
 .frontside .cardc,
 .backside .cardc {
-    height: 300px !important; 
+    height: 350px !important; 
 }
 
 .backside .cardc a {
@@ -144,24 +137,14 @@ section .section-title {
 
 
 .box-cursos {
-    width: 300px; /* Ancho fijo para las tarjetas */
+    width: 350px; /* Ancho fijo para las tarjetas */
     height: 260px; /* Alto fijo para las tarjetas */
     margin: 20px; /* Espacio alrededor para evitar que las tarjetas se toquen */
     padding: 9%;
-    background: whitesmoke;
+    background: #FFF;
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Opcional: añade sombra para mejor estética */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden; /* Esconde cualquier contenido que exceda el tamaño del contenedor */
-    border: 4px solid transparent; /* Inicialmente el borde es transparente */
-    transition: border-color 0.3s; /* Transición suave del color del borde */
-}
-
-.box-cursos:hover {
-    border-color: orange; /* Cambia el color del borde a naranja cuando se hace hover */
-}
-
-a:hover{
-color: orange;
 }

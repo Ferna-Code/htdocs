@@ -94,14 +94,15 @@
     </li>
 
    
-
+    
     <li class="nav-item">
-        <form method="post" action="/">
+        <form method="POST" action="App/Models/cerrar_session.php" >
             <input type="submit" class="btnCerrar" value="">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form> 
         
     </li>
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

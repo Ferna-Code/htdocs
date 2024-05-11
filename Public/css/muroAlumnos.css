@@ -1,0 +1,29 @@
+.post-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+.post-container textarea {
+    flex: 1;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.post-container button {
+    padding: 8px 15px;
+    background-color: #ED1C24;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+.post-container button:hover {
+    background-color: #F8B619;
+}

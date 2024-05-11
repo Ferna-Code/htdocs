@@ -2,11 +2,3 @@
     color: black !important;
     margin: 10px;
 }
-
-.table-striped:hover {
-    color: orange; /* Cambia el color del texto a anaranjado */
-}
-
-.table-striped a:hover {
-    color: orange; /* Asegura que los enlaces también cambien a anaranjado */
-}

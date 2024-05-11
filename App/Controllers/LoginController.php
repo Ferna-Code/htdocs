@@ -1,7 +1,6 @@
 <?php
-session_start();
+//session_start();
 require_once __DIR__ . '/../Models/access_model.php';
-require_once __DIR__ . '/../Models/usuarioModel.php';
 
 class LoginController
 {
@@ -15,20 +14,17 @@ class LoginController
         }
 
         $accessModel = new Access_model();
-        $tableName = "usuario";
+        $tableName = "usuarios";
         $showCreateTableButton = $accessModel->tableExists($tableName);
         require VIEWS_PATH . 'Login/index.php';
     }
 
-    private function handlePostRequests()//creamos la tabla, validamos user o logout
+    private function handlePostRequests() //creamos la tabla, validamos user o logout
     {
-        if (isset ($_POST['op'])) {
+        if (isset($_POST['op'])) {
             switch ($_POST['op']) {
-                case 'CREAR_TABLA':
-                    $this->createTable();
-                    break;
                 case 'VALIDAR':
-                    $this->handleAuthentication();
+                    $this->ValidarSesion();
                     break;
                 case 'CERRAR_SESION':
                     $this->logout();
@@ -39,7 +35,6 @@ class LoginController
 
     private function logout()
     {
-        session_start();
         session_destroy();
         header('Location: http://localhost:8080/');
     }
@@ -50,50 +45,29 @@ class LoginController
         $accessModel->createTable();
     }
 
-    
-   // private function handleAuthentication()//verificamos existencia y nivel de usuario
-   // {
-   //     
-   //     //Obtenemos los valores del formulario si estan presentes y prevenir los ataques XSS
-   //     $rut = htmlspecialchars($_POST['rut'] ?? '');
-   //     $clave = htmlspecialchars($_POST['clave'] ?? '');
-//
-   //     $accessModel = new Access_model();
-   //     $isUserValid = $accessModel->validateUser($rut, $clave);
-   //     $_SESSION['nivelUsuario'] = $accessModel->getnivelusuario();
-//
-//
-   //     if ($isUserValid) {
-   //         
-   //         $_SESSION['nivelUsuario'] = $accessModel->getNivelUsuario();
-   //         $this->checklevelPage($_SESSION['nivelUsuario']);
-   //         
-   //     } else {
-   //         echo "<script>alert('Usuario o contraseña incorrectos');</script>";
-   //     }
-   // }
 
-private function checklevelPage($userLevel)//segun nivel se abre la sesion correspondiente
-{
+    private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente
+    {
 
-    switch ($userLevel) {
-        case 1:
-            $_SESSION['pagina_local'] = 'Administrador';
-            break;
-        case 2:
-            $_SESSION['pagina_local'] = 'Supervisor';
-            break;
-        case 3:
-            $_SESSION['pagina_local'] = 'Alumno';
-            break;
+        switch ($userLevel) {
+            case 1:
+                $_SESSION['pagina_local'] = 'Administrador';
+                break;
+            case 2:
+                $_SESSION['pagina_local'] = 'Supervisor';
+                break;
+            case 3:
+                $_SESSION['pagina_local'] = 'alumno';
+                break;
+        }
+
+        echo "<script language='javascript'>window.location='" . $_SESSION['pagina_local'] . "'</script>;";
+        exit();
     }
 
-    echo"<script language='javascript'>window.location='".$_SESSION['pagina_local']."'</script>;";
-    exit();
-}
 
-    
-    private function ValidarSesion() {
+    private function ValidarSesion()
+    {
         session_start();
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $clave = htmlspecialchars($_POST['clave'] ?? '');
@@ -109,11 +83,13 @@ private function checklevelPage($userLevel)//segun nivel se abre la sesion corre
             $_SESSION['error'] = 'Usuario no existe o clave inválida';
             echo 'Usuario no existe o clave inválida ';
             header('Location: http://localhost:8080/');
+            //echo "<script>alert('Usuario o contraseña incorrecta')</script>";
+            echo 'Usuario no existe o clave inválida '; //AUNQUE DEJE QUE MOSTRARA UN ALERT AL INGRESAR DATOS INCORRECTOS ME SIGUE REDIRIGIENDO A UNA PAG EN BLANCO
+            echo " rut: " . $rut . " clave: " . $clave;
             if (isset($_SESSION['idPerfil'])) {
                 echo $_SESSION['idPerfil'];
             }
             exit();
         }
     }
-    
 }
