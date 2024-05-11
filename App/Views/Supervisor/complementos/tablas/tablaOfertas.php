@@ -19,7 +19,7 @@
             </div>
         </form>
 
-        <form action="">
+        <form action="" method="POST">
             <a href="#" class="btn-supervisor marginBtn">Eliminar</i></a>
             <table id="tableUsers" class="tabla table">
                 <thead>

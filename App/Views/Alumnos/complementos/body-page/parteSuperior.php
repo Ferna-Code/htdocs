@@ -59,41 +59,20 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-            aria-expanded="true" aria-controls="collapse5"  onclick="vistacorreo()">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4"
+            aria-expanded="true" aria-controls="collapseUtilities4"  onclick="controlVisi5()">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Correo de Bienvenida</span>
+            <span>vista 5</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-            aria-expanded="true" aria-controls="collapse5"  onclick="vistapostulacion()">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Correo de Postulación</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-            aria-expanded="true" aria-controls="collapse5"  onclick="vistaclave()">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Correo de Recuperación</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
-            aria-expanded="true" aria-controls="collapse5"  onclick="vistaresumencv()">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Correo de resumen CV</span>
-        </a>
-    </li>
+
     <li class="nav-item">
         <form method="post" action="/">
-            <input type="submit" class="btnCerrar" value="">
+            <input type="submit"  value="Cerrar sesión">
             <input type="hidden" name="op" value="CERRAR_SESION">
-        </form> 
-        
+        </form>
     </li>
-    <!-- Divider --> 
+    <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

@@ -1,14 +1,13 @@
 <?php
-require_once 'App/Controllers/accessController.php';
-$perfilesPermitidos = 2;
-session_start();
-verificarAcceso($perfilesPermitidos);
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    require_once 'App/Controllers/accessController.php';
+    $perfilesPermitidos = 2;
+    verificarAcceso($perfilesPermitidos);
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -149,7 +148,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--Modal-->
-
+    <!-- <script src="../../../../Public/js/modalExcel.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>

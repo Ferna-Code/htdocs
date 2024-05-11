@@ -1,5 +1,3 @@
-<?php
-?>
 <div class="conteiner">
     <form method="POST" class="form">
         <div class="">
@@ -105,15 +103,6 @@
                                 <label for="fecha-finalizado">Fecha de Finalización:</label>
                                 <input type="date" id="fecha-finalizado" name="fecha-finalizado">
                             </div>
-                            <div class="columna">
-                                <label for="trabaja-actualmente">¿Cursa actualmente?</label>
-                                <div class="opciones">
-                                    <input type="radio" id="si" name="trabaja-actualmente" value="si">
-                                    <label for="si">Sí</label>
-                                    <input type="radio" id="no" name="trabaja-actualmente" value="no">
-                                    <label for="no">No</label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- Botón para agregar nuevo formulario de educación -->
@@ -123,11 +112,10 @@
                 </div>
                 <br>
                 <div class="container">
-                    <h3 class="mb-3">Adjuntar Curriculum</h3>
-                    <input type="file" accept=".pdf" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
+                    <h3>Adjuntar Curriculum</h3>
+                    <input type="file" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
                 </div>
-                <input type="hidden" name="op" value="guardardatos"><br>
-                <button type="submit" class="btn-guardar mt-5" name="crearRegistro">Guardar Cambios</button>
+                <button type="submit" class="btn-guardar" name="crearRegistro">Guardar Cambios</button>
             </div>
         </div>
     </form>

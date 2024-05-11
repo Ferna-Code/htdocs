@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ob_start();
 function verificarAcceso($perfilesPermitidos) {
     if (!isset($_SESSION['idperfil']) || $_SESSION['idperfil'] !== $perfilesPermitidos) {
@@ -9,4 +11,3 @@ function verificarAcceso($perfilesPermitidos) {
         exit();
     }
 }
-

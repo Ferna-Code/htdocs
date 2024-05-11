@@ -1,3 +1,7 @@
+<?php if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} ?>
+
 <head>
     <link rel="stylesheet" href="../../../../Public/css/formcursos.css">
     <link rel="stylesheet" href="../../../../Public/css/ofertas.css">
