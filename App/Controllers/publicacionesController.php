@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../Database.php';
 require_once __DIR__ . '/../Models/publicaciones_model.php';
 require_once __DIR__ . '/../Models/access_model.php';
