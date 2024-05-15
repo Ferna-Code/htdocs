@@ -1,3 +1,4 @@
+
 <?php
 //session_start();
 require_once __DIR__ . '/../Models/access_model.php';
@@ -75,15 +76,9 @@ class LoginController
             $_SESSION['rut'] = $rut;
             $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
         } else {
-            // Autenticación fallida
-            $_SESSION['error'] = 'Usuario no existe o clave inválida';
-            //echo "<script>alert('Usuario o contraseña incorrecta')</script>";
-            echo 'Usuario no existe o clave inválida '; //AUNQUE DEJE QUE MOSTRARA UN ALERT AL INGRESAR DATOS INCORRECTOS ME SIGUE REDIRIGIENDO A UNA PAG EN BLANCO
-            echo " rut: " . $rut . " clave: " . $clave;
-            if (isset($_SESSION['idPerfil'])) {
-                echo $_SESSION['idPerfil'];
-            }
-            exit();
+        // Autenticación fallida
+        $_SESSION['errorsesionfallida'] = true;
+        $_SESSION['error_message'] = 'Usuario no existe o clave inválida';
         }
     }
 }

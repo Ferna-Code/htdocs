@@ -1,3 +1,11 @@
+<script>
+     window.onload = function() {
+         <?php if (isset($_SESSION['errorsesionfallida']) && $_SESSION['errorsesionfallida']): ?>
+             mostrarAlerta("<?php echo isset($_SESSION['errorsesionfallida']) ? $_SESSION['errorsesionfallida'] : 'Error de autenticación'; ?>");
+             <?php unset($_SESSION['errorsesionfallida']); ?>
+         <?php endif; ?>
+     };
+ </script>
 
 
 <!DOCTYPE html>
@@ -29,6 +37,7 @@
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -60,6 +69,7 @@
                             </ul>
                             
                             <button class="btn btn-danger"><a href="./empresa/index">Publica tu oferta laboral</a></button>
+                            <button class="btn btn-danger" onclick="showalert()">alerta</button>
                         </div>
                     </div>
                 </div>
@@ -238,6 +248,11 @@
     <script src="./Public/js/bootstrap.bundle.min.js"></script>
     <script src="./Public/js/jquery-3.0.0.min.js"></script>
     <script src="../../../../public/js/login.js"></script>
+    <script src="../../../../public/js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+
     <!-- sidebar -->
     <script src="./Public/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="./Public/js/custom.js"></script>

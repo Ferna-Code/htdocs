@@ -33,7 +33,7 @@
     <div id="wrapper">
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
         <div class="contenedor-body" id="modulo1">
-            <?php require_once "complementos/muroprincipal.php"; ?>
+            <?php require_once "complementos/muroprincipal.php"; ?>  
             
         </div>
         <div class="contenedor-body" id="modulo2" style="display:none">
