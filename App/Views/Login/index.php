@@ -20,6 +20,7 @@
     <!-- style css -->
     <link rel="stylesheet" href="./Public/css/style.css">
     <link href="./Public/css/estiloLogin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../Public/css/global.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="./Public/css/responsive.css">
     <!-- fevicon -->
@@ -94,18 +95,18 @@
                                                 <div class="col-md-12">
                                                     <h1>Ingresa a la Red</h1>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <input type="text" name="rut" id="rut" placeholder="Ingrese su RUT">
+                                                <div class="col-md-12 contInput">
+                                                    <input type="text" class="inputRut" name="rut" id="rut" placeholder="Ingrese su RUT">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="password" name="clave" id="clave" placeholder="Ingrese su clave">
+                                                    <input type="password" class="inputPass" name="clave" id="clave" placeholder="Ingrese su clave">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
                                                         ?</a>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="submit" value="Ingresar">
+                                                    <input type="submit" class="btn-oferta" value="Ingresar">
                                                     <input type="hidden" name="op" value="LOGIN">
                                                     <?php  ?>
                                                 </div>
