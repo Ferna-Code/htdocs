@@ -98,9 +98,11 @@ img {/*Logo*/
 }
 
 .btn-oferta:hover {
-   background:  #FFFF00 ;
-   color: orange;
-   border-color: orange;
+    background:  white ;
+    color: orange;
+    border-color: orange;
+    transition: .5s;
+    cursor: pointer;
 }
 
 .separador{
@@ -109,15 +111,50 @@ img {/*Logo*/
     background: black;
 }
 
-.contInput{
-    
-
+.inputRut{
+    background: transparent;
+    border: none;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 80%;
 }
 
-.inputRut{
-
+.inputRut:hover, .inputRut:focus{
+    background: rgba(255, 255, 255, .5);
+    border-radius: 10px;
 }
 
 .inputPass{
-    
+    background: transparent;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 80%;
 }
+
+.inputPass:hover, .inputPass:focus{
+    background: rgba(255, 255, 255, .5);
+    border-radius: 10px;
+}
+
+.contBox{
+    margin-top: 10%;
+}
+
+.btn-laboral{
+    padding: 10px 40px;
+    float: right;
+    margin: 10px 10px 0px 0px;
+    background: orange;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.btn-laboral:hover {
+    background:  white ;
+    color: orange;
+    border-color: orange;
+    transition: .5s;
+ }
