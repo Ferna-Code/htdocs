@@ -20,7 +20,7 @@
     <!-- style css -->
     <link rel="stylesheet" href="./Public/css/style.css">
     <link href="./Public/css/estiloLogin.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../../Public/css/global.css">
+   
     <!-- Responsive-->
     <link rel="stylesheet" href="./Public/css/responsive.css">
     <!-- fevicon -->

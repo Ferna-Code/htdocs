@@ -15,37 +15,28 @@ class LoginController
 
         $accessModel = new Access_model();
         $tableName = "usuarios";
-        $showCreateTableButton = $accessModel->tableExists($tableName);
         require VIEWS_PATH . 'Login/index.php';
     }
 
-    private function handlePostRequests() //creamos la tabla, validamos user o logout
-    {
-        if (isset($_POST['op'])) {
-            switch ($_POST['op']) {
-                case 'VALIDAR':
-                    $this->ValidarSesion();
-                    break;
-                case 'CERRAR_SESION':
-                    $this->logout();
-                    break;
-            }
-        }
-    }
+    // private function handlePostRequests() //creamos la tabla, validamos user o logout
+    // {
+    //     if (isset($_POST['op'])) {
+    //         switch ($_POST['op']) {
+    //             case 'VALIDAR':
+    //                 $this->ValidarSesion();
+    //                 break;
+    //             case 'CERRAR_SESION':
+    //                 $this->logout();
+    //                 break;
+    //         }
+    //     }
+    // }
 
-    private function logout()
-    {
-        session_destroy();
-        header('Location: http://localhost:8080/');
-    }
-
-    private function createTable()
-    {
-        $accessModel = new Access_model();
-        $accessModel->createTable();
-    }
-
-
+    // private function logout()
+    // {
+    //     session_destroy();
+    //     header('Location: http://localhost:8080/');
+    // }
     private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente
     {
 

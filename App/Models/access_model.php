@@ -1,15 +1,18 @@
 <?php
 
 require_once __DIR__ . '/../Database.php';
+require("./App/Models/conexion.php");
 
 class Access_model
 {
     private $db;
     private $nivelUsuario;
+    private $con;
 
     public function __construct()
     {
         $this->db = new Database();
+        $this->con = new conexion();
     }
 
     public function getNivelUsuario()
@@ -17,22 +20,9 @@ class Access_model
         return $this->nivelUsuario;
     }
 
-    public function createTable()
+       function iniciarSesion($rut, $clave)
     {
-        $this->db->createTableAndInsert();
-    }
-
-    public function tableExists($tableName){
-        //Verificamos si la tabla existe
-        $queryCheck = "SHOW TABLES LIKE '$tableName'";
-        $verify = mysqli_query($this->db->getConnection(), $queryCheck);
-
-        return ($verify && mysqli_num_rows($verify) > 0);
-    }
-
-    function iniciarSesion($rut, $clave)
-    {
-        $link = $this->db->getConnection();
+        $link = $this->con->conec();
         $query = mysqli_prepare($link, "SELECT rut, idperfil, clave FROM usuarios WHERE rut = ?");
         if (!$query) {
             error_log('Error en la preparación de la consulta: ' . mysqli_error($link));

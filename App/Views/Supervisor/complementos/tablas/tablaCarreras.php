@@ -1,6 +1,6 @@
 <section style="margin: 10px;">
     <div class="">
-        <form method="POST" action="#">
+        <form method="POST"  action="#">
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <select class="categoriaFiltro">
@@ -12,7 +12,7 @@
             </div>
         </form>
 
-        <form action="">
+        <form action="" class="paddingCont">
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
                 <thead>
