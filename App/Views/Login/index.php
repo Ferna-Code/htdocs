@@ -1,13 +1,3 @@
-<script>
-     window.onload = function() {
-         <?php if (isset($_SESSION['errorsesionfallida']) && $_SESSION['errorsesionfallida']): ?>
-             mostrarAlerta("<?php echo isset($_SESSION['errorsesionfallida']) ? $_SESSION['errorsesionfallida'] : 'Error de autenticación'; ?>");
-             <?php unset($_SESSION['errorsesionfallida']); ?>
-         <?php endif; ?>
-     };
- </script>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +26,8 @@
     <link rel="stylesheet" href="./Public/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -67,9 +58,9 @@
                                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                             </ul>
-                            
-                            <button class="btn btn-danger"><a href="./empresa/index">Publica tu oferta laboral</a></button>
-                            <button class="btn btn-danger" onclick="showalert()">alerta</button>
+
+                            <button class="btn btn-danger"><a href="./empresa/index">Publica tu oferta
+                                    laboral</a></button>
                         </div>
                     </div>
                 </div>
@@ -92,7 +83,8 @@
                                         <span>Conecta con egresados, comparte información, Mantente en línea.</span>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-lg-7" style="background-color: #F8B619; padding: 30px; height: 400px;">
+                                <div class="col-md-12 col-lg-7"
+                                    style="background-color: #F8B619; padding: 30px; height: 400px;">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="ban_track">
@@ -108,7 +100,8 @@
                                                     <input type="text" name="rut" id="rut" placeholder="Ingrese su RUT">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="password" name="clave" id="clave" placeholder="Ingrese su clave">
+                                                    <input type="password" name="clave" id="clave"
+                                                        placeholder="Ingrese su clave">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
@@ -118,11 +111,11 @@
                                                     <?php if ($showCreateTableButton): ?>
                                                         <input type="submit" value="Ingresar">
                                                         <input type="hidden" name="op" value="VALIDAR">
-                                                        <?php else: ?>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="submit" value="Ingresar">
-                                                    <input type="hidden" name="op" value="VALIDAR">
+                                                    <?php else: ?>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="submit" value="Ingresar">
+                                                        <input type="hidden" name="op" value="VALIDAR">
                                                     <?php endif; ?>
                                                 </div>
                                             </form>
@@ -251,8 +244,6 @@
     <script src="../../../../public/js/sweetalert2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
-
     <!-- sidebar -->
     <script src="./Public/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="./Public/js/custom.js"></script>
@@ -264,6 +255,11 @@
         function closeNav() {
             document.getElementById("mySidepanel").style.width = "0";
         }
+
+        <?php if ($_SESSION['errorsesionfallida']): ?>
+            mostrarAlerta("<?php echo $_SESSION['errorsesionfallida']; ?>"); 
+             <?php unset($_SESSION['errorsesionfallida']); ?> <?php endif; ?> ;
+
     </script>
 </body>
 

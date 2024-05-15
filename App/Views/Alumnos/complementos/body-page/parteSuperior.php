@@ -67,7 +67,7 @@
     </li>
 
     <li class="nav-item">
-        <form method="post" action="/">
+        <form method="post" action="App/Views/Login/logout.php">
             <input type="submit"  value="Cerrar sesión">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form>

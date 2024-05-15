@@ -20,7 +20,7 @@ class LoginController
         require VIEWS_PATH . 'Login/index.php';
     }
 
-    private function handlePostRequests() //creamos la tabla, validamos user o logout
+    private function handlePostRequests() 
     {
         if (isset($_POST['op'])) {
             switch ($_POST['op']) {
@@ -36,8 +36,12 @@ class LoginController
 
     private function logout()
     {
+        unset($_SESSION['idperfil']);
+        unset($_SESSION['rut']);
+        unset($_SESSION['errorsesionfallida']);
         session_destroy();
-        header("Location: /");
+        usleep(5000000); // 1 segundo = 1,000,000 microsegundos
+        header('Location: http://localhost:8080/logout.php');
         exit();
     }
 
@@ -64,12 +68,15 @@ class LoginController
 
     private function ValidarSesion()
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $clave = htmlspecialchars($_POST['clave'] ?? '');
         $accessModel = new Access_model();
         $loginResult = $accessModel->iniciarSesion($rut, $clave);
         if ($loginResult) {
+            unset($_SESSION['errorsesionfallida']);
             $idperfil = $loginResult['idperfil'];
             // Almacenar valores en la sesión
             $_SESSION['idperfil'] = $idperfil;
@@ -77,8 +84,8 @@ class LoginController
             $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
         } else {
         // Autenticación fallida
-        $_SESSION['errorsesionfallida'] = true;
-        $_SESSION['error_message'] = 'Usuario no existe o clave inválida';
+        $_SESSION['errorsesionfallida'] = 'Usuario no existe o clave inválida';
+        
         }
     }
 }

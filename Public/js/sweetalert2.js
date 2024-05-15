@@ -2,7 +2,7 @@ function showalert() {
   Swal.fire('this is an alert');
 }
 
-function mostrarAlerta(message) {
+function mostrarAlerta() {
   Swal.fire({
       icon: 'error',
       title: 'Error de autenticación',
