@@ -6,17 +6,6 @@
 
     <title>Categorias</title>
 <body>
-    <!--<div class="btn-panel">        
-        <div>
-            <a href="creaCategoria" class="btn  btn-primary">Crear Categoria</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Categoría:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
     <hr>
     <h1>Categorías</h1>
     <div class="body-panel">
@@ -30,7 +19,7 @@
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
 
-                <a href="Administrador/crearCategoria" class="btn-supervisor marginBtn">Crear</a>
+                <a href="Administrador/creaCategoria" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCategoria" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>

@@ -11,21 +11,18 @@
     <h1>Usuarios</h1>
     <div class="body-panel">
     <div style="margin: 10px 10px;">
-            <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+    <div class="containerFiltro">
+    <input type="text" class="ofertaFiltro" placeholder="Nombre">
+                <input type="text" class="ofertaFiltro" placeholder="Rut">
                 <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
+                    <option value="Práctica">Cargo 1</option>
+                    <option value="Práctica">Cargo 2</option>
+                    <option value="Práctica">cargo 3</option>
                 </select>
+                <a href="Administrador/creaUsuarios" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarUsuario" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
-        <form action="procesar_archivo.php" method="post" enctype="multipart/form-data">
-    <label for="archivo_excel">Selecciona un archivo Excel:</label>
-    <input type="file" name="archivo_excel"  id="archivo_excel">
-    <input type="submit" value="Cargar" class="btn-supervisor" name="submit">
-</form>
 
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>

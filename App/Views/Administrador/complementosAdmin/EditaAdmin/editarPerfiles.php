@@ -22,10 +22,15 @@
             <div class="col">
                 <label for="rut" style="text-align: center;">Nombre:</label>
                 <input type="text" class="form-control" name="NombreCarrera" placeholder="Ingrese Perfil" Required><br>
-                <label  style="text-align: center;">Rut de Usuario:</label><br>
-                <input type="text" class="form-control" name="NombreCarrera" placeholder="Ingrese Rut" Required><br>
+                <div class="col">
+                <label  style="text-align: center;">Activo:</label><br>
+                <select class="form-select"  name="IDPerfil" required>
+                    <option>1</option>
+                    <option>0</option>
+                </select> 
+            </div>
                 <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearCarrera" value="Crear">
+                <input type="submit" class="btn btn-warning w-100 center-block" name="CrearCarrera" value="Crear">
                           
             </div>
     </form>

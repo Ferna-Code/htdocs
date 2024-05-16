@@ -25,7 +25,7 @@
                 <input type="text" class="form-control" name="NombreCarrera" placeholder="Ingrese Nueva Palabra" Required><br>
                 
                 <input type="hidden" name="sw" value="Editar"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearCarrera" value="Editar">
+                <input type="submit" class="btn btn-warning w-100 center-block" name="CrearCarrera" value="Editar">
                           
             </div>
     </form>

@@ -108,6 +108,11 @@ if (isset($_POST["crearRegistro"])) {
 
                         <label for="cargo">Cargo:</label>
                         <input type="text" class="form-control" name="cargo" required>
+                        <label for="avance">Estado:</label>
+                        <select name="avance" id="avance" required>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                        </select>
                     </div>
                 </div>
                 <button type="submit" class="btn-oferta" name="crearRegistro">Agregar usuario</button>

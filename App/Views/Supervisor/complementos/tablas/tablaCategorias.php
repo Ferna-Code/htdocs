@@ -10,7 +10,7 @@
             <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             <table id="tableUsers" class="tabla table">
                 <thead>
-                    <tr>
+                    <tr class="table table-striped">
                         <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
                         <th>Categorias</th>
                         <th>Fecha creación</th>

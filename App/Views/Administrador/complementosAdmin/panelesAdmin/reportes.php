@@ -19,9 +19,9 @@
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
+                    <option value="Práctica">11111111-1</option>
+                    <option value="Práctica">22222222-2</option>
+                    <option value="Práctica">33333333-3</option>
                 </select>
                 <a href="Administrador/editarReportes" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>

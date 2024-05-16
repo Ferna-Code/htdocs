@@ -19,18 +19,11 @@
     <form method="POST" class="form" style="padding: 100px 300px 0 300px; width: 100%;">
         <h2 style="text-align: center;">Editar Categoría</h2><br>
       
-            
-            <label for="rut" style="text-align: center;">Actualice Categoría:</label>
+        <label for="rut" style="text-align: center;">Categoría:</label>
             <input type="text" class="form-control" name="NombreCarrera" placeholder="Nombre Categoría" Required><br>
             <div class="row">
             <div class="col">    
-            <label  style="text-align: center;">Categoría:</label><br>
-            <select class="form-select" name="IDPerfil" required>
-                <option>una Categoria</option>
-                <option>Otra Categoria</option>
-            </select> <br>
-                
-            </div>
+
             <div class="col">
                 <label  style="text-align: center;">Activo:</label><br>
                 <select class="form-select"  name="IDPerfil" required>
@@ -40,7 +33,7 @@
             </div>
                 <br>
                 <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearCarrera" value="Crear">
+                <input type="submit" class="btn btn-warning w-100 center-block" name="CrearCarrera" value="Crear">
                           
             
         </div>

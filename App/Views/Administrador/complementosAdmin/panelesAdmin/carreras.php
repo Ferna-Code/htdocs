@@ -24,66 +24,65 @@
                     <option value="Práctica">Informática Tecnología y Productividad</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-            </div>
-            <div>                
                 <a href="Administrador/crearCarrera" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCarrera" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
-        
-            <table id="tableUsers" class="tabla table">
+
+        <div class="table-responsive">
+            <table id="tableUsers" class="table table-sm">
             <thead>
-                <tr>
+                <tr >
                     <th class="widthCheck"><input type="checkbox" id="checkAllCarrera" name="select-all"></th>
-                    <th class="anchoId">ID</th>
+                    <th >ID</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
-                    <th class="anchoFecha">Fecha de Ingreso</th>
-                    <th class="anchoActiv">Activo</th>
-                    <th class="anchoFecha">Fecha de Eliminacion</th>
+                    <th >Fecha de Ingreso</th>
+                    <th >Activo</th>
+                    <th >Fecha de Eliminacion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="table table-striped">
+                <tr >
                     <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td class="widthCheck">01</td>
+                    <td>01</td>
                     <td>Analista Programador</td>
                     <td>Informática Tecnología y Productividad</td>
-                    <td  class="anchoFecha">12-04-2024</td>
-                    <td  class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
+                    <td>12-04-2024</td>
+                    <td>1</td>
+                    <td>23-04-2024</td>
                 </tr>
 
-                <tr class="table table-striped">
+                <tr >
                     <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td class="widthCheck">02</td>
+                    <td>02</td>
                     <td>Técnico en Construcción</td>
                     <td>Informática Tecnología y Productividad</td>
-                    <td  class="anchoFecha">12-04-2024</td>
-                    <td class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
+                    <td>12-04-2024</td>
+                    <td>1</td>
+                    <td>23-04-2024</td>
                 </tr>
                 
-                <tr class="table table-striped">
+                <tr  >
                     <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td class="widthCheck">03</td>
+                    <td>03</td>
                     <td>Psicopedagogía</td>
                     <td>Educación Bienestar y Calidad de vida</td>
-                    <td  class="anchoFecha">12-04-2024</td>
-                    <td  class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
+                    <td>12-04-2024</td>
+                    <td>1</td>
+                    <td>23-04-2024</td>
                 </tr>
             </tbody>
         </table>
-               
+        </div>    
         <!-- seccion footer -->
                <div class="footer-tools">
                 <div class="list-items">
                     Mostrar
                     <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
                     </select>
                     Entradas
                 </div>   
