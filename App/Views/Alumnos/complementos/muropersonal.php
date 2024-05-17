@@ -2,32 +2,9 @@
 require_once ("App/Controllers/publicacionesController.php");
 require_once ("App/Controllers/usuariosController.php");
 
-$comentario = '';
-$sw = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!isset($_POST['comentario'])) {
-        $comentario = '';
-    } else {
-        $comentario = $_POST['comentario'];
-    }
-    if (!isset($_POST['sw'])) {
-        $sw = '';
-    } else {
-        $sw = $_POST['sw'];
-    }
-}
-
-if ($sw === 'publicar') {
-    // Crear una instancia del controlador de publicaciones
-    $controlador = new PublicacionesController();
-    // Procesar la publicación
-    $controlador->procesarPublicacion($comentario);
-}
 $controladorUsuarios = new usuariosController();
-
 $controlador = new PublicacionesController();
-$publicaciones = $controlador->mostrarPublicaciones();
+$publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
 ?>
 
 <link rel="stylesheet" href="../../../../Public/css/muroAlumnos.css">
@@ -35,20 +12,13 @@ $publicaciones = $controlador->mostrarPublicaciones();
 
 <div class="container mt-2">
     <div class="main-content">
-        <form method="POST" class="form" style="padding: 30px 30px 0 30px;">
-            <div class="post-container">
-                <textarea name="comentario" placeholder="¿Qué estás pensando?" Required></textarea>
-                <input type="hidden" name="sw" value="publicar">
-                <button name="Publicar" value="Publicar">Publicar</button>
-            </div>
-        </form>
-
-        <hr>
+<br><br><br>
 
         <?php
         if (is_array($publicaciones)) {
             foreach ($publicaciones as $p) {
                 ?>
+
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
                     <img class="img" src="../../../../Public/img/profe1.jpeg" alt="">

@@ -129,14 +129,6 @@ body {
     text-align: center;
 }
 
-.btn-supervisor{
-    border: 1px solid green;
-    padding: 5px 15px 5px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    color: black;
-    font-size: 13px;
-}
 
 .color-a{
     background: var(--color-btnAzul);
@@ -229,3 +221,4 @@ body {
         -webkit-overflow-scrolling: touch;
     }
 }
+

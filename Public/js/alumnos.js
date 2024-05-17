@@ -11,15 +11,27 @@ function controlVisi1() {
   centrarModulo(elemento);
 }
 
+// muroPersonal
+function controlVisit2() {
+  var elemento10 = document.getElementById("modulo10");
+
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento10.style.display = "flex";
+  // Centra el módulo 1
+  centrarModulo(elemento10);
+  }
+
 function controlVisi2() {
   var elemento2 = document.getElementById("modulo2");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento2.style.display = "flex";
-  
   // Centra el módulo 1
   centrarModulo(elemento2);
 }
@@ -100,6 +112,7 @@ function vistaofertas() {
   centrarModulo(elemento8);
 }
 
+
 function veroferta() {
   var elemento8 = document.getElementById("modulo9");
   
@@ -112,7 +125,6 @@ function veroferta() {
   // Centra el módulo 1
   centrarModulo(elemento8);
 }
-
 
 
 

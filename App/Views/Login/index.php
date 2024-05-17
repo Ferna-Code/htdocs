@@ -257,7 +257,7 @@
         }
 
         <?php if ($_SESSION['errorsesionfallida']): ?>
-            mostrarAlerta("<?php echo $_SESSION['errorsesionfallida']; ?>"); 
+            alertaErrorAutenticacion("<?php echo $_SESSION['errorsesionfallida']; ?>"); 
              <?php unset($_SESSION['errorsesionfallida']); ?> <?php endif; ?> ;
 
     </script>

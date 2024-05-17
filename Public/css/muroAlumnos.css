@@ -1,3 +1,7 @@
+.container {
+    display: flex; /* Establece un contenedor flexible */
+}
+
 .post-container {
     display: flex;
     align-items: center;
@@ -27,3 +31,41 @@
 .post-container button:hover {
     background-color: #F8B619;
 }
+
+/* CONTENIDO DE LAS PUBLICACIONES */
+.main-content {
+    flex: 1; /* Toma el espacio restante */
+    max-height: 80vh; /* Establece una altura máxima */
+    overflow-y: auto; /* Agrega desplazamiento vertical si es necesario */
+    padding-right: 30px; /* Agrega un espacio entre el contenido principal y las tarjetas */
+}
+
+
+/* BARRA DEL LADO DERECHO */
+.sidebar1 {
+    width: 200px; /* Ancho del menú lateral */
+    background-color: #fff; /* Color de fondo del menú */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea los elementos a la derecha */
+    justify-content: flex-start; /* Alinea los elementos arriba */
+}
+
+.card {
+    background-color: #fff; /* Color de fondo de las tarjetas */
+    background-image: linear-gradient(180deg, #f57c00 10%, #ffc107 100%);
+    border: 1px solid #ccc; /* Borde de las tarjetas */
+    border-radius: 5px; /* Borde redondeado */
+    padding: 10px;
+    margin-bottom: 10px; /* Espacio entre las tarjetas */
+    width: 100%; /* Ancho máximo de las tarjetas */
+    color: #fff;
+}
+
+.novedad{
+    text-align: center;
+    color: #f57c00;
+    margin-top: 5%;
+}
+

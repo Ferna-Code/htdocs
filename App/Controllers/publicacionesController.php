@@ -19,19 +19,22 @@ class PublicacionesController {
          $comentario = htmlspecialchars($comentario);
         if ($this->verificarLimitePublicaciones($rutUsuario)) {
             $mensaje = "Has alcanzado el límite diario de publicaciones..";
-            //header("Location: http://localhost:8080/Alumno#?mensaje=".urlencode($mensaje)); 
-            echo "<script>alert('Has alcanzado el límite diario de publicaciones.')</script>";
+            $_SESSION['publicacionNoCreada'] = "limite diario";
+            echo "<script>console.log('Valor de publicacionNoCreada:', '" . $_SESSION['publicacionNoCreada'] . " Controller')</script>";
 
         } else {
             $resultado = $this->publicaciones_model->guardarPublicacion($rutUsuario, $comentario);
             if ($resultado) {
                 //$mensaje = "Publicación realizada exitosamente.";
                 //header("Location: muroPrueba.php?mensaje=".urlencode($mensaje)); 
-                echo "<script>alert('Publicación realizada exitosamente.')</script>";
+                //echo "<script>alert('Publicación realizada exitosamente.')</script>";
+                $_SESSION['publicacionCreada'] = "Publicación realizada exitosamente";
+               
             } else {
                 //$mensaje = "Error al guardar la publicación.";
                 //header("Location: muroPrueba.php?mensaje=".urlencode($mensaje)); 
-                echo "<script>alert('Error al guardar la publicación.')</script>";
+                //echo "<script>alert('Error al guardar la publicación.')</script>";
+                $_SESSION['publicacionNoCreada'] = "limite diario";
             }
 
         }
@@ -43,10 +46,20 @@ class PublicacionesController {
     }
 
 
-
-    private function mostrarPublicaciones() {
-    $DetallePubliaciones = $this->publicaciones_model->MostrarPublicaciones();
-    return $DetallePubliaciones;
+    
+    public function mostrarPublicaciones() {
+    $publicaciones = $this->publicaciones_model->verPublicaciones();
+    $publicacionesArray = json_decode(json_encode($publicaciones), true);
+    return $publicacionesArray;
     }
+
+    public function mostrarPublicacionesUsuario($rutUsuario) {
+        
+        $publicacionesUsuario = $this->publicaciones_model->verPublicacionesUsuario($rutUsuario);
+        $publicacionesUsuarioArray = json_decode(json_encode($publicacionesUsuario), true);
+        return $publicacionesUsuarioArray;
+        }
+
+
 }
 

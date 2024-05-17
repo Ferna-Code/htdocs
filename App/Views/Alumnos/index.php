@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>RedLeones</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -32,6 +32,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+
         <div class="contenedor-body" id="modulo1">
             <?php require_once "complementos/muroprincipal.php"; ?>  
             
@@ -59,6 +60,9 @@
         </div>
         <div class="contenedor-body" id="modulo9" style="display:none">
         <?php include 'complementos/ofertas/veroferta.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo10" style="display:none">
+        <?php include 'complementos/muropersonal.php' ?>
         </div>
     </div>
 
