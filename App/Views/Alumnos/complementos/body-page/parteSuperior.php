@@ -58,12 +58,19 @@
         </a>
     </li>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <form method="post" action="App/Views/Login/logout.php">
             <input type="submit" class="btnCerrar" value="Cerrar sesión">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form>
-    </li>
+    </li> -->
+
+    <!-- ------------------- -->
+<br><br>
+    <form method="post" action="App/Views/Login/logout.php">
+            <input type="submit" class="btn-supervisor" value="Cerrar Sesión">
+            <input type="hidden" name="op" value="CERRAR_SESION">
+        </form> 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

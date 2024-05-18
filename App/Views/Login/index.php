@@ -94,9 +94,9 @@
                                         <div class="col-md-6 contBox">
                                             <form method="post" action="" class="transfot">
                                                 <div class="col-md-12">
-                                                    <h1>Ingresa a la Red</h1>
+                                                    <h1 style="margin-top: 12px;"> Ingresa a la Red</h1><br>
                                                 </div>
-                                                <div class="col-md-12 contInput">
+                                                <div class="col-md-12 contInput" >
                                                     <input type="text" class="inputRut" name="rut" id="rut" placeholder="Ingrese su RUT">
                                                 </div>
                                                 <div class="col-md-12">
@@ -220,7 +220,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>© 2019 All Rights Reserved. DFL</p>
+                            <p>© 2024 All Rights Reserved. DFL</p>
                         </div>
                     </div>
                 </div>

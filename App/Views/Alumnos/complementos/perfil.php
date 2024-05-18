@@ -13,8 +13,8 @@
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                        <h1>Luis Yañez R</h1>
-                        <p>Técnico Analista Programador.</p>
+                        <h1>Luis Yañez Carreño</h1>
+                        <h4>Profesor de Programación</h4>
                     </div>
                 </div>
                 
@@ -113,7 +113,7 @@
                 <br>
                 <div class="container">
                     <h3>Adjuntar Curriculum:   </h3>
-                    <input type="file"  class="btn-supervisor" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
+                    <input type="file"  class="" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
                 </div>
                 <button type="submit" class="btn-supervisor" name="crearRegistro">Guardar Cambios</button>
             </div>
