@@ -21,14 +21,14 @@
     <h1>Comentarios</h1>
     <div class="body-panel">
     <div style="margin: 10px;">
-            <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+    <div class="containerFiltro">
+            <input type="text" class="ofertaFiltro" placeholder="Rut">
                 <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
+                    <option value="Práctica">01</option>
+                    <option value="Práctica">02</option>
+                    <option value="Práctica">03</option>
                 </select>
-                <a href="Administrador/editarComentarios" class="btn-supervisor marginBtn">Editar</a>
+                <a href="Administrador/editarPublicaciones" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
 

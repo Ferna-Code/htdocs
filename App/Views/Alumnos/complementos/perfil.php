@@ -13,8 +13,8 @@
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                        <h1>Luis Yañez R</h1>
-                        <p>Técnico Analista Programador.</p>
+                        <h1>Luis Yañez Carreño</h1>
+                        <h4>Profesor de Programación</h4>
                     </div>
                 </div>
                 
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <!-- Botón para agregar nuevo trabajo -->
-                    <button type="button" class="btn-agregar-trabajo centrarBtn" onclick="agregarTrabajo()">Agregar trabajo</button>
+                    <button type="button" class="btn-supervisor" onclick="agregarTrabajo()">Agregar trabajo</button>
                     <!-- Contenedor para formularios de educación/conocimientos -->
                     <h3>Educación y conocimientos</h3>
                     <div id="educacion-container">
@@ -107,15 +107,15 @@
                     </div>
                     <!-- Botón para agregar nuevo formulario de educación -->
                     <div class="botones-container">
-                        <button type="button" class="btn-agregar-trabajo centrarBtn" onclick="agregarEducacion()">Agregar educación</button>
+                        <button type="button" class="btn-supervisor" onclick="agregarEducacion()">Agregar educación</button>
                     </div>
                 </div>
                 <br>
                 <div class="container">
-                    <h3>Adjuntar Curriculum</h3>
-                    <input type="file" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
+                    <h3>Adjuntar Curriculum:   </h3>
+                    <input type="file"  class="" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
                 </div>
-                <button type="submit" class="btn-guardar" name="crearRegistro">Guardar Cambios</button>
+                <button type="submit" class="btn-supervisor" name="crearRegistro">Guardar Cambios</button>
             </div>
         </div>
     </form>

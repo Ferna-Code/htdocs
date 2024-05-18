@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="../../../../Public/css/ofertasalumnos.css">
-<section class="seccion" style="padding: 3%; color: black;">
+<section style="margin: 10px;">
     <h1 class="section-title h1">Ofertas Laborales</h1><br>
     <form method="post" action="Registro.php">
         <div class="form-row">
@@ -29,99 +28,91 @@
             </div>
         </div>
     </form>
-    <section >
-        <div class="table-responsive">
-            <table id="tableUsers" class="tabla table">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;">Tipo</th>
-                        <th style="text-align: center;">Cargo</th>
-                        <th style="text-align: center;">Empresa</th>
-                        <th style="text-align: center;">Fecha Creación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table table-striped">
-                        <td>Práctica</td>
-                        <td><a onclick="veroferta()"><b>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
-                                    CONTROL</b></a>
-                        </td>
-                        <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td>Práctica</td>
-                        <td><a onclick="veroferta()"><b> Profesional para Departamento Programación Física y
-                                    Control</b></a>
-                        </td>
-                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td>Práctica</td>
-                        <td><a onclick="veroferta()"><b> Técnica para Estudiantes de Programación y Conectividad Soporte
-                                    Informático HRLBO</b></a></td>
-                        <td>Servicio de Salud O'Higgins</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td>Práctica</td>
-                        <td><a onclick="veroferta()"><b> Profesional para Departamento Programación Física y
-                                    Control</b></a>
-                        </td>
-                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td>Práctica</td>
-                        <td><a onclick="veroferta()"><b>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
-                                    CONTROL</b></a>
-                        </td>
-                        <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td>Part Time</td>
-                        <td><a onclick="veroferta()"><b> Profesional para Departamento Programación Física y
-                                    Control</b></a>
-                        </td>
-                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td>Práctica</td>
-                        <td><a onclick="veroferta()"><b>Técnica para Estudiantes de Programación y Conectividad Soporte
-                                    Informático HRLBO</b></a></td>
-                        <td>Servicio de Salud O'Higgins</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td>Full Time</td>
-                        <td><a onclick="veroferta()"><b>Profesional para Departamento Programación Física y
-                                    Control</b></a>
-                        </td>
-                        <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
-                        <td class="tr-table">
-                            13/09/20
-                        </td>
-                    </tr>
+    <div class="table-responsive">
+        <table id="tableUsers" class="tabla table">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">Tipo</th>
+                    <th style="text-align: center;">Cargo</th>
+                    <th style="text-align: center;">Empresa</th>
+                    <th style="text-align: center;">Fecha Creación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table table-striped">
+                    <td>Práctica</td>
+                    <td><a onclick="veroferta()"><b>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y CONTROL</b></a>
+                    </td>
+                    <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
+                    <td class="tr-table">
+                    13/09/20
+                    </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Práctica</td>
+                    <td><a onclick="veroferta()"><b> Profesional para Departamento Programación Física y Control</b></a>
+                    </td>
+                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+                    <td class="tr-table">
+                        13/09/20
+                    </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Práctica</td>
+                    <td><a onclick="veroferta()"><b> Técnica para Estudiantes de Programación y Conectividad Soporte
+                                Informático HRLBO</b></a></td>
+                    <td>Servicio de Salud O'Higgins</td>
+                    <td class="tr-table">
+                    13/09/20
+                    </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Práctica</td>
+                    <td><a onclick="veroferta()"><b> Profesional para Departamento Programación Física y Control</b></a>
+                    </td>
+                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+                    <td class="tr-table">
+                    13/09/20
+                    </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Práctica</td>
+                    <td><a onclick="veroferta()"><b>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y CONTROL</b></a>
+                    </td>
+                    <td>Ministerio de Defensa Nacional / Dirección General de Aeronáutica Civil /</td>
+                    <td class="tr-table">
+                    13/09/20
+                    </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Part Time</td>
+                    <td><a onclick="veroferta()"><b> Profesional para Departamento Programación Física y Control</b></a>
+                    </td>
+                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+                    <td class="tr-table">
+                    13/09/20
+                    </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Práctica</td>
+                    <td><a onclick="veroferta()"><b>Técnica para Estudiantes de Programación y Conectividad Soporte
+                                Informático HRLBO</b></a></td>
+                    <td>Servicio de Salud O'Higgins</td>
+                    <td class="tr-table">
+                    13/09/20
+                    </td>
+                </tr>
+                <tr class="table table-striped">
+                    <td>Full Time</td>
+                    <td><a onclick="veroferta()"><b>Profesional para Departamento Programación Física y Control</b></a>
+                    </td>
+                    <td>Servicio de Vivienda y Urbanización Región de Coquimbo</td>
+                    <td class="tr-table">
+                    13/09/20
+                    </td>
+                </tr>
 
-                </tbody>
-            </table>
-        </div>
-    </section>
+            </tbody>
+        </table>
+    </div>
 </section>

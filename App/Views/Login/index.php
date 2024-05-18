@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +27,9 @@
     <link rel="stylesheet" href="./Public/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -83,7 +83,8 @@
                                         <span>Conecta con egresados, comparte información, Mantente en línea.</span>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-lg-7" style="background-color: #F8B619; padding: 30px; height: 400px;">
+                                <div class="col-md-12 col-lg-7"
+                                    style="background-color: #F8B619; padding: 30px; height: 400px;">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="ban_track">
@@ -93,9 +94,9 @@
                                         <div class="col-md-6 contBox">
                                             <form method="post" action="" class="transfot">
                                                 <div class="col-md-12">
-                                                    <h1>Ingresa a la Red</h1>
+                                                    <h1 style="margin-top: 12px;"> Ingresa a la Red</h1><br>
                                                 </div>
-                                                <div class="col-md-12 contInput">
+                                                <div class="col-md-12 contInput" >
                                                     <input type="text" class="inputRut" name="rut" id="rut" placeholder="Ingrese su RUT">
                                                 </div>
                                                 <div class="col-md-12">
@@ -219,7 +220,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>© 2019 All Rights Reserved. DFL</p>
+                            <p>© 2024 All Rights Reserved. DFL</p>
                         </div>
                     </div>
                 </div>
@@ -233,6 +234,9 @@
     <script src="./Public/js/bootstrap.bundle.min.js"></script>
     <script src="./Public/js/jquery-3.0.0.min.js"></script>
     <script src="../../../../public/js/login.js"></script>
+    <script src="../../../../public/js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- sidebar -->
     <script src="./Public/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="./Public/js/custom.js"></script>
@@ -244,6 +248,11 @@
         function closeNav() {
             document.getElementById("mySidepanel").style.width = "0";
         }
+
+        <?php if ($_SESSION['errorsesionfallida']): ?>
+            alertaErrorAutenticacion("<?php echo $_SESSION['errorsesionfallida']; ?>"); 
+             <?php unset($_SESSION['errorsesionfallida']); ?> <?php endif; ?> ;
+
     </script>
 </body>
 

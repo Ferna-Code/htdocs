@@ -6,17 +6,7 @@
 
     <title>Document</title>
 <body>
-    <!--<div class="btn-panel">        
-        <div>
-            <a href="creaCursos" class="btn  btn-primary">Crear Categoria</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Categoría:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
+
     <hr>
     <h1>Cursos</h1>
     <div class="body-panel">
@@ -34,12 +24,13 @@
                     <option value="Práctica">Networking Essentials</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-            </div>
-
-            <form action="#">
                 <a href="Administrador/CreaCursos" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            </div>
+
+            <form action="#">
+
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
@@ -51,7 +42,7 @@
                     <th>Descripción</th>
                     <th>Institución</th>
                     <th>Link Postulación</th>
-                    <th>ID Carrera</th>
+                    <th>ID Categoría</th>
                     <th>Fecha de Creación</th>
                     <th>Activo</th>
                     <th>Fecha de Eliminación</th>

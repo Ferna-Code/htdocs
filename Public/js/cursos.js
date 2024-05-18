@@ -10,6 +10,8 @@ function controlVisi4() {
     // Centra el módulo 1
     centrarModulo(elemento);
   }
+
+
   
   function controlVisi5() {
     var elemento2 = document.getElementById("modulo5");
@@ -74,7 +76,7 @@ function controlVisi4() {
     // Centra el módulo 1
     centrarModulo(elemento8);
   }
-  
+
   
   function ocultarModulos() {
     var modulos = document.getElementsByClassName("contenedor-body");

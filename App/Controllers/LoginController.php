@@ -1,3 +1,4 @@
+
 <?php
 //session_start();
 require_once __DIR__ . '/../Models/access_model.php';
@@ -32,11 +33,18 @@ class LoginController
     //     }
     // }
 
-    // private function logout()
-    // {
-    //     session_destroy();
-    //     header('Location: http://localhost:8080/');
-    // }
+    private function logout()
+    {
+        unset($_SESSION['idperfil']);
+        unset($_SESSION['rut']);
+        unset($_SESSION['errorsesionfallida']);
+        session_destroy();
+        usleep(5000000); // 1 segundo = 1,000,000 microsegundos
+        header('Location: http://localhost:8080/logout.php');
+        exit();
+    }
+
+
     private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente
     {
 
@@ -59,28 +67,24 @@ class LoginController
 
     private function ValidarSesion()
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $rut = htmlspecialchars($_POST['rut'] ?? '');
         $clave = htmlspecialchars($_POST['clave'] ?? '');
         $accessModel = new Access_model();
         $loginResult = $accessModel->iniciarSesion($rut, $clave);
         if ($loginResult) {
-            $idperfil = $loginResult['idperfil'];// Almacenar valores en la sesión
-            $rut = $loginResult['rut'];// Almacenar valores en la sesión 
+            unset($_SESSION['errorsesionfallida']);
+            $idperfil = $loginResult['idperfil'];
+            // Almacenar valores en la sesión
             $_SESSION['idperfil'] = $idperfil;
             $_SESSION['rut'] = $rut;
             $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
         } else {
-            $_SESSION['error'] = 'Usuario no existe o clave inválida';
-            echo 'Usuario no existe o clave inválida ';
-            header('Location: http://localhost:8080/');
-            //echo "<script>alert('Usuario o contraseña incorrecta')</script>";
-            echo 'Usuario no existe o clave inválida '; //AUNQUE DEJE QUE MOSTRARA UN ALERT AL INGRESAR DATOS INCORRECTOS ME SIGUE REDIRIGIENDO A UNA PAG EN BLANCO
-            echo " rut: " . $rut . " clave: " . $clave;
-            if (isset($_SESSION['idPerfil'])) {
-                echo $_SESSION['idPerfil'];
-            }
-            exit();
+        // Autenticación fallida
+        $_SESSION['errorsesionfallida'] = 'Usuario no existe o clave inválida';
+        
         }
     }
 }

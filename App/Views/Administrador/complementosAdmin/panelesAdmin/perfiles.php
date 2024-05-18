@@ -22,12 +22,8 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
-                </select>
+
+                <a href="Administrador/creaPerfiles" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarPerfiles" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>

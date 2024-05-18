@@ -1,58 +1,46 @@
 <?php
-require_once("conexion.php");
-class Usuario
-{
-    private $rut;
-    private $nombre;
-    private $fechaNacimiento;
-    private $idperfil;
-    private $correo;
-    private $idcarrera;
-    private $avance;
-    private $cargo;
-    private $clave;
-    private $fechaCreacion;
-    private $activo;
-    private $fechaEliminacion;
+require_once __DIR__ . '/../Database.php';
 
+class usuarioModel
+{
     private $db;
+    private $publicacionesModel;
     private $usuario;
-    public function __construct()
+
+    public function __construct($db)
     {
-        
-        $this->db = getConnection();
-        $this->rut = "";
-        $this->nombre = "";
-        $this->fechaNacimiento = "";
-        $this->idperfil = "";
-        $this->correo = "";
-        $this->idcarrera = "";
-        $this->avance = "";
-        $this->cargo = "";
-        $this->fechaCreacion = "";
-        $this->activo = "";
-        $this->fechaEliminacion = "";
+        $this->db = $db;
+        $this->publicacionesModel = array();
         $this->usuario = array();
     }
 
-    public function verUsuario($rut)
+    public function verUsuarios()
     {
-        $link = $this->db;
-        $query = mysqli_prepare($link,"SELECT * FROM Usuarios where rut = ?");
-        mysqli_stmt_bind_param($query, "s", $rut);
-        if (mysqli_stmt_execute($query)) {
-            mysqli_stmt_bind_result($query,$rut,$nombre,$fechaNacimiento,$idPerfil,$correo,$idCarrera,$avance);
-            return array(
-            'rut' => $rut, 
-            'nombre' => $nombre, 
-            'fechaNacimiento' =>$fechaNacimiento,
-            'idPerfil' => $idPerfil,
-            'correo' =>$correo,
-            'idCarrera' =>$idCarrera,
-            'avance' =>$avance);
+        $usuarios = array();
+        $consulta = mysqli_query($this->db->getConnection(), "SELECT * FROM usuarios");
+        while ($fila = mysqli_fetch_assoc($consulta)) {
+            $usuarios[] = $fila;
         }
-        mysqli_stmt_close($query);
-        return false;
-
+        return $usuarios; 
     }
-}
+
+    public function verUsuariosRut($rut)
+    {
+        $usuarios = array();
+        $query = "SELECT * FROM usuarios WHERE rut = ?";
+        if ($stmt = mysqli_prepare($this->db->getConnection(), $query)) {
+            mysqli_stmt_bind_param($stmt, "s", $rut);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            while ($fila = mysqli_fetch_assoc($result)) {
+                $usuarios[] = $fila;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        return $usuarios;
+    }
+    
+    
+    }
+
+

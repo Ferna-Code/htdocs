@@ -43,6 +43,7 @@
 
 
 
+
 .profile-container__header__wrapper-icon {
     position: absolute;
     top: 10%;
@@ -143,27 +144,27 @@ h3 {
     justify-content: flex-start;
 }
 
-.btn-agregar-trabajo {
-    background-color: red;
-    color: black;
-    border: none;
+.btn-supervisor {
+    border: 1px solid white;
+    padding: 8px 20px;
+    text-decoration: none;
     border-radius: 5px;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    align-items: left; 
+    background: orange;
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    color: white;
+    font-size: 15px;
+}
+.btn-supervisor:hover {
+    background: white;
+    color: orange;
+    border-color: orange;
+    text-decoration: none;
+    transition: .5s;
 }
 
-.btn-guardar {
-    background-color: red;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    width: 100%;
-}
+
 
 label{
     color: black; 

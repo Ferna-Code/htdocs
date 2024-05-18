@@ -20,7 +20,7 @@
       
             
             <label for="rut" style="text-align: center;">Carrera:</label>
-            <input type="text" class="form-control" name="NombreCarrera" value="<?php echo "Actualice Carrera"; ?>"placeholder="Nombre Carrera" Required><br>
+            <input type="text" class="form-control" name="NombreCarrera" value="<?php echo "Ingrese Carrera"; ?>"placeholder="Nombre Carrera" Required><br>
             <div class="row">
             <div class="col">    
             <label  style="text-align: center;">Categoria:</label><br>

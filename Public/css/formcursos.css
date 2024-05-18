@@ -20,6 +20,7 @@
 h1{
     color: red;
     text-align: center;
+    padding: 1%;
 }
 
 /* ESTilos form */
@@ -28,6 +29,10 @@ h1{
     flex-wrap: wrap;
     width: 100%;
     margin: 0 auto;
+    background: orange;
+    background-image: linear-gradient(180deg, #f57c00 10%, #ffc107 100%);
+    border-radius: 3%;
+    padding: 5%;
 }
 
 .columna {
@@ -63,4 +68,27 @@ h1{
     margin-bottom: 20px;
     cursor: pointer;
     width: 100%;
+}
+
+
+
+.btn-curso{
+    text-decoration: none;
+    background: orange;
+    color: white;
+    margin: 0px 5px 10px 5px;
+    padding: 10px 20px;
+    border:1px solid white;
+    border-radius: 5px;
+    margin-top: 3%;
+    margin-left: 43%;
+    margin-bottom: 6%;
+}
+
+.btn-curso:hover{
+    background: white;
+    color: orange;
+    border: 1px solid orange;
+    text-decoration: none;
+    transition: .5s;
 }

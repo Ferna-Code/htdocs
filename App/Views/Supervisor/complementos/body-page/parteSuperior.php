@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Supervisor<sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -16,7 +16,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="" onclick="controlVisi18()">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Panel principal</span></a>
+            <span>Panel Supervisor</span></a>
     </li>
 
     <!-- Divider -->
@@ -95,13 +95,20 @@
 
    
     
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <form method="POST" action="App/Models/cerrar_session.php" >
             <input type="submit" class="btnCerrar" value="">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form> 
         
-    </li>
+    </li> -->
+
+    <!-- ------------------- -->
+
+    <form method="post" action="App/Views/Login/logout.php">
+            <input type="submit" class="btn-CSesion" value="Cerrar Sesión">
+            <input type="hidden" name="op" value="CERRAR_SESION">
+        </form> 
     
 
     <!-- Divider -->

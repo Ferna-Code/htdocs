@@ -21,16 +21,13 @@
     <h1>Diccionario</h1>
     <div class="body-panel">
     <div style="margin: 10px;">
-            <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
-                </select>
-                <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
+    <div class="containerFiltro">
+    <input type="text" class="ofertaFiltro" placeholder="Palabra clave">
+                <a href="Administrador/creaDiccionario" class="btn-supervisor marginBtn">Crear</a>
+                <a href="Administrador/editarDiccionario" class="btn-supervisor marginBtn">Editar</a>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
+
         <table id="tableUsers" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
