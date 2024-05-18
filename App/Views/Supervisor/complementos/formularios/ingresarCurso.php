@@ -40,6 +40,13 @@
                     <label for="link-inscripcion">Link inscripción:</label>
                     <input type="text" id="link-inscripcion" name="link-inscripcion" required>
                 </div>
+                <div class="columna contenedor-seccion">
+                <label for="categoria-curso">Activo:</label>
+                    <select id="categoria-curso" name="categoria-curso" required>
+                        <option value="educacion">1</option>
+                        <option value="informatica">0</option>
+                    </select>
+                </div>
             </div>
             <button type="submit" class="btn-oferta" name="crearRegistro">Crear Curso</button>
         </form>

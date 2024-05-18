@@ -127,6 +127,7 @@ body {
 
 .tr-table{
     text-align: center;
+    width: 100px;
 }
 
 .btn-supervisor{
@@ -137,6 +138,7 @@ body {
     color: black;
     font-size: 13px;
 }
+
 
 .color-a{
     background: var(--color-btnAzul);
@@ -193,6 +195,8 @@ body {
     
     .btn-panel, .body-panel {
       width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 
@@ -209,12 +213,22 @@ body {
     table-layout: fixed; 
 }
 
-.table th, .table td {
+.table th,
+.table td {
     padding: 8px;
-   
-    text-align: left;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Mostrar puntos suspensivos (...) cuando el texto sea demasiado largo */
 }
 
+/* Contenedor de la tabla */
+.table-container {
+    overflow-x: auto;
+    min-width: 320px; /* Establecer un ancho mínimo para el contenedor */
+    max-width: 100%; /* Establecer un ancho máximo para el contenedor */
+}
 /* Media query para ajustar la tabla en pantallas pequeñas */
 @media only screen and (max-width: 768px) {
     .table-responsive {
@@ -223,7 +237,12 @@ body {
     }
 }
 
-
+@media only screen and (max-width: 768px) {
+    .table a.btn-supervisor {
+        font-size: 12px; /* Reducir el tamaño de los botones en pantallas pequeñas */
+        padding: 6px 10px; /* Ajustar el padding de los botones */
+    }
+}
 /*FOOTER DE TABLA */
 .footer-tools{
     padding: 5px;

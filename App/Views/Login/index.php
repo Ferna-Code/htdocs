@@ -108,15 +108,9 @@
                                                         ?</a>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <?php if ($showCreateTableButton): ?>
-                                                        <input type="submit" value="Ingresar">
-                                                        <input type="hidden" name="op" value="VALIDAR">
-                                                    <?php else: ?>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <input type="submit" value="Ingresar">
-                                                        <input type="hidden" name="op" value="VALIDAR">
-                                                    <?php endif; ?>
+                                                    <input type="submit" value="Ingresar">
+                                                    <input type="hidden" name="op" value="LOGIN">
+                                                    <?php  ?>
                                                 </div>
                                             </form>
                                         </div>

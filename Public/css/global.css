@@ -37,7 +37,8 @@
     width: 110px;
     color: white;
     font-size: 15px;
-    margin-top: 20%;
+    margin: 0.3%;
+
 }
 
 .btn-CSesion {
@@ -59,6 +60,8 @@
     text-decoration: none;
     transition: .5s;
 }
+
+
 
 .btn-editar {
     border: 1px solid white;

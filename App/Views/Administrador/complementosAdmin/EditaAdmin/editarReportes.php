@@ -20,12 +20,17 @@
         <h2 style="text-align: center;">Editar Reportes</h2><br>
         <div class="row">
             <div class="col">
-                <label for="rut" style="text-align: center;">Nombre:</label>
-                <input type="text" class="form-control" name="NombreCarrera" placeholder="Nombre Reporte" Required><br>
-                <label for="rut" style="text-align: center;">Rut de usuario:</label>
-                <input type="text" class="form-control" name="NombreCarrera" placeholder="Ingrese Rut de Usuario" Required><br>
+                <label for="rut" style="text-align: center;">Rut: 11111111-1</label>
+                <div class="col">
+</br>
+                <label  style="text-align: center;">Activo:</label><br>
+                <select class="form-select"  name="IDPerfil" required>
+                    <option>1</option>
+                    <option>0</option>
+                </select> 
+            </div>
                 <input type="hidden" name="sw" value="Crear"><br>
-                <input type="submit" class="btn btn-primary w-100 center-block" name="CrearReporte" value="Editar">
+                <input type="submit" class="btn btn-warning w-100 center-block" name="CrearReporte" value="Editar">
                           
             </div>
     </form>

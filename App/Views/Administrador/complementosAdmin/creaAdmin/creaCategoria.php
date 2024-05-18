@@ -24,13 +24,7 @@
             <input type="text" class="form-control" name="NombreCarrera" placeholder="Nombre Categoría" Required><br>
             <div class="row">
             <div class="col">    
-            <label  style="text-align: center;">Categoría:</label><br>
-            <select class="form-select" name="IDPerfil" required>
-                <option>una Categoria</option>
-                <option>Otra Categoria</option>
-            </select> <br>
-                
-            </div>
+
             <div class="col">
                 <label  style="text-align: center;">Activo:</label><br>
                 <select class="form-select"  name="IDPerfil" required>
