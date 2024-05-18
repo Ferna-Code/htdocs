@@ -18,6 +18,7 @@
     <!-- style css -->
     <link rel="stylesheet" href="./Public/css/style.css">
     <link href="./Public/css/estiloLogin.css" rel="stylesheet">
+   
     <!-- Responsive-->
     <link rel="stylesheet" href="./Public/css/responsive.css">
     <!-- fevicon -->
@@ -58,9 +59,8 @@
                                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                             </ul>
-
-                            <button class="btn btn-danger"><a href="./empresa/index">Publica tu oferta
-                                    laboral</a></button>
+                            
+                            <a href="./empresa/index" class="btn-laboral">Publica tu oferta laboral</a>
                         </div>
                     </div>
                 </div>
@@ -91,24 +91,23 @@
                                                 <figure></figure>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 contBox">
                                             <form method="post" action="" class="transfot">
                                                 <div class="col-md-12">
                                                     <h1>Ingresa a la Red</h1>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <input type="text" name="rut" id="rut" placeholder="Ingrese su RUT">
+                                                <div class="col-md-12 contInput">
+                                                    <input type="text" class="inputRut" name="rut" id="rut" placeholder="Ingrese su RUT">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="password" name="clave" id="clave"
-                                                        placeholder="Ingrese su clave">
+                                                    <input type="password" class="inputPass" name="clave" id="clave" placeholder="Ingrese su clave">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <a href="#" class="linkLeft" target="_black">¿ Olvido su contraseña
                                                         ?</a>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <input type="submit" value="Ingresar">
+                                                    <input type="submit" class="btn-oferta" value="Ingresar">
                                                     <input type="hidden" name="op" value="LOGIN">
                                                     <?php  ?>
                                                 </div>
@@ -207,7 +206,7 @@
                             <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra
                                 Palacios
                             </li>
-                            <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Fernando Reyes
+                            <li><a href="https://www.linkedin.com/in/fernando-javier-reyes-luengo-a99650282" target="black_"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Fernando Reyes
                             </li>
                             <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Leonardo Campos
                             </li>
