@@ -1,10 +1,13 @@
+
 <?php
 require("./App/Models/conexion.php");
 require("./App/Models/importarDatos.php");
+
 $conec = new conexion();
 $conexion = $conec->conec();
 $archivoContenedor = "";
 $importador = new ImportarDatos($conexion);
+
 
 if (isset($_POST['send'])) {
     if ($_FILES['excel']['size'] > 0) {
@@ -44,6 +47,7 @@ if (isset($_POST["crearRegistro"])) {
     <link rel="stylesheet" href="../../../../Public/css/formcursos.css">
     <link rel="stylesheet" href="../../../../Public/css/ofertas.css">
     <link rel="stylesheet" href="../../../../Public/css/registrarUsuario.css">
+    <link rel="stylesheet" href="../../../../Public/css/footer.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>Ingresar usuario</title>
@@ -58,9 +62,9 @@ if (isset($_POST["crearRegistro"])) {
         <div class="">
 
             <form action="" name="insertarExcel" method="POST" enctype="multipart/form-data">
-                <div class="formulario-cursos">
+                <div class="formulario-cursos2">
                     <div class="columna contenedor-seccion">
-                        <label for="" class="form-label">Selecciona un archivo Excel</label>
+                        <label for="" class="form-label">Carga masiva de usuarios</label>
                         <input type="file" name="excel" id="excel" class="form-control">
                         <button class="btn-oferta mt-3" name="send">Importar datos</button>
                     </div>
@@ -115,12 +119,17 @@ if (isset($_POST["crearRegistro"])) {
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn-oferta" name="crearRegistro">Agregar usuario</button>
-                <a href="/Supervisor" class="btn-oferta">Volver</a>
+                <button type="submit" class="btn-ofertas" name="crearRegistro">Agregar usuario</button>
+                <a href="/Supervisor" class="btn-ofertas">Volver</a>
             </form>
         </div>
     </div>
+    
 </body>
+
+<div class="footer">
+    Rocket Tech 2022.
+</div>
 
 </html>
 
