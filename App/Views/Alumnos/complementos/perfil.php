@@ -1,13 +1,38 @@
+<?php
+require_once ("App/Controllers/PerfilController.php");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $op = isset($_POST['op']) ? $_POST['op'] : '';
+    if ($op === 'guardardatosperfil') {
+        // Crear una instancia del controlador de publicaciones
+        $controlador = new PerfilController();
+        // Procesar la publicación
+        $controlador->guardarDatosAlumno();
+    }
+}
+
+?>
+
 <div class="conteiner">
-    <form method="POST" class="form">
+    <form method="POST" action="" enctype="multipart/form-data" class="form">
         <div class="">
             <div class="cards">
                 <div class="card">
                     <div class="imagen-container">
-                        <img src="../../../../Public/img/profe1.jpeg" alt="">
-                        <input type="file" id="upload-foto" title="Subir foto" onchange="Main.perfil.changeFoto(event)">
-                        <div class="profile-container__header__wrapper-icon">
-                            <div class="profile-container__header__file-upload">
+                        <?php
+                        $perfilController = new PerfilController();
+                        $rut = $_SESSION['rut'];
+                        $imagenPerfil = $perfilController->obtenerImagenUsuario($rut);
+                        ?>
+                        <!-- Verifica si se encontró la imagen -->
+                        <?php if ($imagenPerfil): ?>
+                            <img src="<?php echo $imagenPerfil; ?>" alt="Imagen de perfil">
+                        <?php else: ?>
+                            <p>No se encontró una imagen para este usuario.</p>
+                        <?php endif; ?>
+                        <input type="file" id="imagen" name="imagen" title="Subir foto" onchange="">
+                        <div class="">
+                            <div class="">
                                 <span class="icon-camera"></span>
                             </div>
                         </div>
@@ -17,7 +42,6 @@
                         <h4>Profesor de Programación</h4>
                     </div>
                 </div>
-                
             </div>
         </div>
         <div class="formulario">
@@ -107,14 +131,17 @@
                     </div>
                     <!-- Botón para agregar nuevo formulario de educación -->
                     <div class="botones-container">
-                        <button type="button" class="btn-supervisor" onclick="agregarEducacion()">Agregar educación</button>
+                        <button type="button" class="btn-supervisor" onclick="agregarEducacion()">Agregar
+                            educación</button>
                     </div>
                 </div>
                 <br>
                 <div class="container">
-                    <h3>Adjuntar Curriculum:   </h3>
-                    <input type="file"  class="" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
+                    <h3>Adjuntar Curriculum: </h3>
+                    <input type="file" class="" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento"
+                        title="Subir Curriculum">
                 </div>
+                <input type="hidden" name="op" value="guardardatosperfil">
                 <button type="submit" class="btn-supervisor" name="crearRegistro">Guardar Cambios</button>
             </div>
         </div>

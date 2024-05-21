@@ -86,8 +86,7 @@
     <!-- Page level custom scripts -->
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
-    <script src="../../../../Public/js/alumnos.js"></script>
-    <script src="../../../../public/js/perfilalumno.js"></script>
+
     <script src="../../../../Public/js/cursos.js"></script>
     </script>
 

@@ -21,7 +21,7 @@ class usuarioModel
         while ($fila = mysqli_fetch_assoc($consulta)) {
             $usuarios[] = $fila;
         }
-        return $usuarios; 
+        return $usuarios;
     }
 
     public function verUsuariosRut($rut)
@@ -39,8 +39,35 @@ class usuarioModel
         }
         return $usuarios;
     }
-    
-    
+
+    public function subirImagenUsuario($imagen, $rut)
+    {
+        $query = "UPDATE usuarios SET imagen = ? WHERE rut = ?";
+        if ($stmt = mysqli_prepare($this->db->getConnection(), $query)) {
+            mysqli_stmt_bind_param($stmt, "ss", $imagen, $rut);
+            if (mysqli_stmt_execute($stmt)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
+    public function obtenerRutaImagen($rut) {
+        $query = "SELECT imagen FROM usuarios WHERE rut = ?";
+        if ($stmt = mysqli_prepare($this->db->getConnection(), $query)) {
+            mysqli_stmt_bind_param($stmt, "s", $rut);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $imagen);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+            return $imagen;
+        } else {
+            return false;
+        }
+    }
+
+}
 
 

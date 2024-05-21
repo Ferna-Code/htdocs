@@ -2,6 +2,11 @@
     display: flex; /* Establece un contenedor flexible */
 }
 
+.muropost{
+    justify-content: space-between;
+    display: flex;
+}
+
 .post-container {
     display: flex;
     align-items: center;
@@ -20,16 +25,23 @@
     border-radius: 5px;
 }
 .post-container button {
-    padding: 8px 15px;
-    background-color: #ED1C24;
-    color: white;
-    border: none;
+    border: 1px solid white;
+    padding: 8px 20px;
+    text-decoration: none;
     border-radius: 5px;
-    cursor: pointer;
-    outline: none;
+    background: orange;
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    color: white;
+    font-size: 15px;
 }
 .post-container button:hover {
-    background-color: #F8B619;
+    background: white;
+    color: orange;
+    border-color: orange;
+    text-decoration: none;
+    transition: .5s;
 }
 
 /* CONTENIDO DE LAS PUBLICACIONES */
@@ -43,7 +55,7 @@
 
 /* BARRA DEL LADO DERECHO */
 .sidebar1 {
-    width: 200px; /* Ancho del menú lateral */
+    width: 230px; /* Ancho del menú lateral */
     background-color: #fff; /* Color de fondo del menú */
     padding: 20px;
     display: flex;
