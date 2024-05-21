@@ -1,3 +1,13 @@
+<?php
+require("./App/Models/supervisorModel.php");
+$supervisor = new SupervisorModel();
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nuevaCategoria'])){
+    $result = $supervisor->addCategoria($_POST['nuevaCategoria']);
+    echo "<script>alert('$result')</script>";
+}
+?>
+
 <section style="margin: 10px;">
     <div class="">
         <form action="">
@@ -52,14 +62,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form id="addCategoria" method="POST" action="">
                     <label for="nuevaCategoria">Nueva categoria: </label>
                     <input type="text" name="nuevaCategoria" id="nuevaCategoria">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn-supervisor marginBtn">Agregar</button>
+                <button type="submit" form="addCategoria" class="btn-supervisor marginBtn">Agregar</button>
             </div>
         </div>
     </div>
