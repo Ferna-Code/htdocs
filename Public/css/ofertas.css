@@ -42,6 +42,18 @@
     
 }
 
+.btn-ofertas{
+    text-decoration: none;
+    background: orange;
+    color: white;
+    margin: 10px 5px 10px 5px;
+    padding: 10px 20px;
+    border:1px solid white;
+    border-radius: 5px;
+
+    
+}
+
 .btn-oferta:hover{
     background: white;
     color: orange;

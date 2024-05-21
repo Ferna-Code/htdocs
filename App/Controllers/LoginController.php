@@ -19,19 +19,19 @@ class LoginController
         require VIEWS_PATH . 'Login/index.php';
     }
 
-    // private function handlePostRequests() //creamos la tabla, validamos user o logout
-    // {
-    //     if (isset($_POST['op'])) {
-    //         switch ($_POST['op']) {
-    //             case 'VALIDAR':
-    //                 $this->ValidarSesion();
-    //                 break;
-    //             case 'CERRAR_SESION':
-    //                 $this->logout();
-    //                 break;
-    //         }
-    //     }
-    // }
+     private function handlePostRequests() //creamos la tabla, validamos user o logout
+     {
+         if (isset($_POST['op'])) {
+             switch ($_POST['op']) {
+                 case 'VALIDAR':
+                     $this->ValidarSesion();
+                     break;
+                 case 'CERRAR_SESION':
+                     $this->logout();
+                     break;
+             }
+         }
+     }
 
     private function logout()
     {
@@ -40,7 +40,8 @@ class LoginController
         unset($_SESSION['errorsesionfallida']);
         session_destroy();
         usleep(5000000); // 1 segundo = 1,000,000 microsegundos
-        header('Location: http://localhost:8080/logout.php');
+       // header('Location: http://localhost:8080/logout.php');
+       header('Location: http://localhost');
         exit();
     }
 

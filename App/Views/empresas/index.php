@@ -1,9 +1,4 @@
-<?php
-    if(isset($_POST['crearRegistro']) && $_POST['crearRegistro'] == 'crearRegistro'){
-        echo"<script>alert('Oferta registrada')</script>";
-    }
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +18,9 @@
         </div>
         <div class="formulario">
             <h1>Encuentra Talentos para tu empresa</h1><br>
-            <form method="POST" class="form">
+            <form method="POST" id="formOferta" class="form">
                 <div class="formulario-empresas">
-                <div class="columna">
+                    <div class="columna">
                         <label for="tipo-trabajo">Tipo de Oferta:</label>
                         <select id="tipo-trabajo" name="tipo-trabajo" required>
                             <option value="practica">Práctica</option>
@@ -66,17 +61,17 @@
                         <input type="number" id="rango-salarial" name="rango-salarial" required>
                     </div>
                 </div>
-                <input type="reset" class="btn-guardar btnGuardar" name="resetForm" value="Borrar formulario" >
-                <button type="submit" class="btn-guardar btnGeneral" name="crearRegistro">Enviar Oferta</button>
-          
-                
+                <input type="reset" class="btn-guardar btnGuardar" name="resetForm" value="Borrar formulario">
+                <input type="submit" class="btn-guardar btnGeneral">Aca</i>
+
+
             </form>
-           
+
         </div>
     </div>
-    <script>
-  
-</script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./../../../Public/js/empresa.js"></script>
+
 
 </body>
 

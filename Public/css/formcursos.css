@@ -35,6 +35,19 @@ h1{
     padding: 5%;
 }
 
+.formulario-cursos2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;;
+    background: orange;
+    background-image: linear-gradient(180deg, #f57c00 10%, #ffc107 100%);
+    border-radius: 20px;
+    padding: 3%;
+}
+
+
 .columna {
     width: calc(100% - 10px); /* con el % controlamos si un campo queda al lado o uno debajo del otro */ 
     margin-bottom: 20px; 
