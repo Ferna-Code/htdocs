@@ -11,8 +11,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nuevaCategoria'])){
 <section style="margin: 10px;">
     <div class="">
         <form action="">
-
-
             <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Nueva categoria
             </button>
@@ -74,3 +72,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nuevaCategoria'])){
         </div>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#agregarCategoria").click(function(){
+        var nuevaCategoria = $("#nuevaCategoria").val();
+        $.ajax({
+            url: 'tablaCategoria.php', // The current page
+            type: 'post',
+            data: $('#addCategoriaForm').serialize(), // Serialize the form data
+            success: function(response){
+                alert(response); // Show the response from the PHP script
+                $('#exampleModal').modal('hide'); // Hide the modal
+                // You can add further actions here, such as updating the table content without page reload
+            }
+        });
+    });
+});
+</script>
