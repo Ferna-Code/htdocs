@@ -13,10 +13,10 @@ class EmpresaController{
     }
 
     public function insertData(){
-       echo"<script>alert('controlador')</script>";
+       
         $json = file_get_contents('php://input');//escucha el input dentro del PHP
         $data = json_decode($json, true);
-       echo 'controlador';
+   
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
             return;

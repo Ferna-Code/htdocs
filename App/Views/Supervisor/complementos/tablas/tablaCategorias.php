@@ -1,13 +1,3 @@
-<?php
-require("./App/Models/supervisorModel.php");
-$supervisor = new SupervisorModel();
-
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nuevaCategoria'])){
-    $result = $supervisor->addCategoria($_POST['nuevaCategoria']);
-    echo "<script>alert('$result')</script>";
-}
-?>
-
 <section style="margin: 10px;">
     <div class="">
         <form action="">
@@ -63,32 +53,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nuevaCategoria'])){
                 <form id="addCategoria" method="POST" action="">
                     <label for="nuevaCategoria">Nueva categoria: </label>
                     <input type="text" name="nuevaCategoria" id="nuevaCategoria">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar"></i>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" form="addCategoria" class="btn-supervisor marginBtn">Agregar</button>
-            </div>
+
         </div>
     </div>
 </div>
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("#agregarCategoria").click(function(){
-        var nuevaCategoria = $("#nuevaCategoria").val();
-        $.ajax({
-            url: 'tablaCategoria.php', // The current page
-            type: 'post',
-            data: $('#addCategoriaForm').serialize(), // Serialize the form data
-            success: function(response){
-                alert(response); // Show the response from the PHP script
-                $('#exampleModal').modal('hide'); // Hide the modal
-                // You can add further actions here, such as updating the table content without page reload
-            }
-        });
-    });
-});
-</script>
+<!-- <script src="../../../../Public/js/supervisor.js"></script> -->
