@@ -287,3 +287,50 @@ $("#addCategoria").on("submit", function (event) {
     console.error("Error en la solicitud Fetch: ", error);
   });
 });// FIN CUERPO
+
+//INGRESAR CURSO
+$("#crearCurso").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    categoria: $("#categoria-curso").val(),
+    nombre: $("#Nombre").val(),
+    descripcionCurso: $("#descripcion-curso").val(),
+    fechaInicio: $("#fecha-inicio").val(),
+    link: $("#link-inscripcion").val(),
+    activo: $("#activo").val(),
+    
+  };
+
+  fetch("/supervisor/insertCurso", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text(); // Temporalmente usa text() para verificar la respuesta
+  })
+  .then((data) => {
+    if (!data.success) {
+        alert("!Datos agregados¡");
+        //resto del cuerpo para manejar respuesta exitosa
+        
+        $(
+            "#categoria-curso, #Nombre, #descripcion-curso, #fecha-inicio, #link-inscripcion, #activo"
+        ).val("");
+        
+
+    } else {
+        alert("Error" + data.message);
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ", error);
+  });
+});// FIN CUERPO

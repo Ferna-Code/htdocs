@@ -31,5 +31,33 @@ class SupervisorDaoImpl implements SupervidorDao{
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+
+    public function insertCurso(SupervisorModel $admin) {
+        $validateQuery = "INSERT INTO cursos (nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
+
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
+        }
+
+        $nombre = $admin->getNombreCurso();
+        $descripcion = $admin->getDescripcionCurso();
+        $emitido = "Supervisor";
+        $link = $admin->getLink();
+        $categoria = $admin->getCategoriaCurso();
+        $fecha = $admin->getFechaInicio();
+        $activo = $admin->getactivo();
+
+        mysqli_stmt_bind_param($stmt, "sssssss", $nombre, $descripcion, $emitido, $link, $categoria, $fecha, $activo);
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            return array("success" => true, "message" => "Datos agregados correctamente");
+        } else {
+            return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
+        }
+    }
 }
 

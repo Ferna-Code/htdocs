@@ -36,4 +36,40 @@ class SupervisorController{
         }
 
     }
+    public function insertCurso(){
+       
+        $json = file_get_contents('php://input');//escucha el input dentro del PHP
+        $data = json_decode($json, true);
+        echo "<script>alert('controlador')</script>";
+        echo "<script>console.log('controlador')</script>";
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+        $categoria = $data['categoria'];
+        $nombre = $data['nombre'];
+        $descripcion = $data['descripcionCurso'];
+        $fechaInicio = $data['fechaInicio'];
+        $link = $data['link'];
+        $activo = $data['activo'];
+        
+        $admin = new SupervisorDaoImpl();
+        $supervisorModel = new SupervisorModel();
+        $supervisorModel->setCategoriaCurso($categoria);
+        $supervisorModel->setNombreCurso($nombre);
+        $supervisorModel->setDescripcionCurso($descripcion);
+        $supervisorModel->setFechaInicio($fechaInicio);
+        $supervisorModel->setLink($link);
+        $supervisorModel->setactivo($activo);
+
+        $result = $admin->insertCurso($supervisorModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+            
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+
+    }
 }
