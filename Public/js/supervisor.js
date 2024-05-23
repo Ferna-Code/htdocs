@@ -270,7 +270,7 @@ $("#addCategoria").on("submit", function (event) {
   })
   .then((data) => {
     if (!data.success) {
-        alert("!Datos agregados¡");
+        alert("Categoria agregada");
         //resto del cuerpo para manejar respuesta exitosa
         
         $(
@@ -318,11 +318,148 @@ $("#crearCurso").on("submit", function (event) {
   })
   .then((data) => {
     if (!data.success) {
-        alert("!Datos agregados¡");
+        alert("Curso agregado");
         //resto del cuerpo para manejar respuesta exitosa
         
         $(
             "#categoria-curso, #Nombre, #descripcion-curso, #fecha-inicio, #link-inscripcion, #activo"
+        ).val("");
+        
+
+    } else {
+        alert("Error" + data.message);
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ", error);
+  });
+});// FIN CUERPO
+
+//INGRESAR PERFIL
+$("#FormPerfil").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    nuevoPerfil: $("#nuevoPerfil").val(),
+  };
+
+  fetch("/supervisor/insertPerfil", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text(); // Temporalmente usa text() para verificar la respuesta
+  })
+  .then((data) => {
+    if (!data.success) {
+        alert("Perfil agregado");
+        //resto del cuerpo para manejar respuesta exitosa
+        
+        $(
+            "#nuevoPerfil"
+        ).val("");
+         // Cerrar el modal
+         $("#exampleModal1").modal("hide");
+
+    } else {
+        alert("Error" + data.message);
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ", error);
+  });
+});// FIN CUERPO
+
+//INGRESAR PERFIL
+$("#formPalabra").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    palabra: $("#nuevaPalabra").val(),
+  };
+
+  fetch("/supervisor/insertPalabra", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text(); // Temporalmente usa text() para verificar la respuesta
+  })
+  .then((data) => {
+    if (!data.success) {
+        alert("Nueva palabra agregada");
+        //resto del cuerpo para manejar respuesta exitosa
+        
+        $(
+            "#nuevaPalabra"
+        ).val("");
+         // Cerrar el modal
+         $("#exampleModal2").modal("hide");
+
+    } else {
+        alert("Error" + data.message);
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ", error);
+  });
+});// FIN CUERPO
+
+//INGRESAR USUARIO
+$("#formUsuario").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    nombre: $("#nombre").val(),
+    rut: $("#rut").val(),
+    nacimiento: $("#fechaNacimiento").val(),
+    direccion: $("#direccion").val(),
+    telefono: $("#telefono").val(),
+    perfil: $("#perfil").val(),
+    correo: $("#correo").val(),
+    carrera: $("#carrera").val(),
+    avance: $("#avance").val(),
+    cargo: $("#cargo").val(),
+    estado: $("#estado").val(),
+
+    
+  };
+
+  fetch("/supervisor/insertUsuario", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text(); // Temporalmente usa text() para verificar la respuesta
+  })
+  .then((data) => {
+    if (!data.success) {
+        alert("Usuario agregado");
+        //resto del cuerpo para manejar respuesta exitosa
+        
+        $(
+            "#nombre, #rut, #fechaNacimiento, #direccion, #telefono, #perfil, #correo, #carrera, #avance, #cargo, #estado"
         ).val("");
         
 

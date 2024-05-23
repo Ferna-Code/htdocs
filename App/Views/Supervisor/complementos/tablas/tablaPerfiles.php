@@ -1,42 +1,42 @@
 <section style="margin: 10px;">
     <div class="">
-        <form action="#">
-            <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                Nuevo perfil
-            </button>
-            <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
-            <table id="tableUsers" class="tabla table">
-                <thead>
-                    <tr>
-                        <th class="widthCheck"><input type="checkbox" id="checkAllPerfil" name="select-all"></th><!--CHECKBOX PRINCIPAL-->
-                        <th class="widthName">Descripción</th>
-                        <th>Fecha creación</th>
-                        <th>Fecha eliminación</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="">
-                        <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
-                        <td><a href="#" class="linkTabla" onclick="">Administrador</a></td>
-                        <td>01-04-2024</td>
-                        <td></td>
-                    </tr>
-                    <tr class="">
-                        <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
-                        <td><a href="#" class="linkTabla" onclick="">Supervisor</a></td>
-                        <td>01-04-2024</td>
-                        <td></td>
-                    </tr>
-                    <tr class="">
-                        <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
-                        <td><a href="#" class="linkTabla" onclick="">Usuario</a></td>
-                        <td>01-04-2024</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+        <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+            Nuevo perfil
+        </button>
+        <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+        <table id="tableUsers" class="tabla table">
+            <thead>
+                <tr>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllPerfil" name="select-all"></th><!--CHECKBOX PRINCIPAL-->
+                    <th class="widthName">Descripción</th>
+                    <th>Fecha creación</th>
+                    <th>Fecha eliminación</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="">
+                    <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
+                    <td><a href="#" class="linkTabla" onclick="">Administrador</a></td>
+                    <td>01-04-2024</td>
+                    <td></td>
+                </tr>
+                <tr class="">
+                    <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
+                    <td><a href="#" class="linkTabla" onclick="">Supervisor</a></td>
+                    <td>01-04-2024</td>
+                    <td></td>
+                </tr>
+                <tr class="">
+                    <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
+                    <td><a href="#" class="linkTabla" onclick="">Usuario</a></td>
+                    <td>01-04-2024</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 </section>
 
@@ -49,15 +49,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="">
-                    <label for="nuevaCategoria">Nuevo perfil: </label>
-                    <input type="text" name="nuevaCategoria" id="nuevaCategoria">
+                <form method="POST" id="FormPerfil" action="">
+                    <label for="nuevoPerfil">Nuevo perfil: </label>
+                    <input type="text" name="nuevoPerfil" id="nuevoPerfil">
+                    <div class="modal-footer">
+                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar">
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn-supervisor marginBtn">Agregar</button>
-            </div>
+
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

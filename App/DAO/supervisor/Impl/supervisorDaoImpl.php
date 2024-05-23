@@ -59,5 +59,87 @@ class SupervisorDaoImpl implements SupervidorDao{
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+
+    public function insertPerfil(SupervisorModel $admin) {
+        $validateQuery = "INSERT INTO perfiles (nombre, fechaCreacion, activo) VALUES (?, NOW(), 1)";
+
+        $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
+
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
+        }
+
+        $Perfil = $admin->getPerfil();
+
+        mysqli_stmt_bind_param($stmt, "s", $Perfil);
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            return array("success" => true, "message" => "Datos agregados correctamente");
+        } else {
+            return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
+        }
+    }
+
+    public function insertPalabra(SupervisorModel $admin) {
+        $validateQuery = "INSERT INTO diccionario (palabra, active, fechaCreacion) VALUES (?, 1, NOW())";
+
+        $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
+
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
+        }
+
+        $palabra = $admin->getPalabra();
+
+        mysqli_stmt_bind_param($stmt, "s", $palabra);
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            return array("success" => true, "message" => "Datos agregados correctamente");
+        } else {
+            return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
+        }
+    }
+
+    public function claveAleatoria($length = 10)
+    {
+        return substr(str_shuffle(str_repeat($x = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', ceil($length / strlen($x)))), 1, $length);
+    }
+
+    public function insertUsuario(SupervisorModel $admin) {
+        //CREAR VERIFICACION SI EXISTE USUARIO O NO ANTES DE AGREGAR EL DATO
+        $validateQuery = "INSERT INTO usuarios (rut, nombre, fechaNacimiento, idperfil, correo, idcarrera, avance, cargo, clave, fechaCreacion, activo, telefono, direccion) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
+
+        $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
+
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
+        }
+        //get
+        $rut = $admin->getRut();
+        $nombre = $admin->getNombreUsuario();
+        $nacimiento = $admin->getNacimiento();
+        $correo = $admin->getCorreo();
+        $carrera = $admin->getCarrera();
+        $avance = $admin->getAvance();
+        $cargo = $admin->getCargoUsuario();
+        $estado = $admin->getEstado();
+        $direccion = $admin->getDireccion();
+        $telefono = $admin->getTelefono();
+        $perfil = $admin->getPerfilUsuario();
+        $clave = $this->claveAleatoria();
+
+        mysqli_stmt_bind_param($stmt, "ssssssssssss", $rut, $nombre, $nacimiento, $perfil, $correo, $carrera, $avance, $cargo, $clave, $estado, $telefono, $direccion);
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            return array("success" => true, "message" => "Datos agregados correctamente");
+        } else {
+            return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
+        }
+    }
+
 }
 

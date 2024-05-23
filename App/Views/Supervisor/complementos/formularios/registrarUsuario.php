@@ -23,19 +23,19 @@ if (isset($_POST['send'])) {
     }
 }
 
-if (isset($_POST["crearRegistro"])) {
-    $nombre = $_POST['nombre'];
-    $rut = $_POST['rut'];
-    $fecha = $_POST['fechaNacimiento'];
-    $perfil = $_POST['perfil'];
-    $correo = $_POST['correo'];
-    $carrera = $_POST['carrera'];
-    $semestre = $_POST['avance'];
-    $cargo = $_POST['cargo'];
-    if ($nombre != NULL || $rut != NULL || $fecha != NULL || $perfil != NULL || $correo != NULL || $carrera != NULL || $semestre != NULL || $cargo != NULL) {
-        $importador->insertarDatos($rut, $nombre, $fecha, $perfil, $correo, $carrera, $semestre, $cargo);
-    }
-}
+// if (isset($_POST["crearRegistro"])) {
+//     $nombre = $_POST['nombre'];
+//     $rut = $_POST['rut'];
+//     $fecha = $_POST['fechaNacimiento'];
+//     $perfil = $_POST['perfil'];
+//     $correo = $_POST['correo'];
+//     $carrera = $_POST['carrera'];
+//     $semestre = $_POST['avance'];
+//     $cargo = $_POST['cargo'];
+//     if ($nombre != NULL || $rut != NULL || $fecha != NULL || $perfil != NULL || $correo != NULL || $carrera != NULL || $semestre != NULL || $cargo != NULL) {
+//         $importador->insertarDatos($rut, $nombre, $fecha, $perfil, $correo, $carrera, $semestre, $cargo);
+//     }
+// }
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +72,7 @@ if (isset($_POST["crearRegistro"])) {
             </form>
 
 
-            <form method="POST" name="insertarDatos" class="form">
+            <form method="POST" id="formUsuario" class="form">
                 <div class="formulario-cursos">
 
                     <div class="columna contenedor-seccion">
@@ -83,7 +83,13 @@ if (isset($_POST["crearRegistro"])) {
                         <input type="text" id="rut" name="rut" required>
 
                         <label for="fechaNacimiento">Fecha de nacimiento:</label>
-                        <input type="date" class="form-control" name="fechaNacimiento" required>
+                        <input type="date" class="form-control" id="fechaNacimiento" required>
+
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" class="form-control" id="direccion" required>
+
+                        <label for="telefono">Telefono:</label>
+                        <input type="text" class="form-control" id="telefono" required>
 
                         <label for="perfil">Perfil:</label>
                         <select name="perfil" id="perfil" required>
@@ -111,20 +117,22 @@ if (isset($_POST["crearRegistro"])) {
                         </select>
 
                         <label for="cargo">Cargo:</label>
-                        <input type="text" class="form-control" name="cargo" required>
-                        <label for="avance">Estado:</label>
-                        <select name="avance" id="avance" required>
+                        <input type="text" class="form-control" id="cargo" required>
+                        
+                        <label for="estado">Estado:</label>
+                        <select name="estado" id="estado" required>
                             <option value="1">1</option>
                             <option value="0">0</option>
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn-ofertas" name="crearRegistro">Agregar usuario</button>
+                <input type="submit" class="btn-ofertas" id="crearRegistro" value="Agregar usuario"></i>
                 <a href="/Supervisor" class="btn-ofertas">Volver</a>
             </form>
         </div>
     </div>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./../../../Public/js/supervisor.js"></script>
 </body>
 
 <div class="footer">
