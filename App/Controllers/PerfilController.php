@@ -1,59 +1,76 @@
 <?php
 
-session_start(); // Asegúrate de que la sesión esté iniciada
-$rut = $_SESSION['rut'];
-class PerfilController{
-    private $db;
-    private $usuarioModel;
+require_once __DIR__ . '/../DAO/usuario/Impl/usuarioDaoImpl.php';
+require_once __DIR__ . '/../Models/usuario_model.php';
+session_start();
 
-    public function __construct() {
-        $this->db = new Database();
-        $this->usuarioModel = new usuarioModel($this->db);
+class PerfilController
+{
+
+    public function index() {
+        include_once '/alumnos/complementos/perfilusuario.php';
     }
     
-    public function index(){
-        include VIEWS_PATH . 'Perfil/index.php';
-    }
-
     public function guardarDatosAlumno()
     {
-        $targetDir = "uploads/";
-        $rut = $_SESSION['rut'];
-        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
-            $imageName = basename($_FILES["imagen"]["name"]);
-            $targetFilePath = $targetDir . $imageName;
-            $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+        $rutsesion = $_SESSION['rut'];
 
-            // Validar el tipo de archivo
-            $allowedTypes = array("jpg", "jpeg", "png", "gif");
-            if (in_array($imageFileType, $allowedTypes)) {
-                // Mover el archivo subido al directorio objetivo
-                if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $targetFilePath)) {
-                    echo "La imagen " . htmlspecialchars($imageName) . " ha sido subida exitosamente.";
+        // Obtener los datos del POST
+        $imagen = isset($_FILES['imagen']) ? $_FILES['imagen'] : null;
+        $rut = $rutsesion;
+        $email = isset($_POST['email']) ? $_POST['email'] : "";
+        var_dump($email);
+        $fechanac = isset($_POST['fechanac']) ? $_POST['fechanac'] : "";
+        var_dump($fechanac);
+        $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : "";
+        var_dump($telefono);
+        $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : "";
+        var_dump($direccion);
+        $password = isset($_POST['clave']) ? $_POST['clave'] : "";
+        var_dump($password);
 
-                    // Llamar al modelo para actualizar la ruta de la imagen en la base de datos
-                    if ($this->usuarioModel->subirImagenUsuario($targetFilePath, $rut)) {
-                        echo "La ruta de la imagen ha sido actualizada en la base de datos.";
-                    } else {
-                        echo "Hubo un error al actualizar la ruta de la imagen en la base de datos.";
-                    }
-                } else {
-                    echo "Hubo un error al subir el archivo.";
-                }
-            } else {
-                echo "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
-            }
+        // Procesar la imagen
+        $imagenPath = '/uploads/';
+        define('UPLOADS_DIR', 'C:/Xampp1/htdocs/uploads/');
+        if ($imagen) {
+            $imagenPath .= basename($imagen['name']);
+            move_uploaded_file($imagen['tmp_name'], UPLOADS_DIR . basename($imagen['name']));
+        }
+
+        // Guardar en la base de datos
+        $admin = new usuarioDaoImpl();
+        $usuarioModel = new usuario_model();
+
+        $usuarioModel->setimagen($imagenPath);
+        $usuarioModel->setrut($rut);
+        $usuarioModel->setcorreo($email);
+        $usuarioModel->setfechaNacimiento($fechanac);
+        $usuarioModel->settelefono($telefono);
+        $usuarioModel->setclave($password);
+
+        $result = $admin->subirImagenUsuario($usuarioModel);
+        $datosActualizados = $admin->actualizarDatosUsuario($usuarioModel);
+
+        if ($result || $datosActualizados) {
+            echo json_encode(['success' => true, 'message' => $result]);
         } else {
-            echo "No se subió ningún archivo o hubo un error en la subida.";
+            echo json_encode(['success' => false, 'message' => 'Error al guardar datos']);
         }
     }
 
-    public function verUsuario($rut){
-      $datosUsuario = $this->usuarioModel->verUsuariosRut($rut);
+    public function getData()
+    {
+        //$rutsesion = $_SESSION['rut'];
+        $rutsesion = '26013039-0';
+        $admin = new usuarioDaoImpl();
+        $data = $admin->getUsuario($rutsesion);
+    
+        if ($data) {
+            echo json_encode(['success' => true, 'data' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
     }
+    
 
-    public function obtenerImagenUsuario($rut) {
-        return $this->usuarioModel->obtenerRutaImagen($rut);
-    }
 }
-
