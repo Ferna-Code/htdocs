@@ -3,15 +3,18 @@ require_once __DIR__ . '/../supervidorDao.php';
 require_once __DIR__ . '/../../../Models/supervisorModel.php';
 require_once __DIR__ . '/../../../Models/conexion.php';
 
-class SupervisorDaoImpl implements SupervidorDao{
+class SupervisorDaoImpl implements SupervidorDao
+{
 
     private $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new conexion();
     }
 
-    public function insertData(SupervisorModel $admin) {
+    public function insertData(SupervisorModel $admin)
+    {
         $validateQuery = "INSERT INTO categorias (nombre, fechaCreacion, activo) VALUES (?, NOW(), 1)";
 
         $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
@@ -32,7 +35,8 @@ class SupervisorDaoImpl implements SupervidorDao{
         }
     }
 
-    public function insertCurso(SupervisorModel $admin) {
+    public function insertCurso(SupervisorModel $admin)
+    {
         $validateQuery = "INSERT INTO cursos (nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo) 
         VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -54,13 +58,16 @@ class SupervisorDaoImpl implements SupervidorDao{
         $result = mysqli_stmt_execute($stmt);
 
         if ($result) {
+
+
             return array("success" => true, "message" => "Datos agregados correctamente");
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
 
-    public function insertPerfil(SupervisorModel $admin) {
+    public function insertPerfil(SupervisorModel $admin)
+    {
         $validateQuery = "INSERT INTO perfiles (nombre, fechaCreacion, activo) VALUES (?, NOW(), 1)";
 
         $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
@@ -83,31 +90,46 @@ class SupervisorDaoImpl implements SupervidorDao{
 
     public function insertPalabra(SupervisorModel $admin) {
         $validateQuery = "INSERT INTO diccionario (palabra, active, fechaCreacion) VALUES (?, 1, NOW())";
-
         $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
-
+    
         if (!$stmt) {
             throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
         }
-
+    
         $palabra = $admin->getPalabra();
-
         mysqli_stmt_bind_param($stmt, "s", $palabra);
         $result = mysqli_stmt_execute($stmt);
-
+    
         if ($result) {
-            return array("success" => true, "message" => "Datos agregados correctamente");
+            // Consulta para obtener las palabras actualizadas
+            $consultaPalabra = "SELECT palabra, fechaCreacion, fechaEliminacion FROM diccionario";
+            $resultado = mysqli_query($this->db->conec(), $consultaPalabra);
+    
+            if (!$resultado) {
+                var_dump(mysqli_error($this->db->conec()));
+                return array("success" => false, "message" => "Error al obtener los datos: " . mysqli_stmt_error($stmt));
+            }
+    
+            $palabras = array();
+            while($row = mysqli_fetch_assoc($resultado)) {
+                $palabras[] = $row;
+            }
+    
+            return array("success" => true, "message" => "Actualización exitosa", "palabras" => $palabras);
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+    
+
 
     public function claveAleatoria($length = 10)
     {
         return substr(str_shuffle(str_repeat($x = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', ceil($length / strlen($x)))), 1, $length);
     }
 
-    public function insertUsuario(SupervisorModel $admin) {
+    public function insertUsuario(SupervisorModel $admin)
+    {
         //CREAR VERIFICACION SI EXISTE USUARIO O NO ANTES DE AGREGAR EL DATO
         $validateQuery = "INSERT INTO usuarios (rut, nombre, fechaNacimiento, idperfil, correo, idcarrera, avance, cargo, clave, fechaCreacion, activo, telefono, direccion) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
@@ -140,6 +162,4 @@ class SupervisorDaoImpl implements SupervidorDao{
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
-
 }
-

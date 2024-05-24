@@ -262,33 +262,33 @@ $("#addCategoria").on("submit", function (event) {
     body: JSON.stringify(formData),
     // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
   })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text(); // Temporalmente usa text() para verificar la respuesta
-  })
-  .then((data) => {
-    if (!data.success) {
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
         alert("Categoria agregada");
         //resto del cuerpo para manejar respuesta exitosa
-        
-        $(
-            "#nuevaCategoria"
-        ).val("");
-         // Cerrar el modal
-         $("#exampleModal").modal("hide");
 
-    } else {
+        $(
+          "#nuevaCategoria"
+        ).val("");
+        // Cerrar el modal
+        $("#exampleModal").modal("hide");
+
+      } else {
         alert("Error" + data.message);
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ", error);
-  });
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
 });// FIN CUERPO
 
-//INGRESAR CURSO
+//FUNCIONES CURSO
 $("#crearCurso").on("submit", function (event) {
   event.preventDefault();
 
@@ -299,7 +299,7 @@ $("#crearCurso").on("submit", function (event) {
     fechaInicio: $("#fecha-inicio").val(),
     link: $("#link-inscripcion").val(),
     activo: $("#activo").val(),
-    
+
   };
 
   fetch("/supervisor/insertCurso", { // Asegúrate de que esta ruta sea correcta
@@ -310,30 +310,31 @@ $("#crearCurso").on("submit", function (event) {
     body: JSON.stringify(formData),
     // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
   })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text(); // Temporalmente usa text() para verificar la respuesta
-  })
-  .then((data) => {
-    if (!data.success) {
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
         alert("Curso agregado");
         //resto del cuerpo para manejar respuesta exitosa
-        
-        $(
-            "#categoria-curso, #Nombre, #descripcion-curso, #fecha-inicio, #link-inscripcion, #activo"
-        ).val("");
-        
 
-    } else {
+        $(
+          "#categoria-curso, #Nombre, #descripcion-curso, #fecha-inicio, #link-inscripcion, #activo"
+        ).val("");
+
+      } else {
         alert("Error" + data.message);
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ", error);
-  });
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
 });// FIN CUERPO
+
+
 
 //INGRESAR PERFIL
 $("#FormPerfil").on("submit", function (event) {
@@ -351,33 +352,33 @@ $("#FormPerfil").on("submit", function (event) {
     body: JSON.stringify(formData),
     // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
   })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text(); // Temporalmente usa text() para verificar la respuesta
-  })
-  .then((data) => {
-    if (!data.success) {
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
         alert("Perfil agregado");
         //resto del cuerpo para manejar respuesta exitosa
-        
-        $(
-            "#nuevoPerfil"
-        ).val("");
-         // Cerrar el modal
-         $("#exampleModal1").modal("hide");
 
-    } else {
+        $(
+          "#nuevoPerfil"
+        ).val("");
+        // Cerrar el modal
+        $("#exampleModal1").modal("hide");
+
+      } else {
         alert("Error" + data.message);
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ", error);
-  });
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
 });// FIN CUERPO
 
-//INGRESAR PERFIL
+//INGRESAR PALABRA
 $("#formPalabra").on("submit", function (event) {
   event.preventDefault();
 
@@ -393,31 +394,61 @@ $("#formPalabra").on("submit", function (event) {
     body: JSON.stringify(formData),
     // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
   })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text(); // Temporalmente usa text() para verificar la respuesta
-  })
-  .then((data) => {
-    if (!data.success) {
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
         alert("Nueva palabra agregada");
         //resto del cuerpo para manejar respuesta exitosa
-        
+        console.log(data.body);
         $(
-            "#nuevaPalabra"
+          "#nuevaPalabra"
         ).val("");
-         // Cerrar el modal
-         $("#exampleModal2").modal("hide");
+        // Cerrar el modal
+        $("#exampleModal2").modal("hide");
+        console.log(data);
+        actualizarPalabra(data.palabras);
 
-    } else {
+      } else {
         alert("Error" + data.message);
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ", error);
-  });
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
 });// FIN CUERPO
+
+function actualizarPalabra(data) {
+  const tbody = $("#tbodyPalabra");
+  tbody.empty(); // Limpiar la tabla actual
+
+  $.each(data, function (i, row) {
+    const tr = $("<tr>");
+    tr.html(`
+      <td><input type="checkbox" id="tableUsersCurso" class="checkbox-item" name="checkId"></td>
+      <td>${row.palabra}</td>
+      <td>${row.fechaCreacion}</td>
+      <td>${row.fechaEliminacion || ''}</td>
+    `);
+    tbody.append(tr);
+  })
+
+  // palabras.forEach(palabra => {
+  //   var row = `
+  //     <tr>
+  //       <td><input type="checkbox" id="tableUsersCurso" class="checkbox-item" name="checkId"></td>
+  //       <td>${palabra.palabra}</td>
+  //       <td>${palabra.fechaCreacion}</td>
+  //       <td>${palabra.fechaEliminacion || ''}</td>
+  //     </tr>
+  //   `;
+  //   tbody.append(row);
+  // });
+}
 
 //INGRESAR USUARIO
 $("#formUsuario").on("submit", function (event) {
@@ -436,7 +467,7 @@ $("#formUsuario").on("submit", function (event) {
     cargo: $("#cargo").val(),
     estado: $("#estado").val(),
 
-    
+
   };
 
   fetch("/supervisor/insertUsuario", { // Asegúrate de que esta ruta sea correcta
@@ -447,27 +478,27 @@ $("#formUsuario").on("submit", function (event) {
     body: JSON.stringify(formData),
     // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
   })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text(); // Temporalmente usa text() para verificar la respuesta
-  })
-  .then((data) => {
-    if (!data.success) {
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
         alert("Usuario agregado");
         //resto del cuerpo para manejar respuesta exitosa
-        
-        $(
-            "#nombre, #rut, #fechaNacimiento, #direccion, #telefono, #perfil, #correo, #carrera, #avance, #cargo, #estado"
-        ).val("");
-        
 
-    } else {
+        $(
+          "#nombre, #rut, #fechaNacimiento, #direccion, #telefono, #perfil, #correo, #carrera, #avance, #cargo, #estado"
+        ).val("");
+
+
+      } else {
         alert("Error" + data.message);
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ", error);
-  });
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
 });// FIN CUERPO

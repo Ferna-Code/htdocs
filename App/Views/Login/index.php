@@ -234,8 +234,7 @@
     <script src="./Public/js/bootstrap.bundle.min.js"></script>
     <script src="./Public/js/jquery-3.0.0.min.js"></script>
     <script src="../../../../public/js/login.js"></script>
-    <script src="../../../../public/js/sweetalert2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- sidebar -->
     <script src="./Public/js/jquery.mCustomScrollbar.concat.min.js"></script>
