@@ -1,9 +1,12 @@
 <?php
 require_once ("App/Controllers/publicacionesController.php");
 require_once ("App/Controllers/usuariosController.php");
+require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
+
 
 $comentario = '';
 $sw = "";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['comentario'])) {
@@ -51,7 +54,16 @@ $publicaciones = $controlador->mostrarPublicaciones();
                 ?>
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
-                    <img class="img" src="../../../../Public/img/profe1.jpeg" alt="">
+                    <img class="img" src="<?php
+                    $admin = new usuarioDaoImpl();
+                    $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
+                        if($imagenUsuario != ""){
+                          echo $imagenUsuario;  
+                        } else{
+                            echo "/uploads/usuarioSinFoto.jpg";
+                        }
+                         ?>"
+                     alt="">
                     <div class="tweet-content">
 
                         <div class="tweet-text">

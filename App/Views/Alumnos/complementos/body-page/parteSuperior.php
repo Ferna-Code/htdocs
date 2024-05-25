@@ -3,7 +3,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
 
-        <div class="sidebar-brand-text mx-3"> Luis Yañez <sup></sup></div>
+        <div class="sidebar-brand-text mx-3" id="nombre" >  <sup></sup></div>
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
