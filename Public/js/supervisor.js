@@ -407,6 +407,7 @@ $("#formPalabra").on("submit", function (event) {
         $("#exampleModal2").modal("hide");
         // Actualizar la tabla con los datos más recientes
         console.log(data);
+        console.log(data.palabras)
         actualizarPalabra(data.palabras);
       } else {
         alert("Error: " + data.message);
@@ -420,7 +421,8 @@ $("#formPalabra").on("submit", function (event) {
 function actualizarPalabra(data) {
   const tbody = $("#tbodyPalabra");
   tbody.empty(); // Limpiar la tabla actual
-
+  console.log(data);
+  console.log(data.palabras)
   data.forEach(palabra => {
     const tr = $("<tr>");
     tr.html(`
