@@ -65,8 +65,8 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo10" style="display:none">
             <?php include 'complementos/muropersonal.php' ?>
         </div>
-    </div>
 
+    </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
 

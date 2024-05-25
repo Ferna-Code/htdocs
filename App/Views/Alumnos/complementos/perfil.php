@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar Cambios</button>
             <!-- GUARDAR DATOS ALUMNO -->
             </div>
-        </div>
+        
     </form>
 
 </div>

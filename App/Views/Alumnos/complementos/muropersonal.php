@@ -50,7 +50,7 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-            <?php
+                <?php
             }
         } else {
             echo "No se encontraron publicaciones.";
@@ -61,23 +61,23 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
     <?php include_once 'body-page/parteDerecha.php'; ?>
 
 
-<div class="sidebar1">
-    <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
-    <hr>
-    <div class="card">
-        <h5>RedLeones</h5>
-        <p>!Felicidades por estar Aquí¡</p>
+    <div class="sidebar1">
+        <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
+        <hr>
+        <div class="card">
+            <h5>RedLeones</h5>
+            <p>!Felicidades por estar Aquí¡</p>
+        </div>
+        <div class="card">
+            <h5>Nuevo Curso</h5>
+            <p>INTERNET DE LAS COSAS</p>
+        </div>
+        <div class="card">
+            <h5>Nueva Oferta</h5>
+            <p>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
+                CONTROL</p>
+        </div>
     </div>
-    <div class="card">
-        <h5>Nuevo Curso</h5>
-        <p>INTERNET DE LAS COSAS</p>
-    </div>
-    <div class="card">
-        <h5>Nueva Oferta</h5>
-        <p>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
-                                    CONTROL</p>
-    </div>
-</div>
 
 </div>
 
@@ -95,6 +95,6 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
     <?php endif; ?>
 
     setTimeout(() => {
-        window.history.replaceState(null,null,window.location.pathname);
+        window.history.replaceState(null, null, window.location.pathname);
     }, 0)
 </script>

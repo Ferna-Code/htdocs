@@ -86,10 +86,7 @@
                 </div>
             </div>
             <!-- ./Team member -->
-
-
         </div>
-    </div>
 </section>
 <!-- Team -->
 
