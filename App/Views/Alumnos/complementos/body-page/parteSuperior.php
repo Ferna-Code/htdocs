@@ -81,5 +81,5 @@
 <!-- End of Sidebar -->
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
-    <script src="../../../../Public/js/alumnos.js"></script>
-    <script src="../../../../public/js/perfilalumno.js"></script>
+    <!-- Main Content -->
+    <div id="content">

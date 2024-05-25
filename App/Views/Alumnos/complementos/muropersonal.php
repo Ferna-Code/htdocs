@@ -12,13 +12,20 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
 
 <div class="container mt-2">
     <div class="main-content">
-<br><br><br>
+        <form method="POST" class="form" style="padding: 30px 30px 0 30px;">
+            <div class="post-container">
+                <textarea name="comentario" placeholder="¿Qué estás pensando?" Required></textarea>
+                <input type="hidden" name="sw" value="publicar">
+                <button name="Publicar" value="Publicar">Publicar</button>
+            </div>
+        </form>
+
+        <hr>
 
         <?php
         if (is_array($publicaciones)) {
             foreach ($publicaciones as $p) {
                 ?>
-
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
                     <img class="img" src="../../../../Public/img/profe1.jpeg" alt="">
@@ -73,7 +80,6 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
 </div>
 
 </div>
-
 
 <script src="../../../../public/js/sweetalert2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

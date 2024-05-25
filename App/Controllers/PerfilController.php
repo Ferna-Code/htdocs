@@ -60,8 +60,7 @@ class PerfilController
 
     public function getData()
     {
-        //$rutsesion = $_SESSION['rut'];
-        $rutsesion = '26013039-0';
+        $rutsesion = $_SESSION['rut'];
         $admin = new usuarioDaoImpl();
         $data = $admin->getUsuario($rutsesion);
     

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="../../../../Public/css/categorias.css">
 <!-- Team -->
-<section id="team" class="pb-5">
+<section id="team" >
     <div>
         <h1 class="section-title h1">Categorías</h1><br><br><br>
         <div class="row">
