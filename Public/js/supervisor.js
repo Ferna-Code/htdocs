@@ -382,7 +382,7 @@ $("#FormPerfil").on("submit", function (event) {
 $("#formPalabra").on("submit", function (event) {
   event.preventDefault();
 
-  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+  var formData = { // Guardamos el cuerpo del mensaje por medio del ID
     palabra: $("#nuevaPalabra").val(),
   };
 
@@ -392,50 +392,46 @@ $("#formPalabra").on("submit", function (event) {
     },
     method: "POST",
     body: JSON.stringify(formData),
-    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
   })
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.text(); // Temporalmente usa text() para verificar la respuesta
+      return response.json(); // Parseamos la respuesta como JSON
     })
     .then((data) => {
-      if (!data.success) {
+      if (data.success) {
         alert("Nueva palabra agregada");
-        //resto del cuerpo para manejar respuesta exitosa
-        console.log(data.body);
-        $(
-          "#nuevaPalabra"
-        ).val("");
+        $("#nuevaPalabra").val("");
         // Cerrar el modal
         $("#exampleModal2").modal("hide");
+        // Actualizar la tabla con los datos más recientes
         console.log(data);
         actualizarPalabra(data.palabras);
-
       } else {
-        alert("Error" + data.message);
+        alert("Error: " + data.message);
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
     });
-});// FIN CUERPO
+});
 
 function actualizarPalabra(data) {
   const tbody = $("#tbodyPalabra");
   tbody.empty(); // Limpiar la tabla actual
 
-  $.each(data, function (i, row) {
+  data.forEach(palabra => {
     const tr = $("<tr>");
     tr.html(`
-      <td><input type="checkbox" id="tableUsersCurso" class="checkbox-item" name="checkId"></td>
-      <td>${row.palabra}</td>
-      <td>${row.fechaCreacion}</td>
-      <td>${row.fechaEliminacion || ''}</td>
+      <td><input type="checkbox" class="checkbox-item" name="checkId"></td>
+      <td>${palabra.palabra}</td>
+      <td>${palabra.fechaCreacion}</td>
+      <td>${palabra.fechaEliminacion || ''}</td>
     `);
     tbody.append(tr);
-  })
+  });
+
 
   // palabras.forEach(palabra => {
   //   var row = `
