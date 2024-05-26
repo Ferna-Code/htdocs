@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         console.log("User Data:", userData);
                         // Input=value H1=innerText
                         document.getElementById('nombreH1').innerText = userData.nombre;
+                        document.getElementById('nombrePS').innerText = userData.nombre;
                         document.getElementById('rut').value = userData.rut;
                         document.getElementById('email').value = userData.correo;
                         document.getElementById('fechanac').value = userData.fechaNacimiento;

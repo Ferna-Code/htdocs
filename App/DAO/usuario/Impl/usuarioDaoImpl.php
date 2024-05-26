@@ -64,6 +64,18 @@ class usuarioDaoImpl implements UsuarioDao
         return $imagenUsuario;
     }
 
+    public function obtenerCarreraUsuario($idCarrera)
+    {
+        $query = "SELECT nombre FROM carreras WHERE id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $nombreCarrera);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+        return $nombreCarrera;
+    }
     public function actualizarDatosUsuario(usuario_model $usuarioModel)
     {
         // Obtener los datos del modelo

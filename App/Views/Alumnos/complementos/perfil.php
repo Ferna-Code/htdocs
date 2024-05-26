@@ -61,7 +61,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
             </div>
-
+            <div class="experiencialaboral">
+                <h3>Experiencia Laboral</h3>
+                <div class="clientes-contenedor">
+                    <div id="experiencia-laboral-container">
+                        <div class="formulario-experiencia visible">
+                            <div class="columna">
+                                <label for="desde">Desde:</label>
+                                <input type="date" id="desde" name="desde">
+                            </div>
+                            <div class="columna">
+                                <label for="hasta">Hasta:</label>
+                                <input type="date" id="hasta" name="hasta">
+                            </div>
+                            <div class="columna">
+                                <label for="puesto">Puesto:</label>
+                                <input type="text" id="puesto" name="puesto">
+                            </div>
+                            <div class="columna">
+                                <label for="empresa">Empresa:</label>
+                                <input type="text" id="empresa" name="empresa">
+                            </div>
+                            <div class="columna">
+                                <label for="descripcion">Descripción:</label>
+                                <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                            </div>
+                            <div class="columna">
+                                <label for="trabaja-actualmente">¿Trabaja actualmente aquí?</label>
+                                <div class="opciones">
+                                    <input type="radio" id="si" name="trabaja-actualmente" value="si">
+                                    <label for="si">Sí</label>
+                                    <input type="radio" id="no" name="trabaja-actualmente" value="no">
+                                    <label for="no">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botón para agregar nuevo trabajo -->
+                    <button type="button" class="btn-supervisor" onclick="agregarTrabajo()">Agregar trabajo</button>
+                    <!-- Contenedor para formularios de educación/conocimientos -->
+                </div>
+                <br>
 
             <!-- GUARDAR DATOS ALUMNO -->
             <button type="button" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
