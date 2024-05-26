@@ -120,6 +120,22 @@ class SupervisorDaoImpl implements SupervidorDao
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+
+    public function getPalabra() {
+        $consulta = "SELECT * FROM diccionario ORDER BY id DESC";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
     
 
 

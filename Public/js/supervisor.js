@@ -1,3 +1,5 @@
+
+//Reportes
 function controlVisi1() {
   var elemento = document.getElementById("modulo1");
 
@@ -11,6 +13,7 @@ function controlVisi1() {
   centrarModulo(elemento);
 }
 
+//Publicaciones
 function controlVisi2() {
   var elemento2 = document.getElementById("modulo2");
 
@@ -24,6 +27,7 @@ function controlVisi2() {
   centrarModulo(elemento2);
 }
 
+//Carreras
 function controlVisi3() {
   var elemento3 = document.getElementById("modulo3");
 
@@ -37,6 +41,7 @@ function controlVisi3() {
   centrarModulo(elemento3);
 }
 
+//Cursos
 function controlVisi4() {
   var elemento4 = document.getElementById("modulo4");
 
@@ -50,6 +55,7 @@ function controlVisi4() {
   centrarModulo(elemento4);
 }
 
+//Perfiles
 function controlVisi5() {
   var elemento5 = document.getElementById("modulo5");
 
@@ -63,6 +69,7 @@ function controlVisi5() {
   centrarModulo(elemento5);
 }
 
+//Usuarios
 function controlVisi6() {
   var elemento6 = document.getElementById("modulo6");
 
@@ -76,6 +83,7 @@ function controlVisi6() {
   centrarModulo(elemento6);
 }
 
+//Categorias
 function controlVisi7() {
   var elemento7 = document.getElementById("modulo7");
 
@@ -89,18 +97,22 @@ function controlVisi7() {
   centrarModulo(elemento7);
 }
 
+//Diccionario
 function controlVisi8() {
   var elemento8 = document.getElementById("modulo8");
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getPalabra();
   // Muestra el módulo 1
   elemento8.style.display = "flex";
 
   // Centra el módulo 1
   centrarModulo(elemento8);
+  
 }
+
+//OfertasLaborales
 function controlVisi9() {
   var elemento9 = document.getElementById("modulo9");
 
@@ -114,6 +126,7 @@ function controlVisi9() {
   centrarModulo(elemento9);
 }
 
+//verOferta
 function controlVisi10() {
   var eleme = document.getElementById("modulo10");
 
@@ -127,6 +140,7 @@ function controlVisi10() {
   centrarModulo(eleme);
 }
 
+//ingresarCurso
 function controlVisi11() {
   var eleme = document.getElementById("modulo11");
 
@@ -140,6 +154,7 @@ function controlVisi11() {
   centrarModulo(eleme);
 }
 
+//verCurso
 function controlVisi12() {
   var eleme = document.getElementById("modulo12");
 
@@ -153,6 +168,7 @@ function controlVisi12() {
   centrarModulo(eleme);
 }
 
+//verCarrera
 function controlVisi13() {
   var eleme = document.getElementById("modulo13");
 
@@ -166,6 +182,7 @@ function controlVisi13() {
   centrarModulo(eleme);
 }
 
+//carrerasCategoria
 function controlVisi14() {
   var eleme = document.getElementById("modulo14");
 
@@ -179,6 +196,7 @@ function controlVisi14() {
   centrarModulo(eleme);
 }
 
+//verReporte
 function controlVisi15() {
   var eleme = document.getElementById("modulo15");
 
@@ -192,6 +210,7 @@ function controlVisi15() {
   centrarModulo(eleme);
 }
 
+//verPublicaciones
 function controlVisi16() {
   var eleme = document.getElementById("modulo16");
 
@@ -205,6 +224,7 @@ function controlVisi16() {
   centrarModulo(eleme);
 }
 
+//verUsuario
 function controlVisi17() {
   var eleme = document.getElementById("modulo17");
 
@@ -218,6 +238,7 @@ function controlVisi17() {
   centrarModulo(eleme);
 }
 
+//perfilSupervisor
 function controlVisi18() {
   var eleme = document.getElementById("modulo18");
 
@@ -400,6 +421,7 @@ $("#formPalabra").on("submit", function (event) {
       return response.json(); // Parseamos la respuesta como JSON
     })
     .then((data) => {
+     
       if (data.success) {
         alert("Nueva palabra agregada");
         $("#nuevaPalabra").val("");
@@ -408,7 +430,7 @@ $("#formPalabra").on("submit", function (event) {
         // Actualizar la tabla con los datos más recientes
         console.log(data);
         console.log(data.palabras)
-        actualizarPalabra(data.palabras);
+        getPalabra();
       } else {
         alert("Error: " + data.message);
       }
@@ -418,34 +440,46 @@ $("#formPalabra").on("submit", function (event) {
     });
 });
 
-function actualizarPalabra(data) {
-  const tbody = $("#tbodyPalabra");
-  tbody.empty(); // Limpiar la tabla actual
-  console.log(data);
-  console.log(data.palabras)
-  data.forEach(palabra => {
-    const tr = $("<tr>");
-    tr.html(`
-      <td><input type="checkbox" class="checkbox-item" name="checkId"></td>
-      <td>${palabra.palabra}</td>
-      <td>${palabra.fechaCreacion}</td>
-      <td>${palabra.fechaEliminacion || ''}</td>
-    `);
-    tbody.append(tr);
+function cargarTablaPalabra(){
+  $(document).ready(function() {
+    getPalabras();
   });
+}
 
+function getPalabra() {
+  fetch("/supervisor/getPalabra")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyPalabra");
+      tbody.empty();
 
-  // palabras.forEach(palabra => {
-  //   var row = `
-  //     <tr>
-  //       <td><input type="checkbox" id="tableUsersCurso" class="checkbox-item" name="checkId"></td>
-  //       <td>${palabra.palabra}</td>
-  //       <td>${palabra.fechaCreacion}</td>
-  //       <td>${palabra.fechaEliminacion || ''}</td>
-  //     </tr>
-  //   `;
-  //   tbody.append(row);
-  // });
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensaje: ", row);
+        const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
+          <td>${row.palabra}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
 }
 
 //INGRESAR USUARIO

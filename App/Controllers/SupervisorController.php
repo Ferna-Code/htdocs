@@ -117,12 +117,28 @@ class SupervisorController{
         $result = $admin->insertPalabra($supervisorModel);
 
         if ($result) {
-            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa', 'data' => $palabra]);
             
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
 
+    }
+
+    public function getPalabra(){
+        $admin = new SupervisorDaoImpl();
+        $data = $admin->getPalabra();
+
+        if($data instanceof mysqli_result){
+            $result[] = array();
+            while($row = $data->fetch_assoc()){
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        }else{
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+
+        }
     }
 
     public function insertUsuario(){

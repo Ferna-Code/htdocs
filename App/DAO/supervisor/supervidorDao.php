@@ -6,4 +6,5 @@ interface SupervidorDao{
     public function insertPerfil(SupervisorModel $admin);
     public function insertPalabra(SupervisorModel $admin);
     public function insertUsuario(SupervisorModel $admin);
+    public function getPalabra();
 }
