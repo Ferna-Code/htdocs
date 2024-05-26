@@ -42,7 +42,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
             <div class="post-container">
                 <textarea name="comentario" placeholder="¿Qué estás pensando?" Required></textarea>
                 <input type="hidden" name="sw" value="publicar">
-                <button name="Publicar" value="Publicar">Publicar</button>
+                <button type="button" name="Publicar" value="Publicar">Publicar</button>
             </div>
         </form>
 

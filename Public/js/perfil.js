@@ -20,14 +20,14 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(text => {
             console.log("Response text:", text); // Log de la respuesta cruda
             try {
-                const result = JSON.parse(text); // Intentamos parsear manualmente
+                const result = JSON.parse(text);
                 console.log("Parsed JSON result:", result);
                 if (result) {
                     if (result.success) {
                         const userData = result.data;
                         console.log("User Data:", userData);
-                        // Actualizar el DOM con los datos obtenidos
-                        document.getElementById('nombre').innerText = userData.nombre;
+                        // Input=value H1=innerText
+                        document.getElementById('nombreH1').innerText = userData.nombre;
                         document.getElementById('rut').value = userData.rut;
                         document.getElementById('email').value = userData.correo;
                         document.getElementById('fechanac').value = userData.fechaNacimiento;
@@ -53,38 +53,56 @@ document.addEventListener("DOMContentLoaded", function() {
     getUsuarios();
 });
 
-// Función para guardar los cambios
 function guardarCambiosUsuario() {
-
     console.log("guardarDatosAlumno");
-    // Obtener los nuevos datos del formulario
-    const userDataNuevo = {
-        nombre: document.getElementById('nombre').value,
-        rut: document.getElementById('rut').value,
-        correo: document.getElementById('correo').value,
-        telefono: document.getElementById('telefono').value,
-        direccion: document.getElementById('direccion').value,
-        fechanac: document.getElementById('fechanac').value,
-        clave: document.getElementById('direccion').value,
-        // Añadir más campos según sea necesario
-    };
 
+
+    const rut = document.getElementById('rut').value;
+    const correo = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
+    const direccion = document.getElementById('direccion').value;
+    const fechaNacimiento = document.getElementById('fechanac').value;
+    const clave = document.getElementById('password').value;
+    const imagen = document.getElementById('imagen').value;
+    
     // Comparar los datos nuevos con los originales
     const camposModificados = {};
-    for (const key in userDataNuevo) {
-        if (userDataNuevo[key] !== userDataOriginal[key]) {
-            camposModificados[key] = userDataNuevo[key]; // Agregar campo modificado al objeto
-        }
+    if (rut !== userDataOriginal.rut) {
+        camposModificados.rut = rut;
     }
+        if (correo !== userDataOriginal.correo) {
+        camposModificados.correo = correo;
+    }
+        if (telefono !== userDataOriginal.telefono) {
+        camposModificados.telefono = telefono;
+    }
+        if (direccion !== userDataOriginal.direccion) {
+        camposModificados.direccion = direccion;
+    }
+        if (fechaNacimiento !== userDataOriginal.fechaNacimiento) {
+        camposModificados.fechaNacimiento = fechaNacimiento;
+    }
+        if (clave !== userDataOriginal.clave) {
+        camposModificados.clave = clave;
+    }
+    
 
-    // Enviar los cambios al servidor solo si hay campos modificados
-    if (Object.keys(camposModificados).length > 0) {
+    const formData = new FormData();
+    for (const key in camposModificados) {
+        formData.append(key, camposModificados[key]);
+    }
+    
+    // Agregar la imagen si se ha seleccionado una nueva
+    const imagenInput = document.getElementById('imagen');
+    if (imagenInput.files.length > 0) {
+        formData.append('imagen', imagenInput.files[0]);
+    }
+    
+    // Enviar los cambios al servidor solo si hay campos modificados y la imagen seleccionada
+    if (Object.keys(camposModificados).length > 0 || imagenInput.files.length > 0) {
         fetch("/perfil/guardardatosalumno", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(camposModificados), // Enviar solo los campos modificados
+            body: formData
         })
         .then(response => response.json())
         .then(result => {
@@ -103,3 +121,4 @@ function guardarCambiosUsuario() {
         console.log('No se han realizado cambios.');
     }
 }
+

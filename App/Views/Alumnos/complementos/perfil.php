@@ -6,12 +6,12 @@ $imagen = $admin->obtenerImagenUsuario($rutsesion);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
     $controller = new PerfilController();
     $controller->getData();
-    exit;  
+    exit;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller = new PerfilController();
     $controller->guardarDatosAlumno();
-    exit;  
+    exit;
 }
 ?>
 <div class="conteiner">
@@ -20,14 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="cards">
                 <div class="card">
                     <div class="imagen-container">
-                        <input type="file" id="imagen" name="imagen" title="Subir foto" onchange="">
+                        <input type="file" id="imagen" name="imagen" title="Subir foto">
                         <div class="">
-                            
-                        <img src="<?php echo $imagen ?>" alt="Imagen del usuario">
+                            <img src="<?php echo $imagen ?>" alt="Imagen del usuario">
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                        <h1 id="nombre"></h1>
+                    <h1 id="nombreH1"></h1>
+                        </a>
                         <h4>Analista Programador</h4>
                     </div>
                 </div>
@@ -42,32 +42,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="columna">
                     <label for="email">Correo:</label>
-                    <input type="email" class="form-control" id="email" name="email" >
+                    <input type="email" class="form-control" id="email" name="email">
                 </div>
                 <div class="columna">
                     <label for="fechanac">Fecha de nacimiento:</label>
-                    <input type="date" class="form-control" id="fechanac" name="fechanac" >
+                    <input type="date" class="form-control" id="fechanac" name="fechanac">
                 </div>
                 <div class="columna">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono" >
+                    <input type="text" class="form-control" id="telefono" name="telefono">
                 </div>
                 <div class="columna">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion" >
+                    <input type="text" class="form-control" id="direccion" name="direccion">
                 </div>
                 <div class="columna">
                     <label for="clave">Clave:</label>
-                    <input type="password" class="form-control" id="password" name="password" >
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
             </div>
 
 
             <!-- GUARDAR DATOS ALUMNO -->
-                <button type="submit" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar Cambios</button>
+            <button type="button" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
+                Cambios</button>
             <!-- GUARDAR DATOS ALUMNO -->
-            </div>
-        
+        </div>
+
     </form>
 
 </div>
