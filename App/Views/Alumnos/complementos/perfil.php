@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                    <h1 id="nombreH1"></h1>
+                        <h1 id="nombreH1"></h1>
                         </a>
                         <h4>Analista Programador</h4>
                     </div>
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <!-- Contenedor para formularios de educación/conocimientos -->
                 </div>
                 <br>
-
+            </div>
             <!-- GUARDAR DATOS ALUMNO -->
             <button type="button" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
                 Cambios</button>

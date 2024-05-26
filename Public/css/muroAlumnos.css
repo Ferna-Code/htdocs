@@ -64,16 +64,6 @@
     justify-content: flex-start; /* Alinea los elementos arriba */
 }
 
-.card {
-    background-color: #fff; /* Color de fondo de las tarjetas */
-    background-image: linear-gradient(180deg, #f57c00 10%, #ffc107 100%);
-    border: 1px solid #ccc; /* Borde de las tarjetas */
-    border-radius: 5px; /* Borde redondeado */
-    padding: 10px;
-    margin-bottom: 10px; /* Espacio entre las tarjetas */
-    width: 100%; /* Ancho máximo de las tarjetas */
-    color: #fff;
-}
 
 .novedad{
     text-align: center;
@@ -81,3 +71,60 @@
     margin-top: 5%;
 }
 
+.cardm {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: orange;
+    background-image: linear-gradient(180deg, #f57c00 10%, #ffc107 100%);
+    position: relative;
+    border: 3px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+    margin-bottom: 12%;
+   }
+   
+   .cardm-details {
+    color: black;
+    height: 100%;
+    gap: .5em;
+    display: grid;
+    place-content: center;
+   }
+   
+   .cardm-button {
+    transform: translate(-50%, 125%);
+    width: 60%;
+    border-radius: 1rem;
+    border: none;
+    color: #f57c00;
+    background-color: #fff;
+    font-size: 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+   }
+   
+   .text-body {
+    color: rgb(134, 134, 134);
+   }
+   
+   /*Text*/
+   .text-title {
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+   }
+   
+   /*Hover*/
+   .cardm:hover {
+    border-color: #f57c00;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.25);
+   }
+   
+   .cardm:hover .cardm-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+   }
