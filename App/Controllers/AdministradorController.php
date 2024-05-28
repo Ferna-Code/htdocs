@@ -1,13 +1,35 @@
 <?php
+session_start();
+require_once __DIR__ . '/../DAO/Administrador/Impl/AdministradorDaoImpl.php';
+require_once __DIR__ . '/../Models/adminPublicaciones_model.php';
 
 class AdministradorController{
     public function index(){
         include VIEWS_PATH . 'Layout/nav.php';
         include VIEWS_PATH . 'Administrador/index.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
+        include VIEWS_PATH . 'Layout/footer.php';
     }
 
-    public function crearCarrera(){
+
+    public function getPublicacion(){
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getPublicaciones();
+
+
+        if($data instanceof mysqli_result){
+            $result[] = array();
+            while($row = $data->fetch_assoc()){
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        }else{
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+
+        }
+    }
+
+
+    /*public function crearCarrera(){
         include VIEWS_PATH . 'Layout/nav.php';
         include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaCarrera.php';  //carpeta/vista
         //include VIEWS_PATH . 'Layout/footer.php';
@@ -154,7 +176,7 @@ class AdministradorController{
         include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarUsuario.php';  //carpeta/vista
         //include VIEWS_PATH . 'Layout/footer.php';
     }
-
+*/
 
 
 

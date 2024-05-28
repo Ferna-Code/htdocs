@@ -11,7 +11,7 @@
     <h1>Carreras</h1>
     <div class="body-panel" >
     <div style="margin: 10px;">
-            <div class="containerFiltro">
+           <div class="containerFiltro">
             <select class="categoriaFiltro">
                     <option value="Práctica">Analista Programador</option>
                     <option value="Práctica">Técnico en Construcción</option>

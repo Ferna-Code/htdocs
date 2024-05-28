@@ -6,17 +6,7 @@
 
     <title>Postulaciones</title>
 <body>
-<!--<div class="btn-panel">        
-        <div>
-            <a href="creaPostulaciones" class="btn  btn-primary">Crear Postulaciones</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por XXX:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
+
     <hr>
     <h1>Postulaciones</h1>
     <div class="body-panel">

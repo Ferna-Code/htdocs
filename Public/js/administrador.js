@@ -42,6 +42,7 @@ function controlVisi4() {
   
   // Oculta todos los módulos
   ocultarModulos();
+  getPublicaciones();
 
   // Muestra el módulo 1
   elemento4.style.display = "flex";
@@ -189,8 +190,76 @@ function controlVisi15() {
   centrarModulo(elemento15);
 }
 
-//-------------------------crear modulos--------------//
 
+
+
+
+
+
+//-------------ajustes de modulos--------------//
+function ocultarModulos() {
+  var modulos = document.getElementsByClassName("contenedor-body");
+  for (var i = 0; i < modulos.length; i++) {
+      modulos[i].style.display = "none"; // Oculta todos los módulos
+  }
+}
+
+function centrarModulo(modulo) {
+  modulo.style.justifyContent = "center"; // Centra horizontalmente
+  modulo.style.alignItems = "center"; // Centra verticalmente
+}
+
+
+
+//-------------Mostrar info en Tablas--------------//
+
+function cargarTablaPublicaciones(){
+  $(document).ready(function() {
+    getPublicaciones();
+  });
+}
+
+function getPublicacion() {
+  fetch("/Administrador/getPublicacion")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#bodyPublicaciones");
+      tbody.empty();
+
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensaje: ", row);
+        const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" id="checkboxAllPublicacion" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.publicacion}</td>
+          <td>${row.nreportes}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
+
+/* -------------------------crear modulos--------------
 function controlVisi16() {
   var elemento16 = document.getElementById("modulo16");
   
@@ -505,7 +574,7 @@ function controlVisi39() {
   
   // Centra el módulo 1
   centrarModulo(elemento39);
-}
+}*/
 
 
 
@@ -518,15 +587,3 @@ function controlVisi39() {
 
 
 
-//-------------ajustes de modulos--------------//
-function ocultarModulos() {
-  var modulos = document.getElementsByClassName("contenedor-body");
-  for (var i = 0; i < modulos.length; i++) {
-      modulos[i].style.display = "none"; // Oculta todos los módulos
-  }
-}
-
-function centrarModulo(modulo) {
-  modulo.style.justifyContent = "center"; // Centra horizontalmente
-  modulo.style.alignItems = "center"; // Centra verticalmente
-}

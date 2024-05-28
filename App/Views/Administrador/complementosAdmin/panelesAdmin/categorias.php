@@ -19,8 +19,12 @@
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
 
-                <a href="Administrador/creaCategoria" class="btn-supervisor marginBtn">Crear</a>
-                <a href="Administrador/editarCategoria" class="btn-supervisor marginBtn">Editar</a>
+                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalCrear">
+                Nuevo
+            </button>
+            <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalEditar">
+                Editar
+            </button>
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
 
@@ -88,9 +92,118 @@
     </div>
     </div>
 
+    <!-- Modal Nuevo -->
+<div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCrearLabel">Agregar nueva categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoria" method="POST" action="">
+                    <label for="nuevaCategoria">Nueva categoria: </label>
+                    <input type="text" name="nuevaCategoria" id="nuevaCategoria">
+                    <div class="col">
+                <label >Activo:</label>
+                <select class="form-select"  name="EstadoCategoria" id="EstadoCategoria" required>
+                    <option>1</option>
+                    <option>0</option>
+                </select> 
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" form="addCategoria" class="btn-supervisor marginBtn">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Modal Editar -->
+  <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLabel">Editar categoría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCategoria" method="POST" action="">
+                        <input type="hidden" name="editId" id="editId">
+                        <label for="editCategoria">Categoría: </label>
+                        <input type="text" name="editCategoria" id="editCategoria">
+                        <div class="col">
+                            <label>Activo:</label>
+                            <select class="form-select" name="editActivo" id="editActivo" required>
+                                <option value="1">1</option>
+                                <option value="0">0</option>
+                            </select> 
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#agregarCategoria").click(function(){
+        var nuevaCategoria = $("#nuevaCategoria").val();
+        var estadoCategoria  = $("#EstadoCategoria").val();
+        $.ajax({
+            url: 'categoria.php', 
+            type: 'post',
+            data: $('#addCategoria').serialize(), 
+            success: function(response){
+                alert(response); 
+                $('#modalCrear').modal('hide'); 
+            }
+        });
+    });
+});
+
+    //opcion para editar//
+    $(document).ready(function(){
+    // Trigger to open the edit modal and populate the fields
+    $(".editButton").click(function(){
+        var categoriaId = $(this).data('id');
+        var categoriaName = $(this).data('name');
+        var categoriaEstado = $(this).data('estado');
+        
+        $("#editId").val(categoriaId);
+        $("#editCategoria").val(categoriaName);
+        $("#editActivo").val(categoriaEstado);
+        
+        $('#modalEditar').modal('show');
+    });
+    
+    // Handle the form submission for editing
+    $("#editCategoria").submit(function(event){
+        event.preventDefault(); // Prevent the form from submitting the default way
+        $.ajax({
+            url: 'editar_categoria.php', // The server-side script for editing
+            type: 'post',
+            data: $(this).serialize(), // Serialize the form data
+            success: function(response){
+                alert(response); // Show the response from the PHP script
+                $('#modalEditar').modal('hide'); // Hide the modal
+                // You can add further actions here, such as updating the table content without page reload
+            }
+        });
+    });
+});
+</script>
+</script>
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
     </script>
+
 </body>

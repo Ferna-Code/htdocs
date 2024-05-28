@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!--BOOSTRAPS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -25,6 +26,7 @@
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/global.css">
     
+
 
     <title>Panel Administrador</title>
 </head>
@@ -58,6 +60,7 @@
 
         <div class="contenedor-body" id="modulo6" style="display:none">
             <?php include 'complementosAdmin/panelesAdmin/publicaciones.php' ?>
+
         </div>
 
         <div class="contenedor-body" id="modulo7" style="display:none">
@@ -116,7 +119,6 @@
     <!-- Page level custom scripts -->
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
-
     <script src="../../../../Public/js/administrador.js"></script>
 
 
@@ -128,8 +130,10 @@
     <!--Modal-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
 
-</body>
 </body>
 
 </html>
