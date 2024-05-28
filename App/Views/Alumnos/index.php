@@ -93,7 +93,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../Public/js/cursos.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./../../../Public/js/perfil.js"></script>
-
+    <script src="./../../../Public/js/curso.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,14 @@
-<div class="">
-	<div class="box">
-		<div class="listadocursos">
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
+	$controller = new PerfilController();
+	$controller->getData();
+	exit;
+}
+?>
+
+<div >
+	<div >
+		<div >
 			<div>
 				<h1>EDUCACIÓN Y BIENESTAR</h1><br><br><br>
 			</div>
@@ -35,36 +43,9 @@
 					</div>
 				</form>
 			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<div class="cardc">
-						<div class="cardc-details">
-							<p class="text-title">Negocios, gestión e innovación.</p>
-							<p class="text-body"></p>
-						</div>
-						<button class="cardc-button" onclick="controlVisi6()">Ver Todos</button>
-					</div>
-				</div>
+			<div >	
+					<div class="mb-3" id="cursosContainer"></div>
 
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<div class="cardc">
-						<div class="cardc-details">
-							<p class="text-title">Negocios, gestión e innovación.</p>
-							<p class="text-body"></p>
-						</div>
-						<button class="cardc-button" onclick="controlVisi6()">Ver Todos</button>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<div class="cardc">
-						<div class="cardc-details">
-							<p class="text-title">Negocios, gestión e innovación.</p>
-							<p class="text-body"></p>
-						</div>
-						<button class="cardc-button" onclick="controlVisi6()">Ver Todos</button>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
