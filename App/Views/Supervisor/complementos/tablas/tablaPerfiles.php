@@ -15,25 +15,8 @@
 
                 </tr>
             </thead>
-            <tbody>
-                <tr class="">
-                    <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
-                    <td><a href="#" class="linkTabla" onclick="">Administrador</a></td>
-                    <td>01-04-2024</td>
-                    <td></td>
-                </tr>
-                <tr class="">
-                    <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
-                    <td><a href="#" class="linkTabla" onclick="">Supervisor</a></td>
-                    <td>01-04-2024</td>
-                    <td></td>
-                </tr>
-                <tr class="">
-                    <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
-                    <td><a href="#" class="linkTabla" onclick="">Usuario</a></td>
-                    <td>01-04-2024</td>
-                    <td></td>
-                </tr>
+            <tbody id="tbodyPerfil">
+               
             </tbody>
         </table>
 
