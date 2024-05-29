@@ -440,13 +440,6 @@ $("#formPalabra").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });
-
-function cargarTablaPalabra() {
-  $(document).ready(function () {
-    getPalabras();
-  });
-}
-
  function getPalabra() {
    fetch("/supervisor/getPalabra")
    .then((response) => {
@@ -481,6 +474,8 @@ function cargarTablaPalabra() {
      alert("Error en la solicitud: ", error.message);
    });
  }
+
+ 
 
 // function getPalabra(tableName) {
 //   fetch("/supervisor/getPalabra")
