@@ -109,7 +109,7 @@ function controlVisi8() {
 
   // Centra el módulo 1
   centrarModulo(elemento8);
-  
+
 }
 
 //OfertasLaborales
@@ -421,7 +421,7 @@ $("#formPalabra").on("submit", function (event) {
       return response.json(); // Parseamos la respuesta como JSON
     })
     .then((data) => {
-     
+
       if (data.success) {
         alert("Nueva palabra agregada");
         $("#nuevaPalabra").val("");
@@ -430,7 +430,8 @@ $("#formPalabra").on("submit", function (event) {
         // Actualizar la tabla con los datos más recientes
         console.log(data);
         console.log(data.palabras)
-        getPalabra();
+        tableName = 'diccionario';
+        getPalabra(tableName);
       } else {
         alert("Error: " + data.message);
       }
@@ -440,46 +441,84 @@ $("#formPalabra").on("submit", function (event) {
     });
 });
 
-function cargarTablaPalabra(){
-  $(document).ready(function() {
+function cargarTablaPalabra() {
+  $(document).ready(function () {
     getPalabras();
   });
 }
 
-function getPalabra() {
-  fetch("/supervisor/getPalabra")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyPalabra");
-      tbody.empty();
+// function getPalabra() {
+//   fetch("/supervisor/getPalabra")
+//   .then((response) => {
+//     if(!response.ok){
+//       throw new Error(`HTTP error: ${response.status}`);
+//     }
+//     return response.json();
+//   })
+//   .then((data) => {
+//     if(data && data.length > 0){
+//       const tbody = $("#tbodyPalabra");
+//       tbody.empty();
 
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensaje: ", row);
-        const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
-          <td>${row.palabra}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+//       //itera sobre cada elemento en la data y añade fila a la tabla
+//       //data.array.forEach(element => {});
+//       data.forEach(row => {
+//         console.log("Cuerpo del mensaje: ", row);
+//         const fila = `
+//         <tr>
+//           <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
+//           <td>${row.palabra}</td>
+//           <td>${row.fechaCreacion}</td>
+//           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+//         </tr>`;
+//         tbody.append(fila);
+//       });
+//     }else{
+//       alert("No se encontraron datos para actualizar");
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("Error en la solicitud Fetch: ",error);
+//     alert("Error en la solicitud: ", error.message);
+//   });
+// }
+
+function getPalabra(tableName) {
+  fetch("/supervisor/getPalabra")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyPalabra");
+        tbody.empty();
+
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          if (tableName == 'diccionario') {
+            const fila = `
+              <tr>
+                <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
+                <td>${row.palabra}</td>
+                <td>${row.fechaCreacion}</td>
+                <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+              </tr>`;
+            tbody.append(fila);
+          }
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 //INGRESAR USUARIO

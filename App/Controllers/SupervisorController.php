@@ -127,20 +127,16 @@ class SupervisorController{
 
     public function getPalabra(){
         $admin = new SupervisorDaoImpl();
-        $data = $admin->getPalabra();
-
-        if($data instanceof mysqli_result){
-            $result[] = array();
-            while($row = $data->fetch_assoc()){
-                $result[] = $row;
-            }
-            echo json_encode($result);
-        }else{
-            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
-
+        $limit = 10; // Puedes ajustar este valor según sea necesario
+        $data = $admin->getPalabra($limit);
+    
+        if(isset($data['success']) && !$data['success']){
+            echo json_encode($data); // Retornar mensaje de error
+        } else {
+            echo json_encode($data); // Retornar datos
         }
     }
-
+    
     public function insertUsuario(){
        
         $json = file_get_contents('php://input');//escucha el input dentro del PHP
