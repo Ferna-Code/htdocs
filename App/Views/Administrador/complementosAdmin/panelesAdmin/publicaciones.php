@@ -28,11 +28,15 @@
                 <input type="submit" class="btnFiltro" value="Filtrar">
                 <button type="button" class="btn-supervisor" data-bs-toggle="modal" data-bs-target="#modalEditarPublicacion">Editar</button>
 
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <table id="tablePublicaciones" class="tabla table">
-                <style> .tabla { width: 100%;  }   </style>
+                <style>
+                    .tabla {
+                        width: 100%;
+                    }
+                </style>
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllPublicacion" name="select-all"></th>
@@ -46,38 +50,7 @@
                     </tr>
                 </thead>
                 <tbody id="bodyPublicaciones">
-                   <!-- <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxPublicacion" name="checkId"></td>
-                        <td>01</td>
-                        <td>44444444-4</td>
-                        <td>Esta es una Publicación</td>
-                        <td>01</td>
-                        <td>12-12-2024</td>
-                        <td>No</td>
-                        <td>12-12-2024</td>
-                    </tr>
 
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxPublicacion" name="checkId"></td>
-                        <td>02</td>
-                        <td>55555555-5</td>
-                        <td>Esta es una Publicación</td>
-                        <td>02</td>
-                        <td>12-12-2024</td>
-                        <td>No</td>
-                        <td>12-12-2024</td>
-                    </tr>
-
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxPublicacion" name="checkId"></td>
-                        <td>03</td>
-                        <td>66666666-6</td>
-                        <td>Esta es una Publicación</td>
-                        <td>03</td>
-                        <td>12-12-2024</td>
-                        <td>No</td>
-                        <td>12-12-2024</td>
-                    </tr>-->
                 </tbody>
             </table>
 
@@ -120,23 +93,16 @@
                 <div class="modal-body">
                     <!-- forma modal -->
                     <form id="editPublicacion" method="POST" action="">
-
                         <label for="rut" style="text-align: center;">Rut Usuario:</label>
-
                         <input type="text" id="rutPublic" class="form-control" name="rut" placeholder="Ingrese el Rut" required><br>
-
                         <label for="publica" style="text-align: center;">Publicación:</label>
-
                         <textarea class="form-control" id="pPublic" name="publica" placeholder="Esta es una Publicación" required></textarea><br>
-
                         <label style="text-align: center;">N° de Reportes:</label><br>
-
                         <select class="form-select" id="nReportePublic" style="width: 150px" name="NReporte" required>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select><br>
-
                     </form>
                     <!-- fin forma modal -->
 
@@ -151,10 +117,11 @@
     <!-- FIN MODAL EDITAR PUBLICACACION -->
 
     <script src="../../../../Public/js/check.js"></script>
-    <script> // Llamada en una vista
-        initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
-    </script>
+    <script src="../../../../Public/js/administrador.js"></script>
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </body>
 
 </html>

@@ -28,4 +28,27 @@ class AdministradorDaoImpl implements AdministradorDao
         mysqli_stmt_close($stmt);
         return $result;
     }
+
+
+    public function deletePublicaciones($selectedIds)
+    {
+        //implode(',', ...) une los elementos del array en una cadena, separándolos por comas. Por ejemplo
+        //array_fill(0, count($selectedIds), '?') crea un array con count($selectedIds) elementos, todos con el valor '?'
+        $inQuery = implode(',', array_fill(0, count($selectedIds), '?'));
+        $consulta = "DELETE FROM publicaciones WHERE id IN ($inQuery)";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+
+        if (!$stmt) {
+            return false;
+        }
+        //str_repeat('i', count($selectedIds)) crea una cadena de tipos, en este caso, 'i' 
+        //repetido tantas veces como elementos haya en $selectedIds. 
+        $types = str_repeat('i', count($selectedIds));
+        mysqli_stmt_bind_param($stmt, $types, ...$selectedIds);
+
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
+        return $success;
+    }
 }

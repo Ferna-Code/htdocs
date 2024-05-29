@@ -3,32 +3,50 @@ session_start();
 require_once __DIR__ . '/../DAO/Administrador/Impl/AdministradorDaoImpl.php';
 require_once __DIR__ . '/../Models/adminPublicaciones_model.php';
 
-class AdministradorController{
-    public function index(){
+class AdministradorController
+{
+    public function index()
+    {
         include VIEWS_PATH . 'Layout/nav.php';
         include VIEWS_PATH . 'Administrador/index.php';  //carpeta/vista
         include VIEWS_PATH . 'Layout/footer.php';
     }
 
 
-    public function getPublicacion(){
+    public function getPublicacion()
+    {
         $admin = new AdministradorDaoImpl();
         $data = $admin->getPublicaciones();
 
-
-        if($data instanceof mysqli_result){
-            $result[] = array();
-            while($row = $data->fetch_assoc()){
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
                 $result[] = $row;
             }
             echo json_encode($result);
-        }else{
+        } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
-
         }
+
     }
 
 
+
+    public function deletePublicacion()
+    {
+        $admin = new AdministradorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+
+        $success = $admin->deletePublicaciones($ids);
+
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
+        }
+    }
+
+    
     /*public function crearCarrera(){
         include VIEWS_PATH . 'Layout/nav.php';
         include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaCarrera.php';  //carpeta/vista
@@ -177,13 +195,4 @@ class AdministradorController{
         //include VIEWS_PATH . 'Layout/footer.php';
     }
 */
-
-
-
 }
-
-
-
-
-
-

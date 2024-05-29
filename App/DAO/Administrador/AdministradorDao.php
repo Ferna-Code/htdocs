@@ -5,3 +5,4 @@ interface AdministradorDao{
     
     public function getPublicaciones();
 }
+?>

@@ -1,177 +1,177 @@
 function controlVisi1() {
   var elemento = document.getElementById("modulo1");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento);
 }
 
 function controlVisi2() {
   var elemento2 = document.getElementById("modulo2");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento2.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento2);
 }
 
 function controlVisi3() {
   var elemento3 = document.getElementById("modulo3");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento3.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento3);
 }
 
 function controlVisi4() {
   var elemento4 = document.getElementById("modulo4");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
-  getPublicaciones();
+
 
   // Muestra el módulo 1
   elemento4.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento4);
 }
 
 function controlVisi5() {
   var elemento5 = document.getElementById("modulo5");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento5.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento5);
 }
 
 function controlVisi6() {
   var elemento6 = document.getElementById("modulo6");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
-
+  getPublicacion();
   // Muestra el módulo 1
   elemento6.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento6);
 }
 
 function controlVisi7() {
   var elemento7 = document.getElementById("modulo7");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento7.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento7);
 }
 
 function controlVisi8() {
   var elemento8 = document.getElementById("modulo8");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento8.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento8);
 }
 function controlVisi9() {
   var elemento9 = document.getElementById("modulo9");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento9.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento9);
 }
 function controlVisi10() {
   var elemento10 = document.getElementById("modulo10");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento10.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento10);
 }
 function controlVisi11() {
   var elemento11 = document.getElementById("modulo11");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento11.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento11);
 }
 function controlVisi12() {
   var elemento12 = document.getElementById("modulo12");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento12.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento12);
 }
 function controlVisi13() {
   var elemento13 = document.getElementById("modulo13");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento13.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento13);
 }
 
 function controlVisi14() {
   var elemento14 = document.getElementById("modulo14");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento14.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento14);
 }
@@ -179,13 +179,13 @@ function controlVisi14() {
 
 function controlVisi15() {
   var elemento15 = document.getElementById("modulo15");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
   // Muestra el módulo 1
   elemento15.style.display = "flex";
-  
+
   // Centra el módulo 1
   centrarModulo(elemento15);
 }
@@ -200,7 +200,7 @@ function controlVisi15() {
 function ocultarModulos() {
   var modulos = document.getElementsByClassName("contenedor-body");
   for (var i = 0; i < modulos.length; i++) {
-      modulos[i].style.display = "none"; // Oculta todos los módulos
+    modulos[i].style.display = "none"; // Oculta todos los módulos
   }
 }
 
@@ -211,34 +211,36 @@ function centrarModulo(modulo) {
 
 
 
-//-------------Mostrar info en Tablas--------------//
+/*-------------Mostrar info en Tablas--------------
 
 function cargarTablaPublicaciones(){
   $(document).ready(function() {
     getPublicaciones();
   });
-}
+}*/
 
 function getPublicacion() {
+  console.log("controladorPubliacion");
   fetch("/Administrador/getPublicacion")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#bodyPublicaciones");
-      tbody.empty();
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyPublicaciones");
+        tbody.empty();
 
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensaje: ", row);
-        const fila = `
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        // (class="checkboxPublicacion),id se cambia a class para que el checkboxAll seleccione todos los check de las filas de la tabla
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" id="checkboxAllPublicacion" name="select-all"></td>
+          <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
           <td>${row.id}</td>
           <td>${row.rutusuario}</td>
           <td>${row.publicacion}</td>
@@ -247,17 +249,79 @@ function getPublicacion() {
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
+
+
+
+
+
+//evento para seeccionar las filas marcadas con checkbox
+document.getElementById('deleteSelected').addEventListener('click', function () {
+  //Este array almacenará los IDs de las publicaciones seleccionadas para eliminar.
+  const selectedIds = [];
+  //Se selecciona todos los checkboxes con la clase checkboxPublicacion que están marcados (checked).
+  document.querySelectorAll('.checkboxPublicacion:checked').forEach(checkbox => {
+    //children[1] selecciona la segunda celda (<td>) en esa fila (asumiendo que el ID está en la segunda celda
+    //textContent obtiene el texto dentro de esa celda, que es el ID de la publicación.
+    //selectedIds.push(...) añade ese ID al array selectedIds.
+    selectedIds.push(checkbox.closest('tr').children[1].textContent); // Assuming the ID is in the second cell
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Está seguro que desea eliminar las publicaciones con ID: ${selectedIds.join(', ')}?`)) {
+      deletePublicaciones(selectedIds);
+    }
+  } else {
+    alert('No hay publicaciones seleccionadas para eliminar.');
+  }
+});
+
+function deletePublicaciones(ids) {
+  console.log("Eliminar publicaciones:", ids);
+  fetch("/Administrador/deletePublicacion", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Publicaciones eliminadas correctamente.');
+        getPublicacion();
+      } else {
+        alert('Error al eliminar las publicaciones.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+
+
+
 
 /* -------------------------crear modulos--------------
 function controlVisi16() {
