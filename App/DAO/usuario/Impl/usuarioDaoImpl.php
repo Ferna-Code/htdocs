@@ -82,8 +82,6 @@ class usuarioDaoImpl implements UsuarioDao
         $rut = $usuarioModel->getrut();
         $correo = $usuarioModel->getcorreo();
         $fechaNacimiento = $usuarioModel->getfechaNacimiento();
-        // Y así sucesivamente con los demás campos que deseas actualizar
-        // Imprimir los valores para depuración
         echo "Rut: $rut, Correo: $correo, Fecha de Nacimiento: $fechaNacimiento";
         // Preparar la consulta SQL
         $query = "UPDATE usuarios SET correo = ?, fechaNacimiento = ? WHERE rut = ?";
@@ -109,26 +107,15 @@ class usuarioDaoImpl implements UsuarioDao
             $setClauses[] = "$campo = ?";
             $params[] = $valor;
         }
-        $params[] = $rut; // Agregar el RUT al final para la cláusula WHERE
+        $params[] = $rut; 
         $sql = "UPDATE usuarios SET " . implode(', ', $setClauses) . " WHERE rut = ?";
         $conn = $this->db->conec();
-    
-        // Imprime la consulta SQL para depuración
-        echo "SQL Query: " . $sql;
-        echo "<br>";
-        echo "Parameters: ";
-        print_r($params);
-        echo "<br>";
-    
-        // Prepara la consulta
         $stmt = mysqli_prepare($conn, $sql);
-    
         if (!$stmt) {
             // Error al preparar la consulta
             echo "Error en la preparación de la consulta: " . mysqli_error($conn);
             return false;
         }
-    
         // Vincula los parámetros
         $types = str_repeat("s", count($params));
         mysqli_stmt_bind_param($stmt, $types, ...$params);
@@ -153,4 +140,18 @@ class usuarioDaoImpl implements UsuarioDao
         return $success;
     }
 
+
+    public function EliminarUsuario(usuario_model $usuarioModel)
+    {
+
+        $rut = $usuarioModel->getrut();
+        // Preparar la consulta SQL
+        $query = "UPDATE usuarios SET fechaEliminacion WHERE rut = ?";
+        $conn = $this->db->conec(); 
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "s", $rut);
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $success;
+    }
 }

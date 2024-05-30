@@ -13,7 +13,7 @@ class cursosDaoImpl implements cursosDAO
         $this->db = new conexion();
     }
 
-    public function getdata(){
+    public function getdata(){ //todos los cursos
         $query = "SELECT id, nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo, fechaEliminacion FROM cursos";
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $query);
@@ -31,7 +31,7 @@ class cursosDaoImpl implements cursosDAO
         return $cursos;
     }
 
-    public function getdataCategoria($idCategoria){
+    public function getdatabycategory($idCategoria){ //Categoria
         $query = "SELECT id, nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo, fechaEliminacion FROM cursos where idcategoria = ?";
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $query);
@@ -48,6 +48,52 @@ class cursosDaoImpl implements cursosDAO
         mysqli_close($conn);
     
         return $cursos;
+    }
+
+    public function updateCursos(cursos_model $cursosModel)
+    {
+        // Obtener los datos del modelo
+        $id = $cursosModel->getid();
+        $nombre = $cursosModel->getNombre();
+        $descripcion = $cursosModel->getDescripcion();
+        $emitidoPor = $cursosModel->getEmitidoPor();
+        $linkPostular = $cursosModel->getLinkPostular();
+        $idCategoria = $cursosModel->getIdCategoria();
+        $fechaCreacion = $cursosModel->getFechaCreacion();
+        $activo = $cursosModel->getActivo();
+        $fechaEliminacion = $cursosModel->getFechaEliminacion();
+    
+        // Preparar la consulta SQL
+        $query = "UPDATE cursos SET nombre = ?, descripcion = ?, emitidoPor = ?, linkPostular = ?, idCategoria = ?, fechaCreacion = ?, activo = ?, fechaEliminacion = ? WHERE id = ?";
+        $conn = $this->db->conec(); 
+        $stmt = mysqli_prepare($conn, $query);
+    
+        // Vincular parámetros y ejecutar la consulta
+        mysqli_stmt_bind_param($stmt, "sssssisi", $nombre, $descripcion, $emitidoPor, $linkPostular, $idCategoria, $fechaCreacion, $activo, $fechaEliminacion, $id);
+        $success = mysqli_stmt_execute($stmt);
+    
+        // Cerrar la declaración preparada
+        mysqli_stmt_close($stmt);
+    
+        // Cerrar la conexión
+        mysqli_close($conn);
+    
+        // Devolver el resultado de la ejecución de la consulta
+        return $success;
+    }
+    
+    public function deleteCurso(cursos_model $cursosModel)
+    {
+
+        $id = $cursosModel->getId();
+        // Preparar la consulta SQL
+        $query = "UPDATE cursos SET fechaEliminacion WHERE id = ?";
+        $conn = $this->db->conec(); 
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $success;
     }
 }
 

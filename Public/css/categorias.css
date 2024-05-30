@@ -13,7 +13,6 @@
    .cardc-details {
     color: black;
     height: 100%;
-    gap: .5em;
     display: grid;
     place-content: center;
    }

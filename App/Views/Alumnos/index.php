@@ -44,12 +44,6 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo3" style="display:none">
             <?php require_once "complementos/cursos/categorias.php"; ?>
         </div>
-        <div class="contenedor-body" id="modulo4" style="display:none">
-            <?php require_once "complementos/cursos/educacionbienestar.php"; ?>
-        </div>
-        <div class="contenedor-body" id="modulo5" style="display:none">
-            <?php require_once "complementos/cursos/informatica.php"; ?>
-        </div>
         <div class="contenedor-body" id="modulo6" style="display:none">
             <?php require_once "complementos/cursos/negocios.php"; ?>
         </div>
@@ -94,6 +88,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./../../../Public/js/perfil.js"></script>
     <script src="./../../../Public/js/curso.js"></script>
+    <script src="./../../../Public/js/categoria.js"></script>
 </body>
 
 </html>
