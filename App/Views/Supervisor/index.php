@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
     <link rel="stylesheet" href="../../../../Public/css/global.css">
+    <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
 
     <!--Modal-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -118,6 +119,7 @@
             <?php include 'complementos/formularios/perfilSupervisor.php' ?>
         </div>
 
+
     </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
@@ -138,7 +140,7 @@
     <!-- Page level custom scripts -->
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
-
+    <script src="./../../../Public/js/perfil.js"></script>
     <script src="../../../../Public/js/supervisor.js"></script>
 
 

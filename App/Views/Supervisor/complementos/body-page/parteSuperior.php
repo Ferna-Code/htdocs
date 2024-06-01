@@ -1,3 +1,11 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $controller = new PerfilController();
+    $controller->getData();
+    exit;
+}
+?>
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -16,7 +24,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="" onclick="controlVisi18()">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Panel Supervisor</span></a>
+            <div class="sidebar-brand-text mx-3" id="nombrePS" >  <sup></sup></div>
     </li>
 
     <!-- Divider -->
@@ -27,7 +35,12 @@
         Menú
         
     </div>
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi18()" data-toggle="collapse" data-target="#collapseUtilities18" aria-expanded="true" aria-controls="collapseUtilities18">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Perfil</span>
+        </a>
+    </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" onclick="controlVisi7()" data-toggle="collapse" data-target="#collapseUtilities6" aria-expanded="true" aria-controls="collapseUtilities6">
             <i class="fas fa-fw fa-wrench"></i>
@@ -92,6 +105,8 @@
             <span>Diccionario</span>
         </a>
     </li>
+
+
 
    
     

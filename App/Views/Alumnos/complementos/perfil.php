@@ -1,23 +1,36 @@
+<?php
+require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
+$admin = new usuarioDaoImpl();
+$rutsesion = $_SESSION['rut'];
+$imagen = $admin->obtenerImagenUsuario($rutsesion);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
+    $controller = new PerfilController();
+    $controller->getData();
+    exit;
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $controller = new PerfilController();
+    $controller->guardarDatosAlumno();
+    exit;
+}
+?>
 <div class="conteiner">
-    <form method="POST" class="form">
+    <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
         <div class="">
             <div class="cards">
                 <div class="card">
                     <div class="imagen-container">
-                        <img src="../../../../Public/img/profe1.jpeg" alt="">
-                        <input type="file" id="upload-foto" title="Subir foto" onchange="Main.perfil.changeFoto(event)">
-                        <div class="profile-container__header__wrapper-icon">
-                            <div class="profile-container__header__file-upload">
-                                <span class="icon-camera"></span>
-                            </div>
+                        <input type="file" id="imagen" name="imagen" title="Subir foto">
+                        <div class="">
+                            <img src="<?php echo $imagen ?>" alt="Imagen del usuario">
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                        <h1>Luis Yañez Carreño</h1>
-                        <h4>Profesor de Programación</h4>
+                        <h1 id="nombreH1"></h1>
+                        </a>
+                        <h4>Analista Programador</h4>
                     </div>
                 </div>
-                
             </div>
         </div>
         <div class="formulario">
@@ -25,27 +38,27 @@
             <div class="formulario-experiencia">
                 <div class="columna">
                     <label for="rut">Rut:</label>
-                    <input type="text" class="form-control" name="rut" disabled>
+                    <input type="text" class="form-control" id="rut" name="rut" disabled>
                 </div>
                 <div class="columna">
                     <label for="email">Correo:</label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" id="email" name="email">
                 </div>
                 <div class="columna">
                     <label for="fechanac">Fecha de nacimiento:</label>
-                    <input type="date" class="form-control" name="fechanac">
+                    <input type="date" class="form-control" id="fechanac" name="fechanac">
                 </div>
                 <div class="columna">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" class="form-control" name="telefono">
+                    <input type="text" class="form-control" id="telefono" name="telefono">
                 </div>
                 <div class="columna">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" class="form-control" name="direccion">
+                    <input type="text" class="form-control" id="direccion" name="direccion">
                 </div>
                 <div class="columna">
                     <label for="clave">Clave:</label>
-                    <input type="password" class="form-control" name="clave">
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
             </div>
             <div class="experiencialaboral">
@@ -87,36 +100,15 @@
                     <!-- Botón para agregar nuevo trabajo -->
                     <button type="button" class="btn-supervisor" onclick="agregarTrabajo()">Agregar trabajo</button>
                     <!-- Contenedor para formularios de educación/conocimientos -->
-                    <h3>Educación y conocimientos</h3>
-                    <div id="educacion-container">
-                        <!-- Primer formulario de educación (visible por defecto) -->
-                        <div class="formulario-educacion visible">
-                            <div class="columna">
-                                <label for="nombre-curso">Titulo obtenido:</label>
-                                <input type="text" id="nombre-curso" name="nombre-curso">
-                            </div>
-                            <div class="columna">
-                                <label for="institucion">Institución:</label>
-                                <input type="text" id="institucion" name="institucion">
-                            </div>
-                            <div class="columna">
-                                <label for="fecha-finalizado">Fecha de Finalización:</label>
-                                <input type="date" id="fecha-finalizado" name="fecha-finalizado">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Botón para agregar nuevo formulario de educación -->
-                    <div class="botones-container">
-                        <button type="button" class="btn-supervisor" onclick="agregarEducacion()">Agregar educación</button>
-                    </div>
                 </div>
                 <br>
-                <div class="container">
-                    <h3>Adjuntar Curriculum:   </h3>
-                    <input type="file"  class="" accept=".pdf,.docx, .doc" id="cvdocumento" name="cvdocumento" title="Subir Curriculum">
-                </div>
-                <button type="submit" class="btn-supervisor" name="crearRegistro">Guardar Cambios</button>
             </div>
+            <!-- GUARDAR DATOS ALUMNO -->
+            <button type="button" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
+                Cambios</button>
+            <!-- GUARDAR DATOS ALUMNO -->
         </div>
+
     </form>
+
 </div>

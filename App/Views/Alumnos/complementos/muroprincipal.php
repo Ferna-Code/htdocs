@@ -1,9 +1,12 @@
 <?php
 require_once ("App/Controllers/publicacionesController.php");
 require_once ("App/Controllers/usuariosController.php");
+require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
+
 
 $comentario = '';
 $sw = "";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['comentario'])) {
@@ -39,7 +42,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
             <div class="post-container">
                 <textarea name="comentario" placeholder="¿Qué estás pensando?" Required></textarea>
                 <input type="hidden" name="sw" value="publicar">
-                <button name="Publicar" value="Publicar">Publicar</button>
+                <button type="button" name="Publicar" value="Publicar">Publicar</button>
             </div>
         </form>
 
@@ -51,7 +54,15 @@ $publicaciones = $controlador->mostrarPublicaciones();
                 ?>
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
-                    <img class="img" src="../../../../Public/img/profe1.jpeg" alt="">
+                    <img class="img" src="<?php
+                    $admin = new usuarioDaoImpl();
+                    $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
+                    if ($imagenUsuario != "") {
+                        echo $imagenUsuario;
+                    } else {
+                        echo "/uploads/usuarioSinFoto.jpg";
+                    }
+                    ?>" alt="">
                     <div class="tweet-content">
 
                         <div class="tweet-text">
@@ -73,7 +84,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-            <?php
+                <?php
             }
         } else {
             echo "No se encontraron publicaciones.";
@@ -84,23 +95,31 @@ $publicaciones = $controlador->mostrarPublicaciones();
     <?php include_once 'body-page/parteDerecha.php'; ?>
 
 
-<div class="sidebar1">
-    <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
-    <hr>
-    <div class="card">
-        <h5>RedLeones</h5>
-        <p>!Felicidades por estar Aquí¡</p>
+    <div class="sidebar1">
+        <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
+        <hr>
+        <div class="cardm">
+            <div class="cardm-details">
+                <p class="text-title">TITULO 1.</p>
+                <p class="text-body"></p>
+            </div>
+            <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
+        </div>
+        <div class="cardm">
+            <div class="cardm-details">
+                <p class="text-title">TIULO 2.</p>
+                <p class="text-body"></p>
+            </div>
+            <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
+        </div>
+        <div class="cardm">
+            <div class="cardm-details">
+                <p class="text-title">TITULO 3.</p>
+                <p class="text-body"></p>
+            </div>
+            <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
+        </div>
     </div>
-    <div class="card">
-        <h5>Nuevo Curso</h5>
-        <p>INTERNET DE LAS COSAS</p>
-    </div>
-    <div class="card">
-        <h5>Nueva Oferta</h5>
-        <p>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
-                                    CONTROL</p>
-    </div>
-</div>
 
 </div>
 
@@ -119,6 +138,6 @@ $publicaciones = $controlador->mostrarPublicaciones();
     <?php endif; ?>
 
     setTimeout(() => {
-        window.history.replaceState(null,null,window.location.pathname);
+        window.history.replaceState(null, null, window.location.pathname);
     }, 0)
 </script>
