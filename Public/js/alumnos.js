@@ -69,15 +69,11 @@ function controlVisi7() {
 }
 
 function vistaofertas() {
+  getOfertas();
   var elemento8 = document.getElementById("modulo8");
-  
-  // Oculta todos los módulos
+  console.log("VistaOfertas alumonsjs");
   ocultarModulos();
-
-  // Muestra el módulo 1
   elemento8.style.display = "flex";
-  
-  // Centra el módulo 1
   centrarModulo(elemento8);
 }
 
@@ -109,6 +105,67 @@ function centrarModulo(modulo) {
   modulo.style.alignItems = "center"; // Centra verticalmente
 }
 
+
+function getOfertas() {
+  const ofertasContainer = document.getElementById("ofertasContainer");
+  ofertasContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevas ofertas
+
+  fetch("/ofertas/getData/", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log("Datos recibidos del servidor:", data);
+
+      // Ajustar para usar la clave 'oferta' en lugar de 'ofertas'
+      if (data && data.success && Array.isArray(data.oferta)) {
+          const ofertas = data.oferta; // Usar 'oferta' en lugar de 'ofertas'
+          console.log("Ofertas recibidas:", ofertas);
+
+          let rowContainer;
+          ofertas.forEach((oferta, index) => {
+              const cardOferta = document.createElement("div");
+              cardOferta.className = "col-xs-12 col-sm-6 col-md-4";
+              cardOferta.innerHTML = `
+                  <div class="cardc mb-4">
+                      <div class="cardc-details">
+                          <p class="text-title">${oferta.tipoOferta}</p>
+                          <p class="text-body">Cargo: ${oferta.cargo}</p>
+                          <p class="text-body">Empresa: ${oferta.nombreEmpresa}</p>
+                          <p class="text-body">Fecha de creación: ${oferta.fechacreacion}</p>
+                      </div>
+                      <button class="cardc-button" onclick="controlVisi6()">Ver más</button>
+                  </div>
+              `;
+
+              if (index % 3 === 0) {
+                  rowContainer = document.createElement("div");
+                  rowContainer.className = "row";
+                  ofertasContainer.appendChild(rowContainer);
+              }
+              rowContainer.appendChild(cardOferta);
+          });
+      } else {
+          console.error("Error en la respuesta del servidor: ", data ? data.message : "Respuesta inválida");
+      }
+  })
+  .catch(error => {
+      console.error("Hubo un problema con la solicitud Fetch:", error);
+  });
+}
+
+// Llamar a la función al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  getOfertas();
+});
 
 
 

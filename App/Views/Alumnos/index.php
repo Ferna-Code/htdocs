@@ -51,10 +51,10 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'complementos/cursos/categorias.php' ?>
         </div>
         <div class="contenedor-body" id="modulo8" style="display:none">
-            <?php include 'complementos/ofertas/categoriasofi.php' ?>
+            <?php include 'complementos/ofertas/ofertas.php' ?>
         </div>
         <div class="contenedor-body" id="modulo9" style="display:none">
-            <?php include 'complementos/ofertas/veroferta.php' ?>
+            <!-- <?php //include 'complementos/ofertas/veroferta.php' ?> -->
         </div>
         <div class="contenedor-body" id="modulo10" style="display:none">
             <?php include 'complementos/muropersonal.php' ?>
@@ -89,6 +89,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="./../../../Public/js/perfil.js"></script>
     <script src="./../../../Public/js/curso.js"></script>
     <script src="./../../../Public/js/categoria.js"></script>
+    <script src="./../../../Public/js/ofertas.js"></script>
 </body>
 
 </html>
