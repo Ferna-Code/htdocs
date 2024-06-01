@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- ------------------- -->
 
-    <form method="post" action="App/Views/Login/logout.php">
+    <form method="post" action="Login/logout">
             <input type="submit" class="btn-CSesion" value="Cerrar Sesión">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form> 
