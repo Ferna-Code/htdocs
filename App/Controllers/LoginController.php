@@ -33,17 +33,25 @@ class LoginController
          }
      }
 
-    private function logout()
-    {
-        unset($_SESSION['idperfil']);
-        unset($_SESSION['rut']);
-        unset($_SESSION['errorsesionfallida']);
-        session_destroy();
-        usleep(5000000); // 1 segundo = 1,000,000 microsegundos
-       // header('Location: http://localhost:8080/logout.php');
-       header('Location: http://localhost/');
-        exit();
-    }
+     public function logout()
+     {
+         if (session_status() == PHP_SESSION_NONE) {
+             session_start();
+         }
+         unset($_SESSION['idperfil']);
+         unset($_SESSION['rut']);
+         unset($_SESSION['errorsesionfallida']);
+         session_destroy();
+     
+         // Controlar el caché del navegador
+         header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+         header('Cache-Control: post-check=0, pre-check=0', false);
+         header('Pragma: no-cache');
+     
+         header('Location: http://localhost:8080/');
+         exit();
+     }
+     
 
 
     private function checklevelPage($userLevel) //segun nivel se abre la sesion correspondiente

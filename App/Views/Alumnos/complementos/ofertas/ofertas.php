@@ -1,9 +1,8 @@
-
-<div>
+<link rel="stylesheet" href="../../../../Public/css/categorias.css">
+<section id="team">
+    <h1 class="mt-2 mb-2">Ofertas Laborales</h1>
     <div>
-        <div>
-            <div>
-                <form method="post" action="Registro.php">
+    <form method="post" action="Registro.php">
                     <div class="form-row">
                         <div class="col-sm-2">
                             <label for="fechaInicio">Fecha de Creación:</label>
@@ -32,11 +31,8 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <div>
-                <div class="mb-3" id="cursosContainer"></div>
-            </div>
+        <div class="row">
+            <div class="mb-6" id="ofertasContainer"></div>
         </div>
     </div>
-</div>
-
+</section>

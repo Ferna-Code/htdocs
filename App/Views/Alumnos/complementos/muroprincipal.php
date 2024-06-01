@@ -7,7 +7,6 @@ require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
 $comentario = '';
 $sw = "";
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['comentario'])) {
         $comentario = '';
@@ -25,6 +24,7 @@ if ($sw === 'publicar') {
     // Crear una instancia del controlador de publicaciones
     $controlador = new PublicacionesController();
     // Procesar la publicación
+    echo "publicar";
     $controlador->procesarPublicacion($comentario);
 }
 $controladorUsuarios = new usuariosController();

@@ -1,9 +1,22 @@
 <?php
-require_once 'App/Controllers/accessController.php';
-$perfilesPermitidos = 3;
+// Asegúrate de que la sesión se inicie antes de cualquier otra cosa
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// Controla el caché del navegador
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+
+// Verifica si el usuario está logeado
+if (!isset($_SESSION['idperfil'])) {
+    header('Location: http://localhost:8080/');
+    exit();
+}
+
+require_once 'App/Controllers/accessController.php';
+$perfilesPermitidos = 3;
 verificarAcceso($perfilesPermitidos);
 ?>
 
@@ -44,12 +57,6 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo3" style="display:none">
             <?php require_once "complementos/cursos/categorias.php"; ?>
         </div>
-        <div class="contenedor-body" id="modulo4" style="display:none">
-            <?php require_once "complementos/cursos/educacionbienestar.php"; ?>
-        </div>
-        <div class="contenedor-body" id="modulo5" style="display:none">
-            <?php require_once "complementos/cursos/informatica.php"; ?>
-        </div>
         <div class="contenedor-body" id="modulo6" style="display:none">
             <?php require_once "complementos/cursos/negocios.php"; ?>
         </div>
@@ -57,7 +64,7 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'complementos/cursos/categorias.php' ?>
         </div>
         <div class="contenedor-body" id="modulo8" style="display:none">
-            <?php include 'complementos/ofertas/categoriasofi.php' ?>
+            <?php include 'complementos/ofertas/ofertas.php' ?>
         </div>
         <div class="contenedor-body" id="modulo9" style="display:none">
             <?php include 'complementos/ofertas/veroferta.php' ?>
@@ -94,6 +101,8 @@ verificarAcceso($perfilesPermitidos);
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./../../../Public/js/perfil.js"></script>
     <script src="./../../../Public/js/curso.js"></script>
+    <script src="./../../../Public/js/categoria.js"></script>
+    <script src="./../../../Public/js/ofertas.js"></script>
 </body>
 
 </html>

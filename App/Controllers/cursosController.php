@@ -24,4 +24,18 @@ class cursoscontroller{
             echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
         }
     }
+
+    public function getDatabycategory() {
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        $idCategoria = $requestData['categoriaId'];
+         $cursosDao = new cursosDaoImpl();
+        $cursos = $cursosDao->getdatabycategory($idCategoria);
+    
+        if ($cursos) {
+            echo json_encode(['success' => true, 'Cursos' => $cursos]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
+    
 }

@@ -6,11 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
 }
 ?>
 
-<div >
-	<div >
-		<div >
+<div>
+	<div>
+		<div>
 			<div>
-				<h1>EDUCACIÓN Y BIENESTAR</h1><br><br><br>
+				<h1>EDUCACIÓN Y BIENESTAR</h1><br>
 			</div>
 			<div>
 				<form method="post" action="Registro.php">
@@ -43,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
 					</div>
 				</form>
 			</div>
-			<div >	
-					<div class="mb-3" id="cursosContainer"></div>
+			<div>
+				<div class="mb-3" id="cursosContainer"></div>
 
 			</div>
 		</div>

@@ -10,22 +10,22 @@ document.addEventListener("DOMContentLoaded", function() {
             },
         })
         .then(response => {
-            console.log("Response received:", response);
+           
             // Verifica que la respuesta es de tipo JSON antes de intentar parsearla
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.text(); // Usamos text() temporalmente para inspeccionar la respuesta
+            return response.text(); 
         })
         .then(text => {
-            console.log("Response text:", text); // Log de la respuesta cruda
+         
             try {
                 const result = JSON.parse(text);
-                console.log("Parsed JSON result:", result);
+            
                 if (result) {
                     if (result.success) {
                         const userData = result.data;
-                        console.log("User Data:", userData);
+                       
                         // Input=value H1=innerText
                         document.getElementById('nombreH1').innerText = userData.nombre;
                         document.getElementById('nombrePS').innerText = userData.nombre;
@@ -56,8 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function guardarCambiosUsuario() {
     console.log("guardarDatosAlumno");
-
-
     const rut = document.getElementById('rut').value;
     const correo = document.getElementById('email').value;
     const telefono = document.getElementById('telefono').value;
@@ -110,6 +108,7 @@ function guardarCambiosUsuario() {
             if (result.success) {
                 // Actualizar los datos originales con los nuevos datos
                 userDataOriginal = { ...userDataOriginal, ...camposModificados };
+                getUsuarios();
                 console.log('¡Cambios guardados correctamente!');
             } else {
                 console.error(result.message);
@@ -121,5 +120,7 @@ function guardarCambiosUsuario() {
     } else {
         console.log('No se han realizado cambios.');
     }
+
+    
 }
 
