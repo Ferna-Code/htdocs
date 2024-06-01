@@ -41,7 +41,7 @@ class LoginController
         session_destroy();
         usleep(5000000); // 1 segundo = 1,000,000 microsegundos
        // header('Location: http://localhost:8080/logout.php');
-       header('Location: http://localhost');
+       header('Location: http://localhost/');
         exit();
     }
 
