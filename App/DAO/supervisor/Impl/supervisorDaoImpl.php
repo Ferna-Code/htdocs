@@ -35,7 +35,11 @@ class SupervisorDaoImpl implements SupervidorDao
         }
     }
     public function getCategoria($limit = 10) {
-        $consulta = "SELECT * FROM categorias ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * 
+        FROM categorias 
+        WHERE fechaEliminacion IS NULL 
+        ORDER BY id DESC 
+        LIMIT ?;";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
