@@ -11,7 +11,7 @@
 
         <form action="#">
            
-            <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+        <button type="button" id="deleteSelectedPublicacion" class="btn-supervisor marginBtn">Eliminar</button>
             <table id="tableUsers" class="tabla table">
                 <thead>
                     <tr><!--CHECK PRINCIPAL-->
@@ -21,9 +21,6 @@
                         <th>Cantidad de reportes</th>
                         <th>Fecha Creación</th>
                         <th>Fecha Eliminación</th>
-                        <th>Ver</th>
-
-
                     </tr>
                 </thead>
                 <tbody id="tbodyPublicacion">

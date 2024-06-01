@@ -61,6 +61,33 @@ class SupervisorDaoImpl implements SupervidorDao
         return $palabras;
     }
 
+    public function getCarrera($limit = 10) {
+        $consulta = "SELECT * 
+        FROM carreras 
+        WHERE fechaEliminacion IS NULL 
+        ORDER BY id DESC 
+        LIMIT ?;";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $palabras = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $palabras[] = $row;
+        }
+        
+        mysqli_stmt_close($stmt);
+        return $palabras;
+    }
+
     public function insertCurso(SupervisorModel $admin)
     {
         $validateQuery = "INSERT INTO cursos (nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo) 
@@ -92,7 +119,7 @@ class SupervisorDaoImpl implements SupervidorDao
         }
     }
     public function getCurso($limit = 10) {
-        $consulta = "SELECT * FROM cursos ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM cursos WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -342,6 +369,39 @@ class SupervisorDaoImpl implements SupervidorDao
 
     public function deleteCategoria($ids) {
         $consulta = "UPDATE  categorias  SET fechaEliminacion = NOW() WHERE id IN (" . implode(',', array_fill(0, count($ids), '?')) . ")";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+        if (!$stmt) {
+            return false;
+        }
+    
+        $types = str_repeat('i', count($ids));
+        mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    
+        return $success;
+    }
+
+    public function deleteCarrera($ids) {
+        $consulta = "UPDATE carreras SET fechaEliminacion = NOW() WHERE id IN (" . implode(',', array_fill(0, count($ids), '?')) . ")";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+        if (!$stmt) {
+            return false;
+        }
+    
+        $types = str_repeat('i', count($ids));
+        mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    
+        return $success;
+    }
+    public function deleteCurso($ids) {
+        $consulta = "UPDATE cursos SET fechaEliminacion = NOW() WHERE id IN (" . implode(',', array_fill(0, count($ids), '?')) . ")";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
     
         if (!$stmt) {

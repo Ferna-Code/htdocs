@@ -267,6 +267,20 @@ class SupervisorController{
         }
     }
 
+    public function getCarrera(){
+        $admin = new SupervisorDaoImpl();
+        $limit = 10; // Puedes ajustar este valor según sea necesario
+        $data = $admin->getCarrera($limit);
+    
+        if(isset($data['success']) && !$data['success']){
+            echo json_encode($data); // Retornar mensaje de error
+        } else {
+            echo json_encode($data); // Retornar datos
+        }
+    }
+
+
+    //-------------------DELETES-----------------
     public function deleteCategoria() {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
@@ -276,6 +290,30 @@ class SupervisorController{
             echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
+        }
+    }
+
+    public function deleteCarrera() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deleteCarrera($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las carreras.']);
+        }
+    }
+
+    public function deleteCurso() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deleteCurso($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las carreras.']);
         }
     }
 }
