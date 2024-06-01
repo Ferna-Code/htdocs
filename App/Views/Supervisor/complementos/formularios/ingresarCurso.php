@@ -13,7 +13,7 @@
     </div>
     <h1>Crear Cursos </h1>
     <div class="">
-        <form method="POST" class="form">
+        <form method="POST" id="crearCurso" class="form">
             <div class="formulario-cursos">
 
                 <div class="columna ">
@@ -34,21 +34,23 @@
                 </div>
                 <div class="columna ">
                     <label for="fecha-inicio">Fecha de inicio:</label>
-                    <input type="date" class="form-control" name="fecha-inicio">
+                    <input type="date" id="fecha-inicio" class="form-control" name="fecha-inicio">
                 </div>
                 <div class="columna ">
                     <label for="link-inscripcion">Link inscripción:</label>
                     <input type="text" id="link-inscripcion" name="link-inscripcion" required>
                 </div>
                 <div class="columna ">
-                <label for="categoria-curso">Activo:</label>
-                    <select id="categoria-curso" name="categoria-curso" required>
-                        <option value="educacion">1</option>
-                        <option value="informatica">0</option>
+                    <label for="activo">Activo:</label>
+                    <select id="activo" name="activo" required>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
                     </select>
                 </div>
             </div>
-            <button type="submit" class="btn-curso" name="crearRegistro">Crear Curso</button>
+            <input type="submit" class="btn-curso" name="crearRegistro" value="Crear Curso">
         </form>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./../../../Public/js/empresa.js"></script>

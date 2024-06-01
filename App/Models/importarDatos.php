@@ -1,5 +1,5 @@
 <?php
-require("./App/Models/alert_model.php");
+
 require './vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -12,13 +12,16 @@ class ImportarDatos
         $this->conexion = $conexion;
     }
 
+    public function mensajeUsuario($mensaje){
+        echo "<cript>alert($mensaje)</script>";
+    }
+
     public function importarDesdeExcel($archivoExcel)
     {
         $documento = IOFactory::load($archivoExcel);
         $hojaExcel = $documento->getActiveSheet();
         $filasExcel = $hojaExcel->getHighestDataRow();
         $datosAgregados = 0;
-        $alerta = new  Alert_model();
         $palabrasProhibidas = ['system', 'mysql_query', '$_SERVER', '$_COOKIE', 'passthru', 'eval'];
         
         for ($fila = 2; $fila <= $filasExcel; $fila++) {
@@ -46,11 +49,11 @@ class ImportarDatos
         if ($datosAgregados > 0) {
             //echo "<script>alert('Se han agregado $datosAgregados usuarios a la base de datos')</script>";
             $mensaje = "Se han agregado $datosAgregados usuarios a la base de datos";
-            $alerta->mensajeUsuario($mensaje);
+            $this->mensajeUsuario($mensaje);
         } else {
            // echo "<script>alert('No se han agregado ningun dato')</script>";
             $mensaje = "No se han agregado ningun dato";
-            $alerta->mensajeUsuario($mensaje);
+            $this->mensajeUsuario($mensaje);
         }
     }
 

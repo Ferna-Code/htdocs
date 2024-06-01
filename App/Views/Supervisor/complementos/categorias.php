@@ -8,4 +8,5 @@
         // Llamada en una vista
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
     </script>
+    
 </body>

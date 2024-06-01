@@ -7,3 +7,5 @@ require_once 'App/Database.php';
 $router = new Router();
 $router->route();
 
+?>
+
