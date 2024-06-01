@@ -335,4 +335,21 @@ class SupervisorDaoImpl implements SupervidorDao
         mysqli_stmt_close($stmt);
         return $datos;
     }
+
+    public function deleteCategoria($ids) {
+        $consulta = "UPDATE  categorias  SET fechaEliminacion = NOW() WHERE id IN (" . implode(',', array_fill(0, count($ids), '?')) . ")";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+        if (!$stmt) {
+            return false;
+        }
+    
+        $types = str_repeat('i', count($ids));
+        mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    
+        return $success;
+    }
 }

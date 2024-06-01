@@ -327,7 +327,7 @@ function getCategoria() {
         console.log("Cuerpo del mensajeeeeee: ", row);
         const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria checkSelect" name="checkId"></td>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
           <td class="hidden">${row.id}</td>
           <td><a href="#" class="linkTabla" onclick="controlVisi14()">${row.nombre}</a></td>
           <td>${row.fechaCreacion}</td>
@@ -834,16 +834,11 @@ function getUsuario() {
   });
 }
 
-//evento para seeccionar las filas marcadas con checkbox
+// Evento para seleccionar las filas marcadas con checkbox
 document.getElementById('deleteSelected').addEventListener('click', function () {
-  //Este array almacenará los IDs de las publicaciones seleccionadas para eliminar.
   const selectedIds = [];
-  //Se selecciona todos los checkboxes con la clase checkboxPublicacion que están marcados (checked).
-  document.querySelectorAll('.checkSelect:checked').forEach(checkbox => {
-    //children[1] selecciona la segunda celda (<td>) en esa fila (asumiendo que el ID está en la segunda celda
-    //textContent obtiene el texto dentro de esa celda, que es el ID de la publicación.
-    //selectedIds.push(...) añade ese ID al array selectedIds.
-    selectedIds.push(checkbox.closest('tr').children[1].textContent); // Assuming the ID is in the second cell
+  document.querySelectorAll('.checkboxCategoria:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
   });
 
   if (selectedIds.length > 0) {
@@ -851,12 +846,12 @@ document.getElementById('deleteSelected').addEventListener('click', function () 
       deleteCategoria(selectedIds);
     }
   } else {
-    alert('No hay publicaciones seleccionadas para eliminar.');
+    alert('No hay categorias seleccionadas para eliminar.');
   }
 });
 
 function deleteCategoria(ids) {
-  console.log("Eliminar categorias:", ids);
+  console.log("Actualizar categorias:", ids);
   fetch("/supervisor/deleteCategoria", {
     method: 'POST',
     headers: {
@@ -880,6 +875,6 @@ function deleteCategoria(ids) {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }

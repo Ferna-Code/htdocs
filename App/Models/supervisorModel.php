@@ -3,6 +3,7 @@ class SupervisorModel
 {
     //CATEGORIA
     private $nuevaCategoria;
+    private $idCategoria;
 
     //CURSO
     private $categoriaCurso;
@@ -37,6 +38,9 @@ class SupervisorModel
     //CATEGORIA
     public function getNuevaCategoria(){
         return $this->nuevaCategoria;
+    }
+    public function getIdCategoria(){
+        return $this->idCategoria;
     }
 
     //PERFIL
@@ -109,6 +113,9 @@ class SupervisorModel
     //CATEGORIA
     public function setNuevaCategoria($nuevaCategoria){
         $this->nuevaCategoria=$nuevaCategoria;
+    }
+    public function SetIdCategoria($idCategoria){
+        $this->idCategoria=$idCategoria;
     }
 
     //PERFIL
