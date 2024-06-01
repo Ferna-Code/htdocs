@@ -8,18 +8,24 @@
         <div class="sidebar-brand-text mx-3">Administrador</div>
     </a>
 
+
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <span>Panel Admin</span></a>
+    <a class="nav-link" href="" onclick="controlVisi16()">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Perfil Administrador</span></a>
     </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Menú
+</div>
     <!-- Nav Item - Pages Collapse Menu -->
     <div class="overflow-auto " style="max-height: 60vh;">
     <li class="nav-item">

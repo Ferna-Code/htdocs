@@ -38,7 +38,7 @@
         <?php include_once 'complementosAdmin/body-page/parteSuperior.php'; ?>
 
         
-        <div class="contenedor-body" id="modulo1">
+        <div class="contenedor-body" id="modulo1" style="display:none">
             <?php include 'complementosAdmin/panelesAdmin/carreras.php' ?>
         </div>
 
@@ -96,6 +96,10 @@
 
         <div class="contenedor-body" id="modulo15" style='display:none'>
             <?php include 'complementosAdmin/panelesAdmin/experienciaLaboral.php' ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo16" >
+            <?php include 'complementosAdmin/panelesAdmin/perfilAdministrador.php' ?>
         </div>
             
     </div>

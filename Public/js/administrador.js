@@ -189,7 +189,18 @@ function controlVisi15() {
   // Centra el módulo 1
   centrarModulo(elemento15);
 }
+function controlVisi16() {
+  var elemento16 = document.getElementById("modulo16");
 
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento16.style.display = "flex";
+
+  // Centra el módulo 1
+  centrarModulo(elemento16);
+}
 
 
 
