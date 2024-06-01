@@ -266,5 +266,19 @@ class SupervisorController{
             echo json_encode($data); // Retornar datos
         }
     }
+
+    public function deletePublicacion()
+    {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+
+        $success = $admin->deleteCategoria($ids);
+
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
+        }
+    }
 }
 

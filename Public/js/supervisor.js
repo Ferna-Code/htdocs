@@ -327,7 +327,8 @@ function getCategoria() {
         console.log("Cuerpo del mensajeeeeee: ", row);
         const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria checkSelect" name="checkId"></td>
+          <td class="hidden">${row.id}</td>
           <td><a href="#" class="linkTabla" onclick="controlVisi14()">${row.nombre}</a></td>
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
@@ -831,4 +832,54 @@ function getUsuario() {
     console.error("Error en la solicitud Fetch: ",error);
     alert("Error en la solicitud: ", error.message);
   });
+}
+
+//evento para seeccionar las filas marcadas con checkbox
+document.getElementById('deleteSelected').addEventListener('click', function () {
+  //Este array almacenará los IDs de las publicaciones seleccionadas para eliminar.
+  const selectedIds = [];
+  //Se selecciona todos los checkboxes con la clase checkboxPublicacion que están marcados (checked).
+  document.querySelectorAll('.checkSelect:checked').forEach(checkbox => {
+    //children[1] selecciona la segunda celda (<td>) en esa fila (asumiendo que el ID está en la segunda celda
+    //textContent obtiene el texto dentro de esa celda, que es el ID de la publicación.
+    //selectedIds.push(...) añade ese ID al array selectedIds.
+    selectedIds.push(checkbox.closest('tr').children[1].textContent); // Assuming the ID is in the second cell
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar las categorias c: ${selectedIds.join(', ')}?`)) {
+      deleteCategoria(selectedIds);
+    }
+  } else {
+    alert('No hay publicaciones seleccionadas para eliminar.');
+  }
+});
+
+function deleteCategoria(ids) {
+  console.log("Eliminar categorias:", ids);
+  fetch("/supervisor/deleteCategoria", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Categoria(s) eliminada(s)');
+        getCategoria();
+      } else {
+        alert('Error al eliminar las publicaciones.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }

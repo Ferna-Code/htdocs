@@ -14,4 +14,5 @@ interface SupervidorDao{
     public function getOferta();
     public function getPerfil();
     public function getUsuario();
+    public function deleteCategoria();
 }
