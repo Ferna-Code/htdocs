@@ -54,7 +54,7 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'complementos/ofertas/ofertas.php' ?>
         </div>
         <div class="contenedor-body" id="modulo9" style="display:none">
-            <!-- <?php //include 'complementos/ofertas/veroferta.php' ?> -->
+            <?php include 'complementos/ofertas/veroferta.php' ?>
         </div>
         <div class="contenedor-body" id="modulo10" style="display:none">
             <?php include 'complementos/muropersonal.php' ?>

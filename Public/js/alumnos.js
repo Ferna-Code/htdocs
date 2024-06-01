@@ -71,14 +71,16 @@ function controlVisi7() {
 function vistaofertas() {
   getOfertas();
   var elemento8 = document.getElementById("modulo8");
-  console.log("VistaOfertas alumonsjs");
   ocultarModulos();
   elemento8.style.display = "flex";
   centrarModulo(elemento8);
 }
 
 
-function veroferta() {
+function veroferta(id) {
+  console.log("veroferta alumnos.js");
+  getOfertaByID(id);
+  console.log(id);
   var elemento8 = document.getElementById("modulo9");
   
   // Oculta todos los módulos
@@ -137,12 +139,13 @@ function getOfertas() {
               cardOferta.innerHTML = `
                   <div class="cardc mb-4">
                       <div class="cardc-details">
+                      <p style="display: none;" class="text-title">${oferta.id}</p>
                           <p class="text-title">${oferta.tipoOferta}</p>
                           <p class="text-body">Cargo: ${oferta.cargo}</p>
                           <p class="text-body">Empresa: ${oferta.nombreEmpresa}</p>
                           <p class="text-body">Fecha de creación: ${oferta.fechacreacion}</p>
                       </div>
-                      <button class="cardc-button" onclick="controlVisi6()">Ver más</button>
+                      <button class="cardc-button" onclick="veroferta(${oferta.id})">Ver más</button>
                   </div>
               `;
 
@@ -168,5 +171,58 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+function getOfertaByID(id) {
+  const ofertaIDContainer = document.getElementById("ofertaIDContainer");
+  ofertaIDContainer.innerHTML = '';
+  
+    fetch("/ofertas/getofertabycategory/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+      console.log("Datos recibidos del servidor:", data);
+      if (data.success) {
+          const oferta = data.oferta;
+          console.log("oferta recibidos data:", oferta);
+          const ofertaIDContainer = document.getElementById("ofertaIDContainer");
+          console.log("Contenedor de ofertas:", ofertaIDContainer);
+          let rowContainer;
+          oferta.forEach((oferta, index) => {
+              const cardofert = document.createElement("div");
+              cardofert.className = "";
+              cardofert.innerHTML = `
+                  <div class="cardo mb-4">
+                      <div class="cardo-details">
+                          <p class="text-title">Tipo Oferta: ${oferta.tipoOferta}</p>
+                          <p class="text-body">Cargo: ${oferta.cargo}</p>
+                          <p class="text-body">Descripción: ${oferta.descripcion}</p>
+                          <p class="text-body">Empresa: ${oferta.nombreEmpresa}</p>
+                          <p class="text-body">Rango Salarial: ${oferta.rangosalarial}</p>
+                          <p class="text-body">Fecha de publicación: ${oferta.fechacreacion}</p>
+                      </div>
+                      <button class="cardo-button" onclick="">Postular</button>
+                  </div>
+              `;
+            
+                  rowContainer = document.createElement("div");
+                  rowContainer.className = "row";
+                  ofertaIDContainer.appendChild(rowContainer);
+              
+              rowContainer.appendChild(cardofert);
+          });
+      } else {
+          console.error("Error message: ", data.message, "Error en la respuesta del servidor");
+      }
+  })
+}
 
 

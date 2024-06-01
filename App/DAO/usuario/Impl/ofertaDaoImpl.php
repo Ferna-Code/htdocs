@@ -29,5 +29,22 @@ class ofertaDaoImpl implements ofertaDao
         mysqli_close($conn);
         return $ofertas;
     }
-    
+
+    public function getDataById($id)
+    {
+        $sql = "SELECT id, tipoOferta, idcategoria, cargo, nombreEmpresa, rutempresa, correocontacto, descripcion, rangosalarial, fechacreacion, fechaeliminacion FROM ofertas WHERE id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $ofert = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $ofert[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $ofert;
+    }
 }
+

@@ -49,18 +49,7 @@ function controlVisi4() {
   }
 
 
-  function veroferta() {
-    var elemento8 = document.getElementById("modulo9");
-    
-    // Oculta todos los módulos
-    ocultarModulos();
-  
-    // Muestra el módulo 1
-    elemento8.style.display = "flex";
-    
-    // Centra el módulo 1
-    centrarModulo(elemento8);
-  }
+
 
   
   function ocultarModulos() {

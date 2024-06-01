@@ -108,6 +108,7 @@ function guardarCambiosUsuario() {
             if (result.success) {
                 // Actualizar los datos originales con los nuevos datos
                 userDataOriginal = { ...userDataOriginal, ...camposModificados };
+                getUsuarios();
                 console.log('¡Cambios guardados correctamente!');
             } else {
                 console.error(result.message);
@@ -119,5 +120,7 @@ function guardarCambiosUsuario() {
     } else {
         console.log('No se han realizado cambios.');
     }
+
+    
 }
 
