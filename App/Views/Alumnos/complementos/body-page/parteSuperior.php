@@ -67,7 +67,7 @@
 
     <!-- ------------------- -->
     <br><br>
-    <form method="post" action="App/Views/Login/logout.php">
+    <form method="post" action="/Login/logout">
         <input type="submit" class="btn-supervisor" value="Cerrar Sesión">
         <input type="hidden" name="op" value="CERRAR_SESION">
     </form>

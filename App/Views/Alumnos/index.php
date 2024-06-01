@@ -1,9 +1,22 @@
 <?php
-require_once 'App/Controllers/accessController.php';
-$perfilesPermitidos = 3;
+// Asegúrate de que la sesión se inicie antes de cualquier otra cosa
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// Controla el caché del navegador
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+
+// Verifica si el usuario está logeado
+if (!isset($_SESSION['idperfil'])) {
+    header('Location: http://localhost:8080/');
+    exit();
+}
+
+require_once 'App/Controllers/accessController.php';
+$perfilesPermitidos = 3;
 verificarAcceso($perfilesPermitidos);
 ?>
 
