@@ -316,5 +316,72 @@ class SupervisorController{
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las carreras.']);
         }
     }
+    public function deletePublicacion() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deletePublicacion($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las carreras.']);
+        }
+    }
+
+    public function deleteReporte() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deleteReporte($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las carreras.']);
+        }
+    }
+    public function deleteOfertas() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deleteOfertas($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
+        }
+    }
+    public function deletePerfil() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deletePerfil($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
+        }
+    }
+    public function deleteUsuario() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deleteUsuario($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
+        }
+    }
+    public function deletePalabra() {
+        $admin = new SupervisorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $success = $admin->deletePalabra($ids);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
+        }
+    }
 }
 

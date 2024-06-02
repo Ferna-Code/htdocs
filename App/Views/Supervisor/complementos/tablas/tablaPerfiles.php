@@ -4,12 +4,13 @@
         <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal1">
             Nuevo perfil
         </button>
-        <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+        <button type="button" id="deleteSelectedPerfil" class="btn-supervisor marginBtn">Eliminar</button>
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllPerfil" name="select-all"></th><!--CHECKBOX PRINCIPAL-->
                     <th class="widthName">Descripción</th>
+                    <th>Activo</th>
                     <th>Fecha creación</th>
                     <th>Fecha eliminación</th>
 

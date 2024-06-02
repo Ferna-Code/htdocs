@@ -3,7 +3,7 @@
         <form action="">
             <a href="/importarExcel" class="btn-supervisor marginBtn btnAgregar">Agregar usuario</a>
            
-            <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             <table id="tableUsers" class="tabla table">
                 <thead>
                     <tr>
