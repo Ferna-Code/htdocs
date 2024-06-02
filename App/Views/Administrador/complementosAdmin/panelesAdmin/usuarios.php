@@ -20,10 +20,10 @@
                 </select>
                 <a href="Administrador/creaUsuarios" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarUsuario" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-            <table id="tableUsers" class="tabla table">
+            <table id="tableUsuarios" class="tabla table">
                 <style>
                     .tabla {
                         width: 100%;
@@ -31,61 +31,23 @@
                 </style>
                 <thead>
                     <tr>
-                        <th class="widthCheck"><input type="checkbox" id="checkAllUsuario" name="select-all"></th>
-                        <th class="anchoId"></th>Rut</th>
+                        <th class="widthCheck"><input type="checkbox" id="checkAllUsuarios" name="select-all"></th>
+                        <th ></th>Rut</th>
                         <th>Nombre</th>
                         <th>Fecha de Nacimiento</th>
+                        <th>ID Perfil</th>
                         <th>Correo</th>
-                        <th>Carrera</th>
+                        <th>ID Carrera</th>
                         <th>Avance</th>
                         <th>Cargo</th>
-                        <th>Fecha de Ingreso</th>
+                        <th>Clave</th>
+                        <th>F. Ingreso</th>
                         <th>Activo</th>
-                        <th>Feha de Eliminación</th>
+                        <th>F.Eliminación</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
-                        <td>11111111-1</td>
-                        <td>Luis Yañez Carreño</td>
-                        <td>12-12-1954</td>
-                        <td>Profesor@leones.cl</td>
-                        <td>Analista Programador</td>
-                        <td>5</td>
-                        <td>Docente</td>
-                        <td>12-12-2024</td>
-                        <td>Si</td>
-                        <td>12-12-2024</td>
-                    </tr>
-
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
-                        <td>33333333-3</td>
-                        <td>Ivan Rojas</td>
-                        <td>12-12-1930</td>
-                        <td>JefeCarrera@leones.cl</td>
-                        <td>Otra Carrera</td>
-                        <td>5</td>
-                        <td>Docente</td>
-                        <td>12-12-2024</td>
-                        <td>Si</td>
-                        <td>12-12-2024</td>
-
-                    </tr>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
-                        <td>22222222-2</td>
-                        <td>Ramon Vasquez</td>
-                        <td>12-12-1986</td>
-                        <td>Profesor2@leones.cl</td>
-                        <td>Analista Programador</td>
-                        <td>5</td>
-                        <td>Docente</td>
-                        <td>12-12-2024</td>
-                        <td>Si</td>
-                        <td>12-12-2024</td>
-                    </tr>
+                <tbody id="bodyUsuarios">
+ 
                 </tbody>
             </table>
             <!-- seccion footer -->
@@ -114,9 +76,8 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../../Public/js/administrador.js"></script>
+
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllUsuario', 'checkboxUsuario');
-    </script>
 </body>

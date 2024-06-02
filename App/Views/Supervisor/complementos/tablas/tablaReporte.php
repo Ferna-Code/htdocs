@@ -20,45 +20,14 @@
                         <th>ID Comentario</th>
                         <th>ID Publicación</th>
                         <th>Fecha Creación</th>
-
                         <th>Fecha Eliminación</th>
                         <th>Ver Publicación/Comentario</th>
 
 
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" id="checkboxReporte" class="checkboxReporte" name="checkId"></td>
-                        <td>17426433-5</td>
-                        <td>2</td>
-                        <td>6</td>
-                        <td>12-12-2023</td>
-
-                        <td>12-27-2024</td>
-                        <td><a href="#" class="linkTabla" onclick="controlVisi15()">Ver reporte</a></td>
-
-                    </tr>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" id="checkboxReporte" class="checkboxReporte" name="checkId"></td>
-                        <td>17426433-5</td>
-                        <td>2</td>
-                        <td>6</td>
-                        <td>12-12-2023</td>
-                        <td></td>
-                        <td><a href="#" class="linkTabla" onclick="controlVisi15()">Ver reporte</a></td>
-
-                    </tr>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" id="checkboxReporte" class="checkboxReporte" name="checkId"></td>
-                        <td>17426433-5</td>
-                        <td>2</td>
-                        <td>6</td>
-                        <td>12-12-2023</td>
-                        <td>12-27-2024</td>
-                        <td><a href="#" class="linkTabla" onclick="controlVisi15()">Ver reporte</a></td>
-                    </tr>
-
+                <tbody id="tbodyReporte">
+                    
                 </tbody>
             </table>
         </form>

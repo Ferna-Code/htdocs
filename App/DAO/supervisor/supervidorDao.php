@@ -7,4 +7,12 @@ interface SupervidorDao{
     public function insertPalabra(SupervisorModel $admin);
     public function insertUsuario(SupervisorModel $admin);
     public function getPalabra();
+    public function getCategoria();
+    public function getCurso();
+    public function getPublicacion();
+    public function getReporte();
+    public function getOferta();
+    public function getPerfil();
+    public function getUsuario();
+    
 }

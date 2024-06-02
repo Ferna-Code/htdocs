@@ -12,7 +12,7 @@ function controlVisi1() {
 }
 
 // muroPersonal
-function controlVisit2() {
+function controlVisit10() {
   var elemento10 = document.getElementById("modulo10");
 
   // Oculta todos los módulos

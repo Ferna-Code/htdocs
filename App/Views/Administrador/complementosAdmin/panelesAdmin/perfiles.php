@@ -28,7 +28,7 @@
                 <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tablePerfils" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
@@ -40,31 +40,8 @@
                     <th>Fecha de Eliminacion</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
-                    <td>01</td>
-                    <td>Administrador</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
-                    <td>02</td>
-                    <td>Supervisor</td>
-                    <td>12-12-2024</td>
-                    <td>No</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
-                    <td>02</td>
-                    <td>Egresado</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
+            <tbody id="bodyPerfiles">
+              
             </tbody>
         </table>
                         <!-- seccion footer -->

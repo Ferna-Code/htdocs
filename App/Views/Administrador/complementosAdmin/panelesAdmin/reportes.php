@@ -18,17 +18,11 @@
                     <option value="Práctica">33333333-3</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-
                 <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalEditarReporte"> Editar</button>
-
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-
-
-
-
-            <table id="dataTable" class="tabla table">
+            <table id="tableReportes" class="tabla table">
                 <style>
                     .tabla {
                         width: 100%;
@@ -46,38 +40,8 @@
                         <th>Fecha de Eliminacion</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxReportes" name="checkId"></td>
-                        <td>01</td>
-                        <td>554</td>
-                        <td>77777777-7</td>
-                        <td>878</td>
-                        <td>12-12-2024</td>
-                        <td>1</td>
-                        <td>12-12-2024</td>
-                    </tr>
-
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxReportes" name="checkId"></td>
-                        <td>02</td>
-                        <td>5758</td>
-                        <td>77777777-7</td>
-                        <td>8768</td>
-                        <td>12-12-2024</td>
-                        <td>1</td>
-                        <td>12-12-2024</td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxReportes" name="checkId"></td>
-                        <td>03</td>
-                        <td>5342</td>
-                        <td>77777777-7</td>
-                        <td>673</td>
-                        <td>12-12-2024</td>
-                        <td>0</td>
-                        <td>12-12-2024</td>
-                    </tr>
+                <tbody id="bodyReportes">
+   
                 </tbody>
             </table>
             <!-- seccion footer -->
@@ -135,12 +99,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="../../../../Public/js/administrador.js"></script>
 
     <script src="../../../../Public/js/check.js"></script>
-
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllReportes', 'checkboxReportes');
-    </script>
 </body>

@@ -29,25 +29,8 @@
 
                 </tr>
             </thead>
-            <tbody>
-                <tr class="">
-                    <td><input type="checkbox" id="tableUsersCurso" class="checkbox-item" name="checkId"></td>
-                    <td><a href="#" class="linkTabla" onclick="controlVisi12()">Diseño Web Profesional El Curso Completo, Práctico y desde 0</a></td>
-                    <td>Fundación Cristo Vive</td>
-                    <td>12 / 06 / 2024</td>
-                </tr>
-                <tr class="">
-                    <td><input type="checkbox" id="tableUsersCurso" class="checkbox-item" name="checkId"></td>
-                    <td><a href="#" class="linkTabla" onclick="controlVisi12()">Diseño Web Profesional El Curso Completo, Práctico y desde 0</a></td>
-                    <td>Fundación Cristo Vive</td>
-                    <td>12 / 06 / 2024</td>
-                </tr>
-                <tr class="">
-                    <td><input type="checkbox" id="tableUsersCurso" class="checkbox-item" name="checkId"></td>
-                    <td><a href="#" class="linkTabla" onclick="controlVisi12()">Diseño Web Profesional El Curso Completo, Práctico y desde 0</a></td>
-                    <td>Fundación Cristo Vive</td>
-                    <td>12 / 06 / 2024</td>
-                </tr>
+            <tbody id="tbodyCurso">
+               
             </tbody>
         </table>
 

@@ -14,14 +14,14 @@
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Propietario">
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tableArchivos" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th class="widthCheck"><input type="checkbox" id="checkAllArchivo" name="select-all"></th>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllArchivos" name="select-all"></th>
                     <th class="anchoId">ID</th>
                     <th>Rut Usuario</th>
                     <th>Documento</th>
@@ -29,33 +29,8 @@
                     <th>Fecha de Eliminacion</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxArchivo" name="checkId"></td>
-                    <td>01</td>
-                    <td>88888888-8</td>
-                    <td>CV_Estudiante</td>
-                    <td>12-04-2024</td>
-                    <td>23-04-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxArchivo" name="checkId"></td>
-                    <td>02</td>
-                    <td>99999999-9</td>
-                    <td>CV_Egresado</td>
-                    <td>12-04-2024</td>
-                    <td>23-04-2024</td>
-
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxArchivo" name="checkId"></td>
-                    <td>03</td>
-                    <td>00000000-0</td>
-                    <td>CV_Otro</td>
-                    <td>12-04-2024</td>
-                    <td>23-04-2024</td>
-
-                </tr>
+            <tbody id="bodyArchivos">
+ 
             </tbody>
         </table>
                       <!-- seccion footer -->

@@ -5,7 +5,7 @@ function controlVisi1() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getReporte();
   // Muestra el módulo 1
   elemento.style.display = "flex";
 
@@ -19,7 +19,7 @@ function controlVisi2() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getPublicacion();
   // Muestra el módulo 1
   elemento2.style.display = "flex";
 
@@ -47,7 +47,7 @@ function controlVisi4() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getCurso();
   // Muestra el módulo 1
   elemento4.style.display = "flex";
 
@@ -61,7 +61,7 @@ function controlVisi5() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getPerfil();
   // Muestra el módulo 1
   elemento5.style.display = "flex";
 
@@ -75,7 +75,7 @@ function controlVisi6() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getUsuario();
   // Muestra el módulo 1
   elemento6.style.display = "flex";
 
@@ -89,7 +89,7 @@ function controlVisi7() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getCategoria();
   // Muestra el módulo 1
   elemento7.style.display = "flex";
 
@@ -109,7 +109,7 @@ function controlVisi8() {
 
   // Centra el módulo 1
   centrarModulo(elemento8);
-  
+
 }
 
 //OfertasLaborales
@@ -118,7 +118,7 @@ function controlVisi9() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getOferta();
   // Muestra el módulo 1
   elemento9.style.display = "flex";
 
@@ -299,6 +299,7 @@ $("#addCategoria").on("submit", function (event) {
         ).val("");
         // Cerrar el modal
         $("#exampleModal").modal("hide");
+        getCategoria();
 
       } else {
         alert("Error" + data.message);
@@ -308,6 +309,42 @@ $("#addCategoria").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });// FIN CUERPO
+function getCategoria() {
+  fetch("/supervisor/getCategoria")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyCategoria");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensajeeeeee: ", row);
+        const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
+          <td class="hidden">${row.id}</td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi14()">${row.nombre}</a></td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+        
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
 
 //FUNCIONES CURSO
 $("#crearCurso").on("submit", function (event) {
@@ -354,6 +391,40 @@ $("#crearCurso").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });// FIN CUERPO
+function getCurso() {
+  fetch("/supervisor/getCurso")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyCurso");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensajeeeeee: ", row);
+        const fila = `
+        <tr>
+          <td><input type="checkbox" class="checkbox-item" id="tableUsersCurso" name="checkId"></td>
+          <td class="widthName"><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
+          <td>${row.emitidopor}</td>
+          <td>${row.fechaCreacion}</td>
+        </tr>`;
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
 
 
 
@@ -389,6 +460,7 @@ $("#FormPerfil").on("submit", function (event) {
         ).val("");
         // Cerrar el modal
         $("#exampleModal1").modal("hide");
+        getPerfil();
 
       } else {
         alert("Error" + data.message);
@@ -421,7 +493,7 @@ $("#formPalabra").on("submit", function (event) {
       return response.json(); // Parseamos la respuesta como JSON
     })
     .then((data) => {
-     
+
       if (data.success) {
         alert("Nueva palabra agregada");
         $("#nuevaPalabra").val("");
@@ -430,6 +502,7 @@ $("#formPalabra").on("submit", function (event) {
         // Actualizar la tabla con los datos más recientes
         console.log(data);
         console.log(data.palabras)
+        tableName = 'diccionario';
         getPalabra();
       } else {
         alert("Error: " + data.message);
@@ -439,48 +512,80 @@ $("#formPalabra").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });
+ function getPalabra() {
+   fetch("/supervisor/getPalabra")
+   .then((response) => {
+     if(!response.ok){
+       throw new Error(`HTTP error: ${response.status}`);
+     }
+     return response.json();
+   })
+   .then((data) => {
+     if(data && data.length > 0){
+       const tbody = $("#tbodyPalabra");
+       tbody.empty()
+       //itera sobre cada elemento en la data y añade fila a la tabla
+       //data.array.forEach(element => {});
+       data.forEach(row => {
+         console.log("Cuerpo del mensaje: ", row);
+         const fila = `
+         <tr>
+           <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
+           <td>${row.palabra}</td>
+           <td>${row.fechaCreacion}</td>
+           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+         </tr>`;
+         tbody.append(fila);
+       });
+     }else{
+       alert("No se encontraron datos para actualizar");
+     }
+   })
+   .catch((error) => {
+     console.error("Error en la solicitud Fetch: ",error);
+     alert("Error en la solicitud: ", error.message);
+   });
+ }
 
-function cargarTablaPalabra(){
-  $(document).ready(function() {
-    getPalabras();
-  });
-}
+ 
 
-function getPalabra() {
-  fetch("/supervisor/getPalabra")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyPalabra");
-      tbody.empty();
+// function getPalabra(tableName) {
+//   fetch("/supervisor/getPalabra")
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(`HTTP error: ${response.status}`);
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       if (data && data.length > 0) {
+//         const tbody = $("#tbodyPalabra");
+//         tbody.empty();
 
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensaje: ", row);
-        const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
-          <td>${row.palabra}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
-}
+//         //itera sobre cada elemento en la data y añade fila a la tabla
+//         //data.array.forEach(element => {});
+//         data.forEach(row => {
+//           console.log("Cuerpo del mensaje: ", row);
+//           if (tableName == 'diccionario') {
+//             const fila = `
+//               <tr>
+//                 <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
+//                 <td>${row.palabra}</td>
+//                 <td>${row.fechaCreacion}</td>
+//                 <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+//               </tr>`;
+//             tbody.append(fila);
+//           }
+//         });
+//       } else {
+//         alert("No se encontraron datos para actualizar");
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error en la solicitud Fetch: ", error);
+//       alert("Error en la solicitud: ", error.message);
+//     });
+// }
 
 //INGRESAR USUARIO
 $("#formUsuario").on("submit", function (event) {
@@ -534,3 +639,242 @@ $("#formUsuario").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });// FIN CUERPO
+
+//PUBLICACIONES
+function getPublicacion() {
+  fetch("/supervisor/getPublicacion")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyPublicacion");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensajeeeeee: ", row);
+        const fila = `
+        <tr class="table table-striped">
+          <td><input type="checkbox" id="tableUsers" class="checkboxPublicacion" name="checkId"></td>
+          <td>${row.rutusuario}</a></td>
+          <td>${row.publicacion}</a></td>
+          <td>${row.nreportes}</a></td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+      
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
+
+//REPORTE
+function getReporte() {
+  fetch("/supervisor/getReporte")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyReporte");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensajeeeeee: ", row);
+        const fila = `
+        <tr class="table table-striped">
+          <td><input type="checkbox" id="checkboxReporte" class="checkboxReporte" name="checkId"></td>
+          <td>${row.idcomentario}</a></td>
+          <td>${row.rutusuario}</a></td>
+          <td>${row.idpublicacion}</a></td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi15()">Ver reporte</a></td>
+        </tr>`;
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
+
+//OFERTA
+function getOferta() {
+  fetch("/supervisor/getOferta")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyOferta");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensajeeeeee: ", row);
+        const fila = `
+        <tr class="table table-striped">
+          <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi10()">${row.cargo}</a></td>
+          <td>${row.nombreEmpresa}</a></td>
+          <td>${row.tipoOferta}</a></td>
+          <td>${row.fechacreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+       
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
+//PERFILES
+function getPerfil() {
+  fetch("/supervisor/getPerfil")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyPerfil");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensajeeeeee: ", row);
+        const fila = `
+        <tr class="">
+          <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
+          <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
+          <td>${row.activo}</td>
+          <td>${row.fechacreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+        
+       
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
+
+function getUsuario() {
+  fetch("/supervisor/getUsuario")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyUsuario");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensajeeeeee: ", row);
+        const fila = `
+        <tr class="">
+          <td><input type="checkbox" id="checkboxPerfil" class="checkboxUsuario" name="checkId"></td>
+          <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
+          <td>${row.rut }</td>
+          <td>${row.fechaNacimiento}</td>
+          <td>${row.cargo}</td>
+          <td>${row.correo}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
+
+// Evento para seleccionar las filas marcadas con checkbox
+document.getElementById('deleteSelected').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCategoria:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar las categorias c: ${selectedIds.join(', ')}?`)) {
+      deleteCategoria(selectedIds);
+    }
+  } else {
+    alert('No hay categorias seleccionadas para eliminar.');
+  }
+});
+
+function deleteCategoria(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deleteCategoria", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Categoria(s) eliminada(s)');
+        getCategoria();
+      } else {
+        alert('Error al eliminar las publicaciones.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+}

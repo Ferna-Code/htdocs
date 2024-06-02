@@ -34,6 +34,32 @@ class SupervisorDaoImpl implements SupervidorDao
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+    public function getCategoria($limit = 10) {
+        $consulta = "SELECT * 
+        FROM categorias 
+        WHERE fechaEliminacion IS NULL 
+        ORDER BY id DESC 
+        LIMIT ?;";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $palabras = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $palabras[] = $row;
+        }
+        
+        mysqli_stmt_close($stmt);
+        return $palabras;
+    }
 
     public function insertCurso(SupervisorModel $admin)
     {
@@ -64,6 +90,28 @@ class SupervisorDaoImpl implements SupervidorDao
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
+    }
+    public function getCurso($limit = 10) {
+        $consulta = "SELECT * FROM cursos ORDER BY id DESC LIMIT ?";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $datos = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $datos[] = $row;
+        }
+        
+        mysqli_stmt_close($stmt);
+        return $datos;
     }
 
     public function insertPerfil(SupervisorModel $admin)
@@ -121,20 +169,27 @@ class SupervisorDaoImpl implements SupervidorDao
         }
     }
 
-    public function getPalabra() {
-        $consulta = "SELECT * FROM diccionario ORDER BY id DESC";
+    public function getPalabra($limit = 10) {
+        $consulta = "SELECT * FROM diccionario ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
         }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-
+    
         if (mysqli_num_rows($result) === 0) {
-            return false;
+            return array("success" => false, "message" => "No se encontraron datos");
         }
+        
+        $palabras = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $palabras[] = $row;
+        }
+        
         mysqli_stmt_close($stmt);
-        return $result;
+        return $palabras;
     }
     
 
@@ -177,5 +232,128 @@ class SupervisorDaoImpl implements SupervidorDao
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
+    }
+
+    public function getPublicacion($limit = 10) {
+        $consulta = "SELECT * FROM publicaciones ORDER BY id DESC LIMIT ?";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $datos = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $datos[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        return $datos;
+    }
+    public function getReporte($limit = 10) {
+        $consulta = "SELECT * FROM reportes ORDER BY id DESC LIMIT ?";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $datos = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $datos[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        return $datos;
+    }
+    public function getOferta($limit = 10) {
+        $consulta = "SELECT * FROM ofertas ORDER BY id DESC LIMIT ?";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $datos = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $datos[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        return $datos;
+    }
+    public function getPerfil($limit = 10) {
+        $consulta = "SELECT * FROM perfiles ORDER BY id DESC LIMIT ?";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $datos = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $datos[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        return $datos;
+    }
+    public function getUsuario($limit = 10) {
+        $consulta = "SELECT * FROM usuarios ORDER BY fechaCreacion DESC LIMIT ?";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $limit); // Vincular el parámetro del límite
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if (mysqli_num_rows($result) === 0) {
+            return array("success" => false, "message" => "No se encontraron datos");
+        }
+        
+        $datos = [];
+        while($row = mysqli_fetch_assoc($result)) {
+            $datos[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        return $datos;
+    }
+
+    public function deleteCategoria($ids) {
+        $consulta = "UPDATE  categorias  SET fechaEliminacion = NOW() WHERE id IN (" . implode(',', array_fill(0, count($ids), '?')) . ")";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+        if (!$stmt) {
+            return false;
+        }
+    
+        $types = str_repeat('i', count($ids));
+        mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    
+        return $success;
     }
 }

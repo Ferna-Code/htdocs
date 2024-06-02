@@ -26,18 +26,17 @@
                 <input type="submit" class="btnFiltro" value="Filtrar">
                 <a href="Administrador/CreaCursos" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <form action="#">
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tableCursos" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllCursos" name="select-all"></th>
                     <th class="anchoId">ID</th>
-                    <th>Categoría</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Institución</th>
@@ -48,49 +47,8 @@
                     <th>Fecha de Eliminación</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
-                    <td>01</td>
-                    <td>Categoría 1</td>
-                    <td>Curso de Farmacología Avanzada</td>
-                    <td>Estudio profundo sobre los efectos y reacciones de los fármacos.</td>
-                    <td>Universidad de Ciencias de la Salud</td>
-                    <td>http://cursofarmacologia.com</td>
-                    <td>02</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
+            <tbody id="bodyCursos">
 
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
-                    <td>01</td>
-                    <td>Categoría 1</td>
-                    <td>Curso de Gestión en Prevención de Riesgos</td>
-                    <td>Curso para mejorar las competencias en la gestión de riesgos laborales.</td>
-                    <td>Instituto Técnico de Seguridad Laboral</td>
-                    <td>http://cursoriesgos.com</td>
-                    <td>02</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCursos" name="checkId"></td>
-                    <td>01</td>
-                    <td>Categoría 1</td>
-                    <td>Curso de Estrategias Comerciales</td>
-                    <td>Técnicas avanzadas para impulsar las ventas y mejorar la gestión comercial.</td>
-                    <td>Escuela de Negocios</td>
-                    <td>http://cursoestrategiascomerciales.com</td>
-                    <td>02</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-                
             </tbody>
         </table>
                       <!-- seccion footer -->
@@ -119,9 +77,9 @@
         </div>
     </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../../Public/js/administrador.js"></script>
+
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllCursos', 'checkboxCursos');
-    </script>
+
 </body>

@@ -25,10 +25,10 @@
             <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalEditar">
                 Editar
             </button>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tableCategorias" class="tabla table">
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
@@ -39,31 +39,8 @@
                     <th class="anchoFecha">Fecha de Eliminación</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td class="anchoId">01</td>
-                    <td>Educación Bienestar y Calidad de vida</td>
-                    <td class="anchoFecha">12-04-2024</td>
-                    <td class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td class="anchoId">02</td>
-                    <td>Informática Tecnología y Productividad</td>
-                    <td class="anchoFecha">12-04-2024</td>
-                    <td class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td class="anchoId">03</td>
-                    <td>Negocios Gestión e Innovación</td>
-                    <td class="anchoFecha">12-04-2024</td>
-                    <td class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
-                </tr>
+            <tbody id="bodyCategorias">
+                
             </tbody>  
         </table>
                <!-- seccion footer -->
@@ -151,59 +128,9 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("#agregarCategoria").click(function(){
-        var nuevaCategoria = $("#nuevaCategoria").val();
-        var estadoCategoria  = $("#EstadoCategoria").val();
-        $.ajax({
-            url: 'categoria.php', 
-            type: 'post',
-            data: $('#addCategoria').serialize(), 
-            success: function(response){
-                alert(response); 
-                $('#modalCrear').modal('hide'); 
-            }
-        });
-    });
-});
+<script src="../../../../Public/js/administrador.js"></script>
 
-    //opcion para editar//
-    $(document).ready(function(){
-    // Trigger to open the edit modal and populate the fields
-    $(".editButton").click(function(){
-        var categoriaId = $(this).data('id');
-        var categoriaName = $(this).data('name');
-        var categoriaEstado = $(this).data('estado');
-        
-        $("#editId").val(categoriaId);
-        $("#editCategoria").val(categoriaName);
-        $("#editActivo").val(categoriaEstado);
-        
-        $('#modalEditar').modal('show');
-    });
-    
-    // Handle the form submission for editing
-    $("#editCategoria").submit(function(event){
-        event.preventDefault(); // Prevent the form from submitting the default way
-        $.ajax({
-            url: 'editar_categoria.php', // The server-side script for editing
-            type: 'post',
-            data: $(this).serialize(), // Serialize the form data
-            success: function(response){
-                alert(response); // Show the response from the PHP script
-                $('#modalEditar').modal('hide'); // Hide the modal
-                // You can add further actions here, such as updating the table content without page reload
-            }
-        });
-    });
-});
-</script>
-</script>
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
-    </script>
+
 
 </body>

@@ -12,16 +12,31 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
 
 <div class="container mt-2">
     <div class="main-content">
-<br><br><br>
+        <form method="POST" class="form" style="padding: 30px 30px 0 30px;">
+            <div class="post-container">
+                <textarea name="comentario" placeholder="¿Qué estás pensando?" Required></textarea>
+                <input type="hidden" name="sw" value="publicar">
+                <button name="Publicar" value="Publicar">Publicar</button>
+            </div>
+        </form>
+
+        <hr>
 
         <?php
         if (is_array($publicaciones)) {
             foreach ($publicaciones as $p) {
                 ?>
-
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
-                    <img class="img" src="../../../../Public/img/profe1.jpeg" alt="">
+                    <img class="img" src="<?php
+                    $admin = new usuarioDaoImpl();
+                    $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
+                        if($imagenUsuario != ""){
+                          echo $imagenUsuario;  
+                        } else{
+                            echo "/uploads/usuarioSinFoto.jpg";
+                        }
+                         ?>" alt="">
                     <div class="tweet-content">
 
                         <div class="tweet-text">
@@ -43,7 +58,7 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-            <?php
+                <?php
             }
         } else {
             echo "No se encontraron publicaciones.";
@@ -54,26 +69,25 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
     <?php include_once 'body-page/parteDerecha.php'; ?>
 
 
-<div class="sidebar1">
-    <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
-    <hr>
-    <div class="card">
-        <h5>RedLeones</h5>
-        <p>!Felicidades por estar Aquí¡</p>
+    <div class="sidebar1">
+        <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
+        <hr>
+        <div class="card">
+            <h5>RedLeones</h5>
+            <p>!Felicidades por estar Aquí¡</p>
+        </div>
+        <div class="card">
+            <h5>Nuevo Curso</h5>
+            <p>INTERNET DE LAS COSAS</p>
+        </div>
+        <div class="card">
+            <h5>Nueva Oferta</h5>
+            <p>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
+                CONTROL</p>
+        </div>
     </div>
-    <div class="card">
-        <h5>Nuevo Curso</h5>
-        <p>INTERNET DE LAS COSAS</p>
-    </div>
-    <div class="card">
-        <h5>Nueva Oferta</h5>
-        <p>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
-                                    CONTROL</p>
-    </div>
-</div>
 
 </div>
-
 
 <script src="../../../../public/js/sweetalert2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -89,6 +103,6 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
     <?php endif; ?>
 
     setTimeout(() => {
-        window.history.replaceState(null,null,window.location.pathname);
+        window.history.replaceState(null, null, window.location.pathname);
     }, 0)
 </script>

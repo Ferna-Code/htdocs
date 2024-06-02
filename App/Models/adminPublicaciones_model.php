@@ -1,6 +1,5 @@
 <?php
 
-
 class AdminPublicacionesModel
 {
     private $IdPublicacion;

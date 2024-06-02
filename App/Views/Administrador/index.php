@@ -86,19 +86,16 @@
             <?php include 'complementosAdmin/panelesAdmin/Postulaciones.php' ?>
         </div>
 
-        <div class="contenedor-body" id="modulo13" style='display:none'>
-            <?php include 'complementosAdmin/panelesAdmin/cv_abreviado.php' ?>
-        </div>
 
-        <div class="contenedor-body" id="modulo14" style='display:none'>
+        <div class="contenedor-body" id="modulo13" style='display:none'>
             <?php include 'complementosAdmin/panelesAdmin/experienciaAcademica.php' ?>
         </div>
 
-        <div class="contenedor-body" id="modulo15" style='display:none'>
+        <div class="contenedor-body" id="modulo14" style='display:none'>
             <?php include 'complementosAdmin/panelesAdmin/experienciaLaboral.php' ?>
         </div>
 
-        <div class="contenedor-body" id="modulo16" >
+        <div class="contenedor-body" id="modulo15" >
             <?php include 'complementosAdmin/panelesAdmin/perfilAdministrador.php' ?>
         </div>
             

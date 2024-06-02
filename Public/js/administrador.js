@@ -3,7 +3,7 @@ function controlVisi1() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getCarrera();
   // Muestra el módulo 1
   elemento.style.display = "flex";
 
@@ -16,7 +16,7 @@ function controlVisi2() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getCategoria();
   // Muestra el módulo 1
   elemento2.style.display = "flex";
 
@@ -29,7 +29,7 @@ function controlVisi3() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getCurso();
   // Muestra el módulo 1
   elemento3.style.display = "flex";
 
@@ -42,7 +42,7 @@ function controlVisi4() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getDiccionario();
 
   // Muestra el módulo 1
   elemento4.style.display = "flex";
@@ -56,7 +56,7 @@ function controlVisi5() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getPerfil();
   // Muestra el módulo 1
   elemento5.style.display = "flex";
 
@@ -82,6 +82,7 @@ function controlVisi7() {
 
   // Oculta todos los módulos
   ocultarModulos();
+  getReportes();
 
   // Muestra el módulo 1
   elemento7.style.display = "flex";
@@ -95,7 +96,7 @@ function controlVisi8() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getUsuarios();
   // Muestra el módulo 1
   elemento8.style.display = "flex";
 
@@ -107,7 +108,7 @@ function controlVisi9() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getArchivos();
   // Muestra el módulo 1
   elemento9.style.display = "flex";
 
@@ -119,7 +120,7 @@ function controlVisi10() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getComentarios();
   // Muestra el módulo 1
   elemento10.style.display = "flex";
 
@@ -131,7 +132,7 @@ function controlVisi11() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getOfertas();
   // Muestra el módulo 1
   elemento11.style.display = "flex";
 
@@ -222,16 +223,386 @@ function centrarModulo(modulo) {
 
 
 
-/*-------------Mostrar info en Tablas--------------
+/*-------------Mostrar info en Tablas--------------*/
 
-function cargarTablaPublicaciones(){
-  $(document).ready(function() {
-    getPublicaciones();
-  });
-}*/
+function getCarrera() {
+  fetch("/Administrador/getCarrera")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyCarreras");
+        tbody.empty();
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.nombre}</td>
+          <td>${row.idcategorias}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getCategoria() {
+  fetch("/Administrador/getCategoria")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyCategorias");
+        tbody.empty();
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.nombre}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+
+function getCurso() {
+  fetch("/Administrador/getCurso")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyCursos");
+        tbody.empty();
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCursos" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.nombre}</td>
+          <td>${row.descripcion}</td>
+          <td>${row.emitidopor}</td>
+          <td>${row.linkpostular}</td>
+          <td>${row.idcategoria}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        initializeCheckboxMaster('checkAllCursos', 'checkboxCursos');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getDiccionario() {
+  fetch("/Administrador/getDiccionario")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyDiccionario");
+        tbody.empty();
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.palabra}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        initializeCheckboxMaster('checkAllPalabras', 'checkboxPalabra');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getPerfil() {
+  fetch("/Administrador/getPerfil")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyPerfiles");
+        tbody.empty();
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxPerfil" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.nombre}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        initializeCheckboxMaster('checkAllPerfiles', 'checkboxPerfil');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getReportes() {
+  fetch("/Administrador/getReportes")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyReportes");
+        tbody.empty();
+
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.idcomentario}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.idpublicacion}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getUsuarios() {
+  fetch("/Administrador/getUsuarios")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyUsuarios");
+        tbody.empty();
+
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
+          <td>${row.rut}</td>
+          <td>${row.nombre}</td>
+          <td>${row.fechaNacimiento}</td>
+          <td>${row.idperfil}</td>
+          <td>${row.correo}</td>
+          <td>${row.idcarrera}</td>
+          <td>${row.avance}</td>
+          <td>${row.cargo}</td>
+          <td>${row.clave}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllUsuarios', 'checkboxUsuario');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getArchivos() {
+  fetch("/Administrador/getArchivos")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyArchivos");
+        tbody.empty();
+
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxArchivo" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.documento}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllArchivos', 'checkboxArchivo');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getComentarios() {
+  fetch("/Administrador/getComentarios")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyComentarios");
+        tbody.empty();
+
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxComentario" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.idpublicacion}</td>
+          <td>${row.comentario}</td>
+          <td>${row.nreportes}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllComentarios', 'checkboxComentario');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
 
 function getPublicacion() {
-  console.log("controladorPubliacion");
   fetch("/Administrador/getPublicacion")
     .then((response) => {
       if (!response.ok) {
@@ -244,14 +615,12 @@ function getPublicacion() {
         const tbody = $("#bodyPublicaciones");
         tbody.empty();
 
-        //itera sobre cada elemento en la data y añade fila a la tabla
-        //data.array.forEach(element => {});
-        // (class="checkboxPublicacion),id se cambia a class para que el checkboxAll seleccione todos los check de las filas de la tabla
+
         data.forEach(row => {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
+          <td class="widthCheck"><input type="checkbox" class="checkboxComentario" name="select-all"></td>
           <td>${row.id}</td>
           <td>${row.rutusuario}</td>
           <td>${row.publicacion}</td>
@@ -264,7 +633,54 @@ function getPublicacion() {
         });
 
         // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
-        initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
+        initializeCheckboxMaster('checkAllComentarios', 'checkboxComentario');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getOfertas() {
+  fetch("/Administrador/getOfertas")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyOfertas");
+        tbody.empty();
+
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxOferta" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.tipoOferta}</td>
+          <td>${row.idcategoria}</td>
+          <td>${row.cargo}</td>
+          <td>${row.nombreEmpresa}</td>
+          <td>${row.rutempresa}</td>
+          <td>${row.correocontacto}</td>
+          <td>${row.descripcion}</td>
+          <td>${row.rangosalarial}</td>
+          <td>${row.fechacreacion}</td>
+          <td>${row.fechaeliminacion ? row.fechaeliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllOfertas', 'checkboxOferta');
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -278,9 +694,7 @@ function getPublicacion() {
 
 
 
-
-
-//evento para seeccionar las filas marcadas con checkbox
+//evento para seleccionar las filas marcadas con checkbox
 document.getElementById('deleteSelected').addEventListener('click', function () {
   //Este array almacenará los IDs de las publicaciones seleccionadas para eliminar.
   const selectedIds = [];
@@ -289,7 +703,7 @@ document.getElementById('deleteSelected').addEventListener('click', function () 
     //children[1] selecciona la segunda celda (<td>) en esa fila (asumiendo que el ID está en la segunda celda
     //textContent obtiene el texto dentro de esa celda, que es el ID de la publicación.
     //selectedIds.push(...) añade ese ID al array selectedIds.
-    selectedIds.push(checkbox.closest('tr').children[1].textContent); // Assuming the ID is in the second cell
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim()); // Assuming the ID is in the second cell
   });
 
   if (selectedIds.length > 0) {
@@ -300,6 +714,7 @@ document.getElementById('deleteSelected').addEventListener('click', function () 
     alert('No hay publicaciones seleccionadas para eliminar.');
   }
 });
+
 
 function deletePublicaciones(ids) {
   console.log("Eliminar publicaciones:", ids);
@@ -322,6 +737,54 @@ function deletePublicaciones(ids) {
         getPublicacion();
       } else {
         alert('Error al eliminar las publicaciones.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+
+
+
+
+document.getElementById('deleteSelected').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCarrera:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Está seguro que desea eliminar las carreras con ID: ${selectedIds.join(', ')}?`)) {
+      deleteCarreras(selectedIds);
+    }
+  } else {
+    alert('No a seleccionado un elemento para eliminar.');
+  }
+});
+
+function deleteCarreras(ids) {
+  console.log("Eliminar carreras:", ids);
+  fetch("/Administrador/deleteCarreras", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Eliminadas correctamente.');
+        getPublicacion();
+      } else {
+        alert('Error al eliminar.');
       }
     })
     .catch((error) => {

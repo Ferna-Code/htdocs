@@ -1,10 +1,10 @@
 <?php
-    require_once 'App/Controllers/accessController.php';
-    $perfilesPermitidos = 3;
-    if(session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    verificarAcceso($perfilesPermitidos);
+require_once 'App/Controllers/accessController.php';
+$perfilesPermitidos = 3;
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+verificarAcceso($perfilesPermitidos);
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +22,7 @@
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <!-- Custom styles for this template-->
+    <link>
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
     <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
@@ -38,38 +35,38 @@
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
 
         <div class="contenedor-body" id="modulo1">
-            <?php require_once "complementos/muroprincipal.php"; ?>  
-            
+            <?php require_once "complementos/muroprincipal.php"; ?>
+
         </div>
         <div class="contenedor-body" id="modulo2" style="display:none">
             <?php require_once "complementos/perfil.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo3" style="display:none">
-        <?php require_once "complementos/cursos/categorias.php"; ?>
+            <?php require_once "complementos/cursos/categorias.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo4" style="display:none">
-        <?php require_once "complementos/cursos/educacionbienestar.php"; ?>
+            <?php require_once "complementos/cursos/educacionbienestar.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo5" style="display:none">
-        <?php require_once "complementos/cursos/informatica.php"; ?>
+            <?php require_once "complementos/cursos/informatica.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo6" style="display:none">
-        <?php require_once "complementos/cursos/negocios.php"; ?>
+            <?php require_once "complementos/cursos/negocios.php"; ?>
         </div>
         <div class="contenedor-body" id="modulo7" style="display:none">
             <?php include 'complementos/cursos/categorias.php' ?>
         </div>
         <div class="contenedor-body" id="modulo8" style="display:none">
-        <?php include 'complementos/ofertas/categoriasofi.php' ?>
+            <?php include 'complementos/ofertas/categoriasofi.php' ?>
         </div>
         <div class="contenedor-body" id="modulo9" style="display:none">
-        <?php include 'complementos/ofertas/veroferta.php' ?>
+            <?php include 'complementos/ofertas/veroferta.php' ?>
         </div>
         <div class="contenedor-body" id="modulo10" style="display:none">
-        <?php include 'complementos/muropersonal.php' ?>
+            <?php include 'complementos/muropersonal.php' ?>
         </div>
-    </div>
 
+    </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
 
@@ -92,9 +89,11 @@
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
     <script src="../../../../Public/js/alumnos.js"></script>
     <script src="../../../../public/js/perfilalumno.js"></script>
+    <script src="../../../../public/js/perfil.js"></script>
     <script src="../../../../Public/js/cursos.js"></script>
-    </script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./../../../Public/js/perfil.js"></script>
+    <script src="./../../../Public/js/curso.js"></script>
 </body>
 
 </html>

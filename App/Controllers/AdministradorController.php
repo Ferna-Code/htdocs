@@ -1,7 +1,15 @@
 <?php
 session_start();
 require_once __DIR__ . '/../DAO/Administrador/Impl/AdministradorDaoImpl.php';
+require_once __DIR__ . '/../Models/adminCarreras_model.php';
+require_once __DIR__ . '/../Models/adminCategorias_model.php';
+require_once __DIR__ . '/../Models/adminCursos_model.php';
+require_once __DIR__ . '/../Models/adminDiccionario_model.php';
+require_once __DIR__ . '/../Models/adminPerfiles_model.php';
 require_once __DIR__ . '/../Models/adminPublicaciones_model.php';
+require_once __DIR__ . '/../Models/adminReportes_model.php';
+require_once __DIR__ . '/../Models/adminUsuarios_model.php';
+require_once __DIR__ . '/../Models/adminOfertas_model.php';
 
 class AdministradorController
 {
@@ -12,6 +20,90 @@ class AdministradorController
         include VIEWS_PATH . 'Layout/footer.php';
     }
 
+    public function getCarrera()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getCarreras();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    public function getCategoria()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getCategorias();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    public function getCurso()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getCursos();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+    
+    public function getDiccionario()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getDiccionario();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    public function getPerfil()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getPerfiles();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
 
     public function getPublicacion()
     {
@@ -30,7 +122,93 @@ class AdministradorController
 
     }
 
+    public function getReportes()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getReportes();
 
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    public function getUsuarios()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getUsuarios();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    public function getArchivos()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getArchivos();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    public function getComentarios()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getComentarios();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    public function getOfertas()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getOfertas();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+
+    //-----------------DELETE-----------------//
 
     public function deletePublicacion()
     {
@@ -45,6 +223,22 @@ class AdministradorController
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
         }
     }
+
+    public function deleteCarreras()
+    {
+        $admin = new AdministradorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+
+        $success = $admin->deleteCarreras($ids);
+
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
+        }
+    }
+
+    
 
     
     /*public function crearCarrera(){

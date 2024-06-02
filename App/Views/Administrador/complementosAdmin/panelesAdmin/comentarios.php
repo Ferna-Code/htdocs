@@ -18,13 +18,10 @@
                     <option value="Práctica">03</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalEditarComentario">
-                    Editar</button>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                    <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-            <table id="tableUsers" class="tabla table">
+            <table id="tableComentarios" class="tabla table">
                 <style>
                     .tabla {
                         width: 100%;
@@ -43,40 +40,8 @@
                         <th>Fecha de Eliminación</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxComentarios" name="checkId"></td>
-                        <td>01</td>
-                        <td>09999999-9</td>
-                        <td>67</td>
-                        <td>Este es un comentario</td>
-                        <td>2</td>
-                        <td>12-12-2024</td>
-                        <td class="anchoActiv">1</td>
-                        <td>12-12-2024</td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxComentarios" name="checkId"></td>
-                        <td>02</td>
-                        <td>04444444-4</td>
-                        <td>45</td>
-                        <td>Este es otro comentario</td>
-                        <td>3</td>
-                        <td>12-12-2024</td>
-                        <td class="anchoActiv">1</td>
-                        <td>12-12-2024</td>
-                    </tr>
-                    <tr class="table table-striped">
-                        <td><input type="checkbox" class="checkboxComentarios" name="checkId"></td>
-                        <td>03</td>
-                        <td>05555555-5</td>
-                        <td>34</td>
-                        <td>Este es otro comentario mwe</td>
-                        <td>0</td>
-                        <td>12-12-2024</td>
-                        <td class="anchoActiv">1</td>
-                        <td>12-12-2024</td>
-                    </tr>
+                <tbody id="bodyComentarios">
+
                 </tbody>
             </table>
             <!-- seccion footer -->

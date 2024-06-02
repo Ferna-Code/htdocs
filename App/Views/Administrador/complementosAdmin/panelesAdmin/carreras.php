@@ -26,11 +26,11 @@
                 <input type="submit" class="btnFiltro" value="Filtrar">
                 <a href="Administrador/crearCarrera" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCarrera" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <div class="table-responsive">
-            <table id="tableUsers" class="table table-sm">
+            <table id="tableCarreras" class="table table-sm">
             <thead>
                 <tr >
                     <th class="widthCheck"><input type="checkbox" id="checkAllCarrera" name="select-all"></th>
@@ -42,36 +42,8 @@
                     <th >Fecha de Eliminacion</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr >
-                    <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>01</td>
-                    <td>Analista Programador</td>
-                    <td>Informática Tecnología y Productividad</td>
-                    <td>12-04-2024</td>
-                    <td>1</td>
-                    <td>23-04-2024</td>
-                </tr>
+            <tbody id="bodyCarreras">
 
-                <tr >
-                    <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>02</td>
-                    <td>Técnico en Construcción</td>
-                    <td>Informática Tecnología y Productividad</td>
-                    <td>12-04-2024</td>
-                    <td>1</td>
-                    <td>23-04-2024</td>
-                </tr>
-                
-                <tr  >
-                    <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>03</td>
-                    <td>Psicopedagogía</td>
-                    <td>Educación Bienestar y Calidad de vida</td>
-                    <td>12-04-2024</td>
-                    <td>1</td>
-                    <td>23-04-2024</td>
-                </tr>
             </tbody>
         </table>
         </div>    
@@ -102,9 +74,8 @@
     </div>
 
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
-    </script>
+    <script src="../../../../Public/js/administrador.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>

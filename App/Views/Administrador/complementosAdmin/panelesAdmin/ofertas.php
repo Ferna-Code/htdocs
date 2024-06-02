@@ -35,10 +35,10 @@
                 </select>
                 
                 <a href="Administrador/editarOfertas" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tableOfertas" class="tabla table">
             
             <thead>
                 <tr>
@@ -56,51 +56,8 @@
                     <th>Fecha de Eliminación</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxOfertas" name="checkId"></td>
-                    <td>01</td>
-                    <td>Full Time</td>
-                    <td>1</td>
-                    <td>Técnico Farmacéutico</td>
-                    <td>Farmacias Ahumada</td>
-                    <td>7620012-K</td>
-                    <td>rh@ahumada.com</td>
-                    <td>Se requiere técnico farmacéutico para gestionar y dispensar medicamentos.</td>
-                    <td>1200000</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                </tr>
-                
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxOfertas" name="checkId"></td>
-                    <td>02</td>
-                    <td>Práctica Laboral</td>
-                    <td>2</td>
-                    <td>Asistente de Prevención de Riesgos</td>
-                    <td>Constructora ABC</td>
-                    <td>1593571-0</td>
-                    <td>seguridad@constructoraabc.cl</td>
-                    <td>Buscamos estudiantes para práctica en prevención de riesgos en obras de construcción.</td>
-                    <td>200000</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                </tr>
-
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxOfertas" name="checkId"></td>
-                    <td>03</td>
-                    <td>Part Time</td>
-                    <td>3</td>
-                    <td>Asesor Comercial</td>
-                    <td>ventas@innovcomercial.cl</td>
-                    <td>8825511-2</td>
-                    <td>ventas@innovcomercial.cl</td>
-                    <td>Oportunidad de trabajo part time como asesor comercial en el área de negocios y gestión.</td>
-                    <td>700000</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                </tr>
+            <tbody id="bodyOfertas">
+               
             </tbody>
         </table>
                 <!-- seccion footer -->
@@ -129,9 +86,9 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../../Public/js/administrador.js"></script>
+
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllOfertas', 'checkboxOfertas');
-    </script>
+
 </body>
