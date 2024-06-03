@@ -15,7 +15,7 @@
     <input type="text" class="ofertaFiltro" placeholder="Palabra clave">
                 <a href="Administrador/creaDiccionario" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarDiccionario" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelectedDiccionario" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <table id="tableDiccionario" class="tabla table">

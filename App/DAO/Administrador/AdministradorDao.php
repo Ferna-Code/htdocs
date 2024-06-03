@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../Models/adminPublicaciones_model.php';
 require_once __DIR__ . '/../../Models/adminCarreras_model.php';
-require_once __DIR__ . '/../../Models/adminCategorias_model.php';
+require_once __DIR__ . '/../../Models/adminCategoria_model.php';
 require_once __DIR__ . '/../../Models/adminCursos_model.php';
 require_once __DIR__ . '/../../Models/adminDiccionario_model.php';
 require_once __DIR__ . '/../../Models/adminPerfiles_model.php';

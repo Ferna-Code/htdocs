@@ -24,7 +24,7 @@
             <div class="containerFiltro">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Cargo">
-            <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+            <button type="button" id="deleteSelectedExpLaboral" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <table id="tableLaboral" class="tabla table">

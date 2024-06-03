@@ -20,7 +20,7 @@
         </form>
 
         <form action="" method="POST">
-            <a href="#" class="btn-supervisor marginBtn">Eliminar</i></a>
+        <button type="button" id="deleteSelectedOfertas" class="btn-supervisor marginBtn">Eliminar</button>
             <table id="tableUsers" class="tabla table">
                 <thead>
                     <tr>

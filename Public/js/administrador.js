@@ -282,7 +282,7 @@ function getCategoria() {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
           <td>${row.id}</td>
           <td>${row.nombre}</td>
           <td>${row.fechaCreacion}</td>
@@ -305,6 +305,7 @@ function getCategoria() {
 }
 
 
+//--------------CURSOS---------------//
 function getCurso() {
   fetch("/Administrador/getCurso")
     .then((response) => {
@@ -459,9 +460,9 @@ function getReportes() {
         // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
 
-      } else {
-        alert("No se encontraron datos para actualizar");
-      }
+      } /*else {
+        alert("Sin Datos Cargados.");
+      }*/
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
@@ -603,6 +604,7 @@ function getComentarios() {
 }
 
 function getPublicacion() {
+  console.log("controladorPubliacion");
   fetch("/Administrador/getPublicacion")
     .then((response) => {
       if (!response.ok) {
@@ -615,12 +617,14 @@ function getPublicacion() {
         const tbody = $("#bodyPublicaciones");
         tbody.empty();
 
-
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        // (class="checkboxPublicacion),id se cambia a class para que el checkboxAll seleccione todos los check de las filas de la tabla
         data.forEach(row => {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxComentario" name="select-all"></td>
+          <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
           <td>${row.id}</td>
           <td>${row.rutusuario}</td>
           <td>${row.publicacion}</td>
@@ -633,7 +637,7 @@ function getPublicacion() {
         });
 
         // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
-        initializeCheckboxMaster('checkAllComentarios', 'checkboxComentario');
+        initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -797,7 +801,7 @@ function getExpLaboral() {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
+          <td class="widthCheck"><input type="checkbox" class="checkboxLaboral" name="select-all"></td>
           <td>${row.id}</td>
           <td>${row.rutusuario}</td>
           <td>${row.fechadesde}</td>
@@ -813,11 +817,11 @@ function getExpLaboral() {
         });
 
         // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
-        initializeCheckboxMaster('checkAllAcademicas', 'checkboxAcademica');
+        initializeCheckboxMaster('checkAllLaborales', 'checkboxLAboral');
 
-      } else {
+      } /*else {
         alert("No se encontraron datos para actualizar");
-      }
+      }*/
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
@@ -827,8 +831,8 @@ function getExpLaboral() {
 
 //-------------SELECTOR CHECkBOX--------------//
 
-//evento para seleccionar las filas marcadas con checkbox
-document.getElementById('deleteSelected').addEventListener('click', function () {
+//evento para seeccionar las filas marcadas con checkbox
+document.getElementById('deleteSelectedPublicacion').addEventListener('click', function () {
   //Este array almacenará los IDs de las publicaciones seleccionadas para eliminar.
   const selectedIds = [];
   //Se selecciona todos los checkboxes con la clase checkboxPublicacion que están marcados (checked).
@@ -836,7 +840,7 @@ document.getElementById('deleteSelected').addEventListener('click', function () 
     //children[1] selecciona la segunda celda (<td>) en esa fila (asumiendo que el ID está en la segunda celda
     //textContent obtiene el texto dentro de esa celda, que es el ID de la publicación.
     //selectedIds.push(...) añade ese ID al array selectedIds.
-    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim()); // Assuming the ID is in the second cell
+    selectedIds.push(checkbox.closest('tr').children[1].textContent); // Assuming the ID is in the second cell
   });
 
   if (selectedIds.length > 0) {
@@ -847,7 +851,6 @@ document.getElementById('deleteSelected').addEventListener('click', function () 
     alert('No hay publicaciones seleccionadas para eliminar.');
   }
 });
-
 
 function deletePublicaciones(ids) {
   console.log("Eliminar publicaciones:", ids);
@@ -880,53 +883,97 @@ function deletePublicaciones(ids) {
 
 
 
+//--------------DELETE GLOBAL --------------//
 
-
-document.getElementById('deleteSelected').addEventListener('click', function () {
-  const selectedIds = [];
-  document.querySelectorAll('.checkboxCarrera:checked').forEach(checkbox => {
-    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
-  });
-
-  if (selectedIds.length > 0) {
-    if (confirm(`¿Está seguro que desea eliminar las carreras con ID: ${selectedIds.join(', ')}?`)) {
-      deleteCarreras(selectedIds);
-    }
-  } else {
-    alert('No a seleccionado un elemento para eliminar.');
+document.addEventListener('DOMContentLoaded', (event) => {
+  const deleteSelectedCarrerasBtn = document.getElementById('deleteSelectedCarreras');
+  if (deleteSelectedCarrerasBtn) {
+      deleteSelectedCarrerasBtn.removeEventListener('click', deleteSelectedCarrerasHandler);
+      deleteSelectedCarrerasBtn.addEventListener('click', deleteSelectedCarrerasHandler);
   }
+
+  const deleteSelectedCategoriasBtn = document.getElementById('deleteSelectedCategorias');
+  if (deleteSelectedCategoriasBtn) {
+      deleteSelectedCategoriasBtn.removeEventListener('click', deleteSelectedCategoriasHandler);
+      deleteSelectedCategoriasBtn.addEventListener('click', deleteSelectedCategoriasHandler);
+  }
+
+  const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
+  if (deleteSelectedCursosBtn) {
+    deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
+    deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
+  }
+
+  const deleteSelectedDiccionariosBtn = document.getElementById('deleteSelectedDiccionario');
+  if (deleteSelectedDiccionariosBtn) {
+    deleteSelectedDiccionariosBtn.removeEventListener('click', deleteSelectedDiccionarioHandler);
+    deleteSelectedDiccionariosBtn.addEventListener('click', deleteSelectedDiccionarioHandler);
+  }
+
+
 });
 
-function deleteCarreras(ids) {
-  console.log("Eliminar carreras:", ids);
-  fetch("/Administrador/deleteCarreras", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ids })
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.success) {
-        alert('Eliminadas correctamente.');
-        getPublicacion();
-      } else {
-        alert('Error al eliminar.');
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
-    });
+
+
+function deleteSelectedCarrerasHandler() {
+    deleteSelectedRows('checkboxCarrera', '/Administrador/deleteCarreras');
+}
+
+function deleteSelectedCategoriasHandler() {
+    deleteSelectedRows('checkboxCategoria', '/Administrador/deleteCategorias');
+}
+
+function deleteSelectedCursosHandler() {
+  deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
+}
+
+function deleteSelectedDiccionarioHandler() {
+  deleteSelectedRows('checkboxPalabra', '/Administrador/deleteDiccionario');
 }
 
 
+
+
+function deleteSelectedRows(checkboxClass, apiEndpoint) {
+  const selectedIds = [];
+  document.querySelectorAll('.' + checkboxClass + ':checked').forEach(checkbox => {
+      const row = checkbox.closest('tr');
+      const id = row.cells[1].textContent; // Assuming the ID is in the second cell
+      selectedIds.push(id);
+  });
+
+  if (selectedIds.length === 0) {
+      alert("No rows selected");
+      return;
+  }
+
+  fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ids: selectedIds }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          selectedIds.forEach(id => {
+              document.querySelectorAll(`tr`).forEach(row => {
+                  if (row.cells[1] && row.cells[1].textContent == id) {
+                      row.remove();
+                  }
+              });
+          });
+          alert('Eliminacion exitosa');
+      } else {
+          alert('Error deleting rows admin: ' + data.message);
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert('Error deleting rows admin2: ' + error.message);
+  });
+}
 
 
 

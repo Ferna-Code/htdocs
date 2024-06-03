@@ -19,7 +19,7 @@
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
                 <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalEditarReporte"> Editar</button>
-                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedReportes" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <table id="tableReportes" class="tabla table">

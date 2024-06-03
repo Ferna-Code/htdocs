@@ -25,7 +25,7 @@
 
                 <a href="Administrador/creaPerfiles" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarPerfiles" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelectedPerfiles" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <table id="tablePerfils" class="tabla table">

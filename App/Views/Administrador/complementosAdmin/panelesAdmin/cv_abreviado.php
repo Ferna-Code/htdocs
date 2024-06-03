@@ -6,24 +6,14 @@
 
     <title>Document</title>
 <body>
-    <!--<div class="btn-panel">        
-        <div>
-            <a href="creaCVabreviado" class="btn  btn-primary">Crear Categoria</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Categoría:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
+
     <hr>
     <h1>CV. Abreviado</h1>
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut">
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            <button type="button" id="deleteSelectedCVAbreviado" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             

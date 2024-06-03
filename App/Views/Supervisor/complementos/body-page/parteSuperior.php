@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" >
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
         <div class="sidebar-brand-text mx-3">Supervisor<sup></sup></div>
@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     </div>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" onclick="controlVisi18()" data-toggle="collapse" data-target="#collapseUtilities18" aria-expanded="true" aria-controls="collapseUtilities18">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi19()" data-toggle="collapse" data-target="#collapseUtilities18" aria-expanded="true" aria-controls="collapseUtilities18">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Perfil</span>
+            <span>Muro Principal</span>
         </a>
     </li>
     <li class="nav-item">
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- ------------------- -->
 
-    <form method="post" action="App/Views/Login/logout.php">
+    <form method="post" action="Login/logout">
             <input type="submit" class="btn-CSesion" value="Cerrar Sesión">
             <input type="hidden" name="op" value="CERRAR_SESION">
         </form> 

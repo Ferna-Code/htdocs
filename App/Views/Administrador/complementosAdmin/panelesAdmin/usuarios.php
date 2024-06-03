@@ -20,7 +20,7 @@
                 </select>
                 <a href="Administrador/creaUsuarios" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarUsuario" class="btn-supervisor marginBtn">Editar</a>
-                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <table id="tableUsuarios" class="tabla table">

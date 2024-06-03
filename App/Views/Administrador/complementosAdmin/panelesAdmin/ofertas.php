@@ -35,7 +35,7 @@
                 </select>
                 
                 <a href="Administrador/editarOfertas" class="btn-supervisor marginBtn">Editar</a>
-                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedOfertas" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <table id="tableOfertas" class="tabla table">

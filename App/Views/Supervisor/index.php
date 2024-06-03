@@ -1,13 +1,27 @@
 <?php
-    if(session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    require_once 'App/Controllers/accessController.php';
-    $perfilesPermitidos = 2;
-    verificarAcceso($perfilesPermitidos);
+// Asegúrate de que la sesión se inicie antes de cualquier otra cosa
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Controla el caché del navegador
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+
+// Verifica si el usuario está logeado
+if (!isset($_SESSION['idperfil'])) {
+    header('Location: http://localhost/');
+    exit();
+}
+
+require_once 'App/Controllers/accessController.php';
+$perfilesPermitidos = 2;
+verificarAcceso($perfilesPermitidos);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -43,7 +57,7 @@
     <div id="wrapper">
 
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
-
+        
         <div class="contenedor-body" id="modulo7" style="display:none">
             <?php include 'complementos/categorias.php' ?>
         </div>
@@ -78,7 +92,6 @@
 
         <div class="contenedor-body" id="modulo9" style="display:none">
             <?php
-            //include VIEWS_PATH . 'ofertasLaborales/index.php' 
             include 'complementos/ofertasLaborales.php'
             ?>
         </div>
@@ -118,6 +131,12 @@
         <div class="contenedor-body" id="modulo18">
             <?php include 'complementos/formularios/perfilSupervisor.php' ?>
         </div>
+
+        <div class="contenedor-body" id="modulo19" style="display:none">
+            <?php include 'complementos/menuPrincipal.php' ?>
+        </div>
+
+
 
 
     </div>

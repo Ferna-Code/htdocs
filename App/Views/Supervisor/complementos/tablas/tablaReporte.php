@@ -11,7 +11,7 @@
 
         <form action="#">
            
-            <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+        <button type="button" id="deleteSelectedReporte" class="btn-supervisor marginBtn">Eliminar</button>
             <table id="tableUsers" class="tabla table">
                 <thead>
                     <tr><!--CHECK PRINCIPAL-->

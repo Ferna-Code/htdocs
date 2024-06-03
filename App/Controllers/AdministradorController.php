@@ -12,6 +12,8 @@ class AdministradorController
         include VIEWS_PATH . 'Layout/footer.php';
     }
 
+//------------ CARRERA -----------//
+
     public function getCarrera()
     {
         $admin = new AdministradorDaoImpl();
@@ -29,6 +31,10 @@ class AdministradorController
 
     }
 
+
+
+
+    //------------ CATEGORIA -----------//
     public function getCategoria()
     {
         $admin = new AdministradorDaoImpl();
@@ -46,6 +52,9 @@ class AdministradorController
 
     }
 
+    
+
+    //------------ CURSO -----------//
     public function getCurso()
     {
         $admin = new AdministradorDaoImpl();
@@ -63,6 +72,9 @@ class AdministradorController
 
     }
     
+
+
+    //------------ DICCIONARIO -----------//
     public function getDiccionario()
     {
         $admin = new AdministradorDaoImpl();
@@ -80,6 +92,8 @@ class AdministradorController
 
     }
 
+
+    //------------ PERFIL -----------//
     public function getPerfil()
     {
         $admin = new AdministradorDaoImpl();
@@ -97,6 +111,8 @@ class AdministradorController
 
     }
 
+
+    //------------ PUBLICACION -----------//
     public function getPublicacion()
     {
         $admin = new AdministradorDaoImpl();
@@ -114,6 +130,24 @@ class AdministradorController
 
     }
 
+
+/*
+    public function deletePublicacion()
+    {
+        $admin = new AdministradorDaoImpl();
+        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+
+        $success = $admin->deletePublicaciones($ids);
+
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
+        }
+    }
+    */
+
+    //------------ REPORTE -----------//
     public function getReportes()
     {
         $admin = new AdministradorDaoImpl();
@@ -131,6 +165,8 @@ class AdministradorController
 
     }
 
+
+    //------------ USUARIOS -----------//
     public function getUsuarios()
     {
         $admin = new AdministradorDaoImpl();
@@ -148,6 +184,8 @@ class AdministradorController
 
     }
 
+
+    //------------ CVARCHIVOS -----------//
     public function getArchivos()
     {
         $admin = new AdministradorDaoImpl();
@@ -165,6 +203,8 @@ class AdministradorController
 
     }
 
+
+    //------------ COMENTARIOS -----------//
     public function getComentarios()
     {
         $admin = new AdministradorDaoImpl();
@@ -182,6 +222,7 @@ class AdministradorController
 
     }
 
+    //------------ OFERTAS -----------//
     public function getOfertas()
     {
         $admin = new AdministradorDaoImpl();
@@ -199,6 +240,7 @@ class AdministradorController
 
     }
 
+    //------------ POSTULACIONES -----------//
     public function getPostulaciones()
     {
         $admin = new AdministradorDaoImpl();
@@ -217,6 +259,7 @@ class AdministradorController
     }
 
 
+    //------------ EXP ACADEMICA -----------//
     public function getExpAcademica()
     {
         $admin = new AdministradorDaoImpl();
@@ -234,7 +277,7 @@ class AdministradorController
 
     }
 
-    
+    //------------ EXP LABORAL -----------//
     public function getExpLaboral()
     {
         $admin = new AdministradorDaoImpl();
@@ -252,37 +295,66 @@ class AdministradorController
 
     }  
 
-    //-----------------DELETE-----------------//
 
-    public function deletePublicacion()
-    {
-        $admin = new AdministradorDaoImpl();
-        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
-
-        $success = $admin->deletePublicaciones($ids);
-
-        if ($success) {
-            echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
-        }
-    }
+    //--------------DELETES-------------//
 
     public function deleteCarreras()
     {
         $admin = new AdministradorDaoImpl();
-        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
-
-        $success = $admin->deleteCarreras($ids);
-
-        if ($success) {
-            echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteCarreras($ids);
+    
+        if ($result) {
+            echo json_encode(['success' => true]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controlercarrera']);
+        }
+    }
+    
+    public function deleteCategorias()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteCategorias($ids);
+    
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerCategoria']);
         }
     }
 
+    public function deleteCursos()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteCursos($ids);
     
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerCursos']);
+        }
+    }
+    
+    public function deleteDiccionario()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteDiccionario($ids);
+    
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerCursos']);
+        }
+    }
+
+}
 
     
     /*public function crearCarrera(){
@@ -433,4 +505,3 @@ class AdministradorController
         //include VIEWS_PATH . 'Layout/footer.php';
     }
 */
-}

@@ -15,7 +15,7 @@
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Postulante">
                 <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Empresa">
-                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedPostulaciones" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             

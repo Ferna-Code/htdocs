@@ -18,7 +18,7 @@
                     <option value="Práctica">03</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-                    <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                    <button type="button" id="deleteSelectedComentarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <table id="tableComentarios" class="tabla table">

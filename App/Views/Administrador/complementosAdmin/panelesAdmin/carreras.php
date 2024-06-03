@@ -26,7 +26,7 @@
                 <input type="submit" class="btnFiltro" value="Filtrar">
                 <a href="Administrador/crearCarrera" class="btn-supervisor marginBtn">Crear</a>
                 <a href="Administrador/editarCarrera" class="btn-supervisor marginBtn">Editar</a>
-                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedCarreras" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <div class="table-responsive">

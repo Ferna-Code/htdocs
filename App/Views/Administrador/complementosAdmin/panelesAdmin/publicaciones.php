@@ -28,7 +28,7 @@
                 <input type="submit" class="btnFiltro" value="Filtrar">
                 <button type="button" class="btn-supervisor" data-bs-toggle="modal" data-bs-target="#modalEditarPublicacion">Editar</button>
 
-                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedPublicacion" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <table id="tablePublicaciones" class="tabla table">
