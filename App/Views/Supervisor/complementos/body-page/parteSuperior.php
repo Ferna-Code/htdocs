@@ -1,4 +1,5 @@
 <?php
+require_once 'C:\xampp\htdocs\App\Controllers\PerfilController.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller = new PerfilController();
     $controller->getData();

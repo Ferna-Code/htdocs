@@ -1,7 +1,7 @@
 
 <?php
-require("./App/Models/conexion.php");
-require("./App/Models/importarDatos.php");
+require_once("./App/Models/conexion.php");
+require_once("./App/Models/importarDatos.php");
 
 $conec = new conexion();
 $conexion = $conec->conec();
