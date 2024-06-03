@@ -24,14 +24,14 @@
             <div class="containerFiltro">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Título">
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tableAcademica" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th class="widthCheck"><input type="checkbox" id="checkAllExperiencia" name="select-all"></th>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllAcademicas" name="select-all"></th>
                     <th class="anchoId">ID</th>
                     <th>Rut Usuario</th>
                     <th>Fecha  de Finalización</th>
@@ -42,41 +42,8 @@
                     <th>Fecha de Eliminación</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxExperiencia" name="checkId"></td>
-                    <td>01</td>
-                    <td>26013039-0</td>
-                    <td>2010-12-15</td>
-                    <td>Ingeniero Civil</td>
-                    <td>0</td>
-                    <td>13-04-2024</td>
-                    <td>1</td>
-                    <td>13-04-2024</td>
-                </tr>
-                
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxExperiencia" name="checkId"></td>
-                    <td>02</th>
-                    <td>26013039-0</td>
-                    <td>2020-06-20</td>
-                    <td>Magíster en Ingeniería Estructural</td>
-                    <td>0</td>
-                    <td>13-04-2024</td>
-                    <td>1</td>
-                    <td>13-04-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxExperiencia" name="checkId"></td>
-                    <td>03</td>
-                    <td>26013039-1</td>
-                    <td>2015-03-22</td>
-                    <td>Licenciada en Administración</td>
-                    <td>0</td>
-                    <td>13-04-2024</td>
-                    <td>Si</td>
-                    <td>13-04-2024</td>
-                </tr>
+            <tbody id="bodyAcademica">
+
             </tbody>
         </table>
                       <!-- seccion footer -->
@@ -107,6 +74,6 @@
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista
-        initializeCheckboxMaster('checkAllExperiencia', 'checkboxExperiencia');
+        initializeCheckboxMaster('checkAllAcademicas', 'checkboxAcademica');
     </script>
 </body>

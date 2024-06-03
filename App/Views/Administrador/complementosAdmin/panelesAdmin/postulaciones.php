@@ -15,15 +15,15 @@
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Postulante">
                 <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Empresa">
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             
-        <table id="tableUsers" class="tabla table">
+        <table id="tablePostulaciones" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th class="widthCheck"><input type="checkbox" id="checkAllPostulacion" name="select-all"></th>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllPostulaciones" name="select-all"></th>
                     <th class="anchoId">ID</th>
                     <th>Rut Usuario</th>
                     <th>ID Carrera</th>
@@ -33,37 +33,8 @@
                     <th>Fecha de Eliminacion</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPostulacion" name="checkId"></td>
-                    <td>01</td>
-                    <td>44444444-4</td>
-                    <td>21</td>
-                    <td>96969696-4</td>
-                    <td>32</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPostulacion" name="checkId"></td>
-                    <td>02</td>
-                    <td>55555555-5</td>
-                    <td>21</td>
-                    <td>87878787-5</td>
-                    <td>32</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPostulacion" name="checkId"></td>
-                    <td>03</td>
-                    <td>66666666-6</td>
-                    <td>34</td>
-                    <td>65656565-5</td>
-                    <td>12</td>
-                    <td>12-12-2024</td>
-                    <td>12-12-2024</td>
-                </tr>
+            <tbody id="bodyPostulaciones">
+ 
             </tbody>
         </table>
                         <!-- seccion footer -->
@@ -95,6 +66,6 @@
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista
-        initializeCheckboxMaster('checkAllPostulacion', 'checkboxPostulacion');
+        initializeCheckboxMaster('checkAllPostulaciones', 'checkboxPostulacion');
     </script>
 </body>

@@ -11,6 +11,7 @@ require_once __DIR__ . '/../../../Models/adminUsuarios_model.php';
 require_once __DIR__ . '/../../../Models/adminArchivos_model.php';
 require_once __DIR__ . '/../../../Models/adminComentarios_model.php';
 require_once __DIR__ . '/../../../Models/adminOfertas_model.php';
+//require_once __DIR__ . '/../../../Models/adminPostulaciones_model.php';//
 require_once __DIR__ . '/../../../Models/conexion.php';
 
 class AdministradorDaoImpl implements AdministradorDao
@@ -198,6 +199,58 @@ class AdministradorDaoImpl implements AdministradorDao
     public function getOfertas()
     {
         $consulta = "SELECT * FROM ofertas ORDER BY id DESC";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+    public function getPostulaciones()
+    {
+        $consulta = "SELECT * FROM postulaciones ORDER BY id DESC";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+    public function getExpAcademica()
+    {
+        $consulta = "SELECT * FROM expercienciaacademica ORDER BY id DESC";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
+
+    public function getExpLaboral()
+    {
+        $consulta = "SELECT * FROM experciencialaboral ORDER BY id DESC";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");

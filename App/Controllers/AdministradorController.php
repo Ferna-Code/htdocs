@@ -1,15 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../DAO/Administrador/Impl/AdministradorDaoImpl.php';
-require_once __DIR__ . '/../Models/adminCarreras_model.php';
-require_once __DIR__ . '/../Models/adminCategorias_model.php';
-require_once __DIR__ . '/../Models/adminCursos_model.php';
-require_once __DIR__ . '/../Models/adminDiccionario_model.php';
-require_once __DIR__ . '/../Models/adminPerfiles_model.php';
-require_once __DIR__ . '/../Models/adminPublicaciones_model.php';
-require_once __DIR__ . '/../Models/adminReportes_model.php';
-require_once __DIR__ . '/../Models/adminUsuarios_model.php';
-require_once __DIR__ . '/../Models/adminOfertas_model.php';
+
 
 class AdministradorController
 {
@@ -207,6 +199,58 @@ class AdministradorController
 
     }
 
+    public function getPostulaciones()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getPostulaciones();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+
+    public function getExpAcademica()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getExpAcademica();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }
+
+    
+    public function getExpLaboral()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = $admin->getExpLaboral();
+
+        if ($data instanceof mysqli_result) {
+            $result = [];
+            while ($row = $data->fetch_assoc()) {
+                $result[] = $row;
+            }
+            echo json_encode($result);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+        }
+
+    }  
 
     //-----------------DELETE-----------------//
 

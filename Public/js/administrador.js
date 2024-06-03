@@ -144,7 +144,7 @@ function controlVisi12() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getPostulaciones()
   // Muestra el módulo 1
   elemento12.style.display = "flex";
 
@@ -156,7 +156,7 @@ function controlVisi13() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getExpAcademica();
   // Muestra el módulo 1
   elemento13.style.display = "flex";
 
@@ -169,7 +169,7 @@ function controlVisi14() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getExpLaboral();
   // Muestra el módulo 1
   elemento14.style.display = "flex";
 
@@ -692,7 +692,140 @@ function getOfertas() {
     });
 }
 
+function getPostulaciones() {
+  fetch("/Administrador/getPostulaciones")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyPostulaciones");
+        tbody.empty();
 
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxPostulacion" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.idcarrera}</td>
+          <td>${row.rutempresa}</td>
+          <td>${row.idoferta}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllPostulaciones', 'checkboxPostulacion');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getExpAcademica() {
+  fetch("/Administrador/getExpAcademica")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyAcademica");
+        tbody.empty();
+
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.fechafinalizacion}</td>
+          <td>${row.titulobtenido}</td>
+          <td>${row.cursaactualmente}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllAcademicas', 'checkboxAcademica');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getExpLaboral() {
+  fetch("/Administrador/getExpLaboral")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#bodyLaboral");
+        tbody.empty();
+
+
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
+          <td>${row.id}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.fechadesde}</td>
+          <td>${row.fechahasta}</td>
+          <td>${row.puesto}</td>
+          <td>${row.descripcion}</td>
+          <td>${row.trabajaactualmente}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
+
+        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllAcademicas', 'checkboxAcademica');
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
+
+//-------------SELECTOR CHECkBOX--------------//
 
 //evento para seleccionar las filas marcadas con checkbox
 document.getElementById('deleteSelected').addEventListener('click', function () {

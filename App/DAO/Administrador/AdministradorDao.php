@@ -30,12 +30,9 @@ interface AdministradorDao{
     public function getArchivos();
     public function getComentarios();
     public function getOfertas();
-
-
-    /*
     public function getPostulaciones();
     public function getExpAcademica();
     public function getExpLaboral();
-    */
+
 }
 ?>
