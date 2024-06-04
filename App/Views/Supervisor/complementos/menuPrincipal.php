@@ -1,6 +1,6 @@
 <?php
-require_once ("App/Controllers/publicacionesController.php");
-require_once ("App/Controllers/usuariosController.php");
+require_once("App/Controllers/publicacionesController.php");
+require_once("App/Controllers/usuariosController.php");
 require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
 
 
@@ -34,9 +34,11 @@ $publicaciones = $controlador->mostrarPublicaciones();
 ?>
 
 <link rel="stylesheet" href="../../../../Public/css/muroAlumnos.css">
+<link rel="stylesheet" href="../../../../Public/css/muroSupervisor.css">
 <link rel="stylesheet" href="../../../../Public/css/cardspublicaciones.css">
 
 <div class="container mt-2">
+
     <div class="main-content">
         <form method="POST" class="form" style="padding: 30px 30px 0 30px;">
             <div class="post-container">
@@ -51,18 +53,18 @@ $publicaciones = $controlador->mostrarPublicaciones();
         <?php
         if (is_array($publicaciones)) {
             foreach ($publicaciones as $p) {
-                ?>
+        ?>
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
                     <img class="img" src="<?php
-                    $admin = new usuarioDaoImpl();
-                    $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
-                    if ($imagenUsuario != "") {
-                        echo $imagenUsuario;
-                    } else {
-                        echo "/uploads/usuarioSinFoto.jpg";
-                    }
-                    ?>" alt="">
+                                            $admin = new usuarioDaoImpl();
+                                            $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
+                                            if ($imagenUsuario != "") {
+                                                echo $imagenUsuario;
+                                            } else {
+                                                echo "/uploads/usuarioSinFoto.jpg";
+                                            }
+                                            ?>" alt="">
                     <div class="tweet-content">
 
                         <div class="tweet-text">
@@ -84,7 +86,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-                <?php
+        <?php
             }
         } else {
             echo "No se encontraron publicaciones.";
@@ -127,13 +129,13 @@ $publicaciones = $controlador->mostrarPublicaciones();
 <script src="../../../../public/js/sweetalert2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    <?php if (isset($_SESSION['publicacionNoCreada']) && !empty($_SESSION['publicacionNoCreada'])): ?>
-        publicacionNoCreada("<?php echo $_SESSION['publicacionNoCreada']; ?>"); 
+    <?php if (isset($_SESSION['publicacionNoCreada']) && !empty($_SESSION['publicacionNoCreada'])) : ?>
+        publicacionNoCreada("<?php echo $_SESSION['publicacionNoCreada']; ?>");
         <?php unset($_SESSION['publicacionNoCreada']); ?>
     <?php endif; ?>
 
-    <?php if (isset($_SESSION['publicacionCreada']) && !empty($_SESSION['publicacionCreada'])): ?>
-        publicacionCreada("<?php echo $_SESSION['publicacionCreada']; ?>"); 
+    <?php if (isset($_SESSION['publicacionCreada']) && !empty($_SESSION['publicacionCreada'])) : ?>
+        publicacionCreada("<?php echo $_SESSION['publicacionCreada']; ?>");
         <?php unset($_SESSION['publicacionCreada']); ?>
     <?php endif; ?>
 
