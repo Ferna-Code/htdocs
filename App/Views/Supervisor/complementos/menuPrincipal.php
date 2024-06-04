@@ -1,8 +1,6 @@
 <?php
 require_once("App/Controllers/publicacionesController.php");
 require_once("App/Controllers/usuariosController.php");
-require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
-
 
 $comentario = '';
 $sw = "";
@@ -18,15 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $sw = $_POST['sw'];
     }
+
+    if ($sw === 'publicar') {
+        // Crear una instancia del controlador de publicaciones
+        $controlador = new PublicacionesController();
+        // Procesar la publicación
+        $controlador->procesarPublicacion($comentario);
+        
+        // Redirigir después de procesar la publicación para evitar reenvío del formulario
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit;
+    }
 }
 
-if ($sw === 'publicar') {
-    // Crear una instancia del controlador de publicaciones
-    $controlador = new PublicacionesController();
-    // Procesar la publicación
-    echo "publicar";
-    $controlador->procesarPublicacion($comentario);
-}
 $controladorUsuarios = new usuariosController();
 
 $controlador = new PublicacionesController();
@@ -96,7 +98,6 @@ $publicaciones = $controlador->mostrarPublicaciones();
 
     <?php include_once 'body-page/parteDerecha.php'; ?>
 
-
     <div class="sidebar1">
         <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
         <hr>
@@ -124,7 +125,6 @@ $publicaciones = $controlador->mostrarPublicaciones();
     </div>
 
 </div>
-
 
 <script src="../../../../public/js/sweetalert2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

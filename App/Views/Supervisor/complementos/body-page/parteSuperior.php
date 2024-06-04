@@ -1,11 +1,4 @@
-<?php
-require_once 'C:\xampp\htdocs\App\Controllers\PerfilController.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controller = new PerfilController();
-    $controller->getData();
-    exit;
-}
-?>
+
 
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -21,13 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="" onclick="controlVisi18()">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <div class="sidebar-brand-text mx-3" id="nombrePS" >  <sup></sup></div>
-    </li>
-
+    
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -37,7 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     </div>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" onclick="controlVisi19()" data-toggle="collapse" data-target="#collapseUtilities18" aria-expanded="true" aria-controls="collapseUtilities18">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi18()" data-toggle="collapse" data-target="#collapseUtilities18" aria-expanded="true" aria-controls="collapseUtilities18">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Perfil</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi19()" data-toggle="collapse" data-target="#collapseUtilities19" aria-expanded="true" aria-controls="collapseUtilities19">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Muro Principal</span>
         </a>

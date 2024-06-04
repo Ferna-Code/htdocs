@@ -16,6 +16,10 @@ if (!isset($_SESSION['idperfil'])) {
 }
 
 require_once 'App/Controllers/accessController.php';
+
+require_once 'C:\xampp\htdocs\App\Controllers\PerfilController.php';
+
+
 $perfilesPermitidos = 2;
 verificarAcceso($perfilesPermitidos);
 ?>
@@ -55,8 +59,16 @@ verificarAcceso($perfilesPermitidos);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
-        
+    <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+
+        <div class="contenedor-body" id="modulo19" style="display:none">
+            <?php include 'complementos/menuPrincipal.php'; ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo18">
+            <?php include 'complementos/formularios/perfilSupervisor.php'; ?>
+        </div>
+
         <div class="contenedor-body" id="modulo7" style="display:none">
             <?php include 'complementos/categorias.php'; ?>
         </div>
@@ -125,13 +137,9 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'complementos/formularios/verUsuario.php'; ?>
         </div>
 
-        <div class="contenedor-body" id="modulo18">
-            <?php include 'complementos/formularios/perfilSupervisor.php'; ?>
-        </div>
 
-        <div class="contenedor-body" id="modulo19" style="display:none">
-            <?php include 'complementos/menuPrincipal.php'; ?>
-        </div>
+
+
 
     </div>
 
