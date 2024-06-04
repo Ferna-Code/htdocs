@@ -61,11 +61,11 @@ verificarAcceso($perfilesPermitidos);
 
     <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
 
-        <div class="contenedor-body" id="modulo19" style="display:none">
+        <div class="contenedor-body" id="modulo19">
             <?php include 'complementos/menuPrincipal.php'; ?>
         </div>
 
-        <div class="contenedor-body" id="modulo18">
+        <div class="contenedor-body" id="modulo18" style="display:none">
             <?php include 'complementos/formularios/perfilSupervisor.php'; ?>
         </div>
 

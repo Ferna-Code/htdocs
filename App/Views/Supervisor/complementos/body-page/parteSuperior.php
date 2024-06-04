@@ -24,17 +24,18 @@
         
     </div>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" onclick="controlVisi18()" data-toggle="collapse" data-target="#collapseUtilities18" aria-expanded="true" aria-controls="collapseUtilities18">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Perfil</span>
-        </a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link collapsed" href="#" onclick="controlVisi19()" data-toggle="collapse" data-target="#collapseUtilities19" aria-expanded="true" aria-controls="collapseUtilities19">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Muro Principal</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" onclick="controlVisi18()" data-toggle="collapse" data-target="#collapseUtilities18" aria-expanded="true" aria-controls="collapseUtilities18">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Perfil</span>
+        </a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" onclick="controlVisi7()" data-toggle="collapse" data-target="#collapseUtilities6" aria-expanded="true" aria-controls="collapseUtilities6">
             <i class="fas fa-fw fa-wrench"></i>
