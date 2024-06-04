@@ -114,6 +114,11 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo15" >
             <?php include 'complementosAdmin/panelesAdmin/perfilAdministrador.php' ?>
         </div>
+
+        <div class="contenedor-body" id="modulo17" style="display:none">
+            <?php include 'complementos/formularios/ingresarCurso.php' ?>
+        </div>
+
             
     </div>
 

@@ -6,17 +6,7 @@
 
     <title>Diccionario</title>
 <body>
-<!--<div class="btn-panel">     
-        <div>
-            <a href="creaDiccionario" class="btn  btn-primary">Ingreso nueva Palabra</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Categoría:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
+
     <hr>
     <h1>Experiencia Académica</h1>
     <div class="body-panel">
@@ -24,6 +14,7 @@
             <div class="containerFiltro">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Título">
+            <input type="submit" class="btnFiltro" value="Filtrar">
             <button type="button" id="deleteSelectedExpAcademica" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 

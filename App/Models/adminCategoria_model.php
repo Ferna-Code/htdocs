@@ -8,6 +8,9 @@ class AdminCategoriasModel
     private $Activo;
     private $fechaEliminacion;
 
+    private $nuevaCategoria;
+
+
         //CATEGORIA  
 
         public function getNombreCategoria()
@@ -43,5 +46,17 @@ class AdminCategoriasModel
         public function setFEimnacionCategoria($fechaEliminacion)
         { return $this->fechaEliminacion = $fechaEliminacion; }
 
-}
+
+
+
+
+        public function getNuevaCategoria(){
+            return $this->nuevaCategoria;
+        }
+
+        public function setNuevaCategoria($nuevaCategoria){
+            $this->nuevaCategoria=$nuevaCategoria;
+        }
+
+    }
 ?>

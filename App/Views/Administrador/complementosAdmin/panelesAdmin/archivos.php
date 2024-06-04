@@ -14,7 +14,7 @@
             <div class="containerFiltro">
                 <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
                 <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Propietario">
-                <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedArchivos" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <table id="tableArchivos" class="tabla table">
@@ -59,8 +59,5 @@
     </div>
 </div>
 <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllArchivo', 'checkboxArchivo');
-    </script>
+
 </body>

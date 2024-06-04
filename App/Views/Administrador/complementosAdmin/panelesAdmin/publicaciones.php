@@ -26,8 +26,6 @@
                     <option value="Práctica">03</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-                <button type="button" class="btn-supervisor" data-bs-toggle="modal" data-bs-target="#modalEditarPublicacion">Editar</button>
-
                 <button type="button" id="deleteSelectedPublicacion" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -81,44 +79,8 @@
             </div>
         </div>
     </div>
-
-    <!-- MODAL EDITAR PUBLICACACION -->
-    <div class="modal fade" id="modalEditarPublicacion" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditarLabel">Editar Publicación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- forma modal -->
-                    <form id="editPublicacion" method="POST" action="">
-                        <label for="rut" style="text-align: center;">Rut Usuario:</label>
-                        <input type="text" id="rutPublic" class="form-control" name="rut" placeholder="Ingrese el Rut" required><br>
-                        <label for="publica" style="text-align: center;">Publicación:</label>
-                        <textarea class="form-control" id="pPublic" name="publica" placeholder="Esta es una Publicación" required></textarea><br>
-                        <label style="text-align: center;">N° de Reportes:</label><br>
-                        <select class="form-select" id="nReportePublic" style="width: 150px" name="NReporte" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select><br>
-                    </form>
-                    <!-- fin forma modal -->
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" form="editPublicacion" class="btn-supervisor marginBtn">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN MODAL EDITAR PUBLICACACION -->
-
     <script src="../../../../Public/js/check.js"></script>
     <script src="../../../../Public/js/administrador.js"></script>
-
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

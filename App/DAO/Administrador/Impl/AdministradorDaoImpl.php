@@ -129,29 +129,7 @@ class AdministradorDaoImpl implements AdministradorDao
         return $result;
     }
 
-   /* public function deletePublicaciones($selectedIds)
-    {
-        //implode(',', ...) une los elementos del array en una cadena, separándolos por comas. Por ejemplo
-        //array_fill(0, count($selectedIds), '?') crea un array con count($selectedIds) elementos, todos con el valor '?'
-        $inQuery = implode(',', array_fill(0, count($selectedIds), '?'));
-        $consulta = "DELETE FROM publicaciones WHERE id IN ($inQuery)";
-        $stmt = mysqli_prepare($this->db->conec(), $consulta);
-
-        if (!$stmt) {
-            return false;
-        }
-        //str_repeat('i', count($selectedIds)) crea una cadena de tipos, en este caso, 'i' 
-        //repetido tantas veces como elementos haya en $selectedIds. 
-        $types = str_repeat('i', count($selectedIds));
-        mysqli_stmt_bind_param($stmt, $types, ...$selectedIds);
-
-        $success = mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-
-        return $success;
-    }
-*/
-
+  
 
 
      ////////-------- REPORTES---------////////
@@ -385,5 +363,263 @@ public function deleteDiccionario($ids)
         return false;
     }
 }
+
+public function deletePerfiles($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM perfiles WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deletePublicaciones($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM publicaciones WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deleteReportes($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM reportes WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deleteUsuarios($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM usuarios WHERE rut IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deleteArchivos($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM cvarchivos WHERE rut IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deleteComentarios($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM comentarios WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deleteOfertas($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM ofertas WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deletePostulaciones($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM postulaciones WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+public function deleteExpAcademica($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM expercienciaacademica WHERE ID IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+
+public function deleteExpLaboral($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "DELETE FROM experciencialaboral WHERE ID IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+    
+    if (!$stmt) {
+        return false;
+    }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+    mysqli_stmt_execute($stmt);
+    
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+
+
+
+
+// ----------------insert -------------------//
+
+public function insertCategoria(AdminCategoriasModel $admin)
+    {
+        $validateQuery = "INSERT INTO categorias (nombre, fechaCreacion, activo) VALUES (?, NOW(), 1)";
+
+        $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
+
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
+        }
+
+        $nuevaCategoria = $admin->getNuevaCategoria();
+
+        mysqli_stmt_bind_param($stmt, "s", $nuevaCategoria);
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            return array("success" => true, "message" => "Datos agregados correctamente");
+        } else {
+            return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
+        }
+    }
 
 }

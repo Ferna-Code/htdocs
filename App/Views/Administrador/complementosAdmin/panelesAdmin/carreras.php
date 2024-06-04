@@ -24,8 +24,12 @@
                     <option value="Práctica">Informática Tecnología y Productividad</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-                <a href="Administrador/crearCarrera" class="btn-supervisor marginBtn">Crear</a>
-                <a href="Administrador/editarCarrera" class="btn-supervisor marginBtn">Editar</a>
+                <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCarrera">
+                Nuevo
+            </button>
+            <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#editarCarrera">
+                Editar
+            </button>
                 <button type="button" id="deleteSelectedCarreras" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -73,6 +77,64 @@
     </div>
     </div>
 
+
+        <!-- Modal Nuevo -->
+        <div class="modal fade" id="crearCarrera" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva carrera</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCarrera" method="POST" action="">
+                    <label for="nuevaCarrera">Nueva Carrera: </label>
+                    <input type="text" name="nuevaCarrera" id="nuevaCarrera">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar"></i>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+  <!-- Modal Editar -->
+  <div class="modal fade" id="editarCarrera" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLabel">Editar carrera</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCarrera" method="POST" action="">
+                        <input type="hidden" name="editId" id="editId">
+                        <label for="editCarrera">Categoría: </label>
+                        <input type="text" name="editCarrera" id="editCategoria">
+                        <div class="col">
+                        <label>Categoria:</label>
+                            <select class="form-select" name="editCate" id="editCate" required>
+                                <option value="1">1</option>
+                                <option value="0">0</option>
+                            </select> 
+                            <label>Activo:</label>
+                            <select class="form-select" name="editActivo" id="editActivo" required>
+                                <option value="1">1</option>
+                                <option value="0">0</option>
+                            </select> 
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../../../../Public/js/check.js"></script>
     <script src="../../../../Public/js/administrador.js"></script>
 

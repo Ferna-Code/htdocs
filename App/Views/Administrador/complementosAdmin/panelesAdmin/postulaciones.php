@@ -64,8 +64,5 @@
     </div>
 
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllPostulaciones', 'checkboxPostulacion');
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>

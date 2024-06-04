@@ -19,10 +19,10 @@
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
 
-                <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Nueva categoria
+                <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCategoria">
+                Nuevo
             </button>
-            <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>
+            <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarCategoriar">Editar</button>
                 <button type="button" id="deleteSelectedCategorias" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -68,34 +68,30 @@
     </div>
 
     <!-- Modal Nuevo -->
-<div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+    <div class="modal fade" id="crearCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCrearLabel">Agregar nueva categoria</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva categoria</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="addCategoria" method="POST" action="">
                     <label for="nuevaCategoria">Nueva categoria: </label>
                     <input type="text" name="nuevaCategoria" id="nuevaCategoria">
-                    <div class="col">
-                <label >Activo:</label>
-                <select class="form-select"  name="EstadoCategoria" id="EstadoCategoria" required>
-                    <option>1</option>
-                    <option>0</option>
-                </select> 
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar"></i>
+                    </div>
+                </form>
             </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" form="addCategoria" class="btn-supervisor marginBtn">Agregar</button>
-            </div>
+
         </div>
     </div>
 </div>
   <!-- Modal Editar -->
-  <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+  <div class="modal fade" id="editarCategoriar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -123,29 +119,6 @@
             </div>
         </div>
     </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva categoria</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="addCategoria" method="POST" action="">
-                    <label for="nuevaCategoria">Nueva categoria: </label>
-                    <input type="text" name="nuevaCategoria" id="nuevaCategoria">
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar"></i>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../../../Public/js/administrador.js"></script>

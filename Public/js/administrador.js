@@ -203,7 +203,18 @@ function controlVisi16() {
   centrarModulo(elemento16);
 }
 
+function controlVisi17() {
+  var elemento17 = document.getElementById("modulo17");
+  
+  // Oculta todos los módulos
 
+
+  // Muestra el módulo 1
+  elemento17.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento17);
+}
 
 
 
@@ -817,63 +828,11 @@ function getExpLaboral() {
         });
 
         // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
-        initializeCheckboxMaster('checkAllLaborales', 'checkboxLAboral');
+        initializeCheckboxMaster('checkAllLaborales', 'checkboxLaboral');
 
       } /*else {
         alert("No se encontraron datos para actualizar");
       }*/
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
-    });
-}
-
-//-------------SELECTOR CHECkBOX--------------//
-
-//evento para seeccionar las filas marcadas con checkbox
-document.getElementById('deleteSelectedPublicacion').addEventListener('click', function () {
-  //Este array almacenará los IDs de las publicaciones seleccionadas para eliminar.
-  const selectedIds = [];
-  //Se selecciona todos los checkboxes con la clase checkboxPublicacion que están marcados (checked).
-  document.querySelectorAll('.checkboxPublicacion:checked').forEach(checkbox => {
-    //children[1] selecciona la segunda celda (<td>) en esa fila (asumiendo que el ID está en la segunda celda
-    //textContent obtiene el texto dentro de esa celda, que es el ID de la publicación.
-    //selectedIds.push(...) añade ese ID al array selectedIds.
-    selectedIds.push(checkbox.closest('tr').children[1].textContent); // Assuming the ID is in the second cell
-  });
-
-  if (selectedIds.length > 0) {
-    if (confirm(`¿Está seguro que desea eliminar las publicaciones con ID: ${selectedIds.join(', ')}?`)) {
-      deletePublicaciones(selectedIds);
-    }
-  } else {
-    alert('No hay publicaciones seleccionadas para eliminar.');
-  }
-});
-
-function deletePublicaciones(ids) {
-  console.log("Eliminar publicaciones:", ids);
-  fetch("/Administrador/deletePublicacion", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ids })
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.success) {
-        alert('Publicaciones eliminadas correctamente.');
-        getPublicacion();
-      } else {
-        alert('Error al eliminar las publicaciones.');
-      }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
@@ -910,6 +869,65 @@ document.addEventListener('DOMContentLoaded', (event) => {
     deleteSelectedDiccionariosBtn.addEventListener('click', deleteSelectedDiccionarioHandler);
   }
 
+  const deleteSelectedPerfilesBtn = document.getElementById('deleteSelectedPerfiles');
+  if (deleteSelectedPerfilesBtn) {
+    deleteSelectedPerfilesBtn.removeEventListener('click', deleteSelectedPerfilesHandler);
+    deleteSelectedPerfilesBtn.addEventListener('click', deleteSelectedPerfilesHandler);
+  }
+
+  const deleteSelectedPublicacionBtn = document.getElementById('deleteSelectedPublicacion');
+  if (deleteSelectedPublicacionBtn) {
+    deleteSelectedPublicacionBtn.removeEventListener('click', deleteSelectedPublicacionHandler);
+    deleteSelectedPublicacionBtn.addEventListener('click', deleteSelectedPublicacionHandler);
+  }
+
+  const deleteSelectedReportesBtn = document.getElementById('deleteSelectedReportes');
+  if (deleteSelectedReportesBtn) {
+    deleteSelectedReportesBtn.removeEventListener('click', deleteSelectedReportesHandler);
+    deleteSelectedReportesBtn.addEventListener('click', deleteSelectedReportesHandler);
+  }
+
+  const deleteSelectedUsuariosBtn = document.getElementById('deleteSelectedUsuarios');
+  if (deleteSelectedUsuariosBtn) {
+    deleteSelectedUsuariosBtn.removeEventListener('click', deleteSelectedUsuariosHandler);
+    deleteSelectedUsuariosBtn.addEventListener('click', deleteSelectedUsuariosHandler);
+  }
+
+  const deleteSelectedArchivosBtn = document.getElementById('deleteSelectedArchivos');
+  if (deleteSelectedArchivosBtn) {
+    deleteSelectedArchivosBtn.removeEventListener('click', deleteSelectedArchivosHandler);
+    deleteSelectedArchivosBtn.addEventListener('click', deleteSelectedArchivosHandler);
+  }
+
+  const deleteSelectedComentariosBtn = document.getElementById('deleteSelectedComentarios');
+  if (deleteSelectedComentariosBtn) {
+    deleteSelectedComentariosBtn.removeEventListener('click', deleteSelectedComentariosHandler);
+    deleteSelectedComentariosBtn.addEventListener('click', deleteSelectedComentariosHandler);
+  }
+
+  const deleteSelectedOfertasBtn = document.getElementById('deleteSelectedOfertas');
+  if (deleteSelectedOfertasBtn) {
+    deleteSelectedOfertasBtn.removeEventListener('click', deleteSelectedOfertasHandler);
+    deleteSelectedOfertasBtn.addEventListener('click', deleteSelectedOfertasHandler);
+  }
+
+  const deleteSelectedPostulacionesBtn = document.getElementById('deleteSelectedPostulaciones');
+  if (deleteSelectedPostulacionesBtn) {
+    deleteSelectedPostulacionesBtn.removeEventListener('click', deleteSelectedPostulacionesHandler);
+    deleteSelectedPostulacionesBtn.addEventListener('click', deleteSelectedPostulacionesHandler);
+  }
+
+  const deleteSelectedExpAcademicaBtn = document.getElementById('deleteSelectedExpAcademica');
+  if (deleteSelectedExpAcademicaBtn) {
+    deleteSelectedExpAcademicaBtn.removeEventListener('click', deleteSelectedExpAcademicaHandler);
+    deleteSelectedExpAcademicaBtn.addEventListener('click', deleteSelectedExpAcademicaHandler);
+  }
+
+  const deleteSelectedExpLaboralBtn = document.getElementById('deleteSelectedExpLaboral');
+  if (deleteSelectedExpLaboralBtn) {
+    deleteSelectedExpLaboralBtn.removeEventListener('click', deleteSelectedExpLaboralHandler);
+    deleteSelectedExpLaboralBtn.addEventListener('click', deleteSelectedExpLaboralHandler);
+  }
 
 });
 
@@ -931,6 +949,46 @@ function deleteSelectedDiccionarioHandler() {
   deleteSelectedRows('checkboxPalabra', '/Administrador/deleteDiccionario');
 }
 
+function deleteSelectedPerfilesHandler() {
+  deleteSelectedRows('checkboxPerfil', '/Administrador/deletePerfiles');
+}
+
+function deleteSelectedPublicacionHandler() {
+  deleteSelectedRows('checkboxPublicacion', '/Administrador/deletePublicaciones');
+}
+
+function deleteSelectedReportesHandler() {
+  deleteSelectedRows('checkboxReporte', '/Administrador/deleteReportes');
+}
+
+function deleteSelectedUsuariosHandler() {
+  deleteSelectedRows('checkboxUsuario', '/Administrador/deleteUsuarios');
+}
+
+function deleteSelectedArchivosHandler() {
+  deleteSelectedRows('checkboxArchivo', '/Administrador/deleteArchivos');
+}
+
+function deleteSelectedComentariosHandler() {
+  deleteSelectedRows('checkboxComentario', '/Administrador/deleteComentarios');
+}
+
+function deleteSelectedOfertasHandler() {
+  deleteSelectedRows('checkboxOferta', '/Administrador/deleteOfertas');
+}
+
+function deleteSelectedPostulacionesHandler() {
+  deleteSelectedRows('checkboxPostulacion', '/Administrador/deletePostulaciones');
+}
+
+function deleteSelectedExpAcademicaHandler() {
+  deleteSelectedRows('checkboxAcademica', '/Administrador/deleteExpAcademica');
+}
+
+function deleteSelectedExpLaboralHandler() {
+  deleteSelectedRows('checkboxLaboral', '/Administrador/deleteExpLaboral');
+}
+
 
 
 
@@ -943,8 +1001,13 @@ function deleteSelectedRows(checkboxClass, apiEndpoint) {
   });
 
   if (selectedIds.length === 0) {
-      alert("No rows selected");
+      alert("No hay filas seleccionadas");
       return;
+  }
+
+  // Preguntar al usuario para confirmar la eliminación
+  if (!confirm(`¿Está seguro que desea eliminar las filas con ID: ${selectedIds.join(', ')}?`)) {
+    return; // Abortar la eliminación si el usuario cancela
   }
 
   fetch(apiEndpoint, {
@@ -964,16 +1027,65 @@ function deleteSelectedRows(checkboxClass, apiEndpoint) {
                   }
               });
           });
-          alert('Eliminacion exitosa');
+          alert('Eliminación exitosa');
       } else {
-          alert('Error deleting rows admin: ' + data.message);
+          alert('Error al eliminar fila(s): ' + data.message);
       }
   })
   .catch(error => {
       console.error('Error:', error);
-      alert('Error deleting rows admin2: ' + error.message);
+      alert('Error al eliminar fila(s): ' + error.message);
   });
 }
+
+
+
+//--------------- INSERT GLOBAL ---------------- //
+
+//CATEGORIA
+$("#addCategoria").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    nuevaCategoria: $("#nuevaCategoria").val(),
+  };
+
+  fetch("/Administrador/insertCategoria", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Categoria agregada");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#nuevaCategoria"
+        ).val("");
+        // Cerrar el modal
+        $("#crearCategoria").modal("hide");
+        getCategoria();
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+
+
 
 
 
@@ -991,18 +1103,7 @@ function controlVisi16() {
   centrarModulo(elemento16);
 }
 
-function controlVisi17() {
-  var elemento17 = document.getElementById("modulo17");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
 
-  // Muestra el módulo 1
-  elemento17.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento17);
-}
 
 
 

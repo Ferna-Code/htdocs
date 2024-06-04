@@ -12,7 +12,7 @@ class AdministradorController
         include VIEWS_PATH . 'Layout/footer.php';
     }
 
-//------------ CARRERA -----------//
+    //------------ CARRERA -----------//
 
     public function getCarrera()
     {
@@ -28,7 +28,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
@@ -49,10 +48,9 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
-    
+
 
     //------------ CURSO -----------//
     public function getCurso()
@@ -69,9 +67,8 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
-    
+
 
 
     //------------ DICCIONARIO -----------//
@@ -89,7 +86,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
@@ -108,7 +104,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
@@ -127,11 +122,10 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
-/*
+    /*
     public function deletePublicacion()
     {
         $admin = new AdministradorDaoImpl();
@@ -162,7 +156,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
@@ -181,7 +174,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
@@ -200,7 +192,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
@@ -219,7 +210,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
     //------------ OFERTAS -----------//
@@ -237,7 +227,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
     //------------ POSTULACIONES -----------//
@@ -255,7 +244,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
 
@@ -274,7 +262,6 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
     }
 
     //------------ EXP LABORAL -----------//
@@ -292,8 +279,7 @@ class AdministradorController
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
         }
-
-    }  
+    }
 
 
     //--------------DELETES-------------//
@@ -304,21 +290,21 @@ class AdministradorController
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
         $result = $admin->deleteCarreras($ids);
-    
+
         if ($result) {
             echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error deleting rows controlercarrera']);
         }
     }
-    
+
     public function deleteCategorias()
     {
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
         $result = $admin->deleteCategorias($ids);
-    
+
         if ($result) {
             echo json_encode(['success' => true]);
         } else {
@@ -332,31 +318,200 @@ class AdministradorController
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
         $result = $admin->deleteCursos($ids);
-    
+
         if ($result) {
             echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerCursos']);
         }
     }
-    
+
     public function deleteDiccionario()
     {
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
         $result = $admin->deleteDiccionario($ids);
-    
+
         if ($result) {
             echo json_encode(['success' => true]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerCursos']);
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerDiccionario']);
         }
     }
 
-}
+    public function deletePerfiles()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deletePerfiles($ids);
 
-    
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerPerfiles']);
+        }
+    }
+
+    public function deletePublicaciones()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deletePublicaciones($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerPublicaciones']);
+        }
+    }
+
+    public function deleteReportes()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteReportes($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerReportes']);
+        }
+    }
+
+    public function deleteUsuarios()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteUsuarios($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerUsuarios']);
+        }
+    }
+
+    public function deleteArchivos()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteArchivos($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerArchivos']);
+        }
+    }
+
+    public function deleteComentarios()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteComentarios($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerComentarios']);
+        }
+    }
+
+    public function deleteOfertas()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteOfertas($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerOfertas']);
+        }
+    }
+
+    public function deletePostulaciones()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deletePostulaciones($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerPostulaciones']);
+        }
+    }
+
+    public function deleteExpAcademica()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteExpAcademica($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerExpAcademica']);
+        }
+    }
+
+    public function deleteExpLaboral()
+    {
+        $admin = new AdministradorDaoImpl();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $ids = $data['ids'];
+        $result = $admin->deleteExpLaboral($ids);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error deleting rows controllerExpLaboral']);
+        }
+    }
+
+
+
+
+
+    //-------------------INSERT-----------------//
+
+    public function insertCategoria()
+    { //CATEGORIA
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
+        $data = json_decode($json, true);
+        echo "<script>alert('controlador')</script>";
+        echo "<script>console.log('controlador')</script>";
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+        $nuevaCategoria = $data['nuevaCategoria'];
+
+        $admin = new AdministradorDaoImpl();
+        $adminCategoria_model = new AdminCategoriasModel();
+        $adminCategoria_model->setNuevaCategoria($nuevaCategoria);
+
+        $result = $admin->insertCategoria($adminCategoria_model);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+}
     /*public function crearCarrera(){
         include VIEWS_PATH . 'Layout/nav.php';
         include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaCarrera.php';  //carpeta/vista

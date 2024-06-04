@@ -18,8 +18,8 @@
                     <option value="Práctica">Cargo 2</option>
                     <option value="Práctica">cargo 3</option>
                 </select>
-                <a href="Administrador/creaUsuarios" class="btn-supervisor marginBtn">Crear</a>
-                <a href="Administrador/editarUsuario" class="btn-supervisor marginBtn">Editar</a>
+                <button type="button" class="btn-supervisor ">Filtrar</button>
+                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
                 <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -32,7 +32,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllUsuarios" name="select-all"></th>
-                        <th ></th>Rut</th>
+                        <th>Rut</th>
                         <th>Nombre</th>
                         <th>Fecha de Nacimiento</th>
                         <th>ID Perfil</th>
@@ -72,6 +72,75 @@
                     </ul>
 
                 </div>
+            </div>
+        </div>
+    </div>
+ <!-- Modal Editar -->
+ <div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLabel">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form method="POST" class="form" >
+            <input type="hidden" class="form-control" name="IDUsuario">
+            <div class="row">
+                <div class="col">
+                    <label for="rut">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" >
+                </div>
+                <div class="col">
+                    <label for="nombre">Rut:</label>
+                    <input type="text" class="form-control" name="rut" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="nombre">Usuario:</label>
+                    <input type="text" class="form-control" name="usuario" >
+                </div>
+                <div class="col">
+                    <label for="materno">Clave Ingreso</label>
+                    <input type="text" class="form-control" name="clave" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="nombre">Carrera</label>
+                    <input type="text" class="form-control" name="correo" >
+                </div>
+                <div class="col">
+                    <label for="materno">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" name="clave" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="rut">Avance</label>
+                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="perfil"
+                        name="perfil">
+                        <option >Seleccionar</option>
+                        <option >1</option>
+                        <option >2</option>
+                        <option >3</option>
+                        <option >4</option>
+                        <option >5</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="rut">Cargo</label>
+                    <input type="text" class="form-control" name="Cargo" >
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar</button>
+                </div>
+        </form>
+                </div>
+
             </div>
         </div>
     </div>

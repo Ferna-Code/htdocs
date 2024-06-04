@@ -6,17 +6,7 @@
 
     <title>Diccionario</title>
 <body>
-<!--<div class="btn-panel">     
-        <div>
-            <a href="creaDiccionario" class="btn  btn-primary">Ingreso nueva Palabra</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Categoría:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
+
     <hr>
     <h1>Experiencia Laboral</h1>
     <div class="body-panel">

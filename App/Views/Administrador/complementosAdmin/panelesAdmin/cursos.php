@@ -24,7 +24,7 @@
                     <option value="Práctica">Networking Essentials</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-                <a href="Administrador/CreaCursos" class="btn-supervisor marginBtn">Crear</a>
+                <a href="#" onclick="controlVisi17()" class="btn-supervisor marginBtn ">Agregar</a>
                 <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
                 <button type="button" id="deleteSelectedCursos" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
