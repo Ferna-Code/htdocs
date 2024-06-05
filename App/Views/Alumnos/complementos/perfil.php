@@ -3,6 +3,7 @@ require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
 $admin = new usuarioDaoImpl();
 $rutsesion = $_SESSION['rut'];
 $imagen = $admin->obtenerImagenUsuario($rutsesion);
+$carrera = $admin->obtenerCarreraUsuario($rutsesion);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
     $controller = new PerfilController();
     $controller->getData();
@@ -14,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <div class="conteiner">
     <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
         <div class="">
@@ -33,16 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                        <h1 id="nombreH1"></h1>
+                        <h1 style="font-size: 24px; font-weight: bold;" id="nombreH1"></h1>
                         </a>
-                        <h4 style="color: black;">Analista Programador</h4>
+                        <h4 style="color: black; font-size: 24px; font-weight: bold;"><?php echo $carrera ?></h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="formulario">
-            <h3>Datos Personales</h3>
-            <div class="formulario-experiencia">
+            <h3 style="font-size: 20px; font-weight: bold; mt-2">Datos Personales</h3>
+            <div class="formulario-experiencia mt-3">
                 <div class="columna">
                     <label for="rut">Rut:</label>
                     <input type="text" class="form-control" id="rut" name="rut" disabled>
@@ -69,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <div class="experiencialaboral">
-                <h3>Experiencia Laboral</h3>
-                <div class="clientes-contenedor">
+                <h3 style="font-size: 20px; font-weight: bold; mt-2">Experiencia Laboral</h3>
+                <div class="clientes-contenedor mt-3">
                     <div id="experiencia-laboral-container">
                         <div class="formulario-experiencia visible">
                             <div class="columna">
@@ -106,19 +107,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <!-- Botón para agregar nuevo trabajo -->
                     <button type="button" class="btn-supervisor" onclick="agregarTrabajo()">Agregar trabajo</button>
-                    <!-- Contenedor para formularios de educación/conocimientos -->
+                    <!-- fin contenedor para agregar trabajos -->
+                </div>
+                <br>
+                <!-- Contenedor para formularios de educación/conocimientos -->
+                <h3 style="font-size: 20px; font-weight: bold; mt-2">Educación y conocimientos</h3>
+                    <div id="educacion-container">
+                        <!-- Primer formulario de educación (visible por defecto) -->
+                        <div class="formulario-educacion visible mt-3">
+                            <div class="columna">
+                                <label for="nombre-curso">Titulo obtenido:</label>
+                                <input type="text" id="nombre-curso" name="nombre-curso">
+                            </div>
+                            <div class="columna">
+                                <label for="institucion">Institución:</label>
+                                <input type="text" id="institucion" name="institucion">
+                            </div>
+                            <div class="columna">
+                                <label for="fecha-finalizado">Fecha de Finalización:</label>
+                                <input type="date" id="fecha-finalizado" name="fecha-finalizado">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botón para agregar nuevo formulario de educación -->
+                    <div class="botones-container">
+                        <button type="button" class="btn-supervisor" onclick="agregarEducacion()">Agregar
+                            educación</button>
+                    </div>
                 </div>
                 <br>
             </div>
-            <!-- adjuntar Cv -- -->
-            <div class="grid w-full max-w-xs items-center gap-1.5">
-                <label
-                    class="text-sm text-black-400 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Adjuntar
-                    CV</label>
-                <input id="documentocv" type="file"  accept=".pdf"
-                    class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-200 file:text-black hover:file:bg-gray-300">
+            <!-- adjuntar cv alumno  -->
+            <div style="mt-2">
+                <div class="grid w-full max-w-xs items-center gap-1.5">
+                    <label
+                        class="text-sm text-black-400 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Subir CV</label>
+                    <input id="cv" type="file" accept=".pdf"
+                        class="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm text-black-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium">
+                </div>
             </div>
-            <!-- adjuntar cv  -- -->
+            <!-- adjuntar cv alumnoEgresado -->
             <!-- GUARDAR DATOS ALUMNO -->
             <button type="button" class="btn-supervisor mt-3" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
                 Cambios</button>

@@ -8,4 +8,5 @@ interface UsuarioDao{
     function getUsuario($rut);
     function actualizarDatosUsuario(usuario_model $admin);
     function actualizarUsuario($rut, $camposModificados);
+    function obtenerCarreraUsuario($rut);
 }

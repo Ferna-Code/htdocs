@@ -212,3 +212,7 @@ label{
 .centrarBtn{
     margin-left: 24.7%;
 }
+
+h1, h4 {
+    font-size: 24px; font-weight: bold; 
+}
