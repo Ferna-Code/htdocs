@@ -1050,7 +1050,7 @@ $("#addCategoria").on("submit", function (event) {
     nuevaCategoria: $("#nuevaCategoria").val(),
   };
 
-  fetch("/Administrador/insertCategoria", { // Asegúrate de que esta ruta sea correcta
+  fetch("/supervisor/insertData", { // Asegúrate de que esta ruta sea correcta
     headers: {
       "Content-Type": "application/json",
     },
