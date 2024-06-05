@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <div class="conteiner">
     <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
         <div class="">
@@ -22,20 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card">
                     <div class="imagen-container">
                         <input type="file" id="imagen" name="imagen" title="Subir foto">
-                        <div class="mt-3">
-                            <img src="<?php
-                            if ($imagen != "") {
-                                echo $imagen;
-                            } else {
-                                echo "/uploads/usuarioSinFoto.jpg";
-                            }
-                            ?>" alt="Imagen del usuario">
+                        <div class="">
+                            <img src="<?php echo $imagen ?>" alt="Imagen del usuario">
                         </div>
                     </div>
                     <div class="contenido-texto-card">
                         <h1 id="nombreH1"></h1>
                         </a>
-                        <h4 style="color: black;">Analista Programador</h4>
+                        <h4>Analista Programador</h4>
                     </div>
                 </div>
             </div>
@@ -110,17 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <br>
             </div>
-            <!-- adjuntar Cv -- -->
-            <div class="grid w-full max-w-xs items-center gap-1.5">
-                <label
-                    class="text-sm text-black-400 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Adjuntar
-                    CV</label>
-                <input id="documentocv" type="file"  accept=".pdf"
-                    class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-200 file:text-black hover:file:bg-gray-300">
-            </div>
-            <!-- adjuntar cv  -- -->
             <!-- GUARDAR DATOS ALUMNO -->
-            <button type="button" class="btn-supervisor mt-3" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
+            <button type="button" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
                 Cambios</button>
             <!-- GUARDAR DATOS ALUMNO -->
         </div>

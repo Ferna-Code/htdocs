@@ -72,26 +72,18 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
     <div class="sidebar1">
         <h4 class="novedad"><i class="fa fa-newspaper-o"></i><strong> Novedades</strong></h4>
         <hr>
-        <div class="cardm">
-            <div class="cardm-details">
-                <p class="text-title">TITULO 1.</p>
-                <p class="text-body"></p>
-            </div>
-            <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
+        <div class="card">
+            <h5>RedLeones</h5>
+            <p>!Felicidades por estar Aquí¡</p>
         </div>
-        <div class="cardm">
-            <div class="cardm-details">
-                <p class="text-title">TIULO 2.</p>
-                <p class="text-body"></p>
-            </div>
-            <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
+        <div class="card">
+            <h5>Nuevo Curso</h5>
+            <p>INTERNET DE LAS COSAS</p>
         </div>
-        <div class="cardm">
-            <div class="cardm-details">
-                <p class="text-title">TITULO 3.</p>
-                <p class="text-body"></p>
-            </div>
-            <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
+        <div class="card">
+            <h5>Nueva Oferta</h5>
+            <p>TÉCNICA O PROFESIONAL PARA SECCIÓN PROGRAMACIÓN Y
+                CONTROL</p>
         </div>
     </div>
 
