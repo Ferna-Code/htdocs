@@ -59,5 +59,17 @@ class PerfilController
             echo json_encode(['success' => false, 'message' => 'Error al actualizar los datos']);
         }
     }
+
+    public function getCarreraUser(){
+        $rutsesion = $_SESSION['rut'];
+        $admin = new usuarioDaoImpl();
+        $data = $admin->obtenerCarreraUsuario($rutsesion);
+    
+        if ($data) {
+            echo json_encode(['success' => true, 'data' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
 }
 
