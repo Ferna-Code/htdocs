@@ -91,7 +91,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-                <?php
+        <?php
             }
         } else {
             echo "No se encontraron publicaciones.";

@@ -16,6 +16,10 @@ if (!isset($_SESSION['idperfil'])) {
 }
 
 require_once 'App/Controllers/accessController.php';
+
+require_once 'C:\xampp\htdocs\App\Controllers\PerfilController.php';
+
+
 $perfilesPermitidos = 2;
 verificarAcceso($perfilesPermitidos);
 ?>
@@ -48,7 +52,6 @@ verificarAcceso($perfilesPermitidos);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-
 </head>
 
 <body id="page-top">
@@ -56,85 +59,84 @@ verificarAcceso($perfilesPermitidos);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
-        
+    <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+
+        <div class="contenedor-body" id="modulo19">
+            <?php include 'complementos/menuPrincipal.php'; ?>
+        </div>
+
+        <div class="contenedor-body" id="modulo18" style="display:none">
+            <?php include 'complementos/formularios/perfilSupervisor.php'; ?>
+        </div>
+
         <div class="contenedor-body" id="modulo7" style="display:none">
-            <?php include 'complementos/categorias.php' ?>
+            <?php include 'complementos/categorias.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo3" style="display:none">
-            <?php include 'complementos/carreras.php' ?>
+            <?php include 'complementos/carreras.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo2" style="display:none">
-            <?php include 'complementos/publicaciones.php' ?>
+            <?php include 'complementos/publicaciones.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo1" style="display:none">
-            <?php include 'complementos/reportes.php' ?>
+            <?php include 'complementos/reportes.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo4" style="display:none">
-            <?php include 'complementos/cursos.php' ?>
+            <?php include 'complementos/cursos.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo5" style="display:none">
-            <?php include 'complementos/perfiles.php' ?>
+            <?php include 'complementos/perfiles.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo6" style="display:none">
-            <?php include 'complementos/usuarios.php' ?>
+            <?php include 'complementos/usuarios.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo8" style="display:none">
-            <?php include 'complementos/diccionario.php' ?>
+            <?php include 'complementos/diccionario.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo9" style="display:none">
-            <?php
-            include 'complementos/ofertasLaborales.php'
-            ?>
+            <?php include 'complementos/ofertasLaborales.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo10" style="display:none">
-            <?php include 'complementos/formularios/verOferta.php' ?>
+            <?php include 'complementos/formularios/verOferta.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo11" style="display:none">
-            <?php include 'complementos/formularios/ingresarCurso.php' ?>
+            <?php include 'complementos/formularios/ingresarCurso.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo12" style="display:none">
-            <?php include 'complementos/formularios/verCurso.php' ?>
+            <?php include 'complementos/formularios/verCurso.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo13" style="display:none">
-            <?php include 'complementos/formularios/verCarrera.php' ?>
+            <?php include 'complementos/formularios/verCarrera.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo14" style="display:none">
-            <?php include 'complementos/formularios/carrerasCategorias.php' ?>
+            <?php include 'complementos/formularios/carrerasCategorias.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo15" style="display:none">
-            <?php include 'complementos/formularios/verReporte.php' ?>
+            <?php include 'complementos/formularios/verReporte.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo16" style="display:none">
-            <?php include 'complementos/formularios/verPublicacion.php' ?>
+            <?php include 'complementos/formularios/verPublicacion.php'; ?>
         </div>
 
         <div class="contenedor-body" id="modulo17" style="display:none">
-            <?php include 'complementos/formularios/verUsuario.php' ?>
+            <?php include 'complementos/formularios/verUsuario.php'; ?>
         </div>
 
-        <div class="contenedor-body" id="modulo18">
-            <?php include 'complementos/formularios/perfilSupervisor.php' ?>
-        </div>
-
-        <div class="contenedor-body" id="modulo19" style="display:none">
-            <?php include 'complementos/menuPrincipal.php' ?>
-        </div>
 
 
 
@@ -152,7 +154,6 @@ verificarAcceso($perfilesPermitidos);
     <!-- Custom scripts for all pages-->
     <script src="../../../../public/js/sb-admin-2.min.js"></script>
 
-
     <!-- Page level plugins -->
     <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
 
@@ -161,8 +162,6 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
     <script src="./../../../Public/js/perfil.js"></script>
     <script src="../../../../Public/js/supervisor.js"></script>
-
-
 
     <!-- JS card -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

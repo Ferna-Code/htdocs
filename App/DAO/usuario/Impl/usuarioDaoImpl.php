@@ -110,7 +110,7 @@ class usuarioDaoImpl implements UsuarioDao
         $params[] = $rut; 
         $sql = "UPDATE usuarios SET " . implode(', ', $setClauses) . " WHERE rut = ?";
         $conn = $this->db->conec();
-        $stmt = mysqli_prepare($conn, $sql);
+       /*line 113*/ $stmt = mysqli_prepare($conn, $sql);
         if (!$stmt) {
             // Error al preparar la consulta
             echo "Error en la preparación de la consulta: " . mysqli_error($conn);

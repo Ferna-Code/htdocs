@@ -1,9 +1,11 @@
+
 <?php
 require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
 $admin = new usuarioDaoImpl();
 $rutsesion = $_SESSION['rut'];
 $imagen = $admin->obtenerImagenUsuario($rutsesion);
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'getData') {
     $controller = new PerfilController();
     $controller->getData();
     exit;
