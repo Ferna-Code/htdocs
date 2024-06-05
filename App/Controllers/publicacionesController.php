@@ -25,15 +25,9 @@ class PublicacionesController {
         } else {
             $resultado = $this->publicaciones_model->guardarPublicacion($rutUsuario, $comentario);
             if ($resultado) {
-                //$mensaje = "Publicación realizada exitosamente.";
-                //header("Location: muroPrueba.php?mensaje=".urlencode($mensaje)); 
-                //echo "<script>alert('Publicación realizada exitosamente.')</script>";
                 $_SESSION['publicacionCreada'] = "Publicación realizada exitosamente";
                
             } else {
-                //$mensaje = "Error al guardar la publicación.";
-                //header("Location: muroPrueba.php?mensaje=".urlencode($mensaje)); 
-                //echo "<script>alert('Error al guardar la publicación.')</script>";
                 $_SESSION['publicacionNoCreada'] = "limite diario";
             }
 

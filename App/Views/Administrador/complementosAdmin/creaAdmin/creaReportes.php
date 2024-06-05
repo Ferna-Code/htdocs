@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <form method="POST" class="form" style="padding: 100px 300px 0 300px; width: 100%;">
+    <form method="POST" class="form" id="formReportes" style="padding: 100px 300px 0 300px; width: 100%;">
         <h2 style="text-align: center;">Crear Reportes</h2><br>
         <div class="row">
             <div class="col">

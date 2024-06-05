@@ -19,12 +19,14 @@
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
 
-                <a href="Administrador/creaCategoria" class="btn-supervisor marginBtn">Crear</a>
-                <a href="Administrador/editarCategoria" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCategoria">
+                Nuevo
+            </button>
+            <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarCategoriar">Editar</button>
+                <button type="button" id="deleteSelectedCategorias" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tableCategorias" class="tabla table">
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
@@ -35,31 +37,8 @@
                     <th class="anchoFecha">Fecha de Eliminación</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td class="anchoId">01</td>
-                    <td>Educación Bienestar y Calidad de vida</td>
-                    <td class="anchoFecha">12-04-2024</td>
-                    <td class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td class="anchoId">02</td>
-                    <td>Informática Tecnología y Productividad</td>
-                    <td class="anchoFecha">12-04-2024</td>
-                    <td class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
-                    <td class="anchoId">03</td>
-                    <td>Negocios Gestión e Innovación</td>
-                    <td class="anchoFecha">12-04-2024</td>
-                    <td class="anchoActiv">1</td>
-                    <td class="anchoFecha">23-04-2024</td>
-                </tr>
+            <tbody id="bodyCategorias">
+                
             </tbody>  
         </table>
                <!-- seccion footer -->
@@ -88,9 +67,63 @@
     </div>
     </div>
 
+    <!-- Modal Nuevo -->
+    <div class="modal fade" id="crearCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoria" method="POST" action="">
+                    <label for="nuevaCategoria">Nueva categoria: </label>
+                    <input type="text" name="nuevaCategoria" id="nuevaCategoria">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar"></i>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+  <!-- Modal Editar -->
+  <div class="modal fade" id="editarCategoriar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLabel">Editar categoría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCategoria" method="POST" action="">
+                        <input type="hidden" name="editId" id="editId">
+                        <label for="editCategoria">Categoría: </label>
+                        <input type="text" name="editCategoria" id="editCategoria">
+                        <div class="col">
+                            <label>Activo:</label>
+                            <select class="form-select" name="editActivo" id="editActivo" required>
+                                <option value="1">1</option>
+                                <option value="0">0</option>
+                            </select> 
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../../Public/js/administrador.js"></script>
+
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
-    </script>
+
+
 </body>

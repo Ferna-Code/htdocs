@@ -8,18 +8,24 @@
         <div class="sidebar-brand-text mx-3">Administrador</div>
     </a>
 
+
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <span>Panel Admin</span></a>
+    <a class="nav-link" href="" onclick="controlVisi15()">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Perfil Administrador</span></a>
     </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Menú
+</div>
     <!-- Nav Item - Pages Collapse Menu -->
     <div class="overflow-auto " style="max-height: 60vh;">
     <li class="nav-item">
@@ -122,27 +128,22 @@
         </a>
     </li>
 
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities13"
             aria-expanded="true" aria-controls="collapseUtilities13">
             <i class="fas fa-fw fa-wrench"></i>
-            <span  href="#" onclick="controlVisi13()">C.V. Abreviado</span>
+            <span  href="#" onclick="controlVisi13()">Experiencia Académica</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities14"
             aria-expanded="true" aria-controls="collapseUtilities14">
             <i class="fas fa-fw fa-wrench"></i>
-            <span  href="#" onclick="controlVisi14()">Experiencia Académica</span>
+            <span  href="#" onclick="controlVisi14()">Experiencia Laboral</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities15"
-            aria-expanded="true" aria-controls="collapseUtilities15">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span  href="#" onclick="controlVisi15()">Experiencia Laboral</span>
-        </a>
-    </li>
+
 </div>
 
 

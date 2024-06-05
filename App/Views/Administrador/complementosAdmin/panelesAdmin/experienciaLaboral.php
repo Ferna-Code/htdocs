@@ -6,17 +6,7 @@
 
     <title>Diccionario</title>
 <body>
-<!--<div class="btn-panel">     
-        <div>
-            <a href="creaDiccionario" class="btn  btn-primary">Ingreso nueva Palabra</a>
-            <label for="filtroUsuario">Filtrar por ID:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Categoría:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
+
     <hr>
     <h1>Experiencia Laboral</h1>
     <div class="body-panel">
@@ -24,14 +14,14 @@
             <div class="containerFiltro">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut">
             <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Cargo">
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            <button type="button" id="deleteSelectedExpLaboral" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tableLaboral" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
-                    <th class="widthCheck"><input type="checkbox" id="checkAllLaboral" name="select-all"></th>
+                    <th class="widthCheck"><input type="checkbox" id="checkAllLaborales" name="select-all"></th>
                     <th class="anchoId">ID</th>
                     <th>Rut Usuario</th>
                     <th>Fecha  de Inicio</th>
@@ -44,46 +34,8 @@
                     <th>Fecha de Eliminación</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxLaboral" name="checkId"></td>
-                    <td>01</td>
-                    <td>26013039-0</td>
-                    <td>2011-01-01</td>
-                    <td>2015-12-31</td>
-                    <td>Ingeniero de Proyectos</td>
-                    <td>Desarrollo de proyectos civiles</td>
-                    <td>0</td>
-                    <td>13-04-2024</td>
-                    <td>1</td>
-                    <td>13-04-2024</td>
-                </tr>
-                
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxLaboral" name="checkId"></td>
-                    <td>02</th>
-                    <td>26013039-0</td>
-                    <td>2016-01-01</td>
-                    <td>2020-12-31</td>
-                    <td>Gerente de Proyectos</td>
-                    <td>Gestión y liderazgo de proyectos de construcción</td>
-                    <td>1</td>
-                    <td>13-04-2024</td>
-                    <td>1</td>
-                    <td>13-04-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxLaboral" name="checkId"></td>
-                    <td>03</td>
-                    <td>26013039-1</td>
-                    <td>2012-04-01</td>
-                    <td>2017-03-30</td>
-                    <td>Administradora</td>
-                    <td>Administración de oficinas</td>
-                    <td>0</td>
-                    <td>13-04-2024</td>
-                    <td>1</td>
-                    <td>13-04-2024</td>
+            <tbody id="bodyLaboral">
+
                 </tr>
             </tbody>
         </table>
@@ -115,6 +67,6 @@
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista
-        initializeCheckboxMaster('checkAllLaboral', 'checkboxLaboral');
+        initializeCheckboxMaster('checkAllLaborales', 'checkboxLaboral');
     </script>
 </body>

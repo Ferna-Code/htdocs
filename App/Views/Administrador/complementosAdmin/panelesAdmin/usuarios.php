@@ -1,92 +1,57 @@
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-    rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Usuarios</title>
+<title>Usuarios</title>
+
 <body>
 
-<hr>
+    <hr>
     <h1>Usuarios</h1>
     <div class="body-panel">
-    <div style="margin: 10px 10px;">
-    <div class="containerFiltro">
-    <input type="text" class="ofertaFiltro" placeholder="Nombre">
+        <div style="margin: 10px 10px;">
+            <div class="containerFiltro">
+                <input type="text" class="ofertaFiltro" placeholder="Nombre">
                 <input type="text" class="ofertaFiltro" placeholder="Rut">
                 <select class="categoriaFiltro">
                     <option value="Práctica">Cargo 1</option>
                     <option value="Práctica">Cargo 2</option>
                     <option value="Práctica">cargo 3</option>
                 </select>
-                <a href="Administrador/creaUsuarios" class="btn-supervisor marginBtn">Crear</a>
-                <a href="Administrador/editarUsuario" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" class="btn-supervisor ">Filtrar</button>
+                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
+                <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
-            <style> .tabla { width: 100%; } </style>
-            <thead>
-                <tr>
-                    <th class="widthCheck"><input type="checkbox" id="checkAllUsuario" name="select-all"></th>
-                    <th class="anchoId"></th>Rut</th>
-                    <th>Nombre</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Correo</th>
-                    <th>Carrera</th>
-                    <th>Avance</th>
-                    <th>Cargo</th>
-                    <th>Fecha de Ingreso</th>
-                    <th>Activo</th>
-                    <th>Feha de Eliminación</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
-                    <td>11111111-1</td>
-                    <td>Luis Yañez Carreño</td>
-                    <td>12-12-1954</td>
-                    <td>Profesor@leones.cl</td>
-                    <td>Analista Programador</td>
-                    <td>5</td>
-                    <td>Docente</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-                
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
-                    <td>33333333-3</td>
-                    <td>Ivan Rojas</td>
-                    <td>12-12-1930</td>
-                    <td>JefeCarrera@leones.cl</td>
-                    <td>Otra Carrera</td>
-                    <td>5</td>
-                    <td>Docente</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-
-                </tr>
-                <tr class="table table-striped">
-                    <td><input type="checkbox" class="checkboxUsuario" name="checkId"></td>
-                    <td>22222222-2</td>
-                    <td>Ramon Vasquez</td>
-                    <td>12-12-1986</td>
-                    <td>Profesor2@leones.cl</td>
-                    <td>Analista Programador</td>
-                    <td>5</td>
-                    <td>Docente</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-            </tbody>
-        </table>
-                        <!-- seccion footer -->
-                        <div class="footer-tools">
+            <table id="tableUsuarios" class="tabla table">
+                <style>
+                    .tabla {
+                        width: 100%;
+                    }
+                </style>
+                <thead>
+                    <tr>
+                        <th class="widthCheck"><input type="checkbox" id="checkAllUsuarios" name="select-all"></th>
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>ID Perfil</th>
+                        <th>Correo</th>
+                        <th>ID Carrera</th>
+                        <th>Avance</th>
+                        <th>Cargo</th>
+                        <th>Clave</th>
+                        <th>F. Ingreso</th>
+                        <th>Activo</th>
+                        <th>F.Eliminación</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyUsuarios">
+ 
+                </tbody>
+            </table>
+            <!-- seccion footer -->
+            <div class="footer-tools">
                 <div class="list-items">
                     Mostrar
                     <select name="n-entries" id="n-entries" class="n-entries">
@@ -95,7 +60,7 @@
                         <option value="20">50</option>
                     </select>
                     Entradas
-                </div>   
+                </div>
                 <div class="pages">
                     <ul>
                         <li><span class="active">1</span></li>
@@ -107,13 +72,81 @@
                     </ul>
 
                 </div>
+            </div>
         </div>
+    </div>
+ <!-- Modal Editar -->
+ <div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLabel">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form method="POST" class="form" >
+            <input type="hidden" class="form-control" name="IDUsuario">
+            <div class="row">
+                <div class="col">
+                    <label for="rut">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" >
+                </div>
+                <div class="col">
+                    <label for="nombre">Rut:</label>
+                    <input type="text" class="form-control" name="rut" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="nombre">Usuario:</label>
+                    <input type="text" class="form-control" name="usuario" >
+                </div>
+                <div class="col">
+                    <label for="materno">Clave Ingreso</label>
+                    <input type="text" class="form-control" name="clave" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="nombre">Carrera</label>
+                    <input type="text" class="form-control" name="correo" >
+                </div>
+                <div class="col">
+                    <label for="materno">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" name="clave" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="rut">Avance</label>
+                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="perfil"
+                        name="perfil">
+                        <option >Seleccionar</option>
+                        <option >1</option>
+                        <option >2</option>
+                        <option >3</option>
+                        <option >4</option>
+                        <option >5</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="rut">Cargo</label>
+                    <input type="text" class="form-control" name="Cargo" >
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar</button>
+                </div>
+        </form>
+                </div>
+
+            </div>
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../../Public/js/administrador.js"></script>
+
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllUsuario', 'checkboxUsuario');
-    </script>
 </body>

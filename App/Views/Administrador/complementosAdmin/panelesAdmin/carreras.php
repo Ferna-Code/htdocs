@@ -11,7 +11,7 @@
     <h1>Carreras</h1>
     <div class="body-panel" >
     <div style="margin: 10px;">
-            <div class="containerFiltro">
+           <div class="containerFiltro">
             <select class="categoriaFiltro">
                     <option value="Práctica">Analista Programador</option>
                     <option value="Práctica">Técnico en Construcción</option>
@@ -24,13 +24,17 @@
                     <option value="Práctica">Informática Tecnología y Productividad</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-                <a href="Administrador/crearCarrera" class="btn-supervisor marginBtn">Crear</a>
-                <a href="Administrador/editarCarrera" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+                <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCarrera">
+                Nuevo
+            </button>
+            <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#editarCarrera">
+                Editar
+            </button>
+                <button type="button" id="deleteSelectedCarreras" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
         <div class="table-responsive">
-            <table id="tableUsers" class="table table-sm">
+            <table id="tableCarreras" class="table table-sm">
             <thead>
                 <tr >
                     <th class="widthCheck"><input type="checkbox" id="checkAllCarrera" name="select-all"></th>
@@ -42,36 +46,8 @@
                     <th >Fecha de Eliminacion</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr >
-                    <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>01</td>
-                    <td>Analista Programador</td>
-                    <td>Informática Tecnología y Productividad</td>
-                    <td>12-04-2024</td>
-                    <td>1</td>
-                    <td>23-04-2024</td>
-                </tr>
+            <tbody id="bodyCarreras">
 
-                <tr >
-                    <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>02</td>
-                    <td>Técnico en Construcción</td>
-                    <td>Informática Tecnología y Productividad</td>
-                    <td>12-04-2024</td>
-                    <td>1</td>
-                    <td>23-04-2024</td>
-                </tr>
-                
-                <tr  >
-                    <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
-                    <td>03</td>
-                    <td>Psicopedagogía</td>
-                    <td>Educación Bienestar y Calidad de vida</td>
-                    <td>12-04-2024</td>
-                    <td>1</td>
-                    <td>23-04-2024</td>
-                </tr>
             </tbody>
         </table>
         </div>    
@@ -101,10 +77,67 @@
     </div>
     </div>
 
+
+        <!-- Modal Nuevo -->
+        <div class="modal fade" id="crearCarrera" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva carrera</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCarrera" method="POST" action="">
+                    <label for="nuevaCarrera">Nueva Carrera: </label>
+                    <input type="text" name="nuevaCarrera" id="nuevaCarrera">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar"></i>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+  <!-- Modal Editar -->
+  <div class="modal fade" id="editarCarrera" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLabel">Editar carrera</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCarrera" method="POST" action="">
+                        <input type="hidden" name="editId" id="editId">
+                        <label for="editCarrera">Categoría: </label>
+                        <input type="text" name="editCarrera" id="editCategoria">
+                        <div class="col">
+                        <label>Categoria:</label>
+                            <select class="form-select" name="editCate" id="editCate" required>
+                                <option value="1">1</option>
+                                <option value="0">0</option>
+                            </select> 
+                            <label>Activo:</label>
+                            <select class="form-select" name="editActivo" id="editActivo" required>
+                                <option value="1">1</option>
+                                <option value="0">0</option>
+                            </select> 
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
-    </script>
+    <script src="../../../../Public/js/administrador.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>

@@ -22,13 +22,12 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-
-                <a href="Administrador/creaPerfiles" class="btn-supervisor marginBtn">Crear</a>
-                <a href="Administrador/editarPerfiles" class="btn-supervisor marginBtn">Editar</a>
-                <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearPerfil">Nuevo</button>
+                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarPerfil">Editar</button>
+                <button type="button" id="deleteSelectedPerfiles" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
-        <table id="tableUsers" class="tabla table">
+        <table id="tablePerfils" class="tabla table">
             <style> .tabla { width: 100%; } </style>
             <thead>
                 <tr>
@@ -40,31 +39,8 @@
                     <th>Fecha de Eliminacion</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
-                    <td>01</td>
-                    <td>Administrador</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
-                    <td>02</td>
-                    <td>Supervisor</td>
-                    <td>12-12-2024</td>
-                    <td>No</td>
-                    <td>12-12-2024</td>
-                </tr>
-                <tr class="table table-striped">
-                <td><input type="checkbox" class="checkboxPerfiles" name="checkId"></td>
-                    <td>02</td>
-                    <td>Egresado</td>
-                    <td>12-12-2024</td>
-                    <td>Si</td>
-                    <td>12-12-2024</td>
-                </tr>
+            <tbody id="bodyPerfiles">
+              
             </tbody>
         </table>
                         <!-- seccion footer -->
@@ -93,9 +69,60 @@
         </div>
     </div>
 
+        <!-- Modal Nuevo -->
+        <div class="modal fade" id="crearPerfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addPerfil" method="POST" action="">
+                    <label for="nuevoPerfil">Nuevo Perfil: </label>
+                    <input type="text" name="nuevoPerfil" id="nuevoPerfil">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar"></i>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+  <!-- Modal Editar -->
+  <div class="modal fade" id="editarPerfil" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLabel">Editar Perfil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editPerfil" method="POST" action="">
+                        <input type="hidden" name="editId" id="editId">
+                        <label for="editPerfil">Perfil: </label>
+                        <input type="text" name="editPerfil" id="editPerfil">
+                        <div class="col">
+                            <label>Activo:</label>
+                            <select class="form-select" name="editActivo" id="editActivo" required>
+                                <option value="1">1</option>
+                                <option value="0">0</option>
+                            </select> 
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../../Public/js/administrador.js"></script>
+
     <script src="../../../../Public/js/check.js"></script>
-    <script>
-        // Llamada en una vista
-        initializeCheckboxMaster('checkAllPerfiles', 'checkboxPerfiles');
-    </script>
 </body>
