@@ -628,5 +628,27 @@ public function insertCategoria(AdminCategoriasModel $admin)
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+public function insertCarrera(AdminCategoriasModel $admin)
+    {
+        $validateQuery = "INSERT INTO carreras (nombre, idcategorias, fechaCreacion, activo) VALUES (?, ?, NOW(), 1)";
+
+        $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
+
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
+        }
+
+        $nuevaCarrera = $admin->getNuevaCarrera();
+        $categoriaCarrera = $admin->getCategoriaCarrera();
+
+        mysqli_stmt_bind_param($stmt, "si", $nuevaCarrera, $categoriaCarrera);
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            return array("success" => true, "message" => "Datos agregados correctamente");
+        } else {
+            return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
+        }
+    }
 
 }

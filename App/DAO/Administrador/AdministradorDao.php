@@ -20,6 +20,7 @@ require_once __DIR__ . '/../../Models/adminExpLaboral_model.php';*/
 interface AdministradorDao{
     
     public function insertCategoria(AdminCategoriasModel $admin);
+    public function insertCarrera(AdminCategoriasModel $admin);
     public function getCarreras();
     public function getCategorias();
     public function getPublicaciones();
@@ -36,4 +37,3 @@ interface AdministradorDao{
     public function getExpLaboral();
 
 }
-?>

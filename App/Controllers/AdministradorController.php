@@ -494,5 +494,33 @@ class AdministradorController
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
+
+    public function insertCarrera()
+    { 
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
+        $data = json_decode($json, true);
+        echo "<script>alert('controlador')</script>";
+        echo "<script>console.log('controlador')</script>";
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+        $Carrera = $data['nuevaCarrera'];
+        $categoria = $data['categoriaCarrera'];
+
+        $admin = new AdministradorDaoImpl();
+        $adminModel = new AdminCategoriasModel();
+        $adminModel->setNuevaCarrera($Carrera);
+        $adminModel->setCategoriaCarrera($categoria);
+
+        $result = $admin->insertCarrera($adminModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
 }
   
