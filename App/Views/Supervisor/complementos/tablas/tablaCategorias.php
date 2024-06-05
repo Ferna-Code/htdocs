@@ -5,7 +5,7 @@
                 Nueva categoria
             </button>
 
-            <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+            <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             <table id="tablaCategoria" class="tabla table">
                 <thead>
                     <tr class="table table-striped">

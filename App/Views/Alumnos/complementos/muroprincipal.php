@@ -57,7 +57,8 @@ $publicaciones = $controlador->mostrarPublicaciones();
         <?php
         if (is_array($publicaciones)) {
             foreach ($publicaciones as $p) {
-        ?>
+                ?>
+                <div>
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
                     <img class="img" src="<?php
@@ -90,7 +91,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-        <?php
+                <?php
             }
         } else {
             echo "No se encontraron publicaciones.";

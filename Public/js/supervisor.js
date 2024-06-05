@@ -33,7 +33,7 @@ function controlVisi3() {
 
   // Oculta todos los módulos
   ocultarModulos();
-
+  getCarrera();
   // Muestra el módulo 1
   elemento3.style.display = "flex";
 
@@ -252,6 +252,18 @@ function controlVisi18() {
   centrarModulo(eleme);
 }
 
+function controlVisi19() {
+  var eleme = document.getElementById("modulo19");
+
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
 
 
 function ocultarModulos() {
@@ -267,7 +279,7 @@ function centrarModulo(modulo) {
   modulo.style.alignItems = "center"; // Centra verticalmente
 }
 
-//INGRESAR CATEGORIA
+//CATEGORIA
 $("#addCategoria").on("submit", function (event) {
   event.preventDefault();
 
@@ -308,7 +320,7 @@ $("#addCategoria").on("submit", function (event) {
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
     });
-});// FIN CUERPO
+});
 function getCategoria() {
   fetch("/supervisor/getCategoria")
   .then((response) => {
@@ -328,6 +340,7 @@ function getCategoria() {
         const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
+          <td class="hidden">${row.id}</td>
           <td><a href="#" class="linkTabla" onclick="controlVisi14()">${row.nombre}</a></td>
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
@@ -408,7 +421,8 @@ function getCurso() {
         console.log("Cuerpo del mensajeeeeee: ", row);
         const fila = `
         <tr>
-          <td><input type="checkbox" class="checkbox-item" id="tableUsersCurso" name="checkId"></td>
+          <td><input type="checkbox" class="checkboxCurso" id="tableUsersCurso" name="checkId"></td>
+          <td class="hidden">${row.id}</td>
           <td class="widthName"><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
           <td>${row.emitidopor}</td>
           <td>${row.fechaCreacion}</td>
@@ -529,7 +543,8 @@ $("#formPalabra").on("submit", function (event) {
          console.log("Cuerpo del mensaje: ", row);
          const fila = `
          <tr>
-           <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
+           <td><input type="checkbox" class="checkboxPalabra" id="checkboxPalabra" name="checkboxPalabra"></td>
+           <td class="hidden">${row.id}</td>
            <td>${row.palabra}</td>
            <td>${row.fechaCreacion}</td>
            <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
@@ -659,9 +674,10 @@ function getPublicacion() {
         const fila = `
         <tr class="table table-striped">
           <td><input type="checkbox" id="tableUsers" class="checkboxPublicacion" name="checkId"></td>
+          <td class="hidden">${row.id}</td>
           <td>${row.rutusuario}</a></td>
           <td>${row.publicacion}</a></td>
-          <td>${row.nreportes}</a></td>
+          <td>${row.nreportes ? row.nreportes : 'SIN REPORTES'}</a></td>
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
@@ -697,9 +713,10 @@ function getReporte() {
         console.log("Cuerpo del mensajeeeeee: ", row);
         const fila = `
         <tr class="table table-striped">
-          <td><input type="checkbox" id="checkboxReporte" class="checkboxReporte" name="checkId"></td>
-          <td>${row.idcomentario}</a></td>
+          <td><input type="checkbox" id="checkboxReporte" class="checkboxReporte"></td>
+          <td class="hidden">${row.id}</a></td>
           <td>${row.rutusuario}</a></td>
+          <td >${row.idcomentario}</a></td>
           <td>${row.idpublicacion}</a></td>
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
@@ -736,8 +753,9 @@ function getOferta() {
         console.log("Cuerpo del mensajeeeeee: ", row);
         const fila = `
         <tr class="table table-striped">
-          <td><input type="checkbox" class="checkboxOferta" name="checkId"></td>
-          <td><a href="#" class="linkTabla" onclick="controlVisi10()">${row.cargo}</a></td>
+          <td><input type="checkbox" class="checkboxOfertas" id="checkboxOfertas" name="checkId"></td>
+          <td class="hidden">${row.id}</a></td>
+          <td><a href="#" class="linkTabla" onclick="">${row.cargo}</a></td>
           <td>${row.nombreEmpresa}</a></td>
           <td>${row.tipoOferta}</a></td>
           <td>${row.fechacreacion}</td>
@@ -775,9 +793,10 @@ function getPerfil() {
         const fila = `
         <tr class="">
           <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
+          <td clss="hidden">${row.id}</td>
           <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
           <td>${row.activo}</td>
-          <td>${row.fechacreacion}</td>
+          <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
         
@@ -794,6 +813,46 @@ function getPerfil() {
   });
 }
 
+//CARRERAS
+function getCarrera() {
+  fetch("/supervisor/getCarrera")
+  .then((response) => {
+    if(!response.ok){
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if(data && data.length > 0){
+      const tbody = $("#tbodyCarrera");
+      tbody.empty()
+      //itera sobre cada elemento en la data y añade fila a la tabla
+      //data.array.forEach(element => {});
+      data.forEach(row => {
+        console.log("Cuerpo del mensaje: ", row);
+        const fila = `
+        <tr class="">
+          <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
+          <td class="hidden">${row.id}</td>
+          <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
+          <td>${row.idcategorias}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+       
+        tbody.append(fila);
+      });
+    }else{
+      alert("No se encontraron datos para actualizar");
+    }
+  })
+  .catch((error) => {
+    console.error("Error en la solicitud Fetch: ",error);
+    alert("Error en la solicitud: ", error.message);
+  });
+}
+
+//USUARIO
 function getUsuario() {
   fetch("/supervisor/getUsuario")
   .then((response) => {
@@ -812,7 +871,7 @@ function getUsuario() {
         console.log("Cuerpo del mensajeeeeee: ", row);
         const fila = `
         <tr class="">
-          <td><input type="checkbox" id="checkboxPerfil" class="checkboxUsuario" name="checkId"></td>
+          <td><input type="checkbox" id="checkboxUsuarios" class="checkboxUsuarios" name="checkId"></td>
           <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
           <td>${row.rut }</td>
           <td>${row.fechaNacimiento}</td>
@@ -831,4 +890,419 @@ function getUsuario() {
     console.error("Error en la solicitud Fetch: ",error);
     alert("Error en la solicitud: ", error.message);
   });
+}
+
+
+//------------------CATEGORIA-----------------------
+// Evento para seleccionar las filas marcadas con checkbox
+document.getElementById('deleteSelected').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCategoria:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar las categorias c: ${selectedIds.join(', ')}?`)) {
+      deleteCategoria(selectedIds);
+    }
+  } else {
+    alert('No hay categorias seleccionadas para eliminar.');
+  }
+});
+
+function deleteCategoria(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deleteCategoria", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Categoria(s) eliminada(s)');
+        getCategoria();
+      } else {
+        alert('Error al eliminar las publicaciones.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//------------------CARRERAS-----------------------
+document.getElementById('deleteSelected1').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCarrera:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar las categorias c: ${selectedIds.join(', ')}?`)) {
+      deleteCarrera(selectedIds);
+    }
+  } else {
+    alert('No hay categorias seleccionadas para eliminar.');
+  }
+});
+
+function deleteCarrera(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deleteCarrera", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Carrera(s) eliminada(s)');
+        getCarrera();
+      } else {
+        alert('Error al eliminar las carreras.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//------------------CURSO-----------------------
+document.getElementById('deleteSelectedCurso').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCurso:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los cursos c: ${selectedIds.join(', ')}?`)) {
+      deleteCurso(selectedIds);
+    }
+  } else {
+    alert('No hay cursos seleccionadas para eliminar.');
+  }
+});
+
+function deleteCurso(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deleteCurso", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Curso(s) eliminado(s)');
+        getCurso();
+      } else {
+        alert('Error al eliminar los cursos.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//------------------PUBLICACION-----------------------
+document.getElementById('deleteSelectedPublicacion').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxPublicacion:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los cursos c: ${selectedIds.join(', ')}?`)) {
+      deletePublicacion(selectedIds);
+    }
+  } else {
+    alert('No hay cursos seleccionadas para eliminar.');
+  }
+});
+
+function deletePublicacion(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deletePublicacion", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Publicacion(s) eliminado(s)');
+        getPublicacion();
+      } else {
+        alert('Error al eliminar las publicaciones.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//------------------REPORTES-----------------------
+document.getElementById('deleteSelectedReporte').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxReporte:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los reportes c: ${selectedIds.join(', ')}?`)) {
+      deleteReporte(selectedIds);
+    }
+  } else {
+    alert('No hay reportes seleccionadas para eliminar.');
+  }
+});
+
+function deleteReporte(ids) {
+
+  fetch("/supervisor/deleteReporte", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Reporte(s) eliminado(s)');
+        getReporte();
+      } else {
+        alert('Error al eliminar.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//------------------OFERTASLABORALES-----------------------
+document.getElementById('deleteSelectedOfertas').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxOfertas:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar las ofertar laborales c: ${selectedIds.join(', ')}?`)) {
+      deleteOfertas(selectedIds);
+    }
+  } else {
+    alert('No hay ofertas seleccionadas para eliminar.');
+  }
+});
+
+function deleteOfertas(ids) {
+
+  fetch("/supervisor/deleteOfertas", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Ofertas(s) eliminado(s)');
+        getOferta();
+      } else {
+        alert('Error al eliminar.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//------------------PERFILES-----------------------
+document.getElementById('deleteSelectedPerfil').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxPerfil:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los perfiles c: ${selectedIds.join(', ')}?`)) {
+      deletePerfil(selectedIds);
+    }
+  } else {
+    alert('No hay Perfiles seleccionados para eliminar.');
+  }
+});
+
+function deletePerfil(ids) {
+
+  fetch("/supervisor/deletePerfil", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Perfil(s) eliminado(s)');
+        getPerfil();
+      } else {
+        alert('Error al eliminar.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//------------------USUARIOS-----------------------
+document.getElementById('deleteSelectedUsuarios').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxUsuarios:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[2].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los usuarios c: ${selectedIds.join(', ')}?`)) {
+      deleteUsuario(selectedIds);
+    }
+  } else {
+    alert('No hay usuarios seleccionados para eliminar.');
+  }
+});
+
+function deleteUsuario(ids) {
+
+  fetch("/supervisor/deleteUsuario", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Usuario(s) eliminado(s)');
+        getUsuario();
+      } else {
+        alert('Error al eliminar.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+//------------------DICCIONARIO-----------------------
+document.getElementById('deleteSelectedPalabra').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxPalabra:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar la(s) palabra(s) c: ${selectedIds.join(', ')}?`)) {
+      deletePalabra(selectedIds);
+    }
+  } else {
+    alert('No hay palabras seleccionadas para eliminar.');
+  }
+});
+
+function deletePalabra(ids) {
+
+  fetch("/supervisor/deletePalabra", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Palabra(s) eliminado(s)');
+        getPalabra();
+      } else {
+        alert('Error al eliminar.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
 }

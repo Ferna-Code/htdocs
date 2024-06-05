@@ -17,7 +17,7 @@
 
         <a href="#" onclick="controlVisi11()" class="btn-supervisor marginBtn btnAgregar">Agregar curso</a>
         <a href="#" class="btn-supervisor marginBtn">Editar</a>
-        <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+        <button type="button" id="deleteSelectedCurso" class="btn-supervisor marginBtn">Eliminar</button>
 
         <table id="tableUsers" class="tabla table">
             <thead>

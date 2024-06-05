@@ -11,7 +11,7 @@ header('Pragma: no-cache');
 
 // Verifica si el usuario está logeado
 if (!isset($_SESSION['idperfil'])) {
-    header('Location: http://localhost:8080/');
+    header('Location: http://localhost/');
     exit();
 }
 
@@ -21,6 +21,7 @@ verificarAcceso($perfilesPermitidos);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -56,7 +57,7 @@ verificarAcceso($perfilesPermitidos);
     <div id="wrapper">
 
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
-
+        
         <div class="contenedor-body" id="modulo7" style="display:none">
             <?php include 'complementos/categorias.php' ?>
         </div>
@@ -91,7 +92,6 @@ verificarAcceso($perfilesPermitidos);
 
         <div class="contenedor-body" id="modulo9" style="display:none">
             <?php
-            //include VIEWS_PATH . 'ofertasLaborales/index.php' 
             include 'complementos/ofertasLaborales.php'
             ?>
         </div>
@@ -131,6 +131,12 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo18">
             <?php include 'complementos/formularios/perfilSupervisor.php' ?>
         </div>
+
+        <div class="contenedor-body" id="modulo19" style="display:none">
+            <?php include 'complementos/menuPrincipal.php' ?>
+        </div>
+
+
 
 
     </div>

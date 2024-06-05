@@ -4,7 +4,7 @@
         <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal2">
             Agregar palabra
         </button>
-        <a href="#" class="btn-supervisor marginBtn">Eliminar</a>
+        <button type="button" id="deleteSelectedPalabra" class="btn-supervisor marginBtn">Eliminar</button>
 
         <table id="TablaPalabra" class="tabla table">
             <thead>

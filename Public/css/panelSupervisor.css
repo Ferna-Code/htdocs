@@ -208,3 +208,7 @@ body {
         padding: 6px 10px; /* Ajustar el padding de los botones */
     }
 }
+
+.hidden{
+    display: none;
+}
