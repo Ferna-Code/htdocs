@@ -12,6 +12,7 @@ class AdminCategoriasModel
     private $nuevaCategoria;
     private $nuevaCarrera;
     private $categoriaCarrera;
+    private $nuevaPalabra;
 
 
     //CATEGORIA  
@@ -39,6 +40,14 @@ class AdminCategoriasModel
     public function getFEimnacionCategoria()
     {
         return $this->fechaEliminacion;
+    }
+
+    //diccionario
+    public function getNuevaPalabra(){
+        return $this->nuevaPalabra;
+    }
+    public function setNuevaPalabra($nuevaPalabra){
+        $this->nuevaPalabra = $nuevaPalabra;
     }
 
     //CARRERA

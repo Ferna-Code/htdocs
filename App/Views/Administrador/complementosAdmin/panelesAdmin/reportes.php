@@ -17,8 +17,8 @@
                     <option value="Práctica">22222222-2</option>
                     <option value="Práctica">33333333-3</option>
                 </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#modalEditarReporte"> Editar</button>
+                <input type="submit" class="btn-supervisor marginBtn" value="Filtrar">
+                
                 <button type="button" id="deleteSelectedReportes" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 

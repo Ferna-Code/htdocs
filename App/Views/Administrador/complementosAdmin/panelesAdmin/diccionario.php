@@ -26,7 +26,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllPalabras" name="select-all"></th>
-                        <th class="anchoId">ID</th>
+                        
                         <th>Palabra</th>
                         <th>Fecha de Creación</th>
                         <th>Activo</th>

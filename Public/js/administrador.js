@@ -346,7 +346,7 @@ function getCurso() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCursos" name="select-all"></td>
-          <td>${row.id}</td>
+          <td class="hidden">${row.id}</td>
           <td>${row.nombre}</td>
           <td>${row.descripcion}</td>
           <td>${row.emitidopor}</td>
@@ -389,7 +389,7 @@ function getDiccionario() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
-          <td>${row.id}</td>
+          <td class="hidden">${row.id}</td>
           <td>${row.palabra}</td>
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
@@ -1096,7 +1096,50 @@ $("#addCategoria").on("submit", function (event) {
     });
 });
 
-//CATEGORIA
+//----------------DICCIONARIO----------------------
+$("#addPalabra").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    palabra: $("#nuevaPalabra").val(),
+ 
+  };
+
+  fetch("/Administrador/insertPalabra", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Dato(s) agregado(s)");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#crearPalabra"
+        ).val("");
+        // Cerrar el modal
+        $("#crearPalabra").modal("hide");
+        getDiccionario();
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+
 $("#addCarrera").on("submit", function (event) {
   event.preventDefault();
 
@@ -1139,3 +1182,46 @@ $("#addCarrera").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });
+
+//INGRESAR PERFIL
+$("#addPerfil").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    nuevoPerfil: $("#nuevoPerfil").val(),
+  };
+
+  fetch("/supervisor/insertPerfil", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Perfil agregado");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#nuevoPerfil"
+        ).val("");
+        // Cerrar el modal
+        $("#crearPerfil").modal("hide");
+        getPerfil();
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});// FIN CUERPO

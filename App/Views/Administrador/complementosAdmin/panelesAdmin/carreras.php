@@ -16,13 +16,13 @@
                     <option value="Práctica">Técnico en Construcción</option>
                     <option value="Práctica">Psicopedagogía</option>
                 </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
+                <input type="submit" class="btn-supervisor marginBtn" value="Filtrar">
                 <select class="categoriaFiltro">
                     <option value="Práctica">Informática Tecnología y Productividad</option>
                     <option value="Práctica">Educación Bienestar y Calidad de vida</option>
                     <option value="Práctica">Informática Tecnología y Productividad</option>
                 </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
+                <input type="submit" class="btn-supervisor marginBtn" value="Filtrar">
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCarrera">
                     Nuevo
                 </button>

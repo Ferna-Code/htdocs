@@ -36,7 +36,7 @@
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllCursos" name="select-all"></th>
-                    <th class="anchoId">ID</th>
+                   
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Institución</th>

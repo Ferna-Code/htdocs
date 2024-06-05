@@ -21,6 +21,7 @@ interface AdministradorDao{
     
     public function insertCategoria(AdminCategoriasModel $admin);
     public function insertCarrera(AdminCategoriasModel $admin);
+    public function insertPalabra(AdminCategoriasModel $admin);
     public function getCarreras();
     public function getCategorias();
     public function getPublicaciones();

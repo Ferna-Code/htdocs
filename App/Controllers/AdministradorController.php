@@ -19,7 +19,8 @@ class AdministradorController
     public function getCarrera()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getCarreras();
+        $limit = 10;
+        $data = $admin->getCarreras($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -55,7 +56,8 @@ class AdministradorController
     public function getCurso()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getCursos();
+        $limit = 10;
+        $data = $admin->getCursos($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -74,7 +76,8 @@ class AdministradorController
     public function getDiccionario()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getDiccionario();
+        $limit = 10;
+        $data = $admin->getDiccionario($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -92,7 +95,8 @@ class AdministradorController
     public function getPerfil()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getPerfiles();
+        $limit = 10;
+        $data = $admin->getPerfiles($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -110,7 +114,8 @@ class AdministradorController
     public function getPublicacion()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getPublicaciones();
+        $limit = 10;
+        $data = $admin->getPublicaciones($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -128,7 +133,8 @@ class AdministradorController
     public function getReportes()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getReportes();
+        $limit = 10;
+        $data = $admin->getReportes($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -146,7 +152,8 @@ class AdministradorController
     public function getUsuarios()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getUsuarios();
+        $limit = 10;
+        $data = $admin->getUsuarios($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -164,7 +171,8 @@ class AdministradorController
     public function getArchivos()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getArchivos();
+        $limit = 10;
+        $data = $admin->getArchivos($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -182,7 +190,8 @@ class AdministradorController
     public function getComentarios()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getComentarios();
+        $limit = 10;
+        $data = $admin->getComentarios($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -199,7 +208,8 @@ class AdministradorController
     public function getOfertas()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getOfertas();
+        $limit = 10;
+        $data = $admin->getOfertas($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -216,7 +226,8 @@ class AdministradorController
     public function getPostulaciones()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getPostulaciones();
+        $limit = 10;
+        $data = $admin->getPostulaciones($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -234,7 +245,8 @@ class AdministradorController
     public function getExpAcademica()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getExpAcademica();
+        $limit = 10;
+        $data = $admin->getExpAcademica($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -251,7 +263,8 @@ class AdministradorController
     public function getExpLaboral()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getExpLaboral();
+        $limit = 10;
+        $data = $admin->getExpLaboral($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -515,6 +528,33 @@ class AdministradorController
         $adminModel->setCategoriaCarrera($categoria);
 
         $result = $admin->insertCarrera($adminModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+    public function insertPalabra()
+    { 
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
+        $data = json_decode($json, true);
+        echo "<script>alert('controlador')</script>";
+        echo "<script>console.log('controlador')</script>";
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+        $palabra = $data['palabra'];
+       
+
+        $admin = new AdministradorDaoImpl();
+        $adminModel = new AdminCategoriasModel();
+        $adminModel->setNuevaPalabra($palabra);
+        
+
+        $result = $admin->insertPalabra($adminModel);
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
