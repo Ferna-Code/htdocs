@@ -31,7 +31,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
-                        <th class="anchoId">ID</th>
+                        
                         <th>Categoría</th>
                         <th class="anchoFecha">Fecha de Creación</th>
                         <th class="anchoActiv">Activo</th>
@@ -122,7 +122,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../../../Public/js/administrador.js"></script>
+    <!-- <script src="../../../../Public/js/administrador.js"></script> -->
 
     <script src="../../../../Public/js/check.js"></script>
 

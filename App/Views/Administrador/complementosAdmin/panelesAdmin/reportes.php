@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody id="bodyReportes">
-   
+
                 </tbody>
             </table>
             <!-- seccion footer -->
@@ -99,7 +99,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../../../Public/js/administrador.js"></script>
+    <!-- <script src="../../../../Public/js/administrador.js"></script> -->
 
     <script src="../../../../Public/js/check.js"></script>
 </body>

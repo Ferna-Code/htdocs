@@ -294,7 +294,7 @@ function getCategoria() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
-          <td>${row.id}</td>
+          <td class="hidden">${row.id}</td>
           <td>${row.nombre}</td>
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
@@ -1050,7 +1050,7 @@ $("#addCategoria").on("submit", function (event) {
     nuevaCategoria: $("#nuevaCategoria").val(),
   };
 
-  fetch("/supervisor/insertData", { // Asegúrate de que esta ruta sea correcta
+  fetch("/Administrador/insertCategoria", { // Asegúrate de que esta ruta sea correcta
     headers: {
       "Content-Type": "application/json",
     },
