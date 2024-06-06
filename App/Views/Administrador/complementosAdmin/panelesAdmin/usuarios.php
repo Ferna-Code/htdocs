@@ -18,8 +18,8 @@
                     <option value="Práctica">Cargo 2</option>
                     <option value="Práctica">cargo 3</option>
                 </select>
-                <button type="button" class="btn-supervisor ">Filtrar</button>
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
+                <button type="button" class="btnFiltro">Filtrar</button><br>
+                <button type="button" class="btn-supervisor marginBtn" data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
                 <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 

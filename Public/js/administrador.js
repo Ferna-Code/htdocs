@@ -207,7 +207,7 @@ function controlVisi17() {
   var elemento17 = document.getElementById("modulo17");
   
   // Oculta todos los módulos
-
+  ocultarModulos();
 
   // Muestra el módulo 1
   elemento17.style.display = "flex";
@@ -345,16 +345,12 @@ function getCurso() {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCursos" name="select-all"></td>
+          <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
           <td class="hidden">${row.id}</td>
           <td>${row.nombre}</td>
-          <td>${row.descripcion}</td>
           <td>${row.emitidopor}</td>
-          <td>${row.linkpostular}</td>
-          <td>${row.idcategoria}</td>
           <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><a href="#" onclick="veroferta(${row.id})">Ver Curso</a></td>
         </tr>`;
           tbody.append(fila);
         });
@@ -370,6 +366,7 @@ function getCurso() {
       alert("Error en la solicitud: ", error.message);
     });
 }
+
 
 function getDiccionario() {
   fetch("/Administrador/getDiccionario")
@@ -851,6 +848,52 @@ function getExpLaboral() {
     });
 }
 
+//...............DELETE CURSO...............
+document.getElementById('deleteSelectedCurso').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCurso:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los cursos c: ${selectedIds.join(', ')}?`)) {
+      deleteCurso(selectedIds);
+    }
+  } else {
+    alert('No hay cursos seleccionadas para eliminar.');
+  }
+});
+
+function deleteCurso(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deleteCurso", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Curso(s) eliminado(s)');
+        getCurso();
+      } else {
+        alert('Error al eliminar los cursos.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
 
 
 //--------------DELETE GLOBAL --------------//
@@ -868,11 +911,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       deleteSelectedCategoriasBtn.addEventListener('click', deleteSelectedCategoriasHandler);
   }
 
-  const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
-  if (deleteSelectedCursosBtn) {
-    deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
-    deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
-  }
+  // const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
+  // if (deleteSelectedCursosBtn) {
+  //   deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
+  //   deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
+  // }
 
   const deleteSelectedDiccionariosBtn = document.getElementById('deleteSelectedDiccionario');
   if (deleteSelectedDiccionariosBtn) {
@@ -952,9 +995,9 @@ function deleteSelectedCategoriasHandler() {
     deleteSelectedRows('checkboxCategoria', '/Administrador/deleteCategorias');
 }
 
-function deleteSelectedCursosHandler() {
-  deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
-}
+// function deleteSelectedCursosHandler() {
+//   deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
+// }
 
 function deleteSelectedDiccionarioHandler() {
   deleteSelectedRows('checkboxPalabra', '/Administrador/deleteDiccionario');
@@ -1216,6 +1259,51 @@ $("#addPerfil").on("submit", function (event) {
         // Cerrar el modal
         $("#crearPerfil").modal("hide");
         getPerfil();
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});// FIN CUERPO
+
+$("#crearCurso").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    categoria: $("#categoria-curso").val(),
+    nombre: $("#Nombre").val(),
+    descripcionCurso: $("#descripcion-curso").val(),
+    fechaInicio: $("#fecha-inicio").val(),
+    link: $("#link-inscripcion").val(),
+    activo: $("#activo").val(),
+
+  };
+
+  fetch("/supervisor/insertCurso", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Curso agregado");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#categoria-curso, #Nombre, #descripcion-curso, #fecha-inicio, #link-inscripcion, #activo"
+        ).val("");
 
       } else {
         alert("Error" + data.message);

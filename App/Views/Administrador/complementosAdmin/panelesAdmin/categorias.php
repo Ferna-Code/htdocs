@@ -19,7 +19,7 @@
                     <option value="Práctica">Negocios e Innovación</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-
+                <br>
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCategoria">
                     Nuevo
                 </button>

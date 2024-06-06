@@ -145,7 +145,7 @@ function getOfertas() {
                           <p class="text-body">Empresa: ${oferta.nombreEmpresa}</p>
                           <p class="text-body">Fecha de creación: ${oferta.fechacreacion}</p>
                       </div>
-                      <button class="cardc-button" onclick="veroferta(${oferta.id})">Ver más</button>
+                      <button class="cardc-button" onclick="veroferta(${oferta.id})">Ir al curso</button>
                   </div>
               `;
 
