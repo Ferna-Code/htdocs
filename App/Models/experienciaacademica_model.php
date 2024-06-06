@@ -1,5 +1,5 @@
 <?php
-class expercienciaacademica_model {
+class experienciaacademica_model {
 
     private $ID;
     private $rutusuario;

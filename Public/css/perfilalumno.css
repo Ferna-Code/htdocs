@@ -42,28 +42,6 @@
 }
 
 
-
-
-.profile-container__header__wrapper-icon {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-
-.profile-container__header__file-upload {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.icon-camera {
-    color: white;
-    font-size: 24px;
-}
-
 /* Estilos para el texto en la card */
 .contenido-texto-card {
     width: 60%;
@@ -81,68 +59,6 @@
     margin-top: 20px;
 }
 
-h3 {
-    color: red;
-    text-align: center;
-}
-
-.experiencialaboral {
-    margin-top: 20px;
-}
-
-/* ESTilos experiencia laboral */
-.formulario-experiencia {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.columna {
-    flex-basis: calc(50% - 10px);
-    margin-bottom: 20px;
-}
-
-.columna label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.columna input[type="text"],
-.columna input[type="date"],
-.columna textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.columna textarea {
-    height: 100px;
-}
-
-.opciones {
-    display: flex;
-    align-items: center;
-}
-
-.opciones input[type="radio"] {
-    margin-right: 5px;
-}
-
-.opciones label {
-    margin-right: 15px;
-}
-
- /* Estilos para el botón "Agregar trabajo" */
- .botones-container {
-    display: flex;
-    justify-content: flex-start;
-}
 
 .btn-supervisor {
     border: 1px solid white;
@@ -165,54 +81,23 @@ h3 {
 }
 
 
-
-label{
-    color: black; 
-}
-/* Estilos para los formularios de educación */
-.formulario-educacion {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 800px;
-    margin: 0 auto;
-    margin-top: 20px;
-}
-
-.formulario-educacion .columna {
-    margin-bottom: 20px;
-}
-
-.formulario-educacion .columna label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Estilo para la primera columna (Nombre del Curso) */
-.formulario-educacion .columna:first-child {
-    flex-basis: calc(100% - 10px); /* Abarca todo el ancho menos el margen */
-}
-
-/* Estilo para las siguientes dos columnas (Institución y Fecha de Finalización) */
-.formulario-educacion .columna:not(:first-child) {
-    flex-basis: calc(50% - 5px); /* Divide el espacio restante en dos columnas */
-}
-
-.formulario-educacion .columna input[type="text"],
-.formulario-educacion .columna input[type="date"] {
-    width: 100%; /* Ancho completo para los campos de texto y fecha */
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
 .centrarBtn{
     margin-left: 24.7%;
 }
 
 h1, h4 {
     font-size: 24px; font-weight: bold; 
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.form-control {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
 }

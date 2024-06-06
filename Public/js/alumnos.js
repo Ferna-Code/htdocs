@@ -78,9 +78,7 @@ function vistaofertas() {
 
 
 function veroferta(id) {
-  console.log("veroferta alumnos.js");
   getOfertaByID(id);
-  console.log(id);
   var elemento8 = document.getElementById("modulo9");
   
   // Oculta todos los módulos
@@ -125,13 +123,10 @@ function getOfertas() {
       return response.json();
   })
   .then(data => {
-      console.log("Datos recibidos del servidor:", data);
 
       // Ajustar para usar la clave 'oferta' en lugar de 'ofertas'
       if (data && data.success && Array.isArray(data.oferta)) {
           const ofertas = data.oferta; // Usar 'oferta' en lugar de 'ofertas'
-          console.log("Ofertas recibidas:", ofertas);
-
           let rowContainer;
           ofertas.forEach((oferta, index) => {
               const cardOferta = document.createElement("div");
