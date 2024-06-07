@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
 </head>
 
 <body>
-    <div style="width: 80%; ">
-        <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form" >
+    <div style="width: 80%; color:">
+        <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
             <!-- Perfil del Usuario -->
             <div class="cards">
                 <div class="card">
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                        <h1 style="font-size: 24px; font-weight: bold;" id="nombreH1"></h1>
+                        <h1 style="font-size: 30px; font-weight: bold;" id="nombrep"></h1>
                         </a>
                         <h4 style="color: black; font-size: 24px; font-weight: bold;"><?php echo $carrera ?></h4>
                     </div>
@@ -53,11 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
             </div>
 
             <!-- Datos Personales -->
-            
-            <div class="grid">
-            <hr>
-                <h3 class="font-size: 40px; font-weight: bold; mt-2">Datos Personales</h3>
-                <div class="mt-2">
+
+            <div>
+
+                <h3 style="font-size: 30px;  color: red;" class="mt-3">Datos Personales</h3>
+                <div class="grid">
                     <div>
                         <label for="rut">Rut:</label>
                         <input type="text" class="form-control" id="rut" name="rut" disabled>
@@ -86,33 +86,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
             </div>
 
             <!-- Experiencia Laboral -->
-            
+
             <div class="mt-4">
-            <hr>
-                <h3 class="font-size: 40px; font-weight: bold; mt-2">Experiencia Laboral</h3>
+                <hr>
+                <h3 style="font-size: 30px;  color: red;" class="mt-3">Experiencia Laboral</h3>
                 <div id="formularioexperiencialaboral"></div>
                 <button type="button" class="btn-supervisor mt-2" id="agregar-experiencia-btn">Agregar Trabajo</button>
-                <div id="mensaje-error" class="text-red-500"></div>
+                <div id="mensaje-error" class="text-red-500 mt-1"></div>
             </div>
 
             <!-- Experiencia Academica -->
-            
+
             <div class="mt-4">
-            <hr>
-                <h3 class="font-size: 40px; font-weight: bold; mt-2">Experiencia Academica</h3>
+                <hr>
+                <h3 style="font-size: 30px;  color: red;" class="mt-3">Experiencia Academica</h3>
                 <div id="formularioexperienciaacademica"></div>
                 <button type="button" class="btn-supervisor mt-2" id="agregar-experiencia-academica-btn">Agregar
                     Conocimientos</button>
-                <div id="mensaje-error" class="text-red-500"></div>
+                <div id="mensaje-error-academico" class="text-red-500 mt-1"></div>
             </div>
             <!-- Adjuntar CV -->
-            
-            <div class="mt-4">
             <hr>
-                <label for="cv" class="block text-sm font-medium">Subir CV</label>
-                <input id="cv" type="file" accept=".pdf" class="block w-full text-sm text-gray-500">
+            <div class="custom-grid mt-4 mb-5">
+                <label for="archivocv" class="custom-label">Adjuntar CV</label>
+                <input id="archivocv" accept=".pdf" type="file" class="custom-input">
+                <div id="contenedorcv"></div>
             </div>
-
+            <hr>
             <!-- Guardar Cambios -->
             <button id="guardar-cambios-usuario-btn" type="button" class="btn-supervisor mt-2">Guardar Cambios</button>
         </form>

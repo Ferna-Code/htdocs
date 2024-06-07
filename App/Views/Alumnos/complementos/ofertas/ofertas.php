@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../../../../Public/css/categorias.css">
-<section id="team">
+<div  style="width: 80%; margin-top: 5%">
     <h1 class="mt-2 mb-2">Ofertas Laborales</h1>
     <div>
     <form method="post" action="Registro.php">
@@ -35,4 +35,4 @@
             <div class="mb-6" id="ofertasContainer"></div>
         </div>
     </div>
-</section>
+</div>

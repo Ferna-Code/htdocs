@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (result.success) {
                 const userData = result.data;
                 document.getElementById('nombreH1').innerText = userData.nombre;
+                document.getElementById('nombrep').innerText = userData.nombre;
                 document.getElementById('rut').value = userData.rut;
                 document.getElementById('email').value = userData.correo;
                 document.getElementById('fechanac').value = userData.fechaNacimiento;
@@ -98,8 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let experienciasCount = formularioContainer.querySelectorAll('.formulario-experiencia').length;
     
         if (experienciasCount >= maxExperiencias) {
-            mensajeError.textContent = 'Solo puedes agregar hasta 3 experiencias laborales.';
-            return;
+            maxExperiencias3();
         }
     
         const nuevoFormulario = document.createElement('div');
@@ -146,12 +146,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function agregarFormularioExperienciaA(experiencia = {}) {
         const formularioContainer = document.getElementById('formularioexperienciaacademica');
         const maxExperiencias = 3;
-        const mensajeError = document.getElementById('mensaje-error');
+        const mensajeErroracademico = document.getElementById('mensaje-error-academico');
         let experienciasCount = formularioContainer.querySelectorAll('.formulario-experiencia-academica').length;
     
         if (experienciasCount >= maxExperiencias) {
-            mensajeError.textContent = 'Solo puedes agregar hasta 3 experiencias Académicas.';
-            return;
+            maxExperiencias3();
         }
     
         const nuevoFormulario = document.createElement('div');
@@ -196,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const fechaNacimiento = document.getElementById('fechanac').value;
         const clave = document.getElementById('password').value;
         const imagenInput = document.getElementById('imagen');
+        const archivocv = document.getElementById('archivocv');
     
         if (correo !== userDataOriginal.correo) camposModificados.correo = correo;
         if (telefono !== userDataOriginal.telefono) camposModificados.telefono = telefono;
@@ -252,6 +252,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if (imagenInput.files.length > 0) {
             formData.append('imagen', imagenInput.files[0]);
         }
+        if (archivocv.files.length > 0) {
+            formData.append('archivocv', archivocv.files[0]);
+        }
     
         fetch("/perfil/guardardatosalumno", {
             method: "POST",
@@ -261,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(result => {
             if (result.success) {
                 console.log('¡Cambios guardados correctamente!');
-                alert('¡Cambios guardados correctamente!');
+                cambiosGuardados();
             } else {
                 console.error(result.message);
             }
@@ -280,3 +283,64 @@ document.addEventListener("DOMContentLoaded", function() {
     obtenerExperienciaLaboral();
     obtenerExperienciaAcademica();
 });
+
+
+function obtenerArchivoCV(event) {
+    event.preventDefault();
+    fetch("/perfil/getDataArchivoCV")
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            if (result.success) {
+                if (result.data.length > 0) {
+                    const rutaArchivoCV = result.data[0].documento; 
+                    // Generar un botón para abrir el archivo CV
+                    const abrirArchivoBtn = document.createElement('button');
+                    abrirArchivoBtn.textContent = 'Abrir Archivo CV';
+                    abrirArchivoBtn.classList.add('btn', 'btn-primary');
+                    abrirArchivoBtn.type = 'button';
+                    abrirArchivoBtn.addEventListener('click', () => {
+                        window.open(rutaArchivoCV, '_blank'); // Abrir la ruta del archivo en una nueva pestaña
+                    });
+
+                    // Agregar el botón al documento
+                    const container = document.getElementById('contenedorcv'); 
+                    container.appendChild(abrirArchivoBtn);
+                } else {
+                    console.error('No se encontró ningún archivo CV en la base de datos.');
+                }
+            } else {
+                console.error(result.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener la ruta del archivo CV:', error);
+        });
+}
+
+
+// Llamar a la función para obtener la ruta del archivo CV cuando la página se cargue
+window.addEventListener('load', obtenerArchivoCV);
+
+// aqui las alerts
+
+function cambiosGuardados(){
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "¡Cambios guardados correctamente!",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+
+  function maxExperiencias3(){
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: "Solo puedes agregar hasta 3 experiencias.",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+  

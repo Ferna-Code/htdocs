@@ -54,15 +54,18 @@ $publicaciones = $controlador->mostrarPublicaciones();
                 ?>
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
-                    <img class="img" src="<?php
-                    $admin = new usuarioDaoImpl();
-                    $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
-                    if ($imagenUsuario != "") {
-                        echo $imagenUsuario;
-                    } else {
-                        echo "/uploads/usuarioSinFoto.jpg";
-                    }
-                    ?>" alt="">
+                    <div class="imagen-container">
+                        <img class="img" src="<?php
+                        $admin = new usuarioDaoImpl();
+                        $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
+                        if ($imagenUsuario != "") {
+                            echo $imagenUsuario;
+                        } else {
+                            echo "/uploads/usuarioSinFoto.jpg";
+                        }
+                        ?>" alt="">
+                    </div>
+
                     <div class="tweet-content">
 
                         <div class="tweet-text">
