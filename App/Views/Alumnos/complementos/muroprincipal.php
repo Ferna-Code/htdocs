@@ -85,7 +85,6 @@ $publicaciones = $controlador->mostrarPublicaciones();
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-<<<<<<< HEAD
                 <div>
                 <form method="post" action="">
                 <label id="record-<?php  echo $lista['id_pub'];?>">
@@ -98,9 +97,6 @@ $publicaciones = $controlador->mostrarPublicaciones();
                 </div>
                 </div>
             <?php
-=======
-                <?php
->>>>>>> c2b0245e525f8650d5961bb7cadfd6ae7f2c64d7
             }
         } else {
             echo "No se encontraron publicaciones.";

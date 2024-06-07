@@ -5,9 +5,9 @@ require_once __DIR__ . '/../Models/supervisorModel.php';
 
 class SupervisorController{
     public function index(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Supervisor/index.php';
-        include VIEWS_PATH . 'Layout/footer.php';
+        include_once VIEWS_PATH . 'Layout/nav.php';
+        include_once VIEWS_PATH . 'Supervisor/index.php';
+        include_once VIEWS_PATH . 'Layout/footer.php';
     }
 
     public function insertData(){//CATEGORIA

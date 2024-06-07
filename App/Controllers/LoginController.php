@@ -29,6 +29,8 @@ class LoginController
                  case 'CERRAR_SESION':
                      $this->logout();
                      break;
+                 default:
+                     break;
              }
          }
      }
@@ -66,6 +68,8 @@ class LoginController
                 break;
             case 3:
                 $_SESSION['pagina_local'] = 'alumno';
+                break;
+            default:
                 break;
         }
 
