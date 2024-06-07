@@ -53,12 +53,34 @@
         </a>
     </li>
 
-    <!-- <li class="nav-item">
-        <form method="post" action="App/Views/Login/logout.php">
-            <input type="submit" class="btnCerrar" value="Cerrar sesión">
-            <input type="hidden" name="op" value="CERRAR_SESION">
-        </form>
-    </li> -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistacorreo()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de Bienvenida</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistapostulacion()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de Postulación</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistaclave()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de Recuperación</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistaresumencv()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de resumen CV</span>
+        </a>
+    </li>
 
     <!-- ------------------- -->
     <br><br>

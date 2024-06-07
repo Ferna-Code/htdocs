@@ -72,6 +72,18 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo10" style="display:none">
             <?php include 'complementos/muropersonal.php' ?>
         </div>
+        <div class="contenedor-body" id="modulo11" style="display:none">
+            <?php include 'complementos/correobienvenida.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo12" style="display:none">
+            <?php include 'complementos/correopostulacion.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo13" style="display:none">
+            <?php include 'complementos/correorecuperarclave.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo14" style="display:none">
+            <?php include 'complementos/correoresumencv.php' ?>
+        </div>
 
     </div>
 

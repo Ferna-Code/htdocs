@@ -2,8 +2,7 @@
 <div class="email-container">
     <img src="../../../../Public/img/Logo.png" alt="Logo de la Red Leones" class="logo"><br>
     <h1 style="text-align: center;">Luis Yáñez Carreño</h1>
-    <p class="intro-text"><strong>Ingeniero Informático | Profesor en Educación Técnica y Formación Profesional con Licenciatura en Educación 
-        | Magister en Seguridad de la información y Ciberseguridad</strong></p>
+    <p class="intro-text"><strong>Ingeniero Informático </strong></p>
     <h2>Contacto:</h2>
     <strong>Correo:</strong> luyanez@gmail.com<br>
     <strong>Fecha de nacimiento:</strong> 11/01/1972<br>
@@ -11,8 +10,6 @@
     <strong>Teléfono:</strong> +56 918234550<br>
     <hr>
 
-<span> <h2>Descripción:</h2>  Podemos ayudar en una amplia gama de servicios para desarrollo de software o capacitación y educación en informática, diseñados para impulsar el conocimiento y las habilidades en el mundo de la tecnología con la finalidad de mejorar competencias en lenguajes de programación como PHP, .NET con C#, Python y además realizar asesorías en seguridad de la información y ciberseguridad. Para profundizar seleccione la imagen que corresponde a su interés</span>
-<hr>
 <h2> Experiencia Laboral </h2>
 <br>
 <p><strong>- Profesor en Instituto Profesional los Leones</strong></p>
