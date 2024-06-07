@@ -12,6 +12,8 @@ class SupervisorModel
     private $fechaInicio;
     private $link;
     private $activo;
+    private $centro;
+    private $idCurso;
 
     //USUARIOS
     private $nombre;
@@ -71,6 +73,14 @@ class SupervisorModel
     }
     public function getactivo(){
         return $this->activo;
+    }
+
+    public function getCentro(){
+        return $this->centro;
+    }
+
+    public function getIdCurso(){
+        return $this->idCurso;
     }
 
     //USUARIO
@@ -146,6 +156,14 @@ class SupervisorModel
     }
     public function setactivo($activo){
         $this->activo=$activo;
+    }
+
+    public function setCentro($centro){
+        $this->centro = $centro;
+    }
+
+    public function setIdCurso($idCurso){
+        $this->idCurso = $idCurso;
     }
 
     //USUARIO
