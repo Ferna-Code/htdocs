@@ -59,7 +59,7 @@ verificarAcceso($perfilesPermitidos);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-    <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+        <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
 
         <div class="contenedor-body" id="modulo19">
             <?php include 'complementos/menuPrincipal.php'; ?>
@@ -140,6 +140,7 @@ verificarAcceso($perfilesPermitidos);
     </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
+
     <!-- Bootstrap core JavaScript-->
     <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
     <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

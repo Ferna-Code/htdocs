@@ -326,21 +326,21 @@ $("#addCategoria").on("submit", function (event) {
 });
 function getCategoria() {
   fetch("/supervisor/getCategoria")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyCategoria");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensajeeeeee: ", row);
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyCategoria");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensajeeeeee: ", row);
+          const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="checkId"></td>
           <td class="hidden">${row.id}</td>
@@ -348,17 +348,17 @@ function getCategoria() {
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-        
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 //FUNCIONES CURSO
@@ -409,22 +409,22 @@ $("#crearCurso").on("submit", function (event) {
 });// FIN CUERPO
 function getCurso() {
   fetch("/supervisor/getCurso")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyCurso");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensajeeeeee: ", row);
-        
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyCurso");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensajeeeeee: ", row);
+
+          const fila = `
         <tr>
           <td><input type="checkbox" class="checkboxCurso" id="tableUsersCurso" name="checkId"></td>
           <td class="hidden">${row.id}</td>
@@ -432,16 +432,16 @@ function getCurso() {
           <td>${row.emitidopor}</td>
           <td>${row.fechaCreacion}</td>
         </tr>`;
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 function getCursoById(id) {
@@ -459,7 +459,7 @@ function getCursoById(id) {
       return response.json();
     })
     .then((data) => {
-      
+
       // Asignar datos a los elementos de la vista
       const curso = data.curso;
       if (curso.idcategoria == 1) {
@@ -572,23 +572,23 @@ $("#formPalabra").on("submit", function (event) {
       console.error("Error en la solicitud Fetch: ", error);
     });
 });
- function getPalabra() {
-   fetch("/supervisor/getPalabra")
-   .then((response) => {
-     if(!response.ok){
-       throw new Error(`HTTP error: ${response.status}`);
-     }
-     return response.json();
-   })
-   .then((data) => {
-     if(data && data.length > 0){
-       const tbody = $("#tbodyPalabra");
-       tbody.empty()
-       //itera sobre cada elemento en la data y añade fila a la tabla
-       //data.array.forEach(element => {});
-       data.forEach(row => {
-         console.log("Cuerpo del mensaje: ", row);
-         const fila = `
+function getPalabra() {
+  fetch("/supervisor/getPalabra")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyPalabra");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
          <tr>
            <td><input type="checkbox" class="checkboxPalabra" id="checkboxPalabra" name="checkboxPalabra"></td>
            <td class="hidden">${row.id}</td>
@@ -596,19 +596,19 @@ $("#formPalabra").on("submit", function (event) {
            <td>${row.fechaCreacion}</td>
            <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
          </tr>`;
-         tbody.append(fila);
-       });
-     }else{
-       alert("No se encontraron datos para actualizar");
-     }
-   })
-   .catch((error) => {
-     console.error("Error en la solicitud Fetch: ",error);
-     alert("Error en la solicitud: ", error.message);
-   });
- }
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
+}
 
- 
+
 
 // function getPalabra(tableName) {
 //   fetch("/supervisor/getPalabra")
@@ -704,21 +704,21 @@ $("#formUsuario").on("submit", function (event) {
 //PUBLICACIONES
 function getPublicacion() {
   fetch("/supervisor/getPublicacion")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyPublicacion");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensajeeeeee: ", row);
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyPublicacion");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensajeeeeee: ", row);
+          const fila = `
         <tr class="table table-striped">
           <td><input type="checkbox" id="tableUsers" class="checkboxPublicacion" name="checkId"></td>
           <td class="hidden">${row.id}</td>
@@ -728,37 +728,37 @@ function getPublicacion() {
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-      
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 //REPORTE
 function getReporte() {
   fetch("/supervisor/getReporte")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyReporte");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensajeeeeee: ", row);
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyReporte");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensajeeeeee: ", row);
+          const fila = `
         <tr class="table table-striped">
           <td><input type="checkbox" id="checkboxReporte" class="checkboxReporte"></td>
           <td class="hidden">${row.id}</a></td>
@@ -769,36 +769,36 @@ function getReporte() {
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
           <td><a href="#" class="linkTabla" onclick="controlVisi15()">Ver reporte</a></td>
         </tr>`;
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 //OFERTA
 function getOferta() {
   fetch("/supervisor/getOferta")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyOferta");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensajeeeeee: ", row);
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyOferta");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensajeeeeee: ", row);
+          const fila = `
         <tr class="table table-striped">
           <td><input type="checkbox" class="checkboxOfertas" id="checkboxOfertas" name="checkId"></td>
           <td class="hidden">${row.id}</a></td>
@@ -808,36 +808,36 @@ function getOferta() {
           <td>${row.fechacreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-       
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 //PERFILES
 function getPerfil() {
   fetch("/supervisor/getPerfil")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyPerfil");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensajeeeeee: ", row);
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyPerfil");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensajeeeeee: ", row);
+          const fila = `
         <tr class="">
           <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
           <td class="hidden">${row.id}</td>
@@ -846,38 +846,38 @@ function getPerfil() {
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-        
-       
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+
+
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 //CARRERAS
 function getCarrera() {
   fetch("/supervisor/getCarrera")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyCarrera");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensaje: ", row);
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyCarrera");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
         <tr class="">
           <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
           <td class="hidden">${row.id}</td>
@@ -886,57 +886,57 @@ function getCarrera() {
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-       
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 //USUARIO
 function getUsuario() {
   fetch("/supervisor/getUsuario")
-  .then((response) => {
-    if(!response.ok){
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    if(data && data.length > 0){
-      const tbody = $("#tbodyUsuario");
-      tbody.empty()
-      //itera sobre cada elemento en la data y añade fila a la tabla
-      //data.array.forEach(element => {});
-      data.forEach(row => {
-        console.log("Cuerpo del mensajeeeeee: ", row);
-        const fila = `
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data && data.length > 0) {
+        const tbody = $("#tbodyUsuario");
+        tbody.empty()
+        //itera sobre cada elemento en la data y añade fila a la tabla
+        //data.array.forEach(element => {});
+        data.forEach(row => {
+          console.log("Cuerpo del mensajeeeeee: ", row);
+          const fila = `
         <tr class="">
           <td><input type="checkbox" id="checkboxUsuarios" class="checkboxUsuarios" name="checkId"></td>
           <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
-          <td>${row.rut }</td>
+          <td>${row.rut}</td>
           <td>${row.fechaNacimiento}</td>
           <td>${row.cargo}</td>
           <td>${row.correo}</td>
           <td>${row.fechaCreacion}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-        tbody.append(fila);
-      });
-    }else{
-      alert("No se encontraron datos para actualizar");
-    }
-  })
-  .catch((error) => {
-    console.error("Error en la solicitud Fetch: ",error);
-    alert("Error en la solicitud: ", error.message);
-  });
+          tbody.append(fila);
+        });
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: ", error.message);
+    });
 }
 
 
@@ -949,11 +949,13 @@ document.getElementById('deleteSelected').addEventListener('click', function () 
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar las categorias c: ${selectedIds.join(', ')}?`)) {
-      deleteCategoria(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deleteCategoria(selectedIds);
+      }
+    });
   } else {
-    alert('No hay categorias seleccionadas para eliminar.');
+    notData();
   }
 });
 
@@ -974,17 +976,17 @@ function deleteCategoria(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Categoria(s) eliminada(s)');
+        confirmarEliminado();
         getCategoria();
       } else {
-        alert('Error al eliminar las publicaciones.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 //------------------CARRERAS-----------------------
@@ -995,11 +997,13 @@ document.getElementById('deleteSelected1').addEventListener('click', function ()
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar las categorias c: ${selectedIds.join(', ')}?`)) {
-      deleteCarrera(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deleteCarrera(selectedIds);
+      }
+    });
   } else {
-    alert('No hay categorias seleccionadas para eliminar.');
+    notData();
   }
 });
 
@@ -1020,17 +1024,17 @@ function deleteCarrera(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Carrera(s) eliminada(s)');
+        confirmarEliminado();
         getCarrera();
       } else {
-        alert('Error al eliminar las carreras.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 //------------------CURSO-----------------------
@@ -1041,11 +1045,13 @@ document.getElementById('deleteSelectedCurso').addEventListener('click', functio
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar los cursos c: ${selectedIds.join(', ')}?`)) {
-      deleteCurso(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deleteCurso(selectedIds);
+      }
+    });
   } else {
-    alert('No hay cursos seleccionadas para eliminar.');
+    notData();
   }
 });
 
@@ -1066,17 +1072,17 @@ function deleteCurso(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Curso(s) eliminado(s)');
+        confirmarEliminado();
         getCurso();
       } else {
-        alert('Error al eliminar los cursos.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 
@@ -1089,11 +1095,13 @@ document.getElementById('deleteSelectedPublicacion').addEventListener('click', f
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar los cursos c: ${selectedIds.join(', ')}?`)) {
-      deletePublicacion(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deletePublicacion(selectedIds);
+      }
+    });
   } else {
-    alert('No hay cursos seleccionadas para eliminar.');
+    notData();
   }
 });
 
@@ -1114,17 +1122,17 @@ function deletePublicacion(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Publicacion(s) eliminado(s)');
+        confirmarEliminado();
         getPublicacion();
       } else {
-        alert('Error al eliminar las publicaciones.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 //------------------REPORTES-----------------------
@@ -1135,11 +1143,13 @@ document.getElementById('deleteSelectedReporte').addEventListener('click', funct
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar los reportes c: ${selectedIds.join(', ')}?`)) {
-      deleteReporte(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deleteReporte(selectedIds);
+      }
+    });
   } else {
-    alert('No hay reportes seleccionadas para eliminar.');
+    notData();
   }
 });
 
@@ -1160,17 +1170,17 @@ function deleteReporte(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Reporte(s) eliminado(s)');
+        confirmarEliminado();
         getReporte();
       } else {
-        alert('Error al eliminar.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 //------------------OFERTASLABORALES-----------------------
@@ -1181,11 +1191,13 @@ document.getElementById('deleteSelectedOfertas').addEventListener('click', funct
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar las ofertar laborales c: ${selectedIds.join(', ')}?`)) {
-      deleteOfertas(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deleteOfertas(selectedIds);
+      }
+    });
   } else {
-    alert('No hay ofertas seleccionadas para eliminar.');
+    notData();
   }
 });
 
@@ -1206,17 +1218,17 @@ function deleteOfertas(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Ofertas(s) eliminado(s)');
+        confirmarEliminado();
         getOferta();
       } else {
-        alert('Error al eliminar.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 //------------------PERFILES-----------------------
@@ -1227,11 +1239,13 @@ document.getElementById('deleteSelectedPerfil').addEventListener('click', functi
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar los perfiles c: ${selectedIds.join(', ')}?`)) {
-      deletePerfil(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deletePerfil(selectedIds);
+      }
+    });
   } else {
-    alert('No hay Perfiles seleccionados para eliminar.');
+    notData();
   }
 });
 
@@ -1252,17 +1266,17 @@ function deletePerfil(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Perfil(s) eliminado(s)');
+        confirmarEliminado();
         getPerfil();
       } else {
-        alert('Error al eliminar.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 //------------------USUARIOS-----------------------
@@ -1273,15 +1287,26 @@ document.getElementById('deleteSelectedUsuarios').addEventListener('click', func
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar los usuarios c: ${selectedIds.join(', ')}?`)) {
-      deleteUsuario(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deleteUsuario(selectedIds);
+      }
+    });
   } else {
-    alert('No hay usuarios seleccionados para eliminar.');
+    notData();
   }
 });
 
 function deleteUsuario(ids) {
+  const excludedRuts = ['111111111', '11111111-1', '22222222-2', '33333333-3'];
+
+  // Verificar si alguno de los ids está en la lista de RUTs que no se pueden eliminar
+  const forbiddenIds = ids.filter(id => excludedRuts.includes(id));
+
+  if (forbiddenIds.length > 0) {
+    cannotDeleted();
+    return;
+  }
 
   fetch("/supervisor/deleteUsuario", {
     method: 'POST',
@@ -1298,17 +1323,16 @@ function deleteUsuario(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Usuario(s) eliminado(s)');
+        confirmarEliminado();
         getUsuario();
       } else {
-        alert('Error al eliminar.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
 }
 //------------------DICCIONARIO-----------------------
 document.getElementById('deleteSelectedPalabra').addEventListener('click', function () {
@@ -1318,11 +1342,13 @@ document.getElementById('deleteSelectedPalabra').addEventListener('click', funct
   });
 
   if (selectedIds.length > 0) {
-    if (confirm(`¿Desea eliminar la(s) palabra(s) c: ${selectedIds.join(', ')}?`)) {
-      deletePalabra(selectedIds);
-    }
+    confirmarDelete(selectedIds).then(confirmar => {
+      if (confirmar) {
+        deletePalabra(selectedIds);
+      }
+    });
   } else {
-    alert('No hay palabras seleccionadas para eliminar.');
+    notData();
   }
 });
 
@@ -1343,58 +1369,138 @@ function deletePalabra(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Palabra(s) eliminado(s)');
+        confirmarEliminado();
         getPalabra();
       } else {
-        alert('Error al eliminar.');
+        errorEliminar();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: " + error.message);
     });
-    
+
 }
 
 //------------------UPDATE------------------
 
-document.getElementById('ForUpdateCurso').addEventListener('submit', function(event) {
+document.getElementById('ForUpdateCurso').addEventListener('submit', function (event) {
   event.preventDefault();
 
   const formData = {
-      idCurso: document.getElementById('verIdCurso').value,
-      nombre: document.getElementById('verNombreCurso').value,
-      categoria: document.getElementById('verCategoriaCurso').value,
-      codigo: document.getElementById('verCodigoCurso').value,
-      centro: document.getElementById('verCentroCurso').value,
-      fecha: document.getElementById('verFechaCurso').value,
-      eliminacion: document.getElementById('verEliminacionCurso').value,
-      descripcion: document.getElementById('verDescripcionCurso').value,
+    idCurso: document.getElementById('verIdCurso').value,
+    nombre: document.getElementById('verNombreCurso').value,
+    categoria: document.getElementById('verCategoriaCurso').value,
+    codigo: document.getElementById('verCodigoCurso').value,
+    centro: document.getElementById('verCentroCurso').value,
+    fecha: document.getElementById('verFechaCurso').value,
+    eliminacion: document.getElementById('verEliminacionCurso').value,
+    descripcion: document.getElementById('verDescripcionCurso').value,
   };
 
   fetch("/supervisor/updateCurso", {
-      headers: {
-          "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
   })
-  .then((response) => {
+    .then((response) => {
       if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.json(); 
-  })
-  .then((data) => {
+      return response.json();
+    })
+    .then((data) => {
       if (data.success) {
-          alert("Curso actualizado exitosamente");
-          // Restablece los valores del formulario
-          document.getElementById('formCurso').reset();
+        alert("Curso actualizado exitosamente");
+        // Restablece los valores del formulario
+        document.getElementById('formCurso').reset();
       } else {
-          alert("Error: " + data.message);
+        alert("Error: " + data.message);
       }
-  })
-  .catch((error) => {
+    })
+    .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-  });
+    });
 });
+
+
+
+//---------------ALERTAS-------------------
+
+function notData(){
+  Swal.fire({
+    title: "No hay datos seleccionados para eliminar",
+    showClass: {
+      popup: `
+        animate__animated
+        animate__fadeInUp
+        animate__faster
+      `
+    },
+    hideClass: {
+      popup: `
+        animate__animated
+        animate__fadeOutDown
+        animate__faster
+      `
+    }
+  });
+}
+
+//--------------DELETE----------------
+function confirmarEliminado(){
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Datos eliminados",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
+
+function errorEliminar(){
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Error al eliminar los datos",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
+
+function cannotDeleted(){
+  Swal.fire({
+    title: "No se pueden eliminar los datos seleccionados",
+    showClass: {
+      popup: `
+        animate__animated
+        animate__fadeInUp
+        animate__faster
+      `
+    },
+    hideClass: {
+      popup: `
+        animate__animated
+        animate__fadeOutDown
+        animate__faster
+      `
+    }
+  });
+}
+
+function confirmarDelete(selectedIds) {
+  return Swal.fire({
+    title: "¿Estas seguro?",
+    text: "¿Desea eliminar los datos permanentemente?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, borralo!"
+  }).then((result) => {
+    return result.isConfirmed;
+  });
+}
+
