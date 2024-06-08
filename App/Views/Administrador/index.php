@@ -142,7 +142,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
     <script src="../../../../Public/js/administrador.js"></script>
-
+    <script src="../../../../public/js/perfil.js"></script>
 
 
     <!-- JS card -->

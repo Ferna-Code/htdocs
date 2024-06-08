@@ -1,6 +1,6 @@
 <?php
 
-class experciencialaboral_model {
+class experiencialaboral_model {
 
     private $ID;
     private $rutusuario;

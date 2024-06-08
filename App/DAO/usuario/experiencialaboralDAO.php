@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../../Models/experciencialaboral_model.php';
+require_once __DIR__ . '/../../Models/experiencialaboral_model.php';
 
-interface experciencialaboralDao{
+interface experiencialaboralDao{
 
-    function getdata(experciencialaboral_model $admin); 
+    function getdata(experiencialaboral_model $admin); 
 }

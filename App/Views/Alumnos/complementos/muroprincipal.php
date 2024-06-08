@@ -54,15 +54,18 @@ $publicaciones = $controlador->mostrarPublicaciones();
                 ?>
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
-                    <img class="img" src="<?php
-                    $admin = new usuarioDaoImpl();
-                    $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
-                    if ($imagenUsuario != "") {
-                        echo $imagenUsuario;
-                    } else {
-                        echo "/uploads/usuarioSinFoto.jpg";
-                    }
-                    ?>" alt="">
+                    <div class="imagen-container">
+                        <img class="img" src="<?php
+                        $admin = new usuarioDaoImpl();
+                        $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
+                        if ($imagenUsuario != "") {
+                            echo $imagenUsuario;
+                        } else {
+                            echo "/uploads/usuarioSinFoto.jpg";
+                        }
+                        ?>" alt="">
+                    </div>
+
                     <div class="tweet-content">
 
                         <div class="tweet-text">
@@ -100,21 +103,21 @@ $publicaciones = $controlador->mostrarPublicaciones();
         <hr>
         <div class="cardm">
             <div class="cardm-details">
-                <p class="text-title">TITULO 1.</p>
+                <p class="text-title">Ultimo Curso.</p>
                 <p class="text-body"></p>
             </div>
             <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
         </div>
         <div class="cardm">
             <div class="cardm-details">
-                <p class="text-title">TIULO 2.</p>
+                <p class="text-title">Ultima Oferta.</p>
                 <p class="text-body"></p>
             </div>
             <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
         </div>
         <div class="cardm">
             <div class="cardm-details">
-                <p class="text-title">TITULO 3.</p>
+                <p class="text-title">Nuevo Anuncio.</p>
                 <p class="text-body"></p>
             </div>
             <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>

@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/../DAO/Administrador/Impl/AdministradorDaoImpl.php';
 require_once __DIR__ . '/../Models/adminCategoria_model.php';
+require_once __DIR__ . '/../DAO/usuario/Impl/usuarioDaoImpl.php';
 
 class AdministradorController
 {
@@ -13,6 +14,51 @@ class AdministradorController
         include VIEWS_PATH . 'Administrador/index.php';  //carpeta/vista
         include VIEWS_PATH . 'Layout/footer.php';
     }
+
+
+    public function getDataUsuario()
+    {
+        $rutsesion = $_SESSION['rut'];
+        $admin = new usuarioDaoImpl();
+        $data = $admin->getUsuario($rutsesion);
+
+        if ($data) {
+            echo json_encode(['success' => true, 'data' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
+
+    public function guardarDatosPersonales()
+{
+    $rutsesion = $_SESSION['rut'];
+    $admin = new usuarioDaoImpl();
+
+    // Obtener campos modificados del POST
+    $camposModificados =$_POST;
+
+    // Verificar si se ha subido una imagen
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
+        $imagen = $_FILES['imagen'];
+        $rutaDestino = 'uploads/' . basename($imagen['name']);
+        if (move_uploaded_file($imagen['tmp_name'], $rutaDestino)) {
+            $camposModificados['imagen'] = $rutaDestino;
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
+            return;
+        }
+    }
+
+    // Actualizar usuario en la base de datos
+    $resultado = $admin->actualizarUsuario($rutsesion, $camposModificados);
+
+    if ($resultado) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error al actualizar los datos del usuario']);
+    }
+}
+
 
     //------------ CARRERA -----------//
 

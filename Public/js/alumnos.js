@@ -78,10 +78,60 @@ function vistaofertas() {
 
 
 function veroferta(id) {
-  console.log("veroferta alumnos.js");
   getOfertaByID(id);
-  console.log(id);
   var elemento8 = document.getElementById("modulo9");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento8.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento8);
+}
+
+function vistacorreo() {
+  var elemento8 = document.getElementById("modulo11");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento8.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento8);
+}
+
+function vistapostulacion() {
+  var elemento8 = document.getElementById("modulo12");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento8.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento8);
+}
+
+function vistaclave() {
+  var elemento8 = document.getElementById("modulo13");
+  
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento8.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento8);
+}
+
+function vistaresumencv() {
+  var elemento8 = document.getElementById("modulo14");
   
   // Oculta todos los módulos
   ocultarModulos();
@@ -125,13 +175,10 @@ function getOfertas() {
       return response.json();
   })
   .then(data => {
-      console.log("Datos recibidos del servidor:", data);
 
       // Ajustar para usar la clave 'oferta' en lugar de 'ofertas'
       if (data && data.success && Array.isArray(data.oferta)) {
           const ofertas = data.oferta; // Usar 'oferta' en lugar de 'ofertas'
-          console.log("Ofertas recibidas:", ofertas);
-
           let rowContainer;
           ofertas.forEach((oferta, index) => {
               const cardOferta = document.createElement("div");

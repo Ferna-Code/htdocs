@@ -31,12 +31,19 @@
     font-weight: lighter;
 }
 
-.img {
-    width: 100px;
-    height: auto;
-    border-radius: 10px;
-    border: 3px solid red;
+/* Estilos para la imagen */
+.imagen-publicaciones {
+    position: relative;
+    display: inline-block;
+}
+
+.imagen-publicaciones img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid white;
     border-radius: 50%;
+    display: block;
 }
 
 .tweet-actions {
