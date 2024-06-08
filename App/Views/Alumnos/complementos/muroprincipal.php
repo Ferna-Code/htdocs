@@ -103,21 +103,21 @@ $publicaciones = $controlador->mostrarPublicaciones();
         <hr>
         <div class="cardm">
             <div class="cardm-details">
-                <p class="text-title">TITULO 1.</p>
+                <p class="text-title">Ultimo Curso.</p>
                 <p class="text-body"></p>
             </div>
             <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
         </div>
         <div class="cardm">
             <div class="cardm-details">
-                <p class="text-title">TIULO 2.</p>
+                <p class="text-title">Ultima Oferta.</p>
                 <p class="text-body"></p>
             </div>
             <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
         </div>
         <div class="cardm">
             <div class="cardm-details">
-                <p class="text-title">TITULO 3.</p>
+                <p class="text-title">Nuevo Anuncio.</p>
                 <p class="text-body"></p>
             </div>
             <button class="cardm-button" onclick="controlVisi6()">Ver Todos</button>
