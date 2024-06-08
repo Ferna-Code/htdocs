@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     let userDataOriginal;
-
     function getUsuarios() {
         fetch("/perfil/getdata/", {
             method: "POST",
@@ -10,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(result => {
+            console.log(result)
             if (result.success) {
                 const userData = result.data;
-                document.getElementById('nombreH1').innerText = userData.nombre;
                 document.getElementById('nombrep').innerText = userData.nombre;
                 document.getElementById('rut').value = userData.rut;
                 document.getElementById('email').value = userData.correo;
@@ -22,13 +21,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('password').value = userData.clave;
                 userDataOriginal = userData;
             } else {
-                console.error("Error message:", result.message);
+                console.error("Error obtener datos Usuario:", result.message);
             }
         })
         .catch(error => {
             console.error('Error al obtener los datos del usuario:', error);
         });
     }
+    getUsuarios()
 
     function obtenerExperienciaLaboral() {
         fetch("/perfil/getDataLaboral")

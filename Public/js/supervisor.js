@@ -1,3 +1,97 @@
+document.addEventListener("DOMContentLoaded", function() {
+  let userDataOriginal;
+
+  function getUsuarios() {
+      fetch("/Supervisor/getdataUsuario/", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+      })
+      .then(response => response.json())
+      .then(result => {
+          console.log(result)
+          if (result.success) {
+              const userData = result.data;
+              document.getElementById('nombrep').innerText = userData.nombre;
+              document.getElementById('rut').value = userData.rut;
+              document.getElementById('email').value = userData.correo;
+              document.getElementById('fechanac').value = userData.fechaNacimiento;
+              document.getElementById('telefono').value = userData.telefono;
+              document.getElementById('direccion').value = userData.direccion;
+              document.getElementById('password').value = userData.clave;
+              document.getElementById('cargo').innerText = userData.cargo;
+              cargo
+              userDataOriginal = userData;
+          } else {
+              console.error("Error obtener datos Usuario:", result.message);
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener los datos del usuario:', error);
+      });
+  }
+
+  getUsuarios();
+
+  function guardarCambiosPersonales(event) {
+      event.preventDefault();
+
+      const camposModificados = {};
+      const rut = document.getElementById('rut').value;
+      const correo = document.getElementById('email').value;
+      const telefono = document.getElementById('telefono').value;
+      const direccion = document.getElementById('direccion').value;
+      const fechaNacimiento = document.getElementById('fechanac').value;
+      const clave = document.getElementById('password').value;
+      const imagenInput = document.getElementById('imagen');
+
+      if (correo !== userDataOriginal.correo) camposModificados.correo = correo;
+      if (telefono !== userDataOriginal.telefono) camposModificados.telefono = telefono;
+      if (direccion !== userDataOriginal.direccion) camposModificados.direccion = direccion;
+      if (fechaNacimiento !== userDataOriginal.fechaNacimiento) camposModificados.fechaNacimiento = fechaNacimiento;
+      if (clave !== userDataOriginal.clave) camposModificados.clave = clave;
+
+      const formData = new FormData();
+      formData.append('rut', rut);
+
+      for (const key in camposModificados) {
+          formData.append(key, camposModificados[key]);
+      }
+
+      if (imagenInput.files.length > 0) {
+          formData.append('imagen', imagenInput.files[0]);
+      }
+
+      fetch("/Supervisor/guardardatospersonales", {
+          method: "POST",
+          body: formData
+      })
+      .then(response => response.json())
+      .then(result => {
+          if (result.success) {
+            cambiosGuardados()
+          } else {
+              console.error(result.message);
+          }
+      })
+      .catch(error => {
+          console.error('Error al guardar los cambios del usuario:', error);
+      });
+  }
+
+  document.getElementById('guardar-cambios-usuario-btn').addEventListener('click', guardarCambiosPersonales);
+});
+
+function cambiosGuardados(){
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "¡Cambios guardados correctamente!",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
 
 //Reportes
 function controlVisi1() {

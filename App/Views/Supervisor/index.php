@@ -11,13 +11,13 @@ header('Pragma: no-cache');
 
 // Verifica si el usuario está logeado
 if (!isset($_SESSION['idperfil'])) {
-    header('Location: http://localhost/');
+    header('Location: http://localhost:8080/');
     exit();
 }
 
 require_once 'App/Controllers/accessController.php';
 
-require_once 'C:\xampp\htdocs\App\Controllers\PerfilController.php';
+require_once 'C:\xampp1\htdocs\App\Controllers\PerfilController.php';
 
 
 $perfilesPermitidos = 2;
