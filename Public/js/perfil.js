@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result)
             if (result.success) {
                 const userData = result.data;
                 document.getElementById('nombrep').innerText = userData.nombre;
@@ -52,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log(data)
                 mostrarExperienciaAcademica(data.data);
             } else {
                 console.error("Error al obtener los datos de experiencia Academica:", data.message);
@@ -229,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 titulobtenido: form.querySelector('input[name="titulobtenido"]').value || '',
                 cursaactualmente: form.querySelector(`input[name="cursa-actualmente${index}"]:checked`) ? form.querySelector(`input[name="cursa-actualmente${index}"]:checked`).value : ''
             };
-            console.log(experiencia);
             experienciasAcademicas.push(experiencia);
             
         });
@@ -263,7 +260,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(result => {
             if (result.success) {
-                console.log('¡Cambios guardados correctamente!');
                 cambiosGuardados();
             } else {
                 console.error(result.message);
@@ -290,7 +286,6 @@ function obtenerArchivoCV(event) {
     fetch("/perfil/getDataArchivoCV")
         .then(response => response.json())
         .then(result => {
-            console.log(result);
             if (result.success) {
                 if (result.data.length > 0) {
                     const rutaArchivoCV = result.data[0].documento; 

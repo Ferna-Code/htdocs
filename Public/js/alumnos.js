@@ -192,7 +192,7 @@ function getOfertas() {
                           <p class="text-body">Empresa: ${oferta.nombreEmpresa}</p>
                           <p class="text-body">Fecha de creación: ${oferta.fechacreacion}</p>
                       </div>
-                      <button class="cardc-button" onclick="veroferta(${oferta.id})">Ir al curso</button>
+                      <button class="cardc-button" onclick="veroferta(${oferta.id})">Ver oferta</button>
                   </div>
               `;
 
@@ -256,7 +256,7 @@ function getOfertaByID(id) {
                           <p class="text-body">Rango Salarial: ${oferta.rangosalarial}</p>
                           <p class="text-body">Fecha de publicación: ${oferta.fechacreacion}</p>
                       </div>
-                      <button class="cardo-button" onclick="">Postular</button>
+                      <button class="cardo-button" onclick="enviarPostulacion()">Postular</button>
                   </div>
               `;
             
@@ -272,4 +272,39 @@ function getOfertaByID(id) {
   })
 }
 
+function enviarPostulacion(){
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "¿Desea postular a esta oferta?",
+    text: "Asegurate que todos tus datos esten actualizados",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Postular",
+    cancelButtonText: "Cancelar",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      swalWithBootstrapButtons.fire({
+        title: "Postulación enviada",
+        text: "Tu perfil ha sido enviado",
+        icon: "success"
+      });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Postulación cancelada",
+        text: "Tu perfil no ha sido enviado",
+        icon: "error"
+      });
+    }
+  });
+}
 
