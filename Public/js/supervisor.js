@@ -322,9 +322,9 @@ function controlVisi16() {
 }
 
 //verUsuario
-function controlVisi17() {
+function controlVisi17(id) {
   var eleme = document.getElementById("modulo17");
-
+  getUsuarioById(id);
   // Oculta todos los módulos
   ocultarModulos();
 
@@ -1013,13 +1013,13 @@ function getUsuario() {
           const fila = `
         <tr class="">
           <td><input type="checkbox" id="checkboxUsuarios" class="checkboxUsuarios" name="checkId"></td>
-          <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
           <td>${row.rut}</td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi17(${row.rut})">${row.nombre}</a></td>
           <td>${row.fechaNacimiento}</td>
           <td>${row.cargo}</td>
           <td>${row.correo}</td>
           <td>${row.fechaCreacion}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          
         </tr>`;
           tbody.append(fila);
         });
@@ -1030,6 +1030,42 @@ function getUsuario() {
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getUsuarioById(rut) {
+  fetch("/supervisor/getUsuarioById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ rut: rut }), // Cambiado a `rut` para que coincida con el PHP
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        // Asignar datos a los elementos de la vista
+        const usuario = data.curso;
+        document.getElementById("verNombreUser").value = usuario.nombre;
+        document.getElementById("rutUser").value = usuario.rut;
+        document.getElementById("verIdUser").value = usuario.rut;
+        document.getElementById("idUser").value = usuario.idperfil;
+        document.getElementById("nacimientoUser").value = usuario.fechaNacimiento;
+        document.getElementById("telefonoUser").value = usuario.telefono;
+        document.getElementById("direccionUsers").value = usuario.direccion;
+        document.getElementById("correoUser").value = usuario.correo;
+      } else {
+        alert(data.message || 'Error al obtener los datos del usuario');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
@@ -1510,6 +1546,46 @@ document.getElementById('ForUpdateCurso').addEventListener('submit', function (e
         alert("Curso actualizado exitosamente");
         // Restablece los valores del formulario
         document.getElementById('formCurso').reset();
+      } else {
+        alert("Error: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+
+document.getElementById('ForUpdateUser').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const formData = {
+    nombre: document.getElementById('verNombreUser').value,
+    rut: document.getElementById('rutUser').value,
+    idPerfil: document.getElementById('idUser').value,
+    nacimiento: document.getElementById('nacimientoUser').value,
+    telefono: document.getElementById('telefonoUser').value,
+    direccion: document.getElementById('direccionUsers').value,
+    correo: document.getElementById('correoUser').value,
+  };
+
+  fetch("/supervisor/updateUsuario", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert("Datos actualizados exitosamente");
+        // Restablece los valores del formulario
+        document.getElementById('formUsuario').reset();
       } else {
         alert("Error: " + data.message);
       }
