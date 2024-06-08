@@ -24,7 +24,6 @@ if ($sw === 'publicar') {
     // Crear una instancia del controlador de publicaciones
     $controlador = new PublicacionesController();
     // Procesar la publicación
-    echo "publicar";
     $controlador->procesarPublicacion($comentario);
 }
 $controladorUsuarios = new usuariosController();

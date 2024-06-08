@@ -25,7 +25,7 @@ $("#formOferta").on("submit", function (event) {
         return response.text();
     }).then((data) => {
         if (!data.success) {
-            alert("!Datos agregados¡");
+            ofertaCreada()
             //resto del cuerpo para manejar respuesta exitosa
             
             $(
@@ -41,3 +41,14 @@ $("#formOferta").on("submit", function (event) {
         console.error("Error en la solicitud Fetch: ", error);
     });
 });//FIN CUERPO 
+
+
+function ofertaCreada(){
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Oferta enviada exitosamente",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }

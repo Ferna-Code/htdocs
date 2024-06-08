@@ -7,13 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../../Public/css/formempresas.css">
     <title>TalentoLeones</title>
+
 </head>
 
 <body>
     <div class="container">
-        <div class="banner">
-            <img src="../../../../Public/img/bannerempleos.png" alt="">
-        </div>
         <div class="formulario">
             <h1>Encuentra Talentos para tu empresa</h1><br>
             <form method="POST" id="formOferta" class="form">
@@ -70,8 +68,5 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./../../../Public/js/empresa.js"></script>
-
-
-</body>
-
-</html>
+    <script src="../../../../public/js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
