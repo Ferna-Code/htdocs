@@ -67,7 +67,7 @@ h1 {
 .columna textarea,
 .columna select,
 .columna input[type="number"] {
-    width: 100%;
+    width: 95%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -115,7 +115,7 @@ h1 {
     text-decoration: none;
     color: white;
     padding: 13px 50px;
-    border: 1px solid orange;
+    border: 1px solid white;
     border-radius: 5px;
     margin-left: 9px;
 }
