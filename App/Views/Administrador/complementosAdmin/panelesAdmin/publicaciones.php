@@ -26,7 +26,7 @@
                     <option value="Práctica">03</option>
                 </select>
                 <input type="submit" class="btnFiltro" value="Filtrar">
-                <button type="button" id="deleteSelectedPublicacion" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedPublicacion" class="btnFiltro">Eliminar</button>
             </div>
 
             <table id="tablePublicaciones" class="tabla table">
@@ -80,7 +80,7 @@
         </div>
     </div>
     <script src="../../../../Public/js/check.js"></script>
-    <script src="../../../../Public/js/administrador.js"></script>
+    <!-- <script src="../../../../Public/js/administrador.js"></script> -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

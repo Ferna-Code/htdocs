@@ -1,7 +1,9 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../DAO/Administrador/Impl/AdministradorDaoImpl.php';
-
+require_once __DIR__ . '/../Models/adminCategoria_model.php';
 
 class AdministradorController
 {
@@ -17,7 +19,8 @@ class AdministradorController
     public function getCarrera()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getCarreras();
+        $limit = 10;
+        $data = $admin->getCarreras($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -37,16 +40,13 @@ class AdministradorController
     public function getCategoria()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getCategorias();
+        $limit = 10;
+        $data = $admin->getCategorias($limit);
 
-        if ($data instanceof mysqli_result) {
-            $result = [];
-            while ($row = $data->fetch_assoc()) {
-                $result[] = $row;
-            }
-            echo json_encode($result);
+        if(isset($data['success']) && !$data['success']){
+            echo json_encode($data); // Retornar mensaje de error
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error en la actualización de la tabla']);
+            echo json_encode($data); // Retornar datos
         }
     }
 
@@ -56,7 +56,8 @@ class AdministradorController
     public function getCurso()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getCursos();
+        $limit = 10;
+        $data = $admin->getCursos($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -75,7 +76,8 @@ class AdministradorController
     public function getDiccionario()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getDiccionario();
+        $limit = 10;
+        $data = $admin->getDiccionario($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -93,7 +95,8 @@ class AdministradorController
     public function getPerfil()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getPerfiles();
+        $limit = 10;
+        $data = $admin->getPerfiles($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -111,7 +114,8 @@ class AdministradorController
     public function getPublicacion()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getPublicaciones();
+        $limit = 10;
+        $data = $admin->getPublicaciones($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -125,27 +129,12 @@ class AdministradorController
     }
 
 
-    /*
-    public function deletePublicacion()
-    {
-        $admin = new AdministradorDaoImpl();
-        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
-
-        $success = $admin->deletePublicaciones($ids);
-
-        if ($success) {
-            echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Error al eliminar las publicaciones.']);
-        }
-    }
-    */
-
     //------------ REPORTE -----------//
     public function getReportes()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getReportes();
+        $limit = 10;
+        $data = $admin->getReportes($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -163,7 +152,8 @@ class AdministradorController
     public function getUsuarios()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getUsuarios();
+        $limit = 10;
+        $data = $admin->getUsuarios($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -181,7 +171,8 @@ class AdministradorController
     public function getArchivos()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getArchivos();
+        $limit = 10;
+        $data = $admin->getArchivos($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -199,7 +190,8 @@ class AdministradorController
     public function getComentarios()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getComentarios();
+        $limit = 10;
+        $data = $admin->getComentarios($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -216,7 +208,8 @@ class AdministradorController
     public function getOfertas()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getOfertas();
+        $limit = 10;
+        $data = $admin->getOfertas($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -233,7 +226,8 @@ class AdministradorController
     public function getPostulaciones()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getPostulaciones();
+        $limit = 10;
+        $data = $admin->getPostulaciones($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -251,7 +245,8 @@ class AdministradorController
     public function getExpAcademica()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getExpAcademica();
+        $limit = 10;
+        $data = $admin->getExpAcademica($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -268,7 +263,8 @@ class AdministradorController
     public function getExpLaboral()
     {
         $admin = new AdministradorDaoImpl();
-        $data = $admin->getExpLaboral();
+        $limit = 10;
+        $data = $admin->getExpLaboral($limit);
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -500,10 +496,65 @@ class AdministradorController
         $nuevaCategoria = $data['nuevaCategoria'];
 
         $admin = new AdministradorDaoImpl();
-        $adminCategoria_model = new AdminCategoriasModel();
-        $adminCategoria_model->setNuevaCategoria($nuevaCategoria);
+        $adminModel = new AdminCategoriasModel();
+        $adminModel->setNuevaCategoria($nuevaCategoria);
 
-        $result = $admin->insertCategoria($adminCategoria_model);
+        $result = $admin->insertCategoria($adminModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+
+    public function insertCarrera()
+    { 
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
+        $data = json_decode($json, true);
+        echo "<script>alert('controlador')</script>";
+        echo "<script>console.log('controlador')</script>";
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+        $Carrera = $data['nuevaCarrera'];
+        $categoria = $data['categoriaCarrera'];
+
+        $admin = new AdministradorDaoImpl();
+        $adminModel = new AdminCategoriasModel();
+        $adminModel->setNuevaCarrera($Carrera);
+        $adminModel->setCategoriaCarrera($categoria);
+
+        $result = $admin->insertCarrera($adminModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+    public function insertPalabra()
+    { 
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
+        $data = json_decode($json, true);
+        echo "<script>alert('controlador')</script>";
+        echo "<script>console.log('controlador')</script>";
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+        $palabra = $data['palabra'];
+       
+
+        $admin = new AdministradorDaoImpl();
+        $adminModel = new AdminCategoriasModel();
+        $adminModel->setNuevaPalabra($palabra);
+        
+
+        $result = $admin->insertPalabra($adminModel);
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
@@ -512,151 +563,4 @@ class AdministradorController
         }
     }
 }
-    /*public function crearCarrera(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaCarrera.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaCategoria(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaCategoria.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaCursos(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaCursos.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaDiccionario(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaDiccionario.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaPerfiles(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaPerfiles.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaPublicaciones(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaPublicaciones.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaReportes(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaReportes.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaUsuarios(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaUsuarios.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaArchivos(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/creaAdmcomplementosAdmin/creaAdminin/creaArchivos.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaComentarios(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaComentarios.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaOfertas(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/creaAdmin/creaOfertas.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaPostulaciones(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaPostulaciones.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-    public function creaCVabreviado(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/creaAdmin/creaCVabreviado.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-
-    //-------------------------LLAMA A EDITAR---------------------------//
-    
-
-    public function editarArchivo(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarArchivo.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarCarrera(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarCarrera.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarCategoria(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarCategoria.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarComentarios(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarComentarios.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarCursos(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarCursos.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarCVabreviado(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarCVabreviado.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarDiccionario(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarDiccionario.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarOfertas(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarOfertas.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarPerfiles(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarPerfiles.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarPostulaciones(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarPostulaciones.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarPublicaciones(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarPublicaciones.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarReportes(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarReportes.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-
-    public function editarUsuario(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/complementosAdmin/EditaAdmin/editarUsuario.php';  //carpeta/vista
-        //include VIEWS_PATH . 'Layout/footer.php';
-    }
-*/
+  

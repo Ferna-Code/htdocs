@@ -137,10 +137,6 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'complementos/formularios/verUsuario.php'; ?>
         </div>
 
-
-
-
-
     </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>

@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" href="../../../../Public/css/ofertas.css">
+    <link rel="stylesheet" href="../../../../Public/css/ofertas.css">
 </head>
 
 <div class="contenedor-principal">
@@ -7,28 +7,52 @@
         <img src="../../../../Public/img/bannerempleos.png" alt="">
     </div>
 
-    <div class="contenedor-oferta">
-        <div class="seccion">
-            <div class="contenedor-seccion">PRÁCTICA TÉCNICA PARA DEPARTAMENTO TIC, PROGRAMACIÓN Y ANÁLISIS DE SISTEMAS. <br> <span>Código: OP-16707</span></div>
-            <div class="contenedor-seccion">Categoria: tecnología e informática</div>
-            <div class="contenedor-seccion">Nombre del curso: Diseño Web</div>
-            <div class="contenedor-seccion">Centro de capacitación: Fundación Cristo vive</div>
-            <div class="contenedor-seccion">Fecha registro: 06 / 06 / 06</div>
-            <div class="contenedor-seccion">Fecha eliminación: </div>
-            <div class="contenedor-seccion">
-                <span>Descripción</span>
-               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas quidem rerum aliquam doloremque cumque dolor, possimus culpa laboriosam autem, iusto provident vitae, consectetur facere reiciendis molestiae aliquid? Ex, magnam blanditiis.
-               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas quidem rerum aliquam doloremque cumque dolor, possimus culpa laboriosam autem, iusto provident vitae, consectetur facere reiciendis molestiae aliquid? Ex, magnam blanditiis.
-               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas quidem rerum aliquam doloremque cumque dolor, possimus culpa laboriosam autem, iusto provident vitae, consectetur facere reiciendis molestiae aliquid? Ex, magnam blanditiis.
+    <div class="">
+        <div class="formulario-cursos">
 
-            </div>
-            <div class="contenedor-btn">
-                <a href="#" class="btn-oferta">Eliminar</a>
-                <a href="#" class="btn-oferta">Volver</a>
-                <a href="#" class="btn-oferta">Publicar</a>
-            </div>
+            <form id="ForUpdateCurso" action="" class="form" method="POST">
+                <div class="columna ">
+                    <input type="hidden" id="verIdCurso" name="verIdCurso">
+                </div>
+
+                <div class="columna ">
+                    <label for="verNombreCurso">Nombre del curso</label>
+                    <input type="text" class="inputCurso" id="verNombreCurso" name="verNombreCurso">
+                </div>
+                <div class="columna ">
+                <label for="verCategoriaCurso">Categoria curso</label>
+                    <input type="text" class="inputCurso" id="verCategoriaCurso" name="verCategoriaCurso">
+                </div>
+                <div class="columna ">
+                <label for="verCodigoCurso">Código curso</label>
+                    <input type="text" class="inputCurso" id="verCodigoCurso" name="verCodigoCurso" readonly>
+                </div>
+                <div class="columna ">
+                <label for="verCentroCurso">Centro de capacitación</label>
+                    <input type="text" class="inputCurso" id="verCentroCurso" name="verCentroCurso">
+                </div>
+                <div class="columna ">
+                <label for="verFechaCurso">Fecha registro</label>
+                    <input type="text" class="inputCurso" id="verFechaCurso" name="verFechaCurso" readonly>
+                </div>
+                <div class="columna ">
+                <label for="verEliminacionCurso">Fecha eliminación</label>
+                    <input type="text" class="inputCurso" id="verEliminacionCurso" name="verEliminacionCurso">
+                </div>
+                <div class="columna ">
+                <label for="verDescripcionCurso">Descripción</label>
+                    <textarea class="textareaCurso" rows="5" cols="10" id="verDescripcionCurso" name="verDescripcionCurso"></textarea>
+                </div>
+
+                <button type="submit" id="updateCurso" class="btn-supervisor marginBtn">Actualizar</button>
+
+            </form>
+
+
         </div>
-       
 
     </div>
+
+
+</div>
 </div>

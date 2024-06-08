@@ -207,7 +207,7 @@ function controlVisi17() {
   var elemento17 = document.getElementById("modulo17");
   
   // Oculta todos los módulos
-
+  ocultarModulos();
 
   // Muestra el módulo 1
   elemento17.style.display = "flex";
@@ -251,16 +251,27 @@ function getCarrera() {
 
         data.forEach(row => {
           console.log("Cuerpo del mensaje: ", row);
+          let categoria;
+          if (row.idcategorias == '1') {
+            categoria = "Educación, bienestar y calidad";
+          } else if (row.idcategorias == '2') {
+            categoria = "Informática, tecnología y productividad";
+          } else if (row.idcategorias == '3') {
+            categoria = "Negocios, gestión e innovación";
+          } else {
+            categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+          }
+
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.nombre}</td>
-          <td>${row.idcategorias}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
+              <td class="hidden">${row.id}</td>
+              <td>${row.nombre}</td>
+              <td>${categoria}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
           tbody.append(fila);
         });
 
@@ -294,7 +305,7 @@ function getCategoria() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
-          <td>${row.id}</td>
+          <td class="hidden">${row.id}</td>
           <td>${row.nombre}</td>
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
@@ -334,16 +345,12 @@ function getCurso() {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCursos" name="select-all"></td>
-          <td>${row.id}</td>
+          <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
+          <td class="hidden">${row.id}</td>
           <td>${row.nombre}</td>
-          <td>${row.descripcion}</td>
           <td>${row.emitidopor}</td>
-          <td>${row.linkpostular}</td>
-          <td>${row.idcategoria}</td>
           <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><a href="#" onclick="veroferta(${row.id})">Ver Curso</a></td>
         </tr>`;
           tbody.append(fila);
         });
@@ -359,6 +366,7 @@ function getCurso() {
       alert("Error en la solicitud: ", error.message);
     });
 }
+
 
 function getDiccionario() {
   fetch("/Administrador/getDiccionario")
@@ -378,7 +386,7 @@ function getDiccionario() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
-          <td>${row.id}</td>
+          <td class="hidden">${row.id}</td>
           <td>${row.palabra}</td>
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
@@ -840,6 +848,52 @@ function getExpLaboral() {
     });
 }
 
+//...............DELETE CURSO...............
+document.getElementById('deleteSelectedCurso').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCurso:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los cursos c: ${selectedIds.join(', ')}?`)) {
+      deleteCurso(selectedIds);
+    }
+  } else {
+    alert('No hay cursos seleccionadas para eliminar.');
+  }
+});
+
+function deleteCurso(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deleteCurso", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Curso(s) eliminado(s)');
+        getCurso();
+      } else {
+        alert('Error al eliminar los cursos.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
 
 
 //--------------DELETE GLOBAL --------------//
@@ -857,11 +911,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       deleteSelectedCategoriasBtn.addEventListener('click', deleteSelectedCategoriasHandler);
   }
 
-  const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
-  if (deleteSelectedCursosBtn) {
-    deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
-    deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
-  }
+  // const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
+  // if (deleteSelectedCursosBtn) {
+  //   deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
+  //   deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
+  // }
 
   const deleteSelectedDiccionariosBtn = document.getElementById('deleteSelectedDiccionario');
   if (deleteSelectedDiccionariosBtn) {
@@ -941,9 +995,9 @@ function deleteSelectedCategoriasHandler() {
     deleteSelectedRows('checkboxCategoria', '/Administrador/deleteCategorias');
 }
 
-function deleteSelectedCursosHandler() {
-  deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
-}
+// function deleteSelectedCursosHandler() {
+//   deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
+// }
 
 function deleteSelectedDiccionarioHandler() {
   deleteSelectedRows('checkboxPalabra', '/Administrador/deleteDiccionario');
@@ -1050,7 +1104,7 @@ $("#addCategoria").on("submit", function (event) {
     nuevaCategoria: $("#nuevaCategoria").val(),
   };
 
-  fetch("/supervisor/insertData", { // Asegúrate de que esta ruta sea correcta
+  fetch("/Administrador/insertCategoria", { // Asegúrate de que esta ruta sea correcta
     headers: {
       "Content-Type": "application/json",
     },
@@ -1085,324 +1139,177 @@ $("#addCategoria").on("submit", function (event) {
     });
 });
 
-
-
-
-
-/* -------------------------crear modulos--------------
-function controlVisi16() {
-  var elemento16 = document.getElementById("modulo16");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento16.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento16);
-}
-
-
-
-
-
-
-function controlVisi18() {
-  var elemento18 = document.getElementById("modulo18");
-  console.log("aqui la marca")
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento18.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento18);
-}
-
-function controlVisi19() {
-  var elemento19 = document.getElementById("modulo19");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento19.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento19);
-}
-
-function controlVisi20() {
-  var elemento20 = document.getElementById("modulo20");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento20.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento20);
-}
-
-function controlVisi21() {
-  var elemento21 = document.getElementById("modulo21");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento21.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento21);
-}
-
-function controlVisi22() {
-  var elemento22 = document.getElementById("modulo22");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento22.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento22);
-}
-
-function controlVisi23() {
-  var elemento23 = document.getElementById("modulo23");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento23.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento23);
-}
-
-function controlVisi24() {
-  var elemento24 = document.getElementById("modulo24");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento24.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento24);
-}
-
-function controlVisi25() {
-  var elemento25 = document.getElementById("modulo25");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento25.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento25);
-}
-
-function controlVisi26() {
-  var elemento26 = document.getElementById("modulo26");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento26.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento26);
-}
-
-//------------------EDITAR-----------------//
-function controlVisi27() {
-  var elemento27 = document.getElementById("modulo27");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento27.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento27);
-}
-
-function controlVisi28() {
-  var elemento28 = document.getElementById("modulo28");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento28.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento28);
-}
-
-function controlVisi29() {
-  var elemento29 = document.getElementById("modulo29");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento29.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento29);
-}
-
-function controlVisi30() {
-  var elemento30 = document.getElementById("modulo30");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento30.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento30);
-}
-
-function controlVisi31() {
-  var elemento31 = document.getElementById("modulo31");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento31.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento31);
-}
-
-function controlVisi32() {
-  var elemento32 = document.getElementById("modulo32");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento32.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento32);
-}
-
-function controlVisi33() {
-  var elemento33 = document.getElementById("modulo33");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento33.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento33);
-}
-
-function controlVisi34() {
-  var elemento34 = document.getElementById("modulo34");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento34.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento34);
-}
-
-function controlVisi35() {
-  var elemento35 = document.getElementById("modulo35");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento35.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento35);
-}
-
-function controlVisi36() {
-  var elemento36 = document.getElementById("modulo36");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento36.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento36);
-}
-
-function controlVisi37() {
-  var elemento37 = document.getElementById("modulo37");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento37.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento37);
-}
-
-function controlVisi38() {
-  var elemento38 = document.getElementById("modulo38");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento38.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento38);
-}
-
-function controlVisi39() {
-  var elemento39 = document.getElementById("modulo39");
-  
-  // Oculta todos los módulos
-  ocultarModulos();
-
-  // Muestra el módulo 1
-  elemento39.style.display = "flex";
-  
-  // Centra el módulo 1
-  centrarModulo(elemento39);
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
+//----------------DICCIONARIO----------------------
+$("#addPalabra").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    palabra: $("#nuevaPalabra").val(),
+ 
+  };
+
+  fetch("/Administrador/insertPalabra", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Dato(s) agregado(s)");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#crearPalabra"
+        ).val("");
+        // Cerrar el modal
+        $("#crearPalabra").modal("hide");
+        getDiccionario();
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+
+$("#addCarrera").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    nuevaCarrera: $("#nuevaCarrera").val(),
+    categoriaCarrera: $("#categoria").val(),
+  };
+
+  fetch("/Administrador/insertCarrera", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Dato(s) agregado(s)");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#nuevaCarrera"
+        ).val("");
+        // Cerrar el modal
+        $("#crearCarrera").modal("hide");
+        getCarrera();
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+
+//INGRESAR PERFIL
+$("#addPerfil").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    nuevoPerfil: $("#nuevoPerfil").val(),
+  };
+
+  fetch("/supervisor/insertPerfil", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Perfil agregado");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#nuevoPerfil"
+        ).val("");
+        // Cerrar el modal
+        $("#crearPerfil").modal("hide");
+        getPerfil();
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});// FIN CUERPO
+
+$("#crearCurso").on("submit", function (event) {
+  event.preventDefault();
+
+  var formData = { // guardamos el cuerpo del mensaje por medio del ID
+    categoria: $("#categoria-curso").val(),
+    nombre: $("#Nombre").val(),
+    descripcionCurso: $("#descripcion-curso").val(),
+    fechaInicio: $("#fecha-inicio").val(),
+    link: $("#link-inscripcion").val(),
+    activo: $("#activo").val(),
+
+  };
+
+  fetch("/supervisor/insertCurso", { // Asegúrate de que esta ruta sea correcta
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Temporalmente usa text() para verificar la respuesta
+    })
+    .then((data) => {
+      if (!data.success) {
+        alert("Curso agregado");
+        //resto del cuerpo para manejar respuesta exitosa
+
+        $(
+          "#categoria-curso, #Nombre, #descripcion-curso, #fecha-inicio, #link-inscripcion, #activo"
+        ).val("");
+
+      } else {
+        alert("Error" + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});// FIN CUERPO

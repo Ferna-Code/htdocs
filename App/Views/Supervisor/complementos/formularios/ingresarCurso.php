@@ -13,20 +13,25 @@
     </div>
     <h1>Crear Cursos </h1>
     <div class="">
-        <form method="POST" id="crearCurso" class="form">
-            <div class="formulario-cursos">
+        <div class="formulario-cursos">
+            <form method="POST" id="crearCurso" class="form">
+
 
                 <div class="columna ">
                     <label for="categoria-curso">Categoria:</label>
                     <select id="categoria-curso" name="categoria-curso" required>
-                        <option value="educacion">Educación y bienestar</option>
-                        <option value="informatica">Tecnología e informática</option>
-                        <option value="negocios">Negocios, gestión e innovación</option>
+                        <option value="1">Educación, bienestar y calidad</option>
+                        <option value="2">Informática, tecnología y productividad</option>
+                        <option value="3">Negocios, gestión e innovación</option>
                     </select>
                 </div>
                 <div class="columna ">
                     <label for="Nombre">Nombre:</label>
                     <input type="text" id="Nombre" name="Nombre" required>
+                </div>
+                <div class="columna ">
+                    <label for="centro">Centro de capacitación:</label>
+                    <input type="text" id="centro" name="centro" required>
                 </div>
                 <div class="columna ">
                     <label for="descripcion-curso">Descripción del curso:</label>
@@ -47,9 +52,10 @@
                         <option value="0">No</option>
                     </select>
                 </div>
-            </div>
-            <input type="submit" class="btn-curso" name="crearRegistro" value="Crear Curso">
-        </form>
+
+                <input type="submit" class="btn-curso" name="crearRegistro" value="Crear Curso">
+            </form>
+        </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

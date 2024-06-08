@@ -23,10 +23,9 @@
                     <option value="Práctica">Diplomado en metodologia Scrum</option>
                     <option value="Práctica">Networking Essentials</option>
                 </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
+                <input type="submit" class="btnFiltro" value="Filtrar"><br>
                 <a href="#" onclick="controlVisi17()" class="btn-supervisor marginBtn ">Agregar</a>
-                <a href="Administrador/editarCursos" class="btn-supervisor marginBtn">Editar</a>
-                <button type="button" id="deleteSelectedCursos" class="btn-supervisor marginBtn">Eliminar</button>
+                <button type="button" id="deleteSelectedCurso" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <form action="#">
@@ -36,15 +35,11 @@
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllCursos" name="select-all"></th>
-                    <th class="anchoId">ID</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Institución</th>
-                    <th>Link Postulación</th>
-                    <th>ID Categoría</th>
+                   
+                    <th>Nombre</th>               
+                    <th>Centro de capacitación</th>               
                     <th>Fecha de Creación</th>
-                    <th>Activo</th>
-                    <th>Fecha de Eliminación</th>
+                    <th>Ver</th>
                 </tr>
             </thead>
             <tbody id="bodyCursos">
@@ -78,7 +73,7 @@
     </div>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../../../Public/js/administrador.js"></script>
+<!-- <script src="../../../../Public/js/administrador.js"></script> -->
 
     <script src="../../../../Public/js/check.js"></script>
 
