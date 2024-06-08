@@ -58,10 +58,12 @@
                     </div>
                 </div>
                 <input type="reset" class="btn-guardar btnGuardar" name="resetForm" value="Borrar formulario">
-                <input type="submit" class="btn-guardar btnGeneral" value="Guardar">
+                <input type="submit" class="btn-guardar btnGeneral"></i>
+                <a href="/" class="btn-Volver">Volver</a>
+
 
             </form>
-
+    
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

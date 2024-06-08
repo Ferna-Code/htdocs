@@ -67,7 +67,7 @@ h1 {
 .columna textarea,
 .columna select,
 .columna input[type="number"] {
-    width: 100%;
+    width: 95%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -106,30 +106,23 @@ h1 {
     background: white;
     color: orange;
     border-color: orange;
-    transition: .5;
     cursor: pointer;
+    transition: .7s;
 }
 
-.formulario-empresas .columna input,
-.formulario-empresas .columna textarea,
-.formulario-empresas .columna select {
-    width: 95%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-top: 5px;
+.btn-Volver{
+    background: orange;
+    text-decoration: none;
+    color: white;
+    padding: 13px 50px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-left: 9px;
 }
 
-.formulario-empresas .columna input[type="submit"] {
-    background-color: #ffc107;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.formulario-empresas .columna input[type="submit"]:hover {
-    background-color: #f57c00;
+.btn-Volver:hover{
+    background: white;
+    border-color: orange;
+    color: orange;
+    transition: .7s;
 }
