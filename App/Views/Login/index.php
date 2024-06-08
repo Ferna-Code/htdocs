@@ -203,7 +203,7 @@
                     <div class="col-md-4">
                         <h2>Contáctanos</h2>
                         <ul class="location_icon">
-                            <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra
+                            <li><a href="https://www.linkedin.com/in/diandrapalaciosgutierrez" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Diandra
                                 Palacios
                             </li>
                             <li><a href="https://www.linkedin.com/in/fernando-javier-reyes-luengo-a99650282" target="black_"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> Fernando Reyes
