@@ -1,18 +1,13 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-
-        <div class="sidebar-brand-text mx-3" id="nombrePS" >  <sup></sup></div>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+        <div class="sidebar-brand-text mx-3" id="nombreH1" >  <sup></sup></div>
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
 
-        </a>
-    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->
@@ -58,12 +53,34 @@
         </a>
     </li>
 
-    <!-- <li class="nav-item">
-        <form method="post" action="App/Views/Login/logout.php">
-            <input type="submit" class="btnCerrar" value="Cerrar sesión">
-            <input type="hidden" name="op" value="CERRAR_SESION">
-        </form>
-    </li> -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistacorreo()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de Bienvenida</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistapostulacion()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de Postulación</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistaclave()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de Recuperación</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+            aria-expanded="true" aria-controls="collapse5"  onclick="vistaresumencv()">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Correo de resumen CV</span>
+        </a>
+    </li>
 
     <!-- ------------------- -->
     <br><br>
@@ -74,9 +91,9 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
+    <!-- <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+    </div> -->
 </ul>
 <!-- End of Sidebar -->
 <!-- Content Wrapper -->

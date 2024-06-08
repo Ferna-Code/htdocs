@@ -3,112 +3,122 @@ require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
 $admin = new usuarioDaoImpl();
 $rutsesion = $_SESSION['rut'];
 $imagen = $admin->obtenerImagenUsuario($rutsesion);
+$carrera = $admin->obtenerCarreraUsuario($rutsesion);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
     $controller = new PerfilController();
     $controller->getData();
     exit;
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
     $controller = new PerfilController();
     $controller->guardarDatosAlumno();
     exit;
 }
 ?>
-<div class="conteiner">
-    <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
-        <div class="">
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Usuario</title>
+</head>
+
+<body>
+    <div style="width: 80%; color:">
+        <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
+            <!-- Perfil del Usuario -->
             <div class="cards">
                 <div class="card">
                     <div class="imagen-container">
                         <input type="file" id="imagen" name="imagen" title="Subir foto">
-                        <div class="">
-                            <img src="<?php echo $imagen ?>" alt="Imagen del usuario">
+                        <div class="mt-3">
+                            <img src="<?php
+                            if ($imagen != "") {
+                                echo $imagen;
+                            } else {
+                                echo "/uploads/usuarioSinFoto.jpg";
+                            }
+                            ?>" alt="Imagen del usuario">
                         </div>
                     </div>
                     <div class="contenido-texto-card">
-                        <h1 id="nombreH1"></h1>
+                        <h1 style="font-size: 30px; font-weight: bold;" id="nombrep"></h1>
                         </a>
-                        <h4>Analista Programador</h4>
+                        <h4 style="color: black; font-size: 24px; font-weight: bold;"><?php echo $carrera ?></h4>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="formulario">
-            <h3>Datos Personales</h3>
-            <div class="formulario-experiencia">
-                <div class="columna">
-                    <label for="rut">Rut:</label>
-                    <input type="text" class="form-control" id="rut" name="rut" disabled>
-                </div>
-                <div class="columna">
-                    <label for="email">Correo:</label>
-                    <input type="email" class="form-control" id="email" name="email">
-                </div>
-                <div class="columna">
-                    <label for="fechanac">Fecha de nacimiento:</label>
-                    <input type="date" class="form-control" id="fechanac" name="fechanac">
-                </div>
-                <div class="columna">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono">
-                </div>
-                <div class="columna">
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion">
-                </div>
-                <div class="columna">
-                    <label for="clave">Clave:</label>
-                    <input type="password" class="form-control" id="password" name="password">
-                </div>
-            </div>
-            <div class="experiencialaboral">
-                <h3>Experiencia Laboral</h3>
-                <div class="clientes-contenedor">
-                    <div id="experiencia-laboral-container">
-                        <div class="formulario-experiencia visible">
-                            <div class="columna">
-                                <label for="desde">Desde:</label>
-                                <input type="date" id="desde" name="desde">
-                            </div>
-                            <div class="columna">
-                                <label for="hasta">Hasta:</label>
-                                <input type="date" id="hasta" name="hasta">
-                            </div>
-                            <div class="columna">
-                                <label for="puesto">Puesto:</label>
-                                <input type="text" id="puesto" name="puesto">
-                            </div>
-                            <div class="columna">
-                                <label for="empresa">Empresa:</label>
-                                <input type="text" id="empresa" name="empresa">
-                            </div>
-                            <div class="columna">
-                                <label for="descripcion">Descripción:</label>
-                                <textarea id="descripcion" name="descripcion" rows="4"></textarea>
-                            </div>
-                            <div class="columna">
-                                <label for="trabaja-actualmente">¿Trabaja actualmente aquí?</label>
-                                <div class="opciones">
-                                    <input type="radio" id="si" name="trabaja-actualmente" value="si">
-                                    <label for="si">Sí</label>
-                                    <input type="radio" id="no" name="trabaja-actualmente" value="no">
-                                    <label for="no">No</label>
-                                </div>
-                            </div>
-                        </div>
+
+            <!-- Datos Personales -->
+
+            <div>
+
+                <h3 style="font-size: 30px;  color: red;" class="mt-3">Datos Personales</h3>
+                <div class="grid">
+                    <div>
+                        <label for="rut">Rut:</label>
+                        <input type="text" class="form-control" id="rut" name="rut" disabled>
                     </div>
-                    <!-- Botón para agregar nuevo trabajo -->
-                    <button type="button" class="btn-supervisor" onclick="agregarTrabajo()">Agregar trabajo</button>
-                    <!-- Contenedor para formularios de educación/conocimientos -->
+                    <div>
+                        <label for="email">Correo:</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div>
+                        <label for="fechanac">Fecha de nacimiento:</label>
+                        <input type="date" class="form-control" id="fechanac" name="fechanac">
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono">
+                    </div>
+                    <div>
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion">
+                    </div>
+                    <div>
+                        <label for="clave">Clave:</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
                 </div>
-                <br>
             </div>
-            <!-- GUARDAR DATOS ALUMNO -->
-            <button type="button" class="btn-supervisor" onclick="guardarCambiosUsuario()" name="crearRegistro">Guardar
-                Cambios</button>
-            <!-- GUARDAR DATOS ALUMNO -->
-        </div>
 
-    </form>
+            <!-- Experiencia Laboral -->
 
-</div>
+            <div class="mt-4">
+                <hr>
+                <h3 style="font-size: 30px;  color: red;" class="mt-3">Experiencia Laboral</h3>
+                <div id="formularioexperiencialaboral"></div>
+                <button type="button" class="btn-supervisor mt-2" id="agregar-experiencia-btn">Agregar Trabajo</button>
+                <div id="mensaje-error" class="text-red-500 mt-1"></div>
+            </div>
+
+            <!-- Experiencia Academica -->
+
+            <div class="mt-4">
+                <hr>
+                <h3 style="font-size: 30px;  color: red;" class="mt-3">Experiencia Academica</h3>
+                <div id="formularioexperienciaacademica"></div>
+                <button type="button" class="btn-supervisor mt-2" id="agregar-experiencia-academica-btn">Agregar
+                    Conocimientos</button>
+                <div id="mensaje-error-academico" class="text-red-500 mt-1"></div>
+            </div>
+            <!-- Adjuntar CV -->
+            <hr>
+            <div class="custom-grid mt-4 mb-5">
+                <label for="archivocv" class="custom-label">Adjuntar CV</label>
+                <input id="archivocv" accept=".pdf" type="file" class="custom-input">
+                <div id="contenedorcv"></div>
+            </div>
+            <hr>
+            <!-- Guardar Cambios -->
+            <button id="guardar-cambios-usuario-btn" type="button" class="btn-supervisor mt-2">Guardar Cambios</button>
+        </form>
+    </div>
+
+    <script src="perfil.js"></script>
+</body>
+
+</html>

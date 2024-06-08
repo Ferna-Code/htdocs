@@ -36,7 +36,7 @@ class PublicacionesController {
     
     private function verificarLimitePublicaciones($rutUsuario) {
         $numPublicaciones = $this->publicaciones_model->contarPublicacionesHoy($rutUsuario);
-        return $numPublicaciones >= 3;
+        return $numPublicaciones >= 33;
     }
 
 

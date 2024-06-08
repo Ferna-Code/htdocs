@@ -72,6 +72,18 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo10" style="display:none">
             <?php include 'complementos/muropersonal.php' ?>
         </div>
+        <div class="contenedor-body" id="modulo11" style="display:none">
+            <?php include 'complementos/correobienvenida.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo12" style="display:none">
+            <?php include 'complementos/correopostulacion.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo13" style="display:none">
+            <?php include 'complementos/correorecuperarclave.php' ?>
+        </div>
+        <div class="contenedor-body" id="modulo14" style="display:none">
+            <?php include 'complementos/correoresumencv.php' ?>
+        </div>
 
     </div>
 
@@ -90,17 +102,14 @@ verificarAcceso($perfilesPermitidos);
 
     <!-- Page level plugins -->
     <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
     <script src="../../../../Public/js/alumnos.js"></script>
-    <script src="../../../../public/js/perfilalumno.js"></script>
     <script src="../../../../public/js/perfil.js"></script>
     <script src="../../../../Public/js/cursos.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./../../../Public/js/perfil.js"></script>
-    <script src="./../../../Public/js/curso.js"></script>
     <script src="./../../../Public/js/categoria.js"></script>
     <script src="./../../../Public/js/ofertas.js"></script>
 </body>

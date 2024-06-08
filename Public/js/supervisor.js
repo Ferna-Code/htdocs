@@ -793,7 +793,7 @@ function getPerfil() {
         const fila = `
         <tr class="">
           <td><input type="checkbox" id="checkboxPerfil" class="checkboxPerfil" name="checkId"></td>
-          <td clss="hidden">${row.id}</td>
+          <td class="hidden">${row.id}</td>
           <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
           <td>${row.activo}</td>
           <td>${row.fechaCreacion}</td>

@@ -28,7 +28,6 @@ function controlVisi4() {
   
   function controlVisi6(categoriaId) {
     var elemento6 = document.getElementById("modulo6");
-    console.log("cursos.js")
     getCursos(categoriaId);
     ocultarModulos();
     elemento6.style.display = "flex";
@@ -82,12 +81,9 @@ function getCursos(categoriaId) {
         return response.json();
     })
     .then(data => {
-      console.log("Datos recibidos del servidor:", data);
       if (data.success) {
           const cursos = data.Cursos;
-          console.log("Cursos recibidos data:", cursos);
           const cursosContainer = document.getElementById("cursosContainer");
-          console.log("Contenedor de cursos:", cursosContainer);
           let rowContainer;
           cursos.forEach((curso, index) => {
               const cardcurso = document.createElement("div");

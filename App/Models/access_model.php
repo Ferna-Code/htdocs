@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Database.php';
-require("./App/Models/conexion.php");
+require_once("./App/Models/conexion.php");
 
 class Access_model
 {

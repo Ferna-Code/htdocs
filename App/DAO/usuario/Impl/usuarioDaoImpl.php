@@ -64,18 +64,32 @@ class usuarioDaoImpl implements UsuarioDao
         return $imagenUsuario;
     }
 
-    public function obtenerCarreraUsuario($idCarrera)
+    public function obtenerCarreraUsuario($rut)
     {
-        $query = "SELECT nombre FROM carreras WHERE id = ?";
-        $conn = $this->db->conec();
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "i", $id);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $nombreCarrera);
-        mysqli_stmt_fetch($stmt);
-        mysqli_stmt_close($stmt);
+        $conn = $this->db->conec(); 
+        $query1 = "SELECT idCarrera FROM usuarios WHERE rut = ?";
+        $stmt1 = mysqli_prepare($conn, $query1);
+        mysqli_stmt_bind_param($stmt1, "s", $rut); 
+        mysqli_stmt_execute($stmt1);
+        mysqli_stmt_bind_result($stmt1, $idCarrera);
+    
+        // Obtener el resultado del statement 1
+        mysqli_stmt_fetch($stmt1);
+        mysqli_stmt_close($stmt1);
+    
+        $query2 = "SELECT nombre FROM carreras WHERE id = ?";
+        $stmt2 = mysqli_prepare($conn, $query2);
+        mysqli_stmt_bind_param($stmt2, "i", $idCarrera);
+        mysqli_stmt_execute($stmt2);
+        mysqli_stmt_bind_result($stmt2, $nombreCarrera);
+        mysqli_stmt_fetch($stmt2);
+        mysqli_stmt_close($stmt2);
+    
+        mysqli_close($conn); 
+    
         return $nombreCarrera;
     }
+    
     public function actualizarDatosUsuario(usuario_model $usuarioModel)
     {
         // Obtener los datos del modelo
@@ -110,7 +124,7 @@ class usuarioDaoImpl implements UsuarioDao
         $params[] = $rut; 
         $sql = "UPDATE usuarios SET " . implode(', ', $setClauses) . " WHERE rut = ?";
         $conn = $this->db->conec();
-        $stmt = mysqli_prepare($conn, $sql);
+       /*line 113*/ $stmt = mysqli_prepare($conn, $sql);
         if (!$stmt) {
             // Error al preparar la consulta
             echo "Error en la preparación de la consulta: " . mysqli_error($conn);

@@ -1,0 +1,21 @@
+.bodyPublicacion {
+    flex: 1; /* Toma el espacio restante */
+    max-height: 130vh; /* Establece una altura máxima */
+    overflow-y: auto; /* Agrega desplazamiento vertical si es necesario */
+    padding-right: 30px; /* Agrega un espacio entre el contenido principal y las tarjetas */
+}
+
+
+/* BARRA DEL LADO DERECHO */
+.barraDerecha {
+    width: 255px; /* Ancho del menú lateral */
+    background-color: #fff; /* Color de fondo del menú */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea los elementos a la derecha */
+    justify-content: flex-start; /* Alinea los elementos arriba */
+    max-height: 80vh;
+    margin-right: -40px;
+    padding-left: 3%;
+}

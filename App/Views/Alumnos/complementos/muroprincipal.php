@@ -52,18 +52,20 @@ $publicaciones = $controlador->mostrarPublicaciones();
         if (is_array($publicaciones)) {
             foreach ($publicaciones as $p) {
                 ?>
-                <div>
                 <div class="tweet-card">
                     <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
-                    <img class="img" src="<?php
-                    $admin = new usuarioDaoImpl();
-                    $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
-                    if ($imagenUsuario != "") {
-                        echo $imagenUsuario;
-                    } else {
-                        echo "/uploads/usuarioSinFoto.jpg";
-                    }
-                    ?>" alt="">
+                    <div class="imagen-container">
+                        <img class="img" src="<?php
+                        $admin = new usuarioDaoImpl();
+                        $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
+                        if ($imagenUsuario != "") {
+                            echo $imagenUsuario;
+                        } else {
+                            echo "/uploads/usuarioSinFoto.jpg";
+                        }
+                        ?>" alt="">
+                    </div>
+
                     <div class="tweet-content">
 
                         <div class="tweet-text">
@@ -85,18 +87,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
                         <i class="far fa-comment"></i>
                     </div>
                 </div>
-                <div>
-                <form method="post" action="">
-                <label id="record-<?php  echo $lista['id_pub'];?>">
-                <input type="text" class="enviar-btn form-control input-sm" style="width: 800px;" placeholder="Escribe un comentario" name="comentario" id="comentario-<?php  echo $lista['id_pub'];?>">
-                <input type="hidden" name="usuario"  >
-                <input type="hidden" name="publicacion"  >
-                <input type="hidden" name="avatar"  >
-                <input type="hidden" name="nombre"  >
-                </form>
-                </div>
-                </div>
-            <?php
+                <?php
             }
         } else {
             echo "No se encontraron publicaciones.";
