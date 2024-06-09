@@ -446,7 +446,7 @@ function getCategoria() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -529,7 +529,7 @@ function getCurso() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -693,7 +693,7 @@ function getPalabra() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -826,7 +826,7 @@ function getPublicacion() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -866,7 +866,7 @@ function getReporte() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -906,7 +906,7 @@ function getOferta() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -945,7 +945,7 @@ function getPerfil() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -984,7 +984,7 @@ function getCarrera() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData()
       }
     })
     .catch((error) => {
@@ -1024,7 +1024,7 @@ function getUsuario() {
           tbody.append(fila);
         });
       } else {
-        alert("No se encontraron datos para actualizar");
+        noData();
       }
     })
     .catch((error) => {
@@ -1598,3 +1598,6 @@ function confirmarDelete(selectedIds) {
   });
 }
 
+function noData(){
+  Swal.fire("No se encontraron datos para actualizar");
+}

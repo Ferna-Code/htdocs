@@ -255,7 +255,7 @@ class AdministradorDaoImpl implements AdministradorDao
 
     public function getExpAcademica($limit = 10)
     {
-        $consulta = "SELECT * FROM expercienciaacademica WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM experienciaacademica WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -274,7 +274,7 @@ class AdministradorDaoImpl implements AdministradorDao
 
     public function getExpLaboral($limit = 10)
     {
-        $consulta = "SELECT * FROM experciencialaboral WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM experiencialaboral WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -479,7 +479,7 @@ class AdministradorDaoImpl implements AdministradorDao
     public function deleteArchivos($ids)
     {
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $consulta = "DELETE FROM cvarchivos WHERE rut IN ($placeholders)";
+        $consulta = "DELETE FROM cvarchivos WHERE id IN ($placeholders)";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
 
         if (!$stmt) {
