@@ -310,6 +310,18 @@ function controlVisi17() {
   // Centra el módulo 1
   centrarModulo(elemento17);
 }
+function controlVisi18(id) {
+  var elemento18 = document.getElementById("modulo18");
+  getCursoById(id);
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento18.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento17);
+}
 
 
 
@@ -442,10 +454,9 @@ function getCurso() {
         <tr>
           <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
           <td class="hidden">${row.id}</td>
-          <td>${row.nombre}</td>
+          <td class="widthName"><a href="#" class="linkTabla" onclick="controlVisi18(${row.id})">${row.nombre}</a></td>
           <td>${row.emitidopor}</td>
           <td>${row.fechaCreacion}</td>
-          <td><a href="#" onclick="veroferta(${row.id})">Ver Curso</a></td>
         </tr>`;
           tbody.append(fila);
         });
@@ -459,6 +470,48 @@ function getCurso() {
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getCursoById(id) {
+  fetch("/supervisor/getCursoById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      // Asignar datos a los elementos de la vista
+      const curso = data.curso;
+      if (curso.idcategoria == 1) {
+        categoria = "Educación, bienestar y calidad";
+      } else if (curso.idcategoria == 2) {
+        categoria = "Informática, tecnología y productividad";
+      } else if (curso.idcategoria == 3) {
+        categoria = "Negocios, gestión e innovación";
+      } else {
+        categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+      }
+      document.getElementById("verNombreCurso").value = curso.nombre;
+      document.getElementById("verCodigoCurso").value = curso.id;
+      document.getElementById("verIdCurso").value = curso.id;
+      document.getElementById("verCategoriaCurso").value = categoria;
+      document.getElementById("verCentroCurso").value = curso.emitidopor;
+      document.getElementById("verFechaCurso").value = curso.fechaCreacion;
+      document.getElementById("verEliminacionCurso").value = (curso.fechaEliminacion || '');
+      document.getElementById("verDescripcionCurso").value = curso.descripcion;
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
@@ -560,7 +613,7 @@ function getReportes() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
-          <td>${row.id}</td>
+          
           <td>${row.idcomentario}</td>
           <td>${row.rutusuario}</td>
           <td>${row.idpublicacion}</td>
@@ -739,7 +792,7 @@ function getPublicacion() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
-          <td>${row.id}</td>
+         
           <td>${row.rutusuario}</td>
           <td>${row.publicacion}</td>
           <td>${row.nreportes}</td>
@@ -988,6 +1041,49 @@ function deleteCurso(ids) {
     });
     
 }
+
+//--------------UPDATE-----------
+
+document.getElementById('ForUpdateCurso').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const formData = {
+    idCurso: document.getElementById('verIdCurso').value,
+    nombre: document.getElementById('verNombreCurso').value,
+    categoria: document.getElementById('verCategoriaCurso').value,
+    codigo: document.getElementById('verCodigoCurso').value,
+    centro: document.getElementById('verCentroCurso').value,
+    fecha: document.getElementById('verFechaCurso').value,
+    eliminacion: document.getElementById('verEliminacionCurso').value,
+    descripcion: document.getElementById('verDescripcionCurso').value,
+  };
+
+  fetch("/supervisor/updateCurso", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert("Curso actualizado exitosamente");
+        // Restablece los valores del formulario
+        document.getElementById('formCurso').reset();
+      } else {
+        alert("Error: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
 
 
 

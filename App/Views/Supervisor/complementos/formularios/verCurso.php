@@ -3,9 +3,7 @@
 </head>
 
 <div class="contenedor-principal">
-    <div class="banner">
-        <img src="../../../../Public/img/bannerempleos.png" alt="">
-    </div>
+  
 
     <div class="">
         <div class="formulario-cursos">

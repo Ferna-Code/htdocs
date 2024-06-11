@@ -119,6 +119,10 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'App/Views/Supervisor/complementos/formularios/ingresarCurso.php' ?>
         </div>
 
+        <div class="contenedor-body" id="modulo18" style="display:none">
+            <?php include 'App/Views/Supervisor/complementos/formularios/verCurso.php' ?>
+        </div>
+
             
     </div>
 
