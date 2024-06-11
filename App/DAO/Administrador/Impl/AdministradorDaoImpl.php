@@ -255,7 +255,7 @@ class AdministradorDaoImpl implements AdministradorDao
 
     public function getExpAcademica($limit = 10)
     {
-        $consulta = "SELECT * FROM expercienciaacademica WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM experienciaacademica WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -274,7 +274,7 @@ class AdministradorDaoImpl implements AdministradorDao
 
     public function getExpLaboral($limit = 10)
     {
-        $consulta = "SELECT * FROM experciencialaboral WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM experiencialaboral WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -681,5 +681,60 @@ class AdministradorDaoImpl implements AdministradorDao
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
+    
+    }
+
+    public function updateDiccionario($id,$palabra){
+        $sql = "update diccionario set palabra = ? where id = ?";
+        $stmt = mysqli_prepare($this->db->conec(), $sql);
+        mysqli_stmt_bind_param($stmt, "si", $palabra, $id);
+        $result = mysqli_stmt_execute($stmt);
+        if ($result) {
+            $message = "Datos actualizados correctamente";
+            $success = true;
+        } else {
+            $message = "Error al actualizar datos: " . mysqli_stmt_error($stmt);
+            $success = false;
+        }
+    
+        mysqli_stmt_close($stmt); // Cerrar la declaración
+    
+        return array("success" => $success, "message" => $message);
+    }
+
+    public function updateCategoria($id,$nombre){
+        $sql = "update categorias set nombre = ? where id = ?";
+        $stmt = mysqli_prepare($this->db->conec(), $sql);
+        mysqli_stmt_bind_param($stmt, "si", $nombre, $id);
+        $result = mysqli_stmt_execute($stmt);
+        if ($result) {
+            $message = "Datos actualizados correctamente";
+            $success = true;
+        } else {
+            $message = "Error al actualizar datos: " . mysqli_stmt_error($stmt);
+            $success = false;
+        }
+    
+        mysqli_stmt_close($stmt); // Cerrar la declaración
+    
+        return array("success" => $success, "message" => $message);
+    }
+
+    public function updateCarrera($idCarrera,$nombreCarrera,$idCategoria){
+        $sql = "update carreras set nombre = ?, idcategorias = ? where id = ?";
+        $stmt = mysqli_prepare($this->db->conec(), $sql);
+        mysqli_stmt_bind_param($stmt, "sii", $nombreCarrera, $idCategoria,$idCarrera );
+        $result = mysqli_stmt_execute($stmt);
+        if ($result) {
+            $message = "Datos actualizados correctamente";
+            $success = true;
+        } else {
+            $message = "Error al actualizar datos: " . mysqli_stmt_error($stmt);
+            $success = false;
+        }
+    
+        mysqli_stmt_close($stmt); // Cerrar la declaración
+    
+        return array("success" => $success, "message" => $message);
     }
 }

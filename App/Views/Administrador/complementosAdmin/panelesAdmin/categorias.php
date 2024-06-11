@@ -23,7 +23,7 @@
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCategoria">
                     Nuevo
                 </button>
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarCategoriar">Editar</button>
+                
                 <button type="button" id="deleteSelectedCategorias" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -36,6 +36,7 @@
                         <th class="anchoFecha">Fecha de Creación</th>
                         <th class="anchoActiv">Activo</th>
                         <th class="anchoFecha">Fecha de Eliminación</th>
+                        <th> Editar</th>
                     </tr>
                 </thead>
                 <tbody id="bodyCategorias">
