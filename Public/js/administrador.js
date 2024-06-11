@@ -323,6 +323,19 @@ function controlVisi18(id) {
   centrarModulo(elemento17);
 }
 
+function controlVisi19(id) {
+  var eleme = document.getElementById("modulo19");
+  getOfertaById(id);
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo correspondiente
+  eleme.style.display = "flex";
+
+  // Centra el módulo mostrado
+  centrarModulo(eleme);
+}
+
 
 
 
@@ -833,19 +846,14 @@ function getOfertas() {
         data.forEach(row => {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxOferta" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.tipoOferta}</td>
-          <td>${row.idcategoria}</td>
-          <td>${row.cargo}</td>
-          <td>${row.nombreEmpresa}</td>
-          <td>${row.rutempresa}</td>
-          <td>${row.correocontacto}</td>
-          <td>${row.descripcion}</td>
-          <td>${row.rangosalarial}</td>
+        <tr class="table table-striped">
+          <td><input type="checkbox" class="checkboxOfertas" id="checkboxOfertas" name="checkId"></td>
+          <td class="hidden">${row.id}</a></td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi19(${row.id})">${row.cargo}</a></td>
+          <td>${row.nombreEmpresa}</a></td>
+          <td>${row.tipoOferta}</a></td>
           <td>${row.fechacreacion}</td>
-          <td>${row.fechaeliminacion ? row.fechaeliminacion : 'N/A'}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
           tbody.append(fila);
         });
@@ -860,6 +868,50 @@ function getOfertas() {
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getOfertaById(id) {
+  fetch("/supervisor/getOfertaById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      // Asignar datos a los elementos de la vista
+      const oferta = data.curso;
+      if (oferta.idcategoria == 1) {
+        categoria = "Educación, bienestar y calidad";
+      } else if (oferta.idcategoria == 2) {
+        categoria = "Informática, tecnología y productividad";
+      } else if (oferta.idcategoria == 3) {
+        categoria = "Negocios, gestión e innovación";
+      } else {
+        categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+      }
+      document.getElementById("verIdOferta").value = oferta.id;
+      document.getElementById("cargoOferta").value = oferta.cargo;
+      document.getElementById("tipoOferta").value = oferta.tipoOferta;
+      document.getElementById("categoriaOferta").value = categoria;
+      document.getElementById("empresaOferta").value = oferta.nombreEmpresa;
+      document.getElementById("rutEmpresa").value = oferta.rutempresa;
+      document.getElementById("correoOferta").value = oferta.correocontacto;
+      document.getElementById("salarioOferta").value = oferta.rangosalarial;
+      document.getElementById("creacionOferta").value = oferta.fechacreacion;
+      document.getElementById("descripcionOferta").value = oferta.descripcion;
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 

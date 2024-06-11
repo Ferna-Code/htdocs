@@ -781,7 +781,7 @@ function getPublicacion() {
           <td>${row.publicacion}</a></td>
           <td>${row.nreportes ? row.nreportes : 'SIN REPORTES'}</a></td>
           <td>${row.fechaCreacion}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+         
         </tr>`;
 
           tbody.append(fila);
@@ -1570,6 +1570,48 @@ document.getElementById('ForUpdateUser').addEventListener('submit', function (ev
     nacimiento: document.getElementById('nacimientoUser').value,
     telefono: document.getElementById('telefonoUser').value,
     direccion: document.getElementById('direccionUsers').value,
+    correo: document.getElementById('correoUser').value,
+  };
+
+  fetch("/supervisor/updateUsuario", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert("Datos actualizados exitosamente");
+        // Restablece los valores del formulario
+        document.getElementById('formUsuario').reset();
+      } else {
+        alert("Error: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
+document.getElementById('ForUpdateOferta').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const formData = {
+    nombre: document.getElementById('verNombreUser').value,
+    rut: document.getElementById('rutUser').value,
+    idPerfil: document.getElementById('idUser').value,
+    nacimiento: document.getElementById('nacimientoUser').value,
+    telefono: document.getElementById('telefonoUser').value,
+    direccion: document.getElementById('direccionUsers').value,
+    correo: document.getElementById('correoUser').value,
+    correo: document.getElementById('correoUser').value,
+    correo: document.getElementById('correoUser').value,
     correo: document.getElementById('correoUser').value,
   };
 
