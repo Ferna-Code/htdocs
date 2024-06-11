@@ -10,6 +10,7 @@ interface SupervidorDao{
     public function updateUsuario(SupervisorModel $admin);
     public function getCursoById($id);
     public function getUsuarioByRut($rut);
+    public function getOfertaById($id);
     public function getPalabra();
     public function getCategoria();
     public function getCurso();

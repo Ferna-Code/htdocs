@@ -169,6 +169,19 @@ class SupervisorDaoImpl implements SupervidorDao
         mysqli_close($conn);
         return $data;
     }
+    public function getOfertaById($id) {
+        $sql = "SELECT * FROM ofertas WHERE id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id); // Cambiado a "s" para string
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = mysqli_fetch_assoc($result); // Asegúrate de obtener una sola fila de resultados
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $data;
+    }
 
     public function insertPerfil(SupervisorModel $admin)
     {

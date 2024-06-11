@@ -221,9 +221,9 @@ function controlVisi9() {
 }
 
 //verOferta
-function controlVisi10() {
+function controlVisi10(id) {
   var eleme = document.getElementById("modulo10");
-
+  getOfertaById(id);
   // Oculta todos los módulos
   ocultarModulos();
 
@@ -237,7 +237,7 @@ function controlVisi10() {
 //ingresarCurso
 function controlVisi11() {
   var eleme = document.getElementById("modulo11");
-
+  
   // Oculta todos los módulos
   ocultarModulos();
 
@@ -703,45 +703,6 @@ function getPalabra() {
 }
 
 
-
-// function getPalabra(tableName) {
-//   fetch("/supervisor/getPalabra")
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`HTTP error: ${response.status}`);
-//       }
-//       return response.json();
-//     })
-//     .then((data) => {
-//       if (data && data.length > 0) {
-//         const tbody = $("#tbodyPalabra");
-//         tbody.empty();
-
-//         //itera sobre cada elemento en la data y añade fila a la tabla
-//         //data.array.forEach(element => {});
-//         data.forEach(row => {
-//           console.log("Cuerpo del mensaje: ", row);
-//           if (tableName == 'diccionario') {
-//             const fila = `
-//               <tr>
-//                 <td class="widthCheck"><input type="checkbox" id="checkAllPalabra" name="select-all"></td>
-//                 <td>${row.palabra}</td>
-//                 <td>${row.fechaCreacion}</td>
-//                 <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-//               </tr>`;
-//             tbody.append(fila);
-//           }
-//         });
-//       } else {
-//         alert("No se encontraron datos para actualizar");
-//       }
-//     })
-//     .catch((error) => {
-//       console.error("Error en la solicitud Fetch: ", error);
-//       alert("Error en la solicitud: ", error.message);
-//     });
-// }
-
 //INGRESAR USUARIO
 $("#formUsuario").on("submit", function (event) {
   event.preventDefault();
@@ -896,7 +857,7 @@ function getOferta() {
         <tr class="table table-striped">
           <td><input type="checkbox" class="checkboxOfertas" id="checkboxOfertas" name="checkId"></td>
           <td class="hidden">${row.id}</a></td>
-          <td><a href="#" class="linkTabla" onclick="">${row.cargo}</a></td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi10(${row.id})">${row.cargo}</a></td>
           <td>${row.nombreEmpresa}</a></td>
           <td>${row.tipoOferta}</a></td>
           <td>${row.fechacreacion}</td>
@@ -912,6 +873,50 @@ function getOferta() {
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getOfertaById(id) {
+  fetch("/supervisor/getOfertaById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      // Asignar datos a los elementos de la vista
+      const oferta = data.curso;
+      if (oferta.idcategoria == 1) {
+        categoria = "Educación, bienestar y calidad";
+      } else if (oferta.idcategoria == 2) {
+        categoria = "Informática, tecnología y productividad";
+      } else if (oferta.idcategoria == 3) {
+        categoria = "Negocios, gestión e innovación";
+      } else {
+        categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+      }
+      document.getElementById("verIdOferta").value = oferta.id;
+      document.getElementById("cargoOferta").value = oferta.cargo;
+      document.getElementById("tipoOferta").value = oferta.tipoOferta;
+      document.getElementById("categoriaOferta").value = categoria;
+      document.getElementById("empresaOferta").value = oferta.nombreEmpresa;
+      document.getElementById("rutEmpresa").value = oferta.rutempresa;
+      document.getElementById("correoOferta").value = oferta.correocontacto;
+      document.getElementById("salarioOferta").value = oferta.rangosalarial;
+      document.getElementById("creacionOferta").value = oferta.fechacreacion;
+      document.getElementById("descripcionOferta").value = oferta.descripcion;
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 //PERFILES
