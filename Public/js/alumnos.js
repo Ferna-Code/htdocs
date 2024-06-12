@@ -249,6 +249,7 @@ function getOfertaByID(id) {
               cardofert.innerHTML = `
                   <div class="cardo mb-4">
                       <div class="cardo-details">
+                          <p class="text-title">Tipo Oferta: ${oferta.id}</p>
                           <p class="text-title">Tipo Oferta: ${oferta.tipoOferta}</p>
                           <p class="text-body">Cargo: ${oferta.cargo}</p>
                           <p class="text-body">Descripción: ${oferta.descripcion}</p>
@@ -256,7 +257,7 @@ function getOfertaByID(id) {
                           <p class="text-body">Rango Salarial: ${oferta.rangosalarial}</p>
                           <p class="text-body">Fecha de publicación: ${oferta.fechacreacion}</p>
                       </div>
-                      <button class="cardo-button" onclick="enviarPostulacion()">Postular</button>
+                      <button class="cardo-button" onclick="enviarPostulacion(${oferta.id})">Postular</button>
                   </div>
               `;
             
@@ -272,7 +273,8 @@ function getOfertaByID(id) {
   })
 }
 
-function enviarPostulacion(){
+function enviarPostulacion(id){
+  const idOferta = id
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -282,7 +284,7 @@ function enviarPostulacion(){
   });
   swalWithBootstrapButtons.fire({
     title: "¿Desea postular a esta oferta?",
-    text: "Asegurate que todos tus datos esten actualizados",
+    text: "Asegurate que todos tus datos esten actualizados" + idOferta,
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Postular",
@@ -308,3 +310,8 @@ function enviarPostulacion(){
   });
 }
 
+function postular(idOferta){
+  const idOferta = idOferta
+  fetch("ofertas")
+
+}
