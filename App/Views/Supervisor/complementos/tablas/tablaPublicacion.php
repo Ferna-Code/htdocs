@@ -32,3 +32,12 @@
 
     </div>
 </section>
+
+<!-- Modal -->
+<div id="publicacionModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Información de la Publicación</h2>
+    <p id="modalPublic"></p>
+  </div>
+</div>

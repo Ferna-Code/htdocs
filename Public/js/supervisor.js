@@ -1,89 +1,89 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   let userDataOriginal;
 
   function getUsuarios() {
-      fetch("/Supervisor/getdataUsuario/", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-      })
+    fetch("/Supervisor/getdataUsuario/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then(response => response.json())
       .then(result => {
-          console.log(result)
-          if (result.success) {
-              const userData = result.data;
-              document.getElementById('nombrep').innerText = userData.nombre;
-              document.getElementById('rut').value = userData.rut;
-              document.getElementById('email').value = userData.correo;
-              document.getElementById('fechanac').value = userData.fechaNacimiento;
-              document.getElementById('telefono').value = userData.telefono;
-              document.getElementById('direccion').value = userData.direccion;
-              document.getElementById('password').value = userData.clave;
-              document.getElementById('cargo').innerText = userData.cargo;
-              cargo
-              userDataOriginal = userData;
-          } else {
-              console.error("Error obtener datos Usuario:", result.message);
-          }
+        console.log(result)
+        if (result.success) {
+          const userData = result.data;
+          document.getElementById('nombrep').innerText = userData.nombre;
+          document.getElementById('rut').value = userData.rut;
+          document.getElementById('email').value = userData.correo;
+          document.getElementById('fechanac').value = userData.fechaNacimiento;
+          document.getElementById('telefono').value = userData.telefono;
+          document.getElementById('direccion').value = userData.direccion;
+          document.getElementById('password').value = userData.clave;
+          document.getElementById('cargo').innerText = userData.cargo;
+          cargo
+          userDataOriginal = userData;
+        } else {
+          console.error("Error obtener datos Usuario:", result.message);
+        }
       })
       .catch(error => {
-          console.error('Error al obtener los datos del usuario:', error);
+        console.error('Error al obtener los datos del usuario:', error);
       });
   }
 
   getUsuarios();
 
   function guardarCambiosPersonales(event) {
-      event.preventDefault();
+    event.preventDefault();
 
-      const camposModificados = {};
-      const rut = document.getElementById('rut').value;
-      const correo = document.getElementById('email').value;
-      const telefono = document.getElementById('telefono').value;
-      const direccion = document.getElementById('direccion').value;
-      const fechaNacimiento = document.getElementById('fechanac').value;
-      const clave = document.getElementById('password').value;
-      const imagenInput = document.getElementById('imagen');
+    const camposModificados = {};
+    const rut = document.getElementById('rut').value;
+    const correo = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
+    const direccion = document.getElementById('direccion').value;
+    const fechaNacimiento = document.getElementById('fechanac').value;
+    const clave = document.getElementById('password').value;
+    const imagenInput = document.getElementById('imagen');
 
-      if (correo !== userDataOriginal.correo) camposModificados.correo = correo;
-      if (telefono !== userDataOriginal.telefono) camposModificados.telefono = telefono;
-      if (direccion !== userDataOriginal.direccion) camposModificados.direccion = direccion;
-      if (fechaNacimiento !== userDataOriginal.fechaNacimiento) camposModificados.fechaNacimiento = fechaNacimiento;
-      if (clave !== userDataOriginal.clave) camposModificados.clave = clave;
+    if (correo !== userDataOriginal.correo) camposModificados.correo = correo;
+    if (telefono !== userDataOriginal.telefono) camposModificados.telefono = telefono;
+    if (direccion !== userDataOriginal.direccion) camposModificados.direccion = direccion;
+    if (fechaNacimiento !== userDataOriginal.fechaNacimiento) camposModificados.fechaNacimiento = fechaNacimiento;
+    if (clave !== userDataOriginal.clave) camposModificados.clave = clave;
 
-      const formData = new FormData();
-      formData.append('rut', rut);
+    const formData = new FormData();
+    formData.append('rut', rut);
 
-      for (const key in camposModificados) {
-          formData.append(key, camposModificados[key]);
-      }
+    for (const key in camposModificados) {
+      formData.append(key, camposModificados[key]);
+    }
 
-      if (imagenInput.files.length > 0) {
-          formData.append('imagen', imagenInput.files[0]);
-      }
+    if (imagenInput.files.length > 0) {
+      formData.append('imagen', imagenInput.files[0]);
+    }
 
-      fetch("/Supervisor/guardardatospersonales", {
-          method: "POST",
-          body: formData
-      })
+    fetch("/Supervisor/guardardatospersonales", {
+      method: "POST",
+      body: formData
+    })
       .then(response => response.json())
       .then(result => {
-          if (result.success) {
-            cambiosGuardados()
-          } else {
-              console.error(result.message);
-          }
+        if (result.success) {
+          cambiosGuardados()
+        } else {
+          console.error(result.message);
+        }
       })
       .catch(error => {
-          console.error('Error al guardar los cambios del usuario:', error);
+        console.error('Error al guardar los cambios del usuario:', error);
       });
   }
 
   document.getElementById('guardar-cambios-usuario-btn').addEventListener('click', guardarCambiosPersonales);
 });
 
-function cambiosGuardados(){
+function cambiosGuardados() {
   Swal.fire({
     position: "top-end",
     icon: "success",
@@ -237,7 +237,7 @@ function controlVisi10(id) {
 //ingresarCurso
 function controlVisi11() {
   var eleme = document.getElementById("modulo11");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
@@ -445,6 +445,7 @@ function getCategoria() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -528,6 +529,7 @@ function getCurso() {
         </tr>`;
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllCurso', 'checkboxCurso');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -692,6 +694,7 @@ function getPalabra() {
          </tr>`;
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllPalabra', 'checkboxPalabra');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -778,7 +781,8 @@ function getPublicacion() {
           <td><input type="checkbox" id="tableUsers" class="checkboxPublicacion" name="checkId"></td>
           <td class="hidden">${row.id}</td>
           <td>${row.rutusuario}</a></td>
-          <td>${row.publicacion}</a></td>
+        
+          <td><a href="#" class="linkTabla" onclick="showModal('${row.id}')">${row.publicacion}</a></td>
           <td>${row.nreportes ? row.nreportes : 'SIN REPORTES'}</a></td>
           <td>${row.fechaCreacion}</td>
          
@@ -786,6 +790,7 @@ function getPublicacion() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -794,6 +799,28 @@ function getPublicacion() {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
     });
+}
+
+function getPublicacionById(id) {
+  fetch("/supervisor/getPublicacionById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Llama a la función showModal con los datos de la publicación
+      showModal(data.curso.publicacion);
+     
+    })
+    
 }
 
 //REPORTE
@@ -826,6 +853,7 @@ function getReporte() {
         </tr>`;
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -866,6 +894,7 @@ function getOferta() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllOferta', 'checkboxOfertas');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -949,6 +978,7 @@ function getPerfil() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllPerfil', 'checkboxPerfil');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -978,7 +1008,7 @@ function getCarrera() {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr class="">
-          <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
+          <td><input type="checkbox" class="checkboxCarrera" name="checkboxCarrera"></td>
           <td class="hidden">${row.id}</td>
           <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
           <td>${row.idcategorias}</td>
@@ -988,6 +1018,7 @@ function getCarrera() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -1028,6 +1059,7 @@ function getUsuario() {
         </tr>`;
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllUsuario', 'checkboxUsuarios');
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -1646,7 +1678,7 @@ document.getElementById('ForUpdateOferta').addEventListener('submit', function (
 
 //---------------ALERTAS-------------------
 
-function notData(){
+function notData() {
   Swal.fire({
     title: "No hay datos seleccionados para eliminar",
     showClass: {
@@ -1667,7 +1699,7 @@ function notData(){
 }
 
 //--------------DELETE----------------
-function confirmarEliminado(){
+function confirmarEliminado() {
   Swal.fire({
     position: "top-end",
     icon: "success",
@@ -1677,7 +1709,7 @@ function confirmarEliminado(){
   });
 }
 
-function errorEliminar(){
+function errorEliminar() {
   Swal.fire({
     position: "top-end",
     icon: "success",
@@ -1687,7 +1719,7 @@ function errorEliminar(){
   });
 }
 
-function cannotDeleted(){
+function cannotDeleted() {
   Swal.fire({
     title: "No se pueden eliminar los datos seleccionados",
     showClass: {
@@ -1721,3 +1753,26 @@ function confirmarDelete(selectedIds) {
   });
 }
 
+
+
+//------------MODAL--------------
+function showModal(content) {
+  getPublicacionById(content);
+  const modal = document.getElementById("publicacionModal");
+  const modalContent = document.getElementById("modalPublic");
+  modalContent.innerText = content;
+  modal.style.display = "block";
+
+  // Para cerrar el modal cuando se hace clic en el botón de cerrar
+  const closeBtn = document.getElementsByClassName("close")[0];
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Para cerrar el modal cuando se hace clic fuera de él
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}

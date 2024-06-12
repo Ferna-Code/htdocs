@@ -376,6 +376,19 @@ class SupervisorController
             echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
         }
     }
+    public function getPublicacionById()
+    {
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        $idPublic = $requestData['id'];
+        $admin = new SupervisorDaoImpl();
+        $data = $admin->getPublicacionById($idPublic); // Cambiado para llamar el método correcto
+
+        if ($data) {
+            echo json_encode(['success' => true, 'curso' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
 
     //-------------------DELETES-----------------
     public function deleteCategoria()
