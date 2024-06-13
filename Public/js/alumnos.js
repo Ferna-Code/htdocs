@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.like-action').forEach(function(element) {
       element.addEventListener('click', function() {
           const publicacionId = this.getAttribute('data-id');
-          const likesCountElement = this.nextElementSibling; 
+          const likesCountElement = this.parentElement.querySelector('.likes-count'); // Seleccionar el contador de likes
           
           fetch('/usuarios/likePublicacion', {
               method: 'POST',
@@ -360,20 +360,20 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(data => {
               if (data.success) {
                   // Actualizar el contador de likes en el frontend
-                  const newLikes = parseInt(likesCountElement.textContent) + 1;
+                  const newLikes = parseInt(likesCountElement.textContent.trim()) + 1 || 1; // Incrementar el contador
                   likesCountElement.textContent = newLikes;
-                  this.classList.add('liked'); 
               } else {
                   alert('Hubo un problema al dar like a la publicación. ' + data.message); 
               }
           })
           .catch(error => {
               console.error('Error al procesar la solicitud:', error);
-              alert('Hubo un problema al procesar la solicitud. catch');
+              alert('Hubo un problema al procesar la solicitud.');
           });
       });
   });
 });
+
 
 
 
