@@ -3,5 +3,5 @@
 </head>
 
 <div class="footer">
-    Rocket Tech 2022.
+    Rocket Tech 2024.
 </div>

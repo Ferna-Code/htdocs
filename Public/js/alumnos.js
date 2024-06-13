@@ -483,10 +483,94 @@ function error(){
   Swal.fire({
     position: "top-end",
     icon: "error",
-    title: "ocurrio un error al ejecutar esta acción.",
+    title: "Hubo un problema al ejecutar esta acción.",
     showConfirmButton: false,
     timer: 1500
   });
 }
 
+// COMENTARIOS
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById("commentsModal");
+  const span = document.getElementsByClassName("close")[0];
+  const commentsContainer = document.getElementById("modal-comments-container");
+  const commentForm = document.getElementById("commentForm");
+  const publicacionIdInput = document.getElementById("publicacionIdInput");
 
+  document.querySelectorAll('.comment-action').forEach(function(element) {
+      element.addEventListener('click', function() {
+          const publicacionId = this.getAttribute('data-id');
+          publicacionIdInput.value = publicacionId; // Guardar el ID de la publicación en el campo oculto
+          
+          fetch('/usuarios/getComments', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ publicacionId: publicacionId })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  commentsContainer.innerHTML = '';
+                  if (data.comments.length > 0) {
+                      data.comments.forEach(comment => {
+                          const commentElement = document.createElement('div');
+                          commentElement.classList.add('comment');
+                          commentElement.innerHTML = `<p><strong>${comment.nombre}</strong>: ${comment.comentario}</p>`;
+                          commentsContainer.appendChild(commentElement);
+                      });
+                  } else {
+                      commentsContainer.innerHTML = '<p>No hay comentarios aún. ¡Sé el primero en comentar!</p>';
+                  }
+                  modal.style.display = "block";
+              } else {
+                  error()
+              }
+          })
+          .catch(error => {
+            error()
+          });
+      });
+  });
+
+  commentForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const comentario = document.getElementById("newComment").value;
+      const publicacionId = publicacionIdInput.value;
+      
+      fetch('/usuarios/agregarComentario', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ publicacionId: publicacionId, comentario: comentario })
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              const newCommentElement = document.createElement('div');
+              newCommentElement.classList.add('comment');
+              newCommentElement.innerHTML = `<p><strong>${data.usuario}</strong>: ${data.comentario}</p>`;
+              commentsContainer.appendChild(newCommentElement);
+              document.getElementById("newComment").value = '';
+          } else {
+            error()
+          }
+      })
+      .catch(error => {
+        error()
+      });
+  });
+
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+});

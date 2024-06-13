@@ -265,4 +265,40 @@ class usuarioDaoImpl implements UsuarioDao
         return $affectedRows;
 
     }
+
+    public function obtenercomentarios($publicacionId) {
+        $sql = '
+            SELECT comentarios.*, usuarios.nombre 
+            FROM comentarios 
+            JOIN usuarios ON comentarios.rutusuario = usuarios.rut 
+            WHERE comentarios.idpublicacion = ? 
+              AND comentarios.fechaEliminacion IS NULL
+        ';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $publicacionId);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $comentarios = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $comentarios[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $comentarios;
+    }
+    
+
+    public function insertarComentario($publicacionId, $rutusuario, $comentario) {
+        $sql = 'INSERT INTO comentarios (idpublicacion, rutusuario, comentario, fechaCreacion) VALUES (?, ?, ?, NOW())';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "iss", $publicacionId, $rutusuario, $comentario);
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
+        return $success;
+    }
+    
 }

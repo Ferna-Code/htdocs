@@ -60,7 +60,7 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
                             <i class="fa fa-flag report-action" data-id="<?php echo $p['id']; ?>"></i>
                         </div>
                         <i class="far fa-comment comment-action" data-id="<?php echo $p['id']; ?>"></i>
-                        <i class="fa fa-trash delete-action"  data-id="<?php echo $p['id']; ?>" aria-hidden="true"></i>
+                        <i class="fa fa-trash delete-action" data-id="<?php echo $p['id']; ?>" aria-hidden="true"></i>
                     </div>
                 </div>
                 <?php
@@ -69,6 +69,8 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
             echo "No se encontraron publicaciones.";
         }
         ?>
+
+
 
     </div>
 
