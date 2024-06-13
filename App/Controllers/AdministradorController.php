@@ -80,6 +80,24 @@ class AdministradorController
     }
 
 
+    public function updateCarrera() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($data['id']) && isset($data['nuevoNombre']) && isset($data['idCategoriaSeleccionada'])) {
+                $id = intval($data['id']);
+                $nuevoNombre = $data['nuevoNombre']; 
+                $idCategoriaSeleccionada = intval($data['idCategoriaSeleccionada']); 
+                $admin = new AdministradorDaoImpl();
+                $result = $admin->updateCarrera($id, $nuevoNombre, $idCategoriaSeleccionada);
+                echo json_encode($result);
+            } else {
+                echo json_encode(array("success" => false, "message" => "Datos faltantes"));
+            }
+        } else {
+            echo json_encode(array("success" => false, "message" => "Método no permitido"));
+        }
+    }
+    
 
 
     //------------ CATEGORIA -----------//
@@ -96,6 +114,53 @@ class AdministradorController
         }
     }
 
+    public function getCategoriaByID()
+    {
+        $admin = new AdministradorDaoImpl();
+        $limit = 10;
+        $data = $admin->getCategorias($limit);
+
+        if(isset($data['success']) && !$data['success']){
+            echo json_encode($data); // Retornar mensaje de error
+        } else {
+            echo json_encode($data); // Retornar datos
+        }
+    }
+
+    public function updateCategoria() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($data['id']) && isset($data['nuevoNombre'])) {
+                $id = $data['id'];
+                $nombre = $data['nuevoNombre'];
+                $admin = new AdministradorDaoImpl();
+                $result = $admin->updateCategoria($id, $nombre);
+                echo json_encode($result);
+            } else {
+                echo json_encode(array("success" => false, "message" => "Datos faltantes"));
+            }
+        } else {
+            echo json_encode(array("success" => false, "message" => "Método no permitido"));
+        }
+    }
+
+    public function updateDiccionario() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($data['id']) && isset($data['nuevaPalabra'])) {
+                $id = $data['id'];
+                $palabra = $data['nuevaPalabra'];
+                $admin = new AdministradorDaoImpl();
+                $result = $admin->updateDiccionario($id, $palabra);
+                echo json_encode($result);
+            } else {
+                echo json_encode(array("success" => false, "message" => "Datos faltantes"));
+            }
+        } else {
+            echo json_encode(array("success" => false, "message" => "Método no permitido"));
+        }
+    }
+    
 
 
     //------------ CURSO -----------//

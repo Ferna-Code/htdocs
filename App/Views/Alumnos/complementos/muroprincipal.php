@@ -51,25 +51,21 @@ $publicaciones = $controlador->mostrarPublicaciones();
         if (is_array($publicaciones)) {
             foreach ($publicaciones as $p) {
                 ?>
-                <div class="tweet-card">
-                    <!-- Aquí se pueden colocar dinámicamente las imágenes de acuerdo a las publicaciones -->
+                <div class="tweet-card" data-publicacion-id="<?php echo $p['id']; ?>"
+                    data-rutusuario="<?php echo $p['rutusuario']; ?>">
                     <div class="imagen-container">
                         <img class="img" src="<?php
                         $admin = new usuarioDaoImpl();
                         $imagenUsuario = $admin->obtenerImagenUsuario($p['rutusuario']);
-                        if ($imagenUsuario != "") {
-                            echo $imagenUsuario;
-                        } else {
-                            echo "/uploads/usuarioSinFoto.jpg";
-                        }
+                        echo $imagenUsuario != "" ? $imagenUsuario : "/uploads/usuarioSinFoto.jpg";
                         ?>" alt="">
                     </div>
 
                     <div class="tweet-content">
-
                         <div class="tweet-text">
                             <p class="h1">
-                                <?php $nombreUsuario = $controladorUsuarios->buscarUsuario($p['rutusuario']);
+                                <?php
+                                $nombreUsuario = $controladorUsuarios->buscarUsuario($p['rutusuario']);
                                 foreach ($nombreUsuario as $usuario) {
                                     echo $usuario['nombre'];
                                 }
@@ -79,11 +75,11 @@ $publicaciones = $controlador->mostrarPublicaciones();
                         </div>
                     </div>
                     <div class="tweet-actions">
-                        <!-- Aquí puedes colocar los íconos para las acciones -->
-                        <i> <?php echo $p['fechaCreacion']; ?></i>
-                        <i class="fa fa-flag"></i>
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-comment"></i>
+                        <i><?php echo $p['fechaCreacion']; ?></i>
+                        <i class="fa fa-flag report-action" data-id="<?php echo $p['id']; ?>"></i>
+                        <i class="far fa-thumbs-up like-action" data-id="<?php echo $p['id']; ?>"
+                            data-likes="<?php echo $p['nlikes']; ?>"></i>
+                        <i class="far fa-comment comment-action" data-id="<?php echo $p['id']; ?>"></i>
                     </div>
                 </div>
                 <?php
@@ -92,6 +88,9 @@ $publicaciones = $controlador->mostrarPublicaciones();
             echo "No se encontraron publicaciones.";
         }
         ?>
+
+
+
     </div>
 
     <?php include_once 'body-page/parteDerecha.php'; ?>

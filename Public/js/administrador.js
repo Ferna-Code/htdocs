@@ -356,56 +356,140 @@ function centrarModulo(modulo) {
 
 /*-------------Mostrar info en Tablas--------------*/
 
-function getCarrera() {
-  fetch("/Administrador/getCarrera")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data && data.length > 0) {
-        const tbody = $("#bodyCarreras");
-        tbody.empty();
+async function getCarrera() {
+  try {
+    const responseCarreras = await fetch("/Administrador/getCarrera");
+    if (!responseCarreras.ok) {
+      throw new Error(`HTTP error: ${responseCarreras.status}`);
+    }
+    const dataCarreras = await responseCarreras.json();
 
-        data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
-          let categoria;
-          if (row.idcategorias == '1') {
-            categoria = "Educación, bienestar y calidad";
-          } else if (row.idcategorias == '2') {
-            categoria = "Informática, tecnología y productividad";
-          } else if (row.idcategorias == '3') {
-            categoria = "Negocios, gestión e innovación";
-          } else {
-            categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
-          }
+    // Obtener un mapa de ID de categoría a nombre de categoría
+    const categoriasMap = await obtenerCategoriasMap();
 
-          const fila = `
-            <tr>
-              <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
-              <td class="hidden">${row.id}</td>
-              <td>${row.nombre}</td>
-              <td>${categoria}</td>
-              <td>${row.fechaCreacion}</td>
-              <td>${row.activo}</td>
-              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-            </tr>`;
-          tbody.append(fila);
-        });
+    const tbody = $("#bodyCarreras");
+    tbody.empty();
 
-        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
-
-      } else {
-        alert("No se encontraron datos para actualizar");
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+    dataCarreras.forEach(row => {
+      const categoriaNombre = categoriasMap.get(row.idcategorias) || 'Categoría desconocida';
+      const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
+          <td class="hidden">${row.id}</td>
+          <td>${row.nombre}</td>
+          <td>${categoriaNombre}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCarrera(${row.id},'${row.nombre}',${row.idcategorias},'${categoriaNombre}')">Editar</button></td>
+        </tr>`;
+      tbody.append(fila);
     });
+
+    initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+  } catch (error) {
+    console.error("Error en la solicitud Fetch: ", error);
+    alert("Error en la solicitud: ", error.message);
+  }
 }
+
+async function obtenerCategoriasMap() {
+  try {
+    const responseCategorias = await fetch("/Administrador/getCategoria");
+    if (!responseCategorias.ok) {
+      throw new Error(`HTTP error: ${responseCategorias.status}`);
+    }
+    const dataCategorias = await responseCategorias.json();
+
+    // Construir un mapa de ID de categoría a nombre de categoría
+    const categoriasMap = new Map();
+    dataCategorias.forEach(row => {
+      categoriasMap.set(row.id, row.nombre);
+    });
+    return categoriasMap;
+  } catch (error) {
+    throw new Error(`Error al obtener las categorías: ${error.message}`);
+  }
+}
+
+
+
+// EDITAR CARRERA
+
+async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
+  try {
+    // Obtener el mapa de ID de categoría a nombre de categoría
+    const categoriasMap = await obtenerCategoriasMap();
+
+    // Construir las opciones del select
+    let opcionesSelect = '';
+    categoriasMap.forEach((nombre, id) => {
+      opcionesSelect += `<option value="${id}">${nombre}</option>`;
+    });
+
+    const { value: formValues } = await Swal.fire({
+      title: "Editar Carrera",
+      html: `
+        <input id="swal-input1" type="hidden" class="swal2-input" value="${id}">
+        <br>
+        <input id="swal-input2" class="swal2-input" value="${nombre}">
+        <select id="swal-input3" class="swal2-input">${opcionesSelect}</select>
+      `,
+      
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById("swal-input1").value,
+          document.getElementById("swal-input2").value,
+          document.getElementById("swal-input3").value
+        ];
+      }
+    });
+
+    if (formValues) {
+      const id = formValues[0];
+      const nuevoNombre = formValues[1];
+      const idCategoriaSeleccionada = formValues[2];
+      const nombreCategoriaSeleccionada = categoriasMap.get(idCategoriaSeleccionada);
+
+      fetch('/Administrador/updateCarrera', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, nuevoNombre,idCategoriaSeleccionada })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          Swal.fire('Carrera actualizada con éxito');
+          getCategoria(); // Vuelve a cargar la tabla de Carreras
+        } else {
+          Swal.fire('Error al actualizar la Carrera');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error al actualizar la Carrera');
+      });
+    }
+  } catch (error) {
+    console.error("Error al editar carrera: ", error);
+    Swal.fire('Error al editar carrera');
+  }
+
+  getCarrera()
+}
+
+  
+
+
+
+
+//FIN EDITAR CARRERA
+
+
+// OBTENER CATEGORIAS
 
 function getCategoria() {
   fetch("/Administrador/getCategoria")
@@ -421,7 +505,6 @@ function getCategoria() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
@@ -430,7 +513,8 @@ function getCategoria() {
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
+        </tr>`; 
           tbody.append(fila);
         });
 
@@ -445,6 +529,59 @@ function getCategoria() {
       alert("Error en la solicitud: ", error.message);
     });
 }
+
+async function editarCategoria(id, nombre) {
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Categoría",
+    html: `
+      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="Nuevo nombre" value="${nombre}">
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    preConfirm: () => {
+      return [
+        document.getElementById("swal-input2").value
+      ];
+    }
+  });
+
+  if (formValues) {
+    const nuevoNombre = formValues[0];
+
+    fetch('/Administrador/updateCategoria', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id, nuevoNombre })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Categoría actualizada con éxito');
+        getCategoria(); // Vuelve a cargar la tabla de categorías
+      } else {
+        Swal.fire('Error al actualizar la categoría');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar la categoría');
+    });
+  }
+}
+
+document.getElementById('editarButton').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  editarCategoria();
+  editarDiccionario();
+  editarCarrera()
+});
+
+
+
+// Llamar a la función para cargar las categorías
+getCategoria();
 
 
 //--------------CURSOS---------------//
@@ -552,6 +689,8 @@ function getDiccionario() {
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editardiccionario(${row.id},'${row.palabra}')">Editar</button></td>
+   
         </tr>`;
           tbody.append(fila);
         });
@@ -567,6 +706,49 @@ function getDiccionario() {
       alert("Error en la solicitud: ", error.message);
     });
 }
+
+async function editardiccionario(id, palabra) {
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Palabra Prohibida",
+    html: `
+      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="palabra" value="${palabra}">
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    preConfirm: () => {
+      return [
+        document.getElementById("swal-input2").value
+      ];
+    }
+  });
+
+  if (formValues) {
+    const nuevaPalabra = formValues[0];
+
+    fetch('/Administrador/updateDiccionario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id, nuevaPalabra })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Palabra actualizada con éxito');
+        getDiccionario(); // Vuelve a cargar la tabla
+      } else {
+        Swal.fire('Error al actualizar la Palabra');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar la Palabra');
+    });
+  }
+}
+
+// PERFIL
 
 function getPerfil() {
   fetch("/Administrador/getPerfil")
@@ -973,11 +1155,10 @@ function getExpAcademica() {
 
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
-          <td>${row.id}</td>
+          <td type="hidden">${row.ID}</td>
           <td>${row.rutusuario}</td>
           <td>${row.fechafinalizacion}</td>
           <td>${row.titulobtenido}</td>
@@ -1017,11 +1198,10 @@ function getExpLaboral() {
 
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxLaboral" name="select-all"></td>
-          <td>${row.id}</td>
+          <td>${row.ID}</td>
           <td>${row.rutusuario}</td>
           <td>${row.fechadesde}</td>
           <td>${row.fechahasta}</td>

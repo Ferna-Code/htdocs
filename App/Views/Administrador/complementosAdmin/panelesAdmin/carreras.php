@@ -41,7 +41,8 @@
                             <th>Categoria</th>
                             <th>Fecha de Ingreso</th>
                             <th>Activo</th>
-                            <th>Fecha de Eliminacion</th>
+                            <th>Fecha de Eliminación</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody id="bodyCarreras">

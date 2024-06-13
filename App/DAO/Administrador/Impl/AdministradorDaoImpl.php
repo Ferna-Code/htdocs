@@ -253,9 +253,27 @@ class AdministradorDaoImpl implements AdministradorDao
         return $result;
     }
 
+    public function getPostulacionesbyID($id)
+    {
+        $consulta = "SELECT * FROM postulaciones WHERE id = ?";
+        $stmt = mysqli_prepare($this->db->conec(), $consulta);
+        if (!$stmt) {
+            return array("success" => false, "message" => "Error en la busqueda");
+        }
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 0) {
+            return false;
+        }
+        mysqli_stmt_close($stmt);
+        return $result;
+    }
+
     public function getExpAcademica($limit = 10)
     {
-        $consulta = "SELECT * FROM expercienciaacademica WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM experienciaacademica WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -274,7 +292,7 @@ class AdministradorDaoImpl implements AdministradorDao
 
     public function getExpLaboral($limit = 10)
     {
-        $consulta = "SELECT * FROM experciencialaboral WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM experiencialaboral WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -571,7 +589,7 @@ class AdministradorDaoImpl implements AdministradorDao
     public function deleteExpAcademica($ids)
     {
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $consulta = "DELETE FROM expercienciaacademica WHERE ID IN ($placeholders)";
+        $consulta = "DELETE FROM experienciaacademica WHERE ID IN ($placeholders)";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
 
         if (!$stmt) {
@@ -595,7 +613,7 @@ class AdministradorDaoImpl implements AdministradorDao
     public function deleteExpLaboral($ids)
     {
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $consulta = "DELETE FROM experciencialaboral WHERE ID IN ($placeholders)";
+        $consulta = "DELETE FROM experiencialaboral WHERE ID IN ($placeholders)";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
 
         if (!$stmt) {
@@ -681,5 +699,60 @@ class AdministradorDaoImpl implements AdministradorDao
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
+    
+    }
+
+    public function updateDiccionario($id,$palabra){
+        $sql = "update diccionario set palabra = ? where id = ?";
+        $stmt = mysqli_prepare($this->db->conec(), $sql);
+        mysqli_stmt_bind_param($stmt, "si", $palabra, $id);
+        $result = mysqli_stmt_execute($stmt);
+        if ($result) {
+            $message = "Datos actualizados correctamente";
+            $success = true;
+        } else {
+            $message = "Error al actualizar datos: " . mysqli_stmt_error($stmt);
+            $success = false;
+        }
+    
+        mysqli_stmt_close($stmt); // Cerrar la declaración
+    
+        return array("success" => $success, "message" => $message);
+    }
+
+    public function updateCategoria($id,$nombre){
+        $sql = "update categorias set nombre = ? where id = ?";
+        $stmt = mysqli_prepare($this->db->conec(), $sql);
+        mysqli_stmt_bind_param($stmt, "si", $nombre, $id);
+        $result = mysqli_stmt_execute($stmt);
+        if ($result) {
+            $message = "Datos actualizados correctamente";
+            $success = true;
+        } else {
+            $message = "Error al actualizar datos: " . mysqli_stmt_error($stmt);
+            $success = false;
+        }
+    
+        mysqli_stmt_close($stmt); // Cerrar la declaración
+    
+        return array("success" => $success, "message" => $message);
+    }
+
+    public function updateCarrera($idCarrera,$nombreCarrera,$idCategoria){
+        $sql = "update carreras set nombre = ?, idcategorias = ? where id = ?";
+        $stmt = mysqli_prepare($this->db->conec(), $sql);
+        mysqli_stmt_bind_param($stmt, "sii", $nombreCarrera, $idCategoria,$idCarrera );
+        $result = mysqli_stmt_execute($stmt);
+        if ($result) {
+            $message = "Datos actualizados correctamente";
+            $success = true;
+        } else {
+            $message = "Error al actualizar datos: " . mysqli_stmt_error($stmt);
+            $success = false;
+        }
+    
+        mysqli_stmt_close($stmt); // Cerrar la declaración
+    
+        return array("success" => $success, "message" => $message);
     }
 }

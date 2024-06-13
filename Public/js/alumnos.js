@@ -249,6 +249,7 @@ function getOfertaByID(id) {
               cardofert.innerHTML = `
                   <div class="cardo mb-4">
                       <div class="cardo-details">
+                          <p style="display: none;" class="text-title">id: ${oferta.id}</p>
                           <p class="text-title">Tipo Oferta: ${oferta.tipoOferta}</p>
                           <p class="text-body">Cargo: ${oferta.cargo}</p>
                           <p class="text-body">Descripción: ${oferta.descripcion}</p>
@@ -256,7 +257,7 @@ function getOfertaByID(id) {
                           <p class="text-body">Rango Salarial: ${oferta.rangosalarial}</p>
                           <p class="text-body">Fecha de publicación: ${oferta.fechacreacion}</p>
                       </div>
-                      <button class="cardo-button" onclick="enviarPostulacion()">Postular</button>
+                      <button class="cardo-button" onclick="enviarPostulacion(${oferta.id})">Postular</button>
                   </div>
               `;
             
@@ -272,7 +273,8 @@ function getOfertaByID(id) {
   })
 }
 
-function enviarPostulacion(){
+function enviarPostulacion(id){
+  const idOferta = id
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -290,6 +292,7 @@ function enviarPostulacion(){
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
+      postular(idOferta)
       swalWithBootstrapButtons.fire({
         title: "Postulación enviada",
         text: "Tu perfil ha sido enviado",
@@ -307,4 +310,68 @@ function enviarPostulacion(){
     }
   });
 }
+
+function postular(idOferta){
+  fetch("postulaciones/insertData/", {
+            method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idOferta: idOferta })
+  })
+      .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then((data) => {
+      if(!data.success){
+        alert("Postulación enviada")
+
+      }
+    }).catch((error) => {
+      console.log("Error en la solicitud Fetch: ", error);
+    })
+
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Like action
+  document.querySelectorAll('.like-action').forEach(function(element) {
+      element.addEventListener('click', function() {
+          const publicacionId = this.getAttribute('data-id');
+          const currentLikes = parseInt(this.getAttribute('data-likes'));
+          
+          fetch('/usuarios/likePublicacion', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ publicacionId: publicacionId })
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              if (data.success) {
+                  // Actualizar el contador de likes en el front-end
+                  const newLikes = currentLikes + 1;
+                  this.setAttribute('data-likes', newLikes);
+                  this.classList.add('liked'); // Agregar una clase para indicar que se ha dado like
+                  this.innerHTML = `<i class="fas fa-thumbs-up"></i> ${newLikes}`;
+              } else {
+                  alert('Hubo un problema al dar like a la publicación. ' + data.message); // Mostrar el mensaje de error específico
+              }
+          })
+          .catch(error => {
+              console.error('Error al procesar la solicitud:', error);
+              alert('Hubo un problema al procesar la solicitud.'); // Mostrar un mensaje genérico de error
+          });
+      });
+  });
+});
 
