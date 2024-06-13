@@ -168,4 +168,41 @@ class usuarioDaoImpl implements UsuarioDao
         mysqli_stmt_close($stmt);
         return $success;
     }
+
+
+    public function actualizarLikes($publicacionId) {
+        $admin = new usuarioDaoImpl();
+        $cantidadLike = $admin->getLikes($publicacionId);
+        $nLikes = $cantidadLike + 1;
+        $sql = 'UPDATE publicaciones SET nlikes = ? WHERE id = ?';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        
+        mysqli_stmt_bind_param($stmt, "ii", $nLikes, $publicacionId);
+        mysqli_stmt_execute($stmt);
+    
+        // Obtener el número de filas afectadas por la consulta UPDATE
+        $affectedRows = mysqli_stmt_affected_rows($stmt); 
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
+        return $affectedRows; 
+    }
+    
+
+    public function getLikes($publicacionId) {
+        $sql = 'SELECT COUNT(`like`) AS cantidad_likes FROM publicaciones WHERE id = ?';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $publicacionId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $cantidad_likes);
+        mysqli_stmt_fetch($stmt);
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
+        return $cantidad_likes;
+    }
 }
