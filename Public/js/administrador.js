@@ -1053,7 +1053,7 @@ function getExpAcademica() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
-          <td type="hidden">${row.ID}</td>
+          <td>${row.ID}</td>
           <td>${row.rutusuario}</td>
           <td>${row.fechafinalizacion}</td>
           <td>${row.titulobtenido}</td>

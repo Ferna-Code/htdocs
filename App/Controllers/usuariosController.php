@@ -82,7 +82,37 @@ class usuariosController {
         echo json_encode($response);
     }
 
+    public function eliminarPublicacion() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            
+            if (isset($data['publicacionId'])) {
+                $publicacionId = intval($data['publicacionId']);
+                $publicaciones = new usuarioDaoImpl();
+                $success = $publicaciones->deletedAtPublicaciones($publicacionId);
     
-
+                if ($success) {
+                    // Si se eliminó correctamente, enviar una respuesta JSON de éxito
+                    $response = ['success' => true];
+                } else {
+                    // Si hubo un error al eliminar, enviar una respuesta JSON de error
+                    $response = ['success' => false, 'message' => 'Error al eliminar la publicación.'];
+                }
+            } else {
+                // Si no se recibió el ID de la publicación, enviar una respuesta JSON de error
+                $response = ['success' => false, 'message' => 'ID de publicación no recibido.'];
+            }
+        } else {
+            // Si la solicitud no es POST, enviar una respuesta JSON de error
+            $response = ['success' => false, 'message' => 'Solicitud no válida.'];
+        }
+    
+        // Enviar la respuesta JSON al cliente
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+    
 }
+
+
 

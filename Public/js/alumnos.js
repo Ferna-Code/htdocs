@@ -363,12 +363,11 @@ document.addEventListener('DOMContentLoaded', function() {
                   const newLikes = parseInt(likesCountElement.textContent.trim()) + 1 || 1; // Incrementar el contador
                   likesCountElement.textContent = newLikes;
               } else {
-                  alert('Hubo un problema al dar like a la publicación. ' + data.message); 
+                error()
               }
           })
           .catch(error => {
-              console.error('Error al procesar la solicitud:', error);
-              alert('Hubo un problema al procesar la solicitud.');
+            error()
           });
       });
   });
@@ -414,15 +413,80 @@ document.addEventListener('DOMContentLoaded', function() {
                   }
 
               } else {
-                  alert('Hubo un problema al reportar la publicación: ' + data.message);
+                error()
               }
           })
           .catch(error => {
-              console.error('Error al procesar la solicitud:', error);
-              alert('Hubo un problema al procesar la solicitud.');
+            error()
           });
       });
   });
 });
+
+// ELIMINAR PUBLICACION
+document.addEventListener('DOMContentLoaded', function() {
+  // Delete action
+  document.querySelectorAll('.delete-action').forEach(function(element) {
+    element.addEventListener('click', function() {
+      const publicacionId = this.getAttribute('data-id');
+
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminarlo!",
+        cancelButtonText: "Cancelar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch('/usuarios/eliminarPublicacion', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ publicacionId: publicacionId })
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.success) {
+              // Acciones adicionales después de eliminar la publicación (opcional)
+              const publicacionContainer = element.closest('.tweet-card');
+              publicacionContainer.style.display = 'none'; // Ocultar la publicación eliminada
+              Swal.fire("Eliminada!", "La publicación ha sido eliminada.", "success");
+            } else {
+              Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
+            }
+          })
+          .catch(error => {
+            console.error('Error al procesar la solicitud:', error);
+            Swal.fire("Error", "Hubo un problema al procesar la solicitud.", "error");
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire("Cancelado", "La publicación no ha sido eliminada", "info");
+        }
+      });
+    });
+  });
+});
+
+
+
+
+function error(){
+  Swal.fire({
+    position: "top-end",
+    icon: "error",
+    title: "ocurrio un error al ejecutar esta acción.",
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
 
 
