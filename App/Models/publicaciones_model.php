@@ -19,7 +19,7 @@ class PublicacionesModel
     public function contarPublicacionesHoy($rutUsuario)
     {
         $fecha_actual = date("Y-m-d");
-        $sql = "SELECT COUNT(*) AS cantidad FROM publicaciones WHERE rutusuario = ? AND fechaCreacion = ?";
+        $sql = "SELECT COUNT(*) AS cantidad FROM publicaciones WHERE rutusuario = ? AND fechaCreacion = ? and fechaEliminacion is null";
         if ($stmt = mysqli_prepare($this->db->getConnection(), $sql)) {
             mysqli_stmt_bind_param($stmt, "ss", $rutUsuario, $fecha_actual);
             if (mysqli_stmt_execute($stmt)) {
@@ -54,7 +54,7 @@ class PublicacionesModel
     {
         $publicaciones = array();
 
-        $consulta = mysqli_query($this->db->getConnection(), "SELECT * FROM publicaciones order by id desc");
+        $consulta = mysqli_query($this->db->getConnection(), "SELECT * FROM publicaciones where fechaEliminacion is null order by id desc");
 
         while ($fila = mysqli_fetch_assoc($consulta)) {
 
@@ -67,7 +67,7 @@ class PublicacionesModel
     public function verPublicacionesUsuario($rut)
     {
         $publicaciones = array();
-        $query = "SELECT * FROM publicaciones WHERE rutusuario = ? order by id desc";
+        $query = "SELECT * FROM publicaciones WHERE rutusuario = ? and fechaEliminacion is null order by id desc";
         if ($stmt = mysqli_prepare($this->db->getConnection(), $query)) {
             mysqli_stmt_bind_param($stmt, "s", $rut);
             mysqli_stmt_execute($stmt);

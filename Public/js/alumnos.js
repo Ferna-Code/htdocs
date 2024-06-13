@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
           })
           .catch(error => {
               console.error('Error al procesar la solicitud:', error);
-              alert('Hubo un problema al procesar la solicitud.'); // Mostrar un mensaje genérico de error
+              alert('Hubo un problema al procesar la solicitud. catch');
           });
       });
   });
@@ -403,8 +403,16 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(data => {
               if (data.success) {
                   // Actualizar el contador de reportes en el frontend
-                  const newReportsCount = parseInt(reportsCountElement.textContent) + 1;
+                  let currentReportsCount = parseInt(reportsCountElement.textContent.trim()) || 0; // Convertir a número o asignar 0 si no es válido
+                  const newReportsCount = currentReportsCount + 1;
                   reportsCountElement.textContent = newReportsCount;
+
+                  if (newReportsCount >= 3) {
+                      // Ocultar la publicación o realizar alguna acción adicional
+                      const publicacionContainer = element.closest('.tweet-card');
+                      publicacionContainer.style.display = 'none';
+                  }
+
               } else {
                   alert('Hubo un problema al reportar la publicación: ' + data.message);
               }
@@ -416,4 +424,5 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+
 
