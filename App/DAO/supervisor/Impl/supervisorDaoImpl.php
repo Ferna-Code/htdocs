@@ -101,7 +101,7 @@ class SupervisorDaoImpl implements SupervidorDao
 
         $nombre = $admin->getNombreCurso();
         $descripcion = $admin->getDescripcionCurso();
-        $emitido = "Supervisor";
+        $emitido = $admin->getCentro();
         $link = $admin->getLink();
         $categoria = $admin->getCategoriaCurso();
         $fecha = $admin->getFechaInicio();
@@ -139,6 +139,21 @@ class SupervisorDaoImpl implements SupervidorDao
         
         mysqli_stmt_close($stmt);
         return $datos;
+    }
+
+    public function getCursoById($id)
+    {
+        $sql = "SELECT * FROM cursos WHERE id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = mysqli_fetch_assoc($result); // Asegúrate de obtener una sola fila de resultados
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $data;
     }
 
     public function insertPerfil(SupervisorModel $admin)
@@ -511,5 +526,35 @@ class SupervisorDaoImpl implements SupervidorDao
         mysqli_stmt_close($stmt);
     
         return $success;
+    }
+
+    //-----------------UPDATE--------------
+
+    public function updateCurso(SupervisorModel $admin) {
+        $updateQuery = "UPDATE cursos SET nombre=?, descripcion=?, emitidopor=?, fechaCreacion=?, idcategoria=? WHERE id=?";
+    
+        $stmt = mysqli_prepare($this->db->conec(), $updateQuery);
+    
+        if (!$stmt) {
+            throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
+        }
+    
+        $id = $admin->getIdCurso();
+        $nombre = $admin->getNombreCurso();
+        $descripcion = $admin->getDescripcionCurso();
+        $centro = $admin->getCentro();
+        
+        $fecha = $admin->getFechaInicio();
+       
+        $categoria = $admin->getCategoriaCurso();
+    
+        mysqli_stmt_bind_param($stmt, "sssssi", $nombre, $descripcion, $centro, $fecha, $categoria, $id);
+        $result = mysqli_stmt_execute($stmt);
+    
+        if ($result) {
+            return array("success" => true, "message" => "Datos actualizados correctamente");
+        } else {
+            return array("success" => false, "message" => "Error al actualizar datos: " . mysqli_stmt_error($stmt));
+        }
     }
 }

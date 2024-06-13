@@ -1,21 +1,22 @@
 <?php
 require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
+require_once 'app/Controllers/AdministradorController.php';
 $admin = new usuarioDaoImpl();
 $rutsesion = $_SESSION['rut'];
 $imagen = $admin->obtenerImagenUsuario($rutsesion);
-$carrera = $admin->obtenerCarreraUsuario($rutsesion);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
-    $controller = new PerfilController();
-    $controller->getData();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getDataUsuario') {
+    $controller = new AdministradorController();
+    $controller->getDataUsuario();
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
-    $controller = new PerfilController();
-    $controller->guardarDatosAlumno();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'guardardatospersonales') {
+    $controller = new AdministradorController();
+    $controller->guardarDatosPersonales();
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,9 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Usuario</title>
 </head>
-
+<link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
+    <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
 <body>
-    <div style="width: 70%;">
+    <div style="width: 80%;">
         <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
             <!-- Perfil del Usuario -->
             <div class="cards">
@@ -47,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
                     <div class="contenido-texto-card">
                         <h1 style="font-size: 30px; font-weight: bold;" id="nombrep"></h1>
                         </a>
-                        <h4 style="color: black; font-size: 24px; font-weight: bold;"><?php echo $carrera ?></h4>
+                        <h4 style="color: black; font-size: 24px; font-weight: bold;" id="cargo"></h4>
                     </div>
                 </div>
             </div>
@@ -84,13 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
                     </div>
                 </div>
             </div>
-            <hr>
             <!-- Guardar Cambios -->
             <button id="guardar-cambios-usuario-btn" type="button" class="btn-supervisor mt-2">Guardar Cambios</button>
         </form>
     </div>
-
-    <script src="../../../../../perfil.js"></script>
 </body>
-
+<script src="perfil.js"></script>
+<script src="../../../../public/js/sweetalert2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

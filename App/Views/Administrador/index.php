@@ -116,7 +116,7 @@ verificarAcceso($perfilesPermitidos);
         </div>
 
         <div class="contenedor-body" id="modulo17" style="display:none">
-            <?php include 'complementos/formularios/ingresarCurso.php' ?>
+            <?php include 'App/Views/Supervisor/complementos/formularios/ingresarCurso.php' ?>
         </div>
 
             
@@ -142,7 +142,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
     <script src="../../../../Public/js/administrador.js"></script>
-
+    <script src="../../../../public/js/perfil.js"></script>
 
 
     <!-- JS card -->

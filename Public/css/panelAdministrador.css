@@ -295,6 +295,8 @@ body {
     padding: 6 12;
 }
 
-
+.hidden{
+    display: none;
+}
 
 

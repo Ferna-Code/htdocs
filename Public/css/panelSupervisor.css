@@ -4,7 +4,8 @@
     --color-rojo: #dc3545;
     --letra-panel: #000000;
     --color-btnRojo: #b02a37;
-    --color-btnAzul: #0d6efd;;
+    --color-btnAzul: #0d6efd;
+    ;
 }
 
 body {
@@ -27,62 +28,70 @@ body {
 .contenedor-body {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
     flex: 2;
 
 }
 
-.link-nav{
+.link-nav {
     color: var(--letra-panel);
 }
 
 /*Menu*/
 
-.btn-sspp{
+.btn-sspp {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
     width: 100%;
     height: 70px;
     margin: 10px 0px 10px 0px;
 }
 
-.btn-sspp a{
+.btn-sspp a {
     text-decoration: none;
 }
 
-.btn-sspp:hover{
+.btn-sspp:hover {
     background: rgba(255, 255, 255, .3);
 }
 
 /*Container body*/
 
-.btn-panel{
+.btn-panel {
     display: flex;
-   padding-left: 40px;
+    padding-left: 40px;
     width: 87.5%;
     height: 12%;
     border: 1px solid black;
     border-radius: 5px;
-     justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
 }
 
-.body-panel{
+.body-panel {
     display: flex;
     margin-top: 5%;
     width: 90%;
     height: 70%;
     border: 1px solid black;
     border-radius: 5px;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
 }
 
 /*Pie de pagina*/
 
-.footer{
+.footer {
     width: 100%;
     height: 20%;
     background: orange;
@@ -90,14 +99,14 @@ body {
 
 /*Botones opciones*/
 
-.panel-body{
+.panel-body {
     display: flex;
     align-items: center;
     width: 100%;
-    
+
 }
 
-.panel-body .btn-rep1{
+.panel-body .btn-rep1 {
     display: flex;
     margin: 0px 10px 0px 10px;
     width: 100px;
@@ -106,11 +115,11 @@ body {
     height: 29px;
 }
 
-.btn-body{   
+.btn-body {
     border-radius: 30px;
     text-decoration: none;
     border: 1px solid yellow;
-    color: black; 
+    color: black;
     width: 100%;
     height: 100%;
     display: flex;
@@ -121,39 +130,40 @@ body {
 
 /*Tabla*/
 
-.tr-table{
+.tr-table {
     text-align: center;
     width: 100px;
 }
 
-.marginBtn{
+.marginBtn {
     margin-bottom: 10px;
 }
 
 /* Media query para pantallas pequeñas */
 @media only screen and (max-width: 768px) {
     .contenedor {
-      flex-direction: column;
-      height: auto;
-     
+        flex-direction: column;
+        height: auto;
+
     }
-  
+
     .container-panel {
-      flex: 1;
+        flex: 1;
     }
-  
+
     .contenedor-body {
-      flex: 3;
+        flex: 3;
     }
-    
-    .btn-panel, .body-panel {
-      width: 90%;
-      padding-left: 10px;
-      padding-right: 10px;
+
+    .btn-panel,
+    .body-panel {
+        width: 90%;
+        padding-left: 10px;
+        padding-right: 10px;
     }
-  }
-  
-  /* Reglas de CSS para hacer la tabla responsive */
+}
+
+/* Reglas de CSS para hacer la tabla responsive */
 .table-responsive {
     overflow-x: auto;
 }
@@ -162,7 +172,8 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Fijar el ancho de la tabla */
+    table-layout: fixed;
+    /* Fijar el ancho de la tabla */
 }
 
 /* Ajustes para las columnas */
@@ -171,44 +182,78 @@ body {
     padding: 8px;
     text-align: center;
     font-size: 14px;
-    white-space: nowrap; /* Evitar que el texto se divida en múltiples líneas */
+    white-space: nowrap;
+    /* Evitar que el texto se divida en múltiples líneas */
     overflow: hidden;
-    text-overflow: ellipsis; /* Mostrar puntos suspensivos (...) cuando el texto sea demasiado largo */
+    text-overflow: ellipsis;
+    /* Mostrar puntos suspensivos (...) cuando el texto sea demasiado largo */
 }
 
 /* Contenedor de la tabla */
 .table-container {
     overflow-x: auto;
-    min-width: 320px; /* Establecer un ancho mínimo para el contenedor */
-    max-width: 100%; /* Establecer un ancho máximo para el contenedor */
+    min-width: 320px;
+    /* Establecer un ancho mínimo para el contenedor */
+    max-width: 100%;
+    /* Establecer un ancho máximo para el contenedor */
 }
 
-.widthName{
+.widthName {
     width: 36%;
 }
 
-.widthCheck{
+.widthCheck {
     width: 5%;
 }
 
 /* Media query para ajustar la tabla en pantallas pequeñas */
 @media only screen and (max-width: 768px) {
+
     .table th,
     .table td {
         font-size: 13px;
     }
 
-    
+
 }
 
 /* Ajustar el tamaño de los botones en pantallas pequeñas */
 @media only screen and (max-width: 768px) {
     .table a.btn-supervisor {
-        font-size: 12px; /* Reducir el tamaño de los botones en pantallas pequeñas */
-        padding: 6px 10px; /* Ajustar el padding de los botones */
+        font-size: 12px;
+        /* Reducir el tamaño de los botones en pantallas pequeñas */
+        padding: 6px 10px;
+        /* Ajustar el padding de los botones */
     }
 }
 
-.hidden{
+.hidden {
     display: none;
+}
+
+.divCurso {
+    border: 1px solid orange;
+    border-radius: 10px;
+    width: 80%;
+    margin: 2% auto;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.btnUpdateCurso { 
+    display: flex;
+   
+    align-items:start;
+    margin-top: 3%;
+    padding-left: 9%;
+}
+
+.inputCurso {
+    width: 80%;
+    height: 40px;
+    margin-bottom: 2%;
+}
+
+.textareaCurso {
+    width: 80%;
 }

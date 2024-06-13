@@ -4,13 +4,60 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/../DAO/supervisor/Impl/supervisorDaoImpl.php';
 require_once __DIR__ . '/../Models/supervisorModel.php';
-
+require_once __DIR__ . '/../DAO/usuario/Impl/usuarioDaoImpl.php';
 class SupervisorController{
     public function index(){
         include_once VIEWS_PATH . 'Layout/nav.php';
         include_once VIEWS_PATH . 'Supervisor/index.php';
         include_once VIEWS_PATH . 'Layout/footer.php';
     }
+
+    // obtener y modificar info del usuario
+
+    public function getDataUsuario()
+    {
+        $rutsesion = $_SESSION['rut'];
+        $admin = new usuarioDaoImpl();
+        $data = $admin->getUsuario($rutsesion);
+
+        if ($data) {
+            echo json_encode(['success' => true, 'data' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
+
+    public function guardarDatosPersonales()
+{
+    $rutsesion = $_SESSION['rut'];
+    $admin = new usuarioDaoImpl();
+
+    // Obtener campos modificados del POST
+    $camposModificados =$_POST;
+
+    // Verificar si se ha subido una imagen
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
+        $imagen = $_FILES['imagen'];
+        $rutaDestino = 'uploads/' . basename($imagen['name']);
+        if (move_uploaded_file($imagen['tmp_name'], $rutaDestino)) {
+            $camposModificados['imagen'] = $rutaDestino;
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
+            return;
+        }
+    }
+
+    // Actualizar usuario en la base de datos
+    $resultado = $admin->actualizarUsuario($rutsesion, $camposModificados);
+
+    if ($resultado) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error al actualizar los datos del usuario']);
+    }
+}
+
+
 
     public function insertData(){//CATEGORIA
        
@@ -65,6 +112,7 @@ class SupervisorController{
         $fechaInicio = $data['fechaInicio'];
         $link = $data['link'];
         $activo = $data['activo'];
+        $centro = $data['centro'];
         
         $admin = new SupervisorDaoImpl();
         $supervisorModel = new SupervisorModel();
@@ -74,6 +122,7 @@ class SupervisorController{
         $supervisorModel->setFechaInicio($fechaInicio);
         $supervisorModel->setLink($link);
         $supervisorModel->setactivo($activo);
+        $supervisorModel->setCentro($centro);
 
         $result = $admin->insertCurso($supervisorModel);
 
@@ -281,6 +330,20 @@ class SupervisorController{
         }
     }
 
+    public function getCursoById()
+    {
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        $idCurso = $requestData['id'];
+        $admin = new SupervisorDaoImpl();
+        $data = $admin->getCursoById($idCurso);
+    
+        if ($data) {
+            echo json_encode(['success' => true, 'curso' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
+
 
     //-------------------DELETES-----------------
     public function deleteCategoria() {
@@ -385,5 +448,43 @@ class SupervisorController{
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
         }
     }
+
+    //----------------UPDATE-----------------
+
+public function updateCurso(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+
+    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+        echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos']);
+        return;
+    }
+
+    $idCurso = $data['idCurso'];
+    $categoria = $data['categoria'];
+    $nombre = $data['nombre'];
+    $descripcion = $data['descripcion'];
+    $fecha = $data['fecha'];
+    $centro = $data['centro'];
+   
+
+    $admin = new SupervisorDaoImpl();
+    $supervisorModel = new SupervisorModel();
+    $supervisorModel->setIdCurso($idCurso);
+    $supervisorModel->setCategoriaCurso($categoria);
+    $supervisorModel->setNombreCurso($nombre);
+    $supervisorModel->setDescripcionCurso($descripcion);
+    $supervisorModel->setFechaInicio($fecha);
+    $supervisorModel->setCentro($centro);
+   
+
+    $result = $admin->updateCurso($supervisorModel);
+
+    if ($result) {
+        echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+    }
+}
 }
 

@@ -18,8 +18,8 @@
                     <option value="Práctica">Cargo 2</option>
                     <option value="Práctica">cargo 3</option>
                 </select>
-                <button type="button" class="btn-supervisor ">Filtrar</button>
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
+                <button type="button" class="btnFiltro">Filtrar</button><br>
+                <button type="button" class="btn-supervisor marginBtn" data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
                 <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody id="bodyUsuarios">
- 
+
                 </tbody>
             </table>
             <!-- seccion footer -->
@@ -75,8 +75,8 @@
             </div>
         </div>
     </div>
- <!-- Modal Editar -->
- <div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <!-- Modal Editar -->
+    <div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -84,61 +84,60 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form method="POST" class="form" >
-            <input type="hidden" class="form-control" name="IDUsuario">
-            <div class="row">
-                <div class="col">
-                    <label for="rut">Nombre:</label>
-                    <input type="text" class="form-control" name="nombre" >
-                </div>
-                <div class="col">
-                    <label for="nombre">Rut:</label>
-                    <input type="text" class="form-control" name="rut" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="nombre">Usuario:</label>
-                    <input type="text" class="form-control" name="usuario" >
-                </div>
-                <div class="col">
-                    <label for="materno">Clave Ingreso</label>
-                    <input type="text" class="form-control" name="clave" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="nombre">Carrera</label>
-                    <input type="text" class="form-control" name="correo" >
-                </div>
-                <div class="col">
-                    <label for="materno">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" name="clave" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="rut">Avance</label>
-                    <select class="form-select" style="width: 100%" aria-label="Default select example" id="perfil"
-                        name="perfil">
-                        <option >Seleccionar</option>
-                        <option >1</option>
-                        <option >2</option>
-                        <option >3</option>
-                        <option >4</option>
-                        <option >5</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <label for="rut">Cargo</label>
-                    <input type="text" class="form-control" name="Cargo" >
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar</button>
-                </div>
-        </form>
+                    <form method="POST" class="form">
+                        <input type="hidden" class="form-control" name="IDUsuario">
+                        <div class="row">
+                            <div class="col">
+                                <label for="rut">Nombre:</label>
+                                <input type="text" class="form-control" name="nombre">
+                            </div>
+                            <div class="col">
+                                <label for="nombre">Rut:</label>
+                                <input type="text" class="form-control" name="rut">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="nombre">Usuario:</label>
+                                <input type="text" class="form-control" name="usuario">
+                            </div>
+                            <div class="col">
+                                <label for="materno">Clave Ingreso</label>
+                                <input type="text" class="form-control" name="clave">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="nombre">Carrera</label>
+                                <input type="text" class="form-control" name="correo">
+                            </div>
+                            <div class="col">
+                                <label for="materno">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" name="clave">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="rut">Avance</label>
+                                <select class="form-select" style="width: 100%" aria-label="Default select example" id="perfil" name="perfil">
+                                    <option>Seleccionar</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="rut">Cargo</label>
+                                <input type="text" class="form-control" name="Cargo">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" form="editCategoria" class="btn-supervisor marginBtn">Guardar</button>
+                        </div>
+                    </form>
                 </div>
 
             </div>
@@ -146,7 +145,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../../../Public/js/administrador.js"></script>
+    <!-- <script src="../../../../Public/js/administrador.js"></script> -->
 
     <script src="../../../../Public/js/check.js"></script>
 </body>
