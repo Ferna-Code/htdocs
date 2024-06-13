@@ -336,12 +336,13 @@ function postular(idOferta){
 
 }
 
+//LIKES
 document.addEventListener('DOMContentLoaded', function() {
   // Like action
   document.querySelectorAll('.like-action').forEach(function(element) {
       element.addEventListener('click', function() {
           const publicacionId = this.getAttribute('data-id');
-          const currentLikes = parseInt(this.getAttribute('data-likes'));
+          const likesCountElement = this.nextElementSibling; 
           
           fetch('/usuarios/likePublicacion', {
               method: 'POST',
@@ -358,18 +359,59 @@ document.addEventListener('DOMContentLoaded', function() {
           })
           .then(data => {
               if (data.success) {
-                  // Actualizar el contador de likes en el front-end
-                  const newLikes = currentLikes + 1;
-                  this.setAttribute('data-likes', newLikes);
-                  this.classList.add('liked'); // Agregar una clase para indicar que se ha dado like
-                  this.innerHTML = `<i class="fas fa-thumbs-up"></i> ${newLikes}`;
+                  // Actualizar el contador de likes en el frontend
+                  const newLikes = parseInt(likesCountElement.textContent) + 1;
+                  likesCountElement.textContent = newLikes;
+                  this.classList.add('liked'); 
               } else {
-                  alert('Hubo un problema al dar like a la publicación. ' + data.message); // Mostrar el mensaje de error específico
+                  alert('Hubo un problema al dar like a la publicación. ' + data.message); 
               }
           })
           .catch(error => {
               console.error('Error al procesar la solicitud:', error);
               alert('Hubo un problema al procesar la solicitud.'); // Mostrar un mensaje genérico de error
+          });
+      });
+  });
+});
+
+
+
+
+// REPORTES
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Report action
+  document.querySelectorAll('.report-action').forEach(function(element) {
+      element.addEventListener('click', function() {
+          const publicacionId = this.getAttribute('data-id');
+          const reportsCountElement = this.parentElement.querySelector('.reports-count'); // Seleccionar el contador de reportes
+          
+          fetch('/usuarios/reportarPublicacion', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ publicacionId: publicacionId })
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              if (data.success) {
+                  // Actualizar el contador de reportes en el frontend
+                  const newReportsCount = parseInt(reportsCountElement.textContent) + 1;
+                  reportsCountElement.textContent = newReportsCount;
+              } else {
+                  alert('Hubo un problema al reportar la publicación: ' + data.message);
+              }
+          })
+          .catch(error => {
+              console.error('Error al procesar la solicitud:', error);
+              alert('Hubo un problema al procesar la solicitud.');
           });
       });
   });

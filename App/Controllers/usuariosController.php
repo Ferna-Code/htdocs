@@ -63,6 +63,24 @@ class usuariosController {
         echo json_encode($response);
     }
     
+    public function reportarPublicacion() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($data['publicacionId'])) {
+                $publicacionId = intval($data['publicacionId']);
+                $publicaciones = new usuarioDaoImpl();
+                $success = $publicaciones->actualizarReportes($publicacionId);
+                $response = ['success' => true];
+            } else {
+                $response = ['success' => false, 'message' => 'ID de publicación no recibido.'];
+            }
+        } else {
+            $response = ['success' => false, 'message' => 'Solicitud no válida.'];
+        }
+    
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
     
 
 }

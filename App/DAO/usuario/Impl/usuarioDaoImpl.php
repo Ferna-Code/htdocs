@@ -192,7 +192,7 @@ class usuarioDaoImpl implements UsuarioDao
     
 
     public function getLikes($publicacionId) {
-        $sql = 'SELECT COUNT(`like`) AS cantidad_likes FROM publicaciones WHERE id = ?';
+        $sql = 'SELECT nlikes FROM publicaciones WHERE id = ?';
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "i", $publicacionId);
@@ -204,5 +204,43 @@ class usuarioDaoImpl implements UsuarioDao
         mysqli_close($conn);
     
         return $cantidad_likes;
+    }
+
+    // reportes
+
+    public function actualizarReportes($publicacionId) {
+        $admin = new usuarioDaoImpl();
+        $cantidadreportes = $admin->getReportes($publicacionId);
+        $nreportes = $cantidadreportes + 1;
+        $sql = 'UPDATE publicaciones SET nreportes = ? WHERE id = ?';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        
+        mysqli_stmt_bind_param($stmt, "ii", $nreportes, $publicacionId);
+        mysqli_stmt_execute($stmt);
+    
+        // Obtener el número de filas afectadas por la consulta UPDATE
+        $affectedRows = mysqli_stmt_affected_rows($stmt); 
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
+        return $affectedRows; 
+    }
+    
+
+    public function getReportes($publicacionId) {
+        $sql = 'SELECT nreportes FROM publicaciones WHERE id = ?';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $publicacionId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $cantidad_reportes);
+        mysqli_stmt_fetch($stmt);
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
+        return $cantidad_reportes;
     }
 }
