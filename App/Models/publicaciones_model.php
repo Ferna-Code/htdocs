@@ -35,20 +35,57 @@ class PublicacionesModel
 
 
     public function guardarPublicacion($rutUsuario, $usuario_Publicacion)
-    {
-        $fecha_actual = date("Y-m-d");
-        $consulta = "INSERT INTO publicaciones (rutusuario, publicacion, fechaCreacion) VALUES (?, ?, ?)";
-        if ($stmt = mysqli_prepare($this->db->getConnection(), $consulta)) {
-            mysqli_stmt_bind_param($stmt, "sss", $rutUsuario, $usuario_Publicacion, $fecha_actual);
-            if (mysqli_stmt_execute($stmt)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            die("Error al preparar la consulta: " . $this->db->error);
+{
+    // Formato de fecha y hora
+    $fecha_actual = date("Y-m-d H:i:s");
+    $rut = $rutUsuario;
+    
+    // Divide la publicación en palabras individuales
+    $publicacion = preg_split('/\s+/', $usuario_Publicacion);
+
+    // Obtener palabras del diccionario
+    $validateQuery = "SELECT * FROM diccionario";
+    $stmt = mysqli_prepare($this->db->getConnection(), $validateQuery);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    $palabras = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $palabras[] = $row['palabra'];
+    }
+
+    // Comparar cada palabra de la publicación con las palabras del diccionario
+    $activate = 1;
+    foreach ($publicacion as $word) {
+        if (in_array($word, $palabras)) {
+            $activate = 0;
+            break;
         }
     }
+
+    // Concatenar la publicación en una sola cadena de texto
+    $publicacion_str = implode(' ', $publicacion);
+
+    // Insertar la publicación en la base de datos
+    $insertResult = $this->insertPublicacion($rut, $publicacion_str, $fecha_actual, $activate);
+    return $insertResult;
+}
+
+public function insertPublicacion($rut_, $publicacion_, $fecha_actual_, $activate_)
+{
+    $validateQuery = "INSERT INTO publicaciones (rutusuario, publicacion, fechaCreacion, activate) VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($this->db->getConnection(), $validateQuery);
+    if (!$stmt) {
+        die('Error en la preparación de la consulta: ' . mysqli_error($this->db->getConnection()));
+    }
+    mysqli_stmt_bind_param($stmt, "sssi", $rut_, $publicacion_, $fecha_actual_, $activate_);
+    $result = mysqli_stmt_execute($stmt);
+    if (!$result) {
+        die('Error en la ejecución de la consulta: ' . mysqli_stmt_error($stmt));
+    }
+    return $result;
+}
+
 
     public function verPublicaciones()
     {

@@ -5,13 +5,13 @@ $admin = new usuarioDaoImpl();
 $rutsesion = $_SESSION['rut'];
 $imagen = $admin->obtenerImagenUsuario($rutsesion);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] === 'getDataUsuario') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] && $_GET['action'] === 'getDataUsuario') {
     $controller = new SupervisorController();
     $controller->getDataUsuario();
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] === 'guardardatospersonales') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] && $_GET['action'] === 'guardardatospersonales') {
     $controller = new SupervisorController();
     $controller->guardarDatosPersonales();
     exit;
