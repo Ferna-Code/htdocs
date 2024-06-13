@@ -77,7 +77,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
                     <div class="tweet-actions">
                         <i><?php echo $p['fechaCreacion']; ?></i>
                         <div class="like-container">
-                            <span class="likes-count"><?php echo $p['nlikes']; ?></span>
+                            <span class="likes-count" id="likeId"><?php echo $p['nlikes']; ?></span>
                             <i class="far fa-thumbs-up like-action" data-id="<?php echo $p['id']; ?>"></i>
                         </div>
                         <div class="like-container">

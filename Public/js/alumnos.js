@@ -342,7 +342,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.like-action').forEach(function(element) {
       element.addEventListener('click', function() {
           const publicacionId = this.getAttribute('data-id');
-          const likesCountElement = this.nextElementSibling; 
+          // const likesCountElement = this.nextElementSibling;
+          const likesCountElement = this.closest('.like-container').querySelector('.likes-count');  
           
           fetch('/usuarios/likePublicacion', {
               method: 'POST',
@@ -362,7 +363,9 @@ document.addEventListener('DOMContentLoaded', function() {
                   // Actualizar el contador de likes en el frontend
                   const newLikes = parseInt(likesCountElement.textContent) + 1;
                   likesCountElement.textContent = newLikes;
-                  this.classList.add('liked'); 
+                 
+                  // document.getElementById("likeId").value = newLikes;
+                  this.classList.add('nlikes'); 
               } else {
                   alert('Hubo un problema al dar like a la publicación. ' + data.message); 
               }
