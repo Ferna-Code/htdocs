@@ -363,11 +363,11 @@ document.addEventListener('DOMContentLoaded', function() {
                   const newLikes = parseInt(likesCountElement.textContent.trim()) + 1 || 1; // Incrementar el contador
                   likesCountElement.textContent = newLikes;
               } else {
-                error()
+                Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
               }
           })
           .catch(error => {
-            error()
+            Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
           });
       });
   });
@@ -413,11 +413,11 @@ document.addEventListener('DOMContentLoaded', function() {
                   }
 
               } else {
-                error()
+                Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
               }
           })
           .catch(error => {
-            error()
+            Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
           });
       });
   });
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
               publicacionContainer.style.display = 'none'; // Ocultar la publicación eliminada
               Swal.fire("Eliminada!", "La publicación ha sido eliminada.", "success");
             } else {
-              Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
+              Swal.fire("Error", "Hubo un problema al eliminar la publicación:" + data.message, "error");
             }
           })
           .catch(error => {
@@ -490,87 +490,105 @@ function error(){
 }
 
 // COMENTARIOS
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById("commentsModal");
-  const span = document.getElementsByClassName("close")[0];
-  const commentsContainer = document.getElementById("modal-comments-container");
-  const commentForm = document.getElementById("commentForm");
-  const publicacionIdInput = document.getElementById("publicacionIdInput");
 
-  document.querySelectorAll('.comment-action').forEach(function(element) {
-      element.addEventListener('click', function() {
-          const publicacionId = this.getAttribute('data-id');
-          publicacionIdInput.value = publicacionId; // Guardar el ID de la publicación en el campo oculto
-          
-          fetch('/usuarios/getComments', {
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Función para inicializar eventos para comentarios
+  function initCommentEvents(modalId, commentsContainerId, commentFormId, newCommentId, publicacionIdInputId) {
+      const modal = document.getElementById(modalId);
+      const span = modal.getElementsByClassName("close")[0];
+      const commentsContainer = document.getElementById(commentsContainerId);
+      const commentForm = document.getElementById(commentFormId);
+      const publicacionIdInput = document.getElementById(publicacionIdInputId);
+
+      document.querySelectorAll('.comment-action').forEach(function(element) {
+          element.addEventListener('click', function() {
+              const publicacionId = this.getAttribute('data-id');
+              publicacionIdInput.value = publicacionId; // Guardar el ID de la publicación en el campo oculto
+
+              fetch('/usuarios/getComments', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ publicacionId: publicacionId })
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      commentsContainer.innerHTML = ''; // Clear existing comments
+                      if (data.comments.length > 0) {
+                          data.comments.forEach(comment => {
+                              const commentElement = document.createElement('div');
+                              commentElement.classList.add('comment');
+                              commentElement.innerHTML = `<p><strong>${comment.nombre}</strong>: ${comment.comentario}</p>`;
+                              commentsContainer.appendChild(commentElement);
+                          });
+                      } else {
+                          commentsContainer.innerHTML = '<p>No hay comentarios aún. Sé el primero en comentar.</p>';
+                      }
+                      modal.style.display = "block";
+                  } else {
+                    Swal.fire("Error", "Hubo un problema al eliminar la publicación:" + data.message, "error");
+                  }
+              })
+              .catch(error => {
+                Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+              });
+          });
+      });
+
+      // Event listener para el formulario de comentarios
+      commentForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          const comentario = document.getElementById(newCommentId).value;
+          const publicacionId = publicacionIdInput.value;
+
+          fetch('/usuarios/agregarComentario', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ publicacionId: publicacionId })
+              body: JSON.stringify({ publicacionId: publicacionId, comentario: comentario })
           })
           .then(response => response.json())
           .then(data => {
               if (data.success) {
-                  commentsContainer.innerHTML = '';
-                  if (data.comments.length > 0) {
-                      data.comments.forEach(comment => {
-                          const commentElement = document.createElement('div');
-                          commentElement.classList.add('comment');
-                          commentElement.innerHTML = `<p><strong>${comment.nombre}</strong>: ${comment.comentario}</p>`;
-                          commentsContainer.appendChild(commentElement);
-                      });
-                  } else {
-                      commentsContainer.innerHTML = '<p>No hay comentarios aún. ¡Sé el primero en comentar!</p>';
-                  }
-                  modal.style.display = "block";
+                  const newCommentElement = document.createElement('div');
+                  newCommentElement.classList.add('comment');
+                  newCommentElement.innerHTML = `<p><strong>${data.usuario}</strong>: ${data.comentario}</p>`;
+                  commentsContainer.appendChild(newCommentElement);
+                  document.getElementById(newCommentId).value = ''; // Clear the input field
               } else {
-                  error()
+                Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
               }
           })
           .catch(error => {
-            error()
+            Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
           });
       });
-  });
 
-  commentForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const comentario = document.getElementById("newComment").value;
-      const publicacionId = publicacionIdInput.value;
-      
-      fetch('/usuarios/agregarComentario', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ publicacionId: publicacionId, comentario: comentario })
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              const newCommentElement = document.createElement('div');
-              newCommentElement.classList.add('comment');
-              newCommentElement.innerHTML = `<p><strong>${data.usuario}</strong>: ${data.comentario}</p>`;
-              commentsContainer.appendChild(newCommentElement);
-              document.getElementById("newComment").value = '';
-          } else {
-            error()
-          }
-      })
-      .catch(error => {
-        error()
-      });
-  });
-
-  span.onclick = function() {
-      modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-      if (event.target == modal) {
+      // Event listeners para cerrar el modal
+      span.onclick = function() {
           modal.style.display = "none";
       }
+
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
+
+      
   }
+
+// Inicialización para muro principal
+initCommentEvents('commentsModal', 'modal-comments-container', 'commentForm', 'newComment', 'publicacionIdInput');
+
+// Inicialización para muro personal
+initCommentEvents('commentsModalp', 'modal-comments-containerp', 'commentFormp', 'newCommentp', 'publicacionIdInputp');
+
 });
+

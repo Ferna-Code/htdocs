@@ -266,7 +266,8 @@ class usuarioDaoImpl implements UsuarioDao
 
     }
 
-    public function obtenercomentarios($publicacionId) {
+    public function obtenercomentarios($publicacionId)
+    {
         $sql = '
             SELECT comentarios.*, usuarios.nombre 
             FROM comentarios 
@@ -287,9 +288,10 @@ class usuarioDaoImpl implements UsuarioDao
         mysqli_close($conn);
         return $comentarios;
     }
-    
 
-    public function insertarComentario($publicacionId, $rutusuario, $comentario) {
+
+    public function insertarComentario($publicacionId, $rutusuario, $comentario)
+    {
         $sql = 'INSERT INTO comentarios (idpublicacion, rutusuario, comentario, fechaCreacion) VALUES (?, ?, ?, NOW())';
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $sql);
@@ -297,8 +299,22 @@ class usuarioDaoImpl implements UsuarioDao
         $success = mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-    
+
         return $success;
     }
-    
+
+    public function contarComentariosHoy($rutUsuario)
+    {
+        $fecha_actual = date("Y-m-d");
+        $sql = "SELECT COUNT(*) AS cantidad FROM comentarios WHERE rutusuario = ? AND fechaCreacion = ? and fechaEliminacion is null";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ss", $rutUsuario, $fecha_actual);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $cantidad);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+        return $cantidad;
+    }
+
 }

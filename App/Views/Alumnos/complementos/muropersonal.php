@@ -70,6 +70,19 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
         }
         ?>
 
+        <div id="commentsModalp" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-comments-containerp">
+                </div>
+                <form id="commentFormp">
+                    <input type="hidden" id="publicacionIdInputp">
+                    <textarea id="newCommentp" placeholder="Escribe tu comentario..." required></textarea>
+                    <button type="submit">Agregar comentario</button>
+                </form>
+            </div>
+        </div>
+
 
 
     </div>

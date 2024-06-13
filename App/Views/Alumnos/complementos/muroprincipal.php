@@ -93,9 +93,10 @@ $publicaciones = $controlador->mostrarPublicaciones();
             echo "No se encontraron publicaciones.";
         }
         ?>
+
         <div id="commentsModal" class="modal">
             <div class="modal-content">
-                <span class="close mb-4">&times;</span>
+                <span class="close">&times;</span>
                 <div id="modal-comments-container">
                     <!-- Aquí se mostrarán los comentarios -->
                 </div>
@@ -106,6 +107,7 @@ $publicaciones = $controlador->mostrarPublicaciones();
                 </form>
             </div>
         </div>
+
 
 
 
