@@ -101,10 +101,11 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" onclick="controlVisi20()" data-toggle="collapse" data-target="#collapseUtilities7" aria-expanded="true" aria-controls="collapseUtilities7">
+        <a class="nav-link collapsed" href="./../graficos.php" onclick="" data-toggle="collapse" data-target="#collapseUtilities7" aria-expanded="true" aria-controls="collapseUtilities7">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Graficos</span>
         </a>
+        <a href="graficos">grafic</a>
     </li>
 
 
