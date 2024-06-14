@@ -77,7 +77,9 @@ class usuariosController
             if (isset($data['publicacionId'])) {
                 $publicacionId = intval($data['publicacionId']);
                 $publicaciones = new usuarioDaoImpl();
+                $rutsesion = $_SESSION['rut'];
                 $success = $publicaciones->actualizarReportes($publicacionId);
+                $successInsert = $publicaciones->insertarReporte($publicacionId,$rutsesion);
                 $response = ['success' => true];
             } else {
                 $response = ['success' => false, 'message' => 'ID de publicación no recibido.'];

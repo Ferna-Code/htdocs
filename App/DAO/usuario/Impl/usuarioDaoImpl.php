@@ -235,6 +235,31 @@ class usuarioDaoImpl implements UsuarioDao
         return $affectedRows;
     }
 
+    public function insertarReporte($publicacionId, $rutUsuario)
+    {
+        $sql = 'INSERT INTO reportes (rutusuario, idpublicacion, fechaCreacion) VALUES (?, ?, NOW())';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        if (!$stmt) {
+            error_log("Error al preparar la consulta SQL: " . mysqli_error($conn));
+            return false; // Retorna false o maneja el error según tu lógica
+        }
+        mysqli_stmt_bind_param($stmt, "si", $rutUsuario, $publicacionId);
+        $success = mysqli_stmt_execute($stmt);
+        if (!$success) {
+            error_log("Error al ejecutar la consulta SQL: " . mysqli_stmt_error($stmt));
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
+            return false; // Retorna false o maneja el error según tu lógica
+        }
+        // Obtener el número de filas afectadas por la consulta INSERT
+        $affectedRows = mysqli_stmt_affected_rows($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $affectedRows;
+    }
+
+
 
     public function getReportes($publicacionId)
     {
@@ -250,6 +275,23 @@ class usuarioDaoImpl implements UsuarioDao
         mysqli_close($conn);
 
         return $cantidad_reportes;
+    }
+
+    public function getReportesById($id)
+    {
+        $sql = "SELECT * FROM reportes WHERE id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $reporte = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $reporte[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $reporte;
     }
 
     public function deletedAtPublicaciones($publicacionId)
@@ -289,6 +331,28 @@ class usuarioDaoImpl implements UsuarioDao
         return $comentarios;
     }
 
+    public function obtenercomentariosbyID($id)
+    {
+        $sql = '
+            SELECT comentarios.*, usuarios.nombre 
+            FROM comentarios 
+            JOIN usuarios ON comentarios.rutusuario = usuarios.rut 
+            WHERE comentarios.id = ? 
+              AND comentarios.fechaEliminacion IS NULL
+        ';
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $comentarios = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $comentarios[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $comentarios;
+    }
 
     public function insertarComentario($publicacionId, $rutusuario, $comentario)
     {
@@ -318,28 +382,120 @@ class usuarioDaoImpl implements UsuarioDao
     }
 
     public function obtenerPerfilUsuario($rut)
-{
-    $conn = $this->db->conec();
-    $query1 = "SELECT idperfil FROM usuarios WHERE rut = ?";
-    $stmt1 = mysqli_prepare($conn, $query1);
-    mysqli_stmt_bind_param($stmt1, "s", $rut);
-    mysqli_stmt_execute($stmt1);
-    mysqli_stmt_bind_result($stmt1, $idperfil);
+    {
+        $conn = $this->db->conec();
+        $query1 = "SELECT idperfil FROM usuarios WHERE rut = ?";
+        $stmt1 = mysqli_prepare($conn, $query1);
+        mysqli_stmt_bind_param($stmt1, "s", $rut);
+        mysqli_stmt_execute($stmt1);
+        mysqli_stmt_bind_result($stmt1, $idperfil);
 
-    // Obtener el resultado del statement 1
-    mysqli_stmt_fetch($stmt1);
-    mysqli_stmt_close($stmt1);
+        // Obtener el resultado del statement 1
+        mysqli_stmt_fetch($stmt1);
+        mysqli_stmt_close($stmt1);
 
-    $query2 = "SELECT nombre FROM perfiles WHERE id = ?";
-    $stmt2 = mysqli_prepare($conn, $query2);
-    mysqli_stmt_bind_param($stmt2, "i", $idperfil);
-    mysqli_stmt_execute($stmt2);
-    mysqli_stmt_bind_result($stmt2, $nombrePerfil);
-    mysqli_stmt_fetch($stmt2);
-    mysqli_stmt_close($stmt2);
+        $query2 = "SELECT nombre FROM perfiles WHERE id = ?";
+        $stmt2 = mysqli_prepare($conn, $query2);
+        mysqli_stmt_bind_param($stmt2, "i", $idperfil);
+        mysqli_stmt_execute($stmt2);
+        mysqli_stmt_bind_result($stmt2, $nombrePerfil);
+        mysqli_stmt_fetch($stmt2);
+        mysqli_stmt_close($stmt2);
 
-    mysqli_close($conn);
+        mysqli_close($conn);
 
-    return $nombrePerfil;
-}
+        return $nombrePerfil;
+    }
+
+    
+    public function verPublicacionesbyID($id)
+    {
+        $sql =  "SELECT * FROM publicaciones where id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $comentarios = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $comentarios[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $comentarios;
+    }
+
+
+
+    public function getDiccionariobyID($id)
+    {
+        $sql =  "SELECT * FROM diccionario where id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $diccionario = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $diccionario[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $diccionario;
+    }
+
+    public function getCursobyID($id)
+    {
+        $sql =  "SELECT * FROM cursos where id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $cursos = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $cursos[] = $row;
+        }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $cursos;
+    }
+
+    public function getCategoriaByID($id){ //Categoria
+        $query = "SELECT * FROM categorias where id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        
+        $categorias = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $categorias[] = $row;
+        }
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
+        return $categorias;
+    }
+
+    public function getcarreraByID($id){ //carrera
+        $query = "SELECT * FROM carreras where id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        
+        $carreras = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $carreras[] = $row;
+        }
+    
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    
+        return $carreras;
+    }
 }

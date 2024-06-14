@@ -423,7 +423,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteCarreras($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteCarreras($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -437,7 +438,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteCategorias($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteCategorias($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -451,7 +453,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteCursos($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteCursos($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -465,7 +468,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteDiccionario($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteDiccionario($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -493,7 +497,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deletePublicaciones($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deletePublicaciones($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -507,7 +512,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteReportes($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteReportes($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -521,7 +527,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteUsuarios($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteUsuarios($ids, $rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -535,7 +542,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteArchivos($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteArchivos($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -549,7 +557,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteComentarios($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteComentarios($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -563,7 +572,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteOfertas($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteOfertas($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -577,7 +587,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deletePostulaciones($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deletePostulaciones($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -591,7 +602,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteExpAcademica($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteExpAcademica($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);
@@ -605,7 +617,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $data = json_decode(file_get_contents('php://input'), true);
         $ids = $data['ids'];
-        $result = $admin->deleteExpLaboral($ids);
+        $rutsesion = $_SESSION['rut'];
+        $result = $admin->deleteExpLaboral($ids,$rutsesion);
 
         if ($result) {
             echo json_encode(['success' => true]);

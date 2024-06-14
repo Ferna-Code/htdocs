@@ -64,6 +64,20 @@ class PublicacionesModel
         return $publicaciones;
     }
 
+    public function verPublicacionesbyID($id)
+    {
+        $publicaciones = array();
+
+        $consulta = mysqli_query($this->db->getConnection(), "SELECT * FROM publicaciones where id = $id");
+
+        while ($fila = mysqli_fetch_assoc($consulta)) {
+
+            $publicaciones[] = $fila;
+        }
+
+        return $publicaciones;
+    }
+
     public function verPublicacionesUsuario($rut)
     {
         $publicaciones = array();

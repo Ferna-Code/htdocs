@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../../../Models/logsEliminacion_model.php';
 require_once __DIR__ . '/../../../Models/conexion.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\Administrador\logsEliminacionDao.php';
 
 class logsEliminacionDaoImpl implements logsEliminacionDao
 {
@@ -37,14 +38,14 @@ class logsEliminacionDaoImpl implements logsEliminacionDao
     }
     
 
-    public function insertarLog($log, $rut) {
-        $sql = 'INSERT INTO logsEliminacion (Registro, Rut, FechaEliminacion) VALUES (?, ?, NOW())';
+    public function insertarLog($log, $rut,$origen) {
+        $sql = 'INSERT INTO logsEliminacion (Registro, Rut, origen, FechaEliminacion) VALUES (?, ?,?, NOW())';
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $sql);
         if (!$stmt) {
             return false; // Error preparando la consulta
         }
-        mysqli_stmt_bind_param($stmt, "ss", $log, $rut);
+        mysqli_stmt_bind_param($stmt, "sss", $log, $rut, $origen);
         $success = mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
