@@ -10,9 +10,9 @@ class AdministradorController
 {
     public function index()
     {
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Administrador/index.php';  //carpeta/vista
-        include VIEWS_PATH . 'Layout/footer.php';
+        require_once VIEWS_PATH . 'Layout/nav.php';
+        require_once VIEWS_PATH . 'Administrador/index.php';  //carpeta/vista
+        require_once VIEWS_PATH . 'Layout/footer.php';
     }
 
 
@@ -581,6 +581,7 @@ class AdministradorController
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
+    
     public function insertPalabra()
     { 
 

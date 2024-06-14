@@ -26,7 +26,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
-                        
+                        <th>ID</th>
                         <th>Categoría</th>
                         <th class="anchoFecha">Fecha de Creación</th>
                         <th class="anchoActiv">Activo</th>

@@ -7,9 +7,9 @@ require_once __DIR__ . '/../Models/supervisorModel.php';
 require_once __DIR__ . '/../DAO/usuario/Impl/usuarioDaoImpl.php';
 class SupervisorController{
     public function index(){
-        include VIEWS_PATH . 'Layout/nav.php';
-        include VIEWS_PATH . 'Supervisor/index.php';
-        include VIEWS_PATH . 'Layout/footer.php';
+        include_once VIEWS_PATH . 'Layout/nav.php';
+        include_once VIEWS_PATH . 'Supervisor/index.php';
+        include_once VIEWS_PATH . 'Layout/footer.php';
     }
 
     // obtener y modificar info del usuario
