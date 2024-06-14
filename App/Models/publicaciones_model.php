@@ -87,19 +87,37 @@ public function insertPublicacion($rut_, $publicacion_, $fecha_actual_, $activat
 }
 
 
-    public function verPublicaciones()
-    {
-        $publicaciones = array();
-
-        $consulta = mysqli_query($this->db->getConnection(), "SELECT * FROM publicaciones where fechaEliminacion is null order by id desc");
-
-        while ($fila = mysqli_fetch_assoc($consulta)) {
-
-            $publicaciones[] = $fila;
-        }
-
-        return $publicaciones;
+public function verPublicaciones()
+{
+    $publicaciones = array();
+    $activated = 1;
+    
+    // Prepare the SQL statement
+    $stmt = mysqli_prepare($this->db->getConnection(), "SELECT * FROM publicaciones WHERE activate = ? AND fechaEliminacion IS NULL ORDER BY id DESC");
+    
+    if ($stmt === false) {
+        die('Error preparing the statement: ' . htmlspecialchars(mysqli_error($this->db->getConnection())));
     }
+
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "i", $activated);
+    
+    // Execute the statement
+    mysqli_stmt_execute($stmt);
+    
+    // Get the result set
+    $result = mysqli_stmt_get_result($stmt);
+    
+    // Fetch the results into an array
+    while ($fila = mysqli_fetch_assoc($result)) {
+        $publicaciones[] = $fila;
+    }
+    
+    // Close the statement
+    mysqli_stmt_close($stmt);
+
+    return $publicaciones;
+}
 
     public function verPublicacionesUsuario($rut)
     {
