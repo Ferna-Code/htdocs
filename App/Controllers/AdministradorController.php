@@ -265,6 +265,8 @@ class AdministradorController
         $admin = new AdministradorDaoImpl();
         $limit = 10;
         $data = $admin->getUsuarios($limit);
+        
+
 
         if ($data instanceof mysqli_result) {
             $result = [];
@@ -277,6 +279,31 @@ class AdministradorController
         }
     }
 
+    public function getCarreraUser()
+    {
+        $rutsesion = $_SESSION['rut'];
+        $admin = new usuarioDaoImpl();
+        $data = $admin->obtenerCarreraUsuario($rutsesion);
+
+        if ($data) {
+            echo json_encode(['success' => true, 'data' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
+
+    public function getPerfilUser()
+    {
+        $rutsesion = $_SESSION['rut'];
+        $admin = new usuarioDaoImpl();
+        $data = $admin->obtenerPerfilUsuario($rutsesion);
+
+        if ($data) {
+            echo json_encode(['success' => true, 'data' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
 
     //------------ CVARCHIVOS -----------//
     public function getArchivos()

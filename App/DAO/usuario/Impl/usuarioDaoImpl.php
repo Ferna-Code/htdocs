@@ -317,4 +317,29 @@ class usuarioDaoImpl implements UsuarioDao
         return $cantidad;
     }
 
+    public function obtenerPerfilUsuario($rut)
+{
+    $conn = $this->db->conec();
+    $query1 = "SELECT idperfil FROM usuarios WHERE rut = ?";
+    $stmt1 = mysqli_prepare($conn, $query1);
+    mysqli_stmt_bind_param($stmt1, "s", $rut);
+    mysqli_stmt_execute($stmt1);
+    mysqli_stmt_bind_result($stmt1, $idperfil);
+
+    // Obtener el resultado del statement 1
+    mysqli_stmt_fetch($stmt1);
+    mysqli_stmt_close($stmt1);
+
+    $query2 = "SELECT nombre FROM perfiles WHERE id = ?";
+    $stmt2 = mysqli_prepare($conn, $query2);
+    mysqli_stmt_bind_param($stmt2, "i", $idperfil);
+    mysqli_stmt_execute($stmt2);
+    mysqli_stmt_bind_result($stmt2, $nombrePerfil);
+    mysqli_stmt_fetch($stmt2);
+    mysqli_stmt_close($stmt2);
+
+    mysqli_close($conn);
+
+    return $nombrePerfil;
+}
 }

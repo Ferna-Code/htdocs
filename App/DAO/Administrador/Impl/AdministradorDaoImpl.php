@@ -163,9 +163,28 @@ class AdministradorDaoImpl implements AdministradorDao
         return $result;
     }
 
-    public function getUsuarios($limit = 10)
+    public function getUsuarios($limit = 20)
     {
-        $consulta = "SELECT * FROM usuarios WHERE fechaEliminacion IS NULL ORDER BY rut DESC LIMIT ?";
+        $consulta = "SELECT 
+        u.rut,
+        u.nombre,
+        u.fechaNacimiento,
+        p.id as idperfil,
+        p.nombre as perfil,
+        u.correo,
+        c.id as idcarrera,
+        c.nombre as carrera,
+        u.avance,
+        u.cargo,
+        u.telefono,
+        u.direccion,
+        u.clave,
+        u.fechaCreacion,
+        u.activo
+        FROM `usuarios` as u
+        inner join `perfiles` as p on p.id = u.idperfil
+        inner join `carreras` as c on c.id = u.idcarrera 
+        WHERE u.fechaEliminacion IS NULL ORDER BY u.rut DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -180,6 +199,37 @@ class AdministradorDaoImpl implements AdministradorDao
         mysqli_stmt_close($stmt);
         return $result;
     }
+// OTRA INFO PARA USUARIOS
+public function obtenerCarreraUsuario($rut)
+{
+    $conn = $this->db->conec();
+    $query1 = "SELECT idCarrera FROM usuarios WHERE rut = ?";
+    $stmt1 = mysqli_prepare($conn, $query1);
+    mysqli_stmt_bind_param($stmt1, "s", $rut);
+    mysqli_stmt_execute($stmt1);
+    mysqli_stmt_bind_result($stmt1, $idCarrera);
+
+    // Obtener el resultado del statement 1
+    mysqli_stmt_fetch($stmt1);
+    mysqli_stmt_close($stmt1);
+
+    $query2 = "SELECT nombre FROM carreras WHERE id = ?";
+    $stmt2 = mysqli_prepare($conn, $query2);
+    mysqli_stmt_bind_param($stmt2, "i", $idCarrera);
+    mysqli_stmt_execute($stmt2);
+    mysqli_stmt_bind_result($stmt2, $nombreCarrera);
+    mysqli_stmt_fetch($stmt2);
+    mysqli_stmt_close($stmt2);
+
+    mysqli_close($conn);
+
+    return $nombreCarrera;
+}
+
+
+
+
+// DATOS DE USUARIOS
 
     public function getArchivos($limit = 10)
     {

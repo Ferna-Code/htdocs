@@ -364,7 +364,7 @@ async function getCarrera() {
     initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
   } catch (error) {
     console.error("Error en la solicitud Fetch: ", error);
-    alert("Error en la solicitud: ", error.message);
+    Swal.fire("Error", "Error en la solicitud" + data.message, "error");
   }
 }
 
@@ -496,12 +496,12 @@ function getCategoria() {
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -550,7 +550,8 @@ document.getElementById('editarButton').addEventListener('click', function(event
   event.preventDefault(); 
   editarCategoria();
   editarDiccionario();
-  editarCarrera()
+  editarCarrera();
+  editarUsuario();
 });
 
 
@@ -590,12 +591,12 @@ function getCurso() {
         initializeCheckboxMaster('checkAllCursos', 'checkboxCursos');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -632,12 +633,12 @@ function getDiccionario() {
         initializeCheckboxMaster('checkAllPalabras', 'checkboxPalabra');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -714,12 +715,12 @@ function getPerfil() {
         initializeCheckboxMaster('checkAllPerfiles', 'checkboxPerfil');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -762,7 +763,7 @@ function getReportes() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -779,40 +780,107 @@ function getUsuarios() {
         const tbody = $("#bodyUsuarios");
         tbody.empty();
 
-
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
+          const fechaNacimiento = row.fechaNacimiento ? new Date(row.fechaNacimiento).toLocaleDateString() : 'N/A';
+          const fechaCreacion = row.fechaCreacion ? new Date(row.fechaCreacion).toLocaleString() : 'N/A';
+          const fechaEliminacion = row.fechaEliminacion ? new Date(row.fechaEliminacion).toLocaleString() : 'N/A';
+
           const fila = `
-        <tr>
+          <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
           <td>${row.rut}</td>
           <td>${row.nombre}</td>
-          <td>${row.fechaNacimiento}</td>
-          <td>${row.idperfil}</td>
+          <td>${fechaNacimiento}</td>
+          <td>${row.perfil}</td>
           <td>${row.correo}</td>
-          <td>${row.idcarrera}</td>
+          <td>${row.carrera}</td>
           <td>${row.avance}</td>
           <td>${row.cargo}</td>
           <td>${row.clave}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td>${fechaCreacion}</td>
+          <td>${fechaEliminacion}</td>
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarUsuario(${row.rut})">Editar</button></td>
         </tr>`;
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllUsuarios', 'checkboxUsuario');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud: " + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud: " + error.message, "error");
     });
 }
+
+
+async function editarUsuario(rut) {
+  const response = await fetch(`/Administrador/getUsuarios`);
+  if (!response.ok) {
+    throw new Error(`HTTP error: ${response.status}`);
+  }
+  const usuario = await response.json();
+
+  const { value: formValues } = await Swal.fire({
+    title: 'Editar Usuario',
+    html:
+      `<label for="nombre">Nombre</label>
+      <input id="nombre" class="swal2-input" value="${usuario.nombre}">
+      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+      <input id="fechaNacimiento" class="swal2-input" type="date" value="${usuario.fechaNacimiento}">
+      <label for="correo">Correo</label>
+      <input id="correo" class="swal2-input" value="${usuario.Carrera}">
+      <label for="avance">Avance</label>
+      <input id="avance" class="swal2-input" value="${usuario.avance}">
+      <label for="cargo">Cargo</label>
+      <input id="cargo" class="swal2-input" value="${usuario.cargo}">`,
+    focusConfirm: false,
+    preConfirm: () => {
+      return {
+        nombre: document.getElementById('nombre').value,
+        fechaNacimiento: document.getElementById('fechaNacimiento').value,
+        correo: document.getElementById('correo').value,
+        avance: document.getElementById('avance').value,
+        cargo: document.getElementById('cargo').value
+      }
+    }
+  });
+
+  if (formValues) {
+    const { nombre, fechaNacimiento, correo, avance, cargo } = formValues;
+
+    // Aquí puedes hacer la solicitud para guardar los cambios usando fetch
+    const formData = {
+      rut: rut,
+      nombre: nombre,
+      fechaNacimiento: fechaNacimiento,
+      correo: correo,
+      avance: avance,
+      cargo: cargo
+    };
+
+    const saveResponse = await fetch('/Administrador/actualizarUsuario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (saveResponse.ok) {
+      Swal.fire('¡Datos actualizados!', '', 'success');
+      // Aquí podrías recargar la tabla de usuarios o hacer alguna otra acción necesaria
+    } else {
+      Swal.fire('Error', 'No se pudieron guardar los cambios.', 'error');
+    }
+  }
+}
+
+
 
 function getArchivos() {
   fetch("/Administrador/getArchivos")
@@ -846,12 +914,12 @@ function getArchivos() {
         initializeCheckboxMaster('checkAllArchivos', 'checkboxArchivo');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -890,12 +958,12 @@ function getComentarios() {
         initializeCheckboxMaster('checkAllComentarios', 'checkboxComentario');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -936,12 +1004,12 @@ function getPublicacion() {
         initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -983,12 +1051,12 @@ function getOfertas() {
         initializeCheckboxMaster('checkAllOfertas', 'checkboxOferta');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -1026,12 +1094,12 @@ function getPostulaciones() {
         initializeCheckboxMaster('checkAllPostulaciones', 'checkboxPostulacion');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -1069,12 +1137,12 @@ function getExpAcademica() {
         initializeCheckboxMaster('checkAllAcademicas', 'checkboxAcademica');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -1119,7 +1187,7 @@ function getExpLaboral() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
 }
 
@@ -1135,7 +1203,7 @@ document.getElementById('deleteSelectedCurso').addEventListener('click', functio
       deleteCurso(selectedIds);
     }
   } else {
-    alert('No hay cursos seleccionadas para eliminar.');
+    Swal.fire("Error", "Error en la solicitud" + data.message, "error");
   }
 });
 
@@ -1156,15 +1224,15 @@ function deleteCurso(ids) {
     })
     .then((data) => {
       if (data.success) {
-        alert('Curso(s) eliminado(s)');
+        Swal.fire("success", "Curso Eliminado correctamente." + data.message, "error");
         getCurso();
       } else {
-        alert('Error al eliminar los cursos.');
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: " + error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
     });
     
 }
@@ -1330,7 +1398,7 @@ function deleteSelectedRows(checkboxClass, apiEndpoint) {
   });
 
   if (selectedIds.length === 0) {
-      alert("No hay filas seleccionadas");
+    Swal.fire("Error", "No hay filas seleccionadas." + data.message, "error");
       return;
   }
 
@@ -1356,14 +1424,14 @@ function deleteSelectedRows(checkboxClass, apiEndpoint) {
                   }
               });
           });
-          alert('Eliminación exitosa');
+          Swal.fire("success", "Registro Eliminado Correctamente." + data.message, "error");
       } else {
-          alert('Error al eliminar fila(s): ' + data.message);
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
   })
   .catch(error => {
       console.error('Error:', error);
-      alert('Error al eliminar fila(s): ' + error.message);
+      Swal.fire("Error", "Error en la solicitud" + data.message, "error");
   });
 }
 
@@ -1395,7 +1463,7 @@ $("#addCategoria").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Categoria agregada");
+        Swal.fire("success", "Categoria Creada exitosamente." + data.message, "error");
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1406,7 +1474,7 @@ $("#addCategoria").on("submit", function (event) {
         getCategoria();
 
       } else {
-        alert("Error" + data.message);
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
@@ -1439,7 +1507,7 @@ $("#addPalabra").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Dato(s) agregado(s)");
+        Swal.fire("success", "Registro creado exitosamente." + data.message, "error");
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1450,7 +1518,7 @@ $("#addPalabra").on("submit", function (event) {
         getDiccionario();
 
       } else {
-        alert("Error" + data.message);
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
@@ -1482,7 +1550,7 @@ $("#addCarrera").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Dato(s) agregado(s)");
+        Swal.fire("success", "Registro creado exitosamente" + data.message, "error");
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1493,7 +1561,7 @@ $("#addCarrera").on("submit", function (event) {
         getCarrera();
 
       } else {
-        alert("Error" + data.message);
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
@@ -1525,7 +1593,7 @@ $("#addPerfil").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Perfil agregado");
+        Swal.fire("success", "Registro creado exitosamente." + data.message, "error");
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1536,7 +1604,7 @@ $("#addPerfil").on("submit", function (event) {
         getPerfil();
 
       } else {
-        alert("Error" + data.message);
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
@@ -1573,7 +1641,7 @@ $("#crearCurso").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Curso agregado");
+        Swal.fire("success", "Registro Creado exitosamente." + data.message, "error");
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1581,7 +1649,7 @@ $("#crearCurso").on("submit", function (event) {
         ).val("");
 
       } else {
-        alert("Error" + data.message);
+        Swal.fire("Error", "Error en la solicitud" + data.message, "error");
       }
     })
     .catch((error) => {
