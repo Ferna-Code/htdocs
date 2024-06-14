@@ -292,10 +292,10 @@ function obtenerArchivoCV(event) {
                     // Generar un botón para abrir el archivo CV
                     const abrirArchivoBtn = document.createElement('button');
                     abrirArchivoBtn.textContent = 'Abrir Archivo CV';
-                    abrirArchivoBtn.classList.add('btn', 'btn-primary');
+                    abrirArchivoBtn.classList.add('btn', 'btn-supervisor');
                     abrirArchivoBtn.type = 'button';
                     abrirArchivoBtn.addEventListener('click', () => {
-                        window.open(rutaArchivoCV, '_blank'); // Abrir la ruta del archivo en una nueva pestaña
+                        window.open(rutaArchivoCV, '_blank'); 
                     });
 
                     // Agregar el botón al documento

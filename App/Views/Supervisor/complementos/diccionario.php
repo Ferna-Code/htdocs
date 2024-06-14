@@ -1,5 +1,5 @@
 <body>
-    <h1>Registro de ofertas</h1>
+    <h1>Palabras Prohibidas</h1>
     <div class="body-panel">
         <?php include 'tablas/tablaPalabra.php' ?>
     </div>
