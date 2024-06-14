@@ -59,7 +59,13 @@ verificarAcceso($perfilesPermitidos);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+      
+
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+
+        <div class="contenedor-body" id="modulo20" style="display:none">
+            <?php include 'complementos/graficos.php'; ?>
+        </div>
 
         <div class="contenedor-body" id="modulo19">
             <?php include 'complementos/menuPrincipal.php'; ?>
@@ -136,6 +142,8 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo17" style="display:none">
             <?php include 'complementos/formularios/verUsuario.php'; ?>
         </div>
+
+
 
     </div>
 

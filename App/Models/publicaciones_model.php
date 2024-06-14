@@ -62,13 +62,18 @@ class PublicacionesModel
             break;
         }
     }
-
+   
     // Concatenar la publicación en una sola cadena de texto
     $publicacion_str = implode(' ', $publicacion);
-
-    // Insertar la publicación en la base de datos
+    if($activate == 1){
+         // Insertar la publicación en la base de datos
     $insertResult = $this->insertPublicacion($rut, $publicacion_str, $fecha_actual, $activate);
     return $insertResult;
+    }else if($activate == 0){
+     
+        return false;
+    }
+   
 }
 
 public function insertPublicacion($rut_, $publicacion_, $fecha_actual_, $activate_)

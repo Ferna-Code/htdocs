@@ -362,6 +362,19 @@ function controlVisi19() {
   centrarModulo(eleme);
 }
 
+function controlVisi20() {
+  var eleme = document.getElementById("modulo20");
+
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
 
 function ocultarModulos() {
   console.log("estoy aqui");
