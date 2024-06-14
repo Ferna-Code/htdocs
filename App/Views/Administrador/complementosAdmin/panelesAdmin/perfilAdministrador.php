@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'guardardatospe
 <link rel="stylesheet" href="../../../../Public/css/panelalumno.css">
     <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
 <body>
-    <div style="width: 80%; color:">
+    <div style="width: 80%;">
         <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
             <!-- Perfil del Usuario -->
             <div class="cards">
@@ -86,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'guardardatospe
                     </div>
                 </div>
             </div>
-
             <!-- Guardar Cambios -->
             <button id="guardar-cambios-usuario-btn" type="button" class="btn-supervisor mt-2">Guardar Cambios</button>
         </form>

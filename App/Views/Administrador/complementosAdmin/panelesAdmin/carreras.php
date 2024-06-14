@@ -37,6 +37,7 @@
                     <thead>
                         <tr>
                             <th class="widthCheck"><input type="checkbox" id="checkAllCarrera" name="select-all"></th>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Categoria</th>
                             <th>Fecha de Ingreso</th>

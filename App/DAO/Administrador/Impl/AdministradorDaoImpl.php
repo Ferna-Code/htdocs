@@ -547,7 +547,7 @@ public function obtenerCarreraUsuario($rut)
     public function deleteArchivos($ids)
     {
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $consulta = "DELETE FROM cvarchivos WHERE rut IN ($placeholders)";
+        $consulta = "DELETE FROM cvarchivos WHERE id IN ($placeholders)";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
 
         if (!$stmt) {
