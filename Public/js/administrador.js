@@ -1102,6 +1102,26 @@ function deleteSelectedPerfilesHandler() {
   deleteSelectedRows('checkboxPerfil', '/Administrador/deletePerfiles');
 }
 
+//evento para seeccionar las filas marcadas con checkbox
+document.getElementById('deleteSelected').addEventListener('click', function () {
+  //Este array almacenará los IDs de las publicaciones seleccionadas para eliminar.
+  const selectedIds = [];
+  //Se selecciona todos los checkboxes con la clase checkboxPublicacion que están marcados (checked).
+  document.querySelectorAll('.checkboxPublicacion:checked').forEach(checkbox => {
+    //children[1] selecciona la segunda celda (<td>) en esa fila (asumiendo que el ID está en la segunda celda
+    //textContent obtiene el texto dentro de esa celda, que es el ID de la publicación.
+    //selectedIds.push(...) añade ese ID al array selectedIds.
+    selectedIds.push(checkbox.closest('tr').children[1].textContent); // Assuming the ID is in the second cell
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Está seguro que desea eliminar las publicaciones con ID: ${selectedIds.join(', ')}?`)) {
+      deletePublicaciones(selectedIds);
+    }
+  } else {
+    alert('No hay publicaciones seleccionadas para eliminar.');
+  }
+});
 function deleteSelectedPublicacionHandler() {
   deleteSelectedRows('checkboxPublicacion', '/Administrador/deletePublicaciones');
 }
@@ -1145,7 +1165,7 @@ function deleteSelectedRows(checkboxClass, apiEndpoint) {
   const selectedIds = [];
   document.querySelectorAll('.' + checkboxClass + ':checked').forEach(checkbox => {
       const row = checkbox.closest('tr');
-      const id = row.cells[1].textContent; // Assuming the ID is in the second cell
+      const id = row.cells[1].textContent; 
       selectedIds.push(id);
   });
 
