@@ -5,13 +5,13 @@ $rutsesion = $_SESSION['rut'];
 $imagen = $admin->obtenerImagenUsuario($rutsesion);
 $carrera = $admin->obtenerCarreraUsuario($rutsesion);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] === 'getData') {
     $controller = new PerfilController();
     $controller->getData();
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] === 'saveData') {
     $controller = new PerfilController();
     $controller->guardarDatosAlumno();
     exit;
