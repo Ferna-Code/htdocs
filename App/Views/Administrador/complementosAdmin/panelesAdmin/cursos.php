@@ -29,7 +29,7 @@
                     <th>Nombre</th>               
                     <th>Centro de capacitación</th>               
                     <th>Fecha de Creación</th>
-                    <th>Ver</th>
+                    
                 </tr>
             </thead>
             <tbody id="bodyCursos">

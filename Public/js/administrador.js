@@ -310,6 +310,31 @@ function controlVisi17() {
   // Centra el módulo 1
   centrarModulo(elemento17);
 }
+function controlVisi18(id) {
+  var elemento18 = document.getElementById("modulo18");
+  getCursoById(id);
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento18.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento17);
+}
+
+function controlVisi19(id) {
+  var eleme = document.getElementById("modulo19");
+  getOfertaById(id);
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo correspondiente
+  eleme.style.display = "flex";
+
+  // Centra el módulo mostrado
+  centrarModulo(eleme);
+}
 
 
 
@@ -632,6 +657,48 @@ function getCurso() {
     });
 }
 
+function getCursoById(id) {
+  fetch("/supervisor/getCursoById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      // Asignar datos a los elementos de la vista
+      const curso = data.curso;
+      if (curso.idcategoria == 1) {
+        categoria = "Educación, bienestar y calidad";
+      } else if (curso.idcategoria == 2) {
+        categoria = "Informática, tecnología y productividad";
+      } else if (curso.idcategoria == 3) {
+        categoria = "Negocios, gestión e innovación";
+      } else {
+        categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+      }
+      document.getElementById("verNombreCurso").value = curso.nombre;
+      document.getElementById("verCodigoCurso").value = curso.id;
+      document.getElementById("verIdCurso").value = curso.id;
+      document.getElementById("verCategoriaCurso").value = categoria;
+      document.getElementById("verCentroCurso").value = curso.emitidopor;
+      document.getElementById("verFechaCurso").value = curso.fechaCreacion;
+      document.getElementById("verEliminacionCurso").value = (curso.fechaEliminacion || '');
+      document.getElementById("verDescripcionCurso").value = curso.descripcion;
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+}
+
 
 
 
@@ -740,16 +807,16 @@ function getReportes() {
 
         data.forEach(row => {
           const fila = `
-            <tr>
-              <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
-              <td>${row.id}</td>
-              <td>${row.idcomentario}</td>
-              <td>${row.rutusuario}</td>
-              <td>${row.idpublicacion}</td>
-              <td>${row.fechaCreacion}</td>
-              <td>${row.activo}</td>
-              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-            </tr>`;
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
+          
+          <td>${row.idcomentario}</td>
+          <td>${row.rutusuario}</td>
+          <td>${row.idpublicacion}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
           tbody.append(fila);
         });
 
@@ -1109,16 +1176,16 @@ function getPublicacion() {
 
         data.forEach(row => {
           const fila = `
-            <tr>
-              <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion" name="select-all"></td>
-              <td style="display: none;">${row.id}</td>
-              <td>${row.rutusuario}</td>
-              <td>${row.publicacion}</td>
-              <td>${row.nreportes}</td>
-              <td>${row.fechaCreacion}</td>
-              <td>${row.activo}</td>
-              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-            </tr>`;
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
+         
+          <td>${row.rutusuario}</td>
+          <td>${row.publicacion}</td>
+          <td>${row.nreportes}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
           tbody.append(fila);
         });
 
@@ -1182,6 +1249,20 @@ function getOfertas() {
 
               // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
               initializeCheckboxMaster('checkAllOfertas', 'checkboxOferta');
+        data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
+          const fila = `
+        <tr class="table table-striped">
+          <td><input type="checkbox" class="checkboxOfertas" id="checkboxOfertas" name="checkId"></td>
+          <td class="hidden">${row.id}</a></td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi19(${row.id})">${row.cargo}</a></td>
+          <td>${row.nombreEmpresa}</a></td>
+          <td>${row.tipoOferta}</a></td>
+          <td>${row.fechacreacion}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+        </tr>`;
+          tbody.append(fila);
+        });
 
               // Implementación del filtro por cargo y nombre de empresa
               const filtroCargo = document.getElementById('filtroCargo');
@@ -1221,6 +1302,50 @@ function filtrarOfertas(filtroCargo, filtroNombreEmpresa) {
       const mostrarFila = (cargo.includes(filtroCargo) && nombreEmpresa.includes(filtroNombreEmpresa));
       filas[i].style.display = mostrarFila ? "" : "none";
   }
+}
+
+function getOfertaById(id) {
+  fetch("/supervisor/getOfertaById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      // Asignar datos a los elementos de la vista
+      const oferta = data.curso;
+      if (oferta.idcategoria == 1) {
+        categoria = "Educación, bienestar y calidad";
+      } else if (oferta.idcategoria == 2) {
+        categoria = "Informática, tecnología y productividad";
+      } else if (oferta.idcategoria == 3) {
+        categoria = "Negocios, gestión e innovación";
+      } else {
+        categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+      }
+      document.getElementById("verIdOferta").value = oferta.id;
+      document.getElementById("cargoOferta").value = oferta.cargo;
+      document.getElementById("tipoOferta").value = oferta.tipoOferta;
+      document.getElementById("categoriaOferta").value = categoria;
+      document.getElementById("empresaOferta").value = oferta.nombreEmpresa;
+      document.getElementById("rutEmpresa").value = oferta.rutempresa;
+      document.getElementById("correoOferta").value = oferta.correocontacto;
+      document.getElementById("salarioOferta").value = oferta.rangosalarial;
+      document.getElementById("creacionOferta").value = oferta.fechacreacion;
+      document.getElementById("descripcionOferta").value = oferta.descripcion;
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
 }
 
 function getPostulaciones() {
@@ -1395,6 +1520,95 @@ function getExpLaboral() {
       alertOps()
     });
 }
+
+//...............DELETE CURSO...............
+document.getElementById('deleteSelectedCurso').addEventListener('click', function () {
+  const selectedIds = [];
+  document.querySelectorAll('.checkboxCurso:checked').forEach(checkbox => {
+    selectedIds.push(checkbox.closest('tr').children[1].textContent.trim());
+  });
+
+  if (selectedIds.length > 0) {
+    if (confirm(`¿Desea eliminar los cursos c: ${selectedIds.join(', ')}?`)) {
+      deleteCurso(selectedIds);
+    }
+  } else {
+    alert('No hay cursos seleccionadas para eliminar.');
+  }
+});
+
+function deleteCurso(ids) {
+  console.log("Actualizar categorias:", ids);
+  fetch("/supervisor/deleteCurso", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ids })
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert('Curso(s) eliminado(s)');
+        getCurso();
+      } else {
+        alert('Error al eliminar los cursos.');
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
+    
+}
+
+//--------------UPDATE-----------
+
+document.getElementById('ForUpdateCurso').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const formData = {
+    idCurso: document.getElementById('verIdCurso').value,
+    nombre: document.getElementById('verNombreCurso').value,
+    categoria: document.getElementById('verCategoriaCurso').value,
+    codigo: document.getElementById('verCodigoCurso').value,
+    centro: document.getElementById('verCentroCurso').value,
+    fecha: document.getElementById('verFechaCurso').value,
+    eliminacion: document.getElementById('verEliminacionCurso').value,
+    descripcion: document.getElementById('verDescripcionCurso').value,
+  };
+
+  fetch("/supervisor/updateCurso", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert("Curso actualizado exitosamente");
+        // Restablece los valores del formulario
+        document.getElementById('formCurso').reset();
+      } else {
+        alert("Error: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
 
 
 

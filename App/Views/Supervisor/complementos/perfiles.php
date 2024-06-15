@@ -6,6 +6,6 @@
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista
-        initializeCheckboxMaster('checkAllPerfil', 'checkboxPerfil');
+        
     </script>
 </body>

@@ -5,11 +5,13 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once __DIR__ . '/../DAO/supervisor/Impl/supervisorDaoImpl.php';
 require_once __DIR__ . '/../Models/supervisorModel.php';
 require_once __DIR__ . '/../DAO/usuario/Impl/usuarioDaoImpl.php';
-class SupervisorController{
-    public function index(){
-        include_once VIEWS_PATH . 'Layout/nav.php';
-        include_once VIEWS_PATH . 'Supervisor/index.php';
-        include_once VIEWS_PATH . 'Layout/footer.php';
+class SupervisorController
+{
+    public function index()
+    {
+        include VIEWS_PATH . 'Layout/nav.php';
+        include VIEWS_PATH . 'Supervisor/index.php';
+        include VIEWS_PATH . 'Layout/footer.php';
     }
 
     // obtener y modificar info del usuario
@@ -28,40 +30,41 @@ class SupervisorController{
     }
 
     public function guardarDatosPersonales()
-{
-    $rutsesion = $_SESSION['rut'];
-    $admin = new usuarioDaoImpl();
+    {
+        $rutsesion = $_SESSION['rut'];
+        $admin = new usuarioDaoImpl();
 
-    // Obtener campos modificados del POST
-    $camposModificados =$_POST;
+        // Obtener campos modificados del POST
+        $camposModificados = $_POST;
 
-    // Verificar si se ha subido una imagen
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
-        $imagen = $_FILES['imagen'];
-        $rutaDestino = 'uploads/' . basename($imagen['name']);
-        if (move_uploaded_file($imagen['tmp_name'], $rutaDestino)) {
-            $camposModificados['imagen'] = $rutaDestino;
+        // Verificar si se ha subido una imagen
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
+            $imagen = $_FILES['imagen'];
+            $rutaDestino = 'uploads/' . basename($imagen['name']);
+            if (move_uploaded_file($imagen['tmp_name'], $rutaDestino)) {
+                $camposModificados['imagen'] = $rutaDestino;
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
+                return;
+            }
+        }
+
+        // Actualizar usuario en la base de datos
+        $resultado = $admin->actualizarUsuario($rutsesion, $camposModificados);
+
+        if ($resultado) {
+            echo json_encode(['success' => true]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
-            return;
+            echo json_encode(['success' => false, 'message' => 'Error al actualizar los datos del usuario']);
         }
     }
 
-    // Actualizar usuario en la base de datos
-    $resultado = $admin->actualizarUsuario($rutsesion, $camposModificados);
-
-    if ($resultado) {
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Error al actualizar los datos del usuario']);
-    }
-}
 
 
+    public function insertData()
+    { //CATEGORIA
 
-    public function insertData(){//CATEGORIA
-       
-        $json = file_get_contents('php://input');//escucha el input dentro del PHP
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
         $data = json_decode($json, true);
         echo "<script>alert('controlador')</script>";
         echo "<script>console.log('controlador')</script>";
@@ -70,7 +73,7 @@ class SupervisorController{
             return;
         }
         $nuevaCategoria = $data['nuevaCategoria'];
-        
+
         $admin = new SupervisorDaoImpl();
         $supervisorModel = new SupervisorModel();
         $supervisorModel->setNuevaCategoria($nuevaCategoria);
@@ -79,26 +82,26 @@ class SupervisorController{
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
-            
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
-
     }
-      public function getCategoria(){
+    public function getCategoria()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getCategoria($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
-    public function insertCurso(){
-       
-        $json = file_get_contents('php://input');//escucha el input dentro del PHP
+    public function insertCurso()
+    {
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
         $data = json_decode($json, true);
         echo "<script>alert('controlador')</script>";
         echo "<script>console.log('controlador')</script>";
@@ -113,7 +116,7 @@ class SupervisorController{
         $link = $data['link'];
         $activo = $data['activo'];
         $centro = $data['centro'];
-        
+
         $admin = new SupervisorDaoImpl();
         $supervisorModel = new SupervisorModel();
         $supervisorModel->setCategoriaCurso($categoria);
@@ -128,36 +131,36 @@ class SupervisorController{
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
-           
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
-
     }
 
-    public function getCurso(){
+    public function getCurso()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getCurso($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
 
-    public function insertPerfil(){
-       
-        $json = file_get_contents('php://input');//escucha el input dentro del PHP
+    public function insertPerfil()
+    {
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
         $data = json_decode($json, true);
-    
+
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
             return;
         }
         $nuevoPerfil = $data['nuevoPerfil'];
-        
+
         $admin = new SupervisorDaoImpl();
         $supervisorModel = new SupervisorModel();
         $supervisorModel->setPerfil($nuevoPerfil);
@@ -166,24 +169,23 @@ class SupervisorController{
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
-            
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
-
     }
 
-    public function insertPalabra(){
-       
-        $json = file_get_contents('php://input');//escucha el input dentro del PHP
+    public function insertPalabra()
+    {
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
         $data = json_decode($json, true);
-    
+
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
             return;
         }
         $palabra = $data['palabra'];
-        
+
         $admin = new SupervisorDaoImpl();
         $supervisorModel = new SupervisorModel();
         $supervisorModel->setPalabra($palabra);
@@ -192,28 +194,28 @@ class SupervisorController{
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa', 'data' => $palabra]);
-            
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
-
     }
 
-    public function getPalabra(){
+    public function getPalabra()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getPalabra($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
-    
-    public function insertUsuario(){
-       
-        $json = file_get_contents('php://input');//escucha el input dentro del PHP
+
+    public function insertUsuario()
+    {
+
+        $json = file_get_contents('php://input'); //escucha el input dentro del PHP
         $data = json_decode($json, true);
         echo "<script>alert('controlador')</script>";
         echo "<script>console.log('controlador')</script>";
@@ -232,7 +234,7 @@ class SupervisorController{
         $avance = $data['avance'];
         $cargo = $data['cargo'];
         $estado = $data['estado'];
-        
+
         $admin = new SupervisorDaoImpl();
         $supervisorModel = new SupervisorModel();
         //set
@@ -247,83 +249,87 @@ class SupervisorController{
         $supervisorModel->setAvance($avance);
         $supervisorModel->setCargoUsuario($cargo);
         $supervisorModel->setEstado($estado);
-       
+
 
         $result = $admin->insertUsuario($supervisorModel);
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
-            
         } else {
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
-
     }
 
-    public function getPublicacion(){
+    public function getPublicacion()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getPublicacion($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
-    public function getReporte(){
+    public function getReporte()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getReporte($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
 
-    public function getOferta(){
+    public function getOferta()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getOferta($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
 
-    public function getPerfil(){
+    public function getPerfil()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getPerfil($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
-    public function getUsuario(){
+    public function getUsuario()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getUsuario($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
         }
     }
 
-    public function getCarrera(){
+    public function getCarrera()
+    {
         $admin = new SupervisorDaoImpl();
         $limit = 10; // Puedes ajustar este valor según sea necesario
         $data = $admin->getCarrera($limit);
-    
-        if(isset($data['success']) && !$data['success']){
+
+        if (isset($data['success']) && !$data['success']) {
             echo json_encode($data); // Retornar mensaje de error
         } else {
             echo json_encode($data); // Retornar datos
@@ -336,7 +342,7 @@ class SupervisorController{
         $idCurso = $requestData['id'];
         $admin = new SupervisorDaoImpl();
         $data = $admin->getCursoById($idCurso);
-    
+
         if ($data) {
             echo json_encode(['success' => true, 'curso' => $data]);
         } else {
@@ -344,13 +350,53 @@ class SupervisorController{
         }
     }
 
+    public function getUsuarioById()
+    {
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        $rutusuario = $requestData['rut'];
+        $admin = new SupervisorDaoImpl();
+        $data = $admin->getUsuarioByRut($rutusuario); // Cambiado para llamar el método correcto
+
+        if ($data) {
+            echo json_encode(['success' => true, 'curso' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
+    public function getOfertaById()
+    {
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        $idOferta = $requestData['id'];
+        $admin = new SupervisorDaoImpl();
+        $data = $admin->getOfertaById($idOferta); // Cambiado para llamar el método correcto
+
+        if ($data) {
+            echo json_encode(['success' => true, 'curso' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
+    public function getPublicacionById()
+    {
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        $idPublic = $requestData['id'];
+        $admin = new SupervisorDaoImpl();
+        $data = $admin->getPublicacionById($idPublic); // Cambiado para llamar el método correcto
+
+        if ($data) {
+            echo json_encode(['success' => true, 'curso' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la obtención de datos']);
+        }
+    }
 
     //-------------------DELETES-----------------
-    public function deleteCategoria() {
+    public function deleteCategoria()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deleteCategoria($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'Publicaciones eliminadas correctamente.']);
         } else {
@@ -358,11 +404,12 @@ class SupervisorController{
         }
     }
 
-    public function deleteCarrera() {
+    public function deleteCarrera()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deleteCarrera($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
         } else {
@@ -370,22 +417,24 @@ class SupervisorController{
         }
     }
 
-    public function deleteCurso() {
+    public function deleteCurso()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deleteCurso($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las carreras.']);
         }
     }
-    public function deletePublicacion() {
+    public function deletePublicacion()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deletePublicacion($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
         } else {
@@ -393,55 +442,60 @@ class SupervisorController{
         }
     }
 
-    public function deleteReporte() {
+    public function deleteReporte()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deleteReporte($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'carreras eliminadas correctamente.']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las carreras.']);
         }
     }
-    public function deleteOfertas() {
+    public function deleteOfertas()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deleteOfertas($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
         }
     }
-    public function deletePerfil() {
+    public function deletePerfil()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deletePerfil($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
         }
     }
-    public function deleteUsuario() {
+    public function deleteUsuario()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deleteUsuario($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
         }
     }
-    public function deletePalabra() {
+    public function deletePalabra()
+    {
         $admin = new SupervisorDaoImpl();
         $ids = json_decode(file_get_contents('php://input'), true)['ids'];
         $success = $admin->deletePalabra($ids);
-    
+
         if ($success) {
             echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
         } else {
@@ -451,40 +505,75 @@ class SupervisorController{
 
     //----------------UPDATE-----------------
 
-public function updateCurso(){
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
+    public function updateCurso()
+    {
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
 
-    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
-        echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos']);
-        return;
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos']);
+            return;
+        }
+
+        $idCurso = $data['idCurso'];
+        $categoria = $data['categoria'];
+        $nombre = $data['nombre'];
+        $descripcion = $data['descripcion'];
+        $fecha = $data['fecha'];
+        $centro = $data['centro'];
+
+
+        $admin = new SupervisorDaoImpl();
+        $supervisorModel = new SupervisorModel();
+        $supervisorModel->setIdCurso($idCurso);
+        $supervisorModel->setCategoriaCurso($categoria);
+        $supervisorModel->setNombreCurso($nombre);
+        $supervisorModel->setDescripcionCurso($descripcion);
+        $supervisorModel->setFechaInicio($fecha);
+        $supervisorModel->setCentro($centro);
+
+
+        $result = $admin->updateCurso($supervisorModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
     }
 
-    $idCurso = $data['idCurso'];
-    $categoria = $data['categoria'];
-    $nombre = $data['nombre'];
-    $descripcion = $data['descripcion'];
-    $fecha = $data['fecha'];
-    $centro = $data['centro'];
-   
+    public function updateUsuario()
+    {
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
 
-    $admin = new SupervisorDaoImpl();
-    $supervisorModel = new SupervisorModel();
-    $supervisorModel->setIdCurso($idCurso);
-    $supervisorModel->setCategoriaCurso($categoria);
-    $supervisorModel->setNombreCurso($nombre);
-    $supervisorModel->setDescripcionCurso($descripcion);
-    $supervisorModel->setFechaInicio($fecha);
-    $supervisorModel->setCentro($centro);
-   
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos']);
+            return;
+        }
 
-    $result = $admin->updateCurso($supervisorModel);
+        $rut = $data['rut'];
+        $idPerfil = $data['idPerfil'];
+        $telefono = $data['telefono'];
+        $direccion = $data['direccion'];
+        $correo = $data['correo'];
+       
 
-    if ($result) {
-        echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+
+        $admin = new SupervisorDaoImpl();
+        $supervisorModel = new SupervisorModel();
+        $supervisorModel->setRut($rut);
+        $supervisorModel->setPerfilUsuario($idPerfil);
+        $supervisorModel->setTelefono($telefono);
+        $supervisorModel->setDireccion($direccion);
+        $supervisorModel->setCorreo($correo);
+
+        $result = $admin->updateUsuario($supervisorModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
     }
 }
-}
-

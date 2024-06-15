@@ -342,7 +342,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.like-action').forEach(function(element) {
       element.addEventListener('click', function() {
           const publicacionId = this.getAttribute('data-id');
+<<<<<<< HEAD
+          // const likesCountElement = this.nextElementSibling;
+          const likesCountElement = this.closest('.like-container').querySelector('.likes-count');  
+=======
           const likesCountElement = this.parentElement.querySelector('.likes-count'); // Seleccionar el contador de likes
+>>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
           
           fetch('/usuarios/likePublicacion', {
               method: 'POST',
@@ -362,6 +367,12 @@ document.addEventListener('DOMContentLoaded', function() {
                   // Actualizar el contador de likes en el frontend
                   const newLikes = parseInt(likesCountElement.textContent.trim()) + 1 || 1; // Incrementar el contador
                   likesCountElement.textContent = newLikes;
+<<<<<<< HEAD
+                 
+                  // document.getElementById("likeId").value = newLikes;
+                  this.classList.add('nlikes'); 
+=======
+>>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
               } else {
                 Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
               }

@@ -23,15 +23,11 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllOfertas" name="select-all"></th>
-                        <th>Tipo de Oferta</th>
-                        <th>Rargo</th>
+                        <th>Cargo</th>
                         <th>Empresa</th>
-                        <th>Rut Empresa</th>
-                        <th>Correo</th>
-                        <th>Descripción</th>
-                        <th>Renta Aproximada</th>
-                        <th>Fecha de Creación</th>
-                        <th>Fecha de Eliminación</th>
+                        <th>Tipo de oferta</th>
+                        <th>Fecha publicación</th>
+                        <th>Fecha eliminación</th>
                     </tr>
                 </thead>
                 <tbody id="bodyOfertas">
