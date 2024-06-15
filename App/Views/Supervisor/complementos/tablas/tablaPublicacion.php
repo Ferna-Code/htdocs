@@ -3,10 +3,8 @@
 
         <form method="POST" action="#">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <input type="text" class="ofertaFiltro" name="idFiltro" placeholder="Filtrar por ID">
-                <input type="submit" class="btnFiltro" value="Filtrar">
-            </div>
+            <input style="margin-bottom: 15px" type="text" id="filtroPublicaciones" placeholder="Buscar por publicación">
+
         </form>
 
         <form action="#">
@@ -18,7 +16,7 @@
                         <th  class="widthCheck"><input type="checkbox" id="checkAllPublicacion" name="select-all"></th>
                       
                         <th>RUT Usuario</th>
-                        <th>Publicacion</th>
+                        <th>Publicación</th>
                         <th>Cantidad de reportes</th>
                         <th>Fecha Creación</th>
                         

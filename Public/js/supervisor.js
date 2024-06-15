@@ -459,6 +459,20 @@ function getCategoria() {
           tbody.append(fila);
         });
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
+          // Implementación del filtro
+          const filtroInput = $("#filtroCategoria");
+          filtroInput.on('input', function () {
+            const filtro = filtroInput.val().trim().toLowerCase();
+  
+            // Filtrar las filas de la tabla
+            const filas = tbody.find('tr');
+            filas.each(function () {
+              const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+              console.log(textoColumna);
+              const filaVisible = textoColumna.includes(filtro);
+              $(this).toggle(filaVisible);
+            });
+          });
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -543,6 +557,20 @@ function getCurso() {
           tbody.append(fila);
         });
         initializeCheckboxMaster('checkAllCurso', 'checkboxCurso');
+         // Implementación del filtro
+         const filtroInput = $("#filtroCurso");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -692,31 +720,46 @@ function getPalabra() {
     .then((data) => {
       if (data && data.length > 0) {
         const tbody = $("#tbodyPalabra");
-        tbody.empty()
-        //itera sobre cada elemento en la data y añade fila a la tabla
-        //data.array.forEach(element => {});
+        tbody.empty();
+
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-         <tr>
-           <td><input type="checkbox" class="checkboxPalabra" id="checkboxPalabra" name="checkboxPalabra"></td>
-           <td class="hidden">${row.id}</td>
-           <td>${row.palabra}</td>
-           <td>${row.fechaCreacion}</td>
-           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-         </tr>`;
+                      <tr>
+                          <td><input type="checkbox" class="checkboxPalabra" id="checkboxPalabra" name="checkboxPalabra"></td>
+                          <td class="hidden">${row.id}</td>
+                          <td>${row.palabra}</td>
+                          <td>${row.fechaCreacion}</td>
+                          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+                      </tr>`;
           tbody.append(fila);
         });
+
         initializeCheckboxMaster('checkAllPalabra', 'checkboxPalabra');
+
+        // Implementación del filtro
+        const filtroInput = $("#filtroDiccionario");
+        filtroInput.on('input', function () {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function () {
+            const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+            console.log(textoColumna);
+            const filaVisible = textoColumna.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
       } else {
         alert("No se encontraron datos para actualizar");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 
 //INGRESAR USUARIO
@@ -794,7 +837,6 @@ function getPublicacion() {
           <td><input type="checkbox" id="tableUsers" class="checkboxPublicacion" name="checkId"></td>
           <td class="hidden">${row.id}</td>
           <td>${row.rutusuario}</a></td>
-        
           <td><a href="#" class="linkTabla" onclick="showModal('${row.id}')">${row.publicacion}</a></td>
           <td>${row.nreportes ? row.nreportes : 'SIN REPORTES'}</a></td>
           <td>${row.fechaCreacion}</td>
@@ -804,6 +846,20 @@ function getPublicacion() {
           tbody.append(fila);
         });
         initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
+         // Implementación del filtro
+         const filtroInput = $("#filtroPublicaciones");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(4)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -831,9 +887,9 @@ function getPublicacionById(id) {
     .then((data) => {
       // Llama a la función showModal con los datos de la publicación
       showModal(data.curso.publicacion);
-     
+
     })
-    
+
 }
 
 //REPORTE
@@ -867,6 +923,20 @@ function getReporte() {
           tbody.append(fila);
         });
         initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
+         // Implementación del filtro
+         const filtroInput = $("#filtroReporte");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -908,6 +978,20 @@ function getOferta() {
           tbody.append(fila);
         });
         initializeCheckboxMaster('checkAllOferta', 'checkboxOfertas');
+         // Implementación del filtro
+         const filtroInput = $("#filtroOfertas");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -1032,6 +1116,20 @@ function getCarrera() {
           tbody.append(fila);
         });
         initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+          // Implementación del filtro
+          const filtroInput = $("#filtroCarrera");
+          filtroInput.on('input', function () {
+            const filtro = filtroInput.val().trim().toLowerCase();
+  
+            // Filtrar las filas de la tabla
+            const filas = tbody.find('tr');
+            filas.each(function () {
+              const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+              console.log(textoColumna);
+              const filaVisible = textoColumna.includes(filtro);
+              $(this).toggle(filaVisible);
+            });
+          });
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -1073,6 +1171,19 @@ function getUsuario() {
           tbody.append(fila);
         });
         initializeCheckboxMaster('checkAllUsuario', 'checkboxUsuarios');
+        const filtroInput = $("#filtroUsuario");
+        filtroInput.on('input', function () {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function () {
+            const textoColumna = $(this).find('td:nth-child(2)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+            console.log(textoColumna);
+            const filaVisible = textoColumna.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
       } else {
         alert("No se encontraron datos para actualizar");
       }
@@ -1767,7 +1878,7 @@ function confirmarDelete(selectedIds) {
 }
 
 
-<<<<<<< HEAD
+
 
 //------------MODAL--------------
 function showModal(content) {
@@ -1779,153 +1890,153 @@ function showModal(content) {
 
   // Para cerrar el modal cuando se hace clic en el botón de cerrar
   const closeBtn = document.getElementsByClassName("close")[0];
-  closeBtn.onclick = function() {
+  closeBtn.onclick = function () {
     modal.style.display = "none";
   }
 
   // Para cerrar el modal cuando se hace clic fuera de él
-  window.onclick = function(event) {
+  window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   }
 }
-=======
+
 //Comentarios
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Función para inicializar eventos para comentarios
   function initCommentEvents(modalId, commentsContainerId, commentFormId, newCommentId, publicacionIdInputId) {
-      const modal = document.getElementById(modalId);
-      const span = modal.getElementsByClassName("close")[0];
-      const commentsContainer = document.getElementById(commentsContainerId);
-      const commentForm = document.getElementById(commentFormId);
-      const publicacionIdInput = document.getElementById(publicacionIdInputId);
+    const modal = document.getElementById(modalId);
+    const span = modal.getElementsByClassName("close")[0];
+    const commentsContainer = document.getElementById(commentsContainerId);
+    const commentForm = document.getElementById(commentFormId);
+    const publicacionIdInput = document.getElementById(publicacionIdInputId);
 
-      document.querySelectorAll('.comment-action').forEach(function(element) {
-          element.addEventListener('click', function() {
-              const publicacionId = this.getAttribute('data-id');
-              publicacionIdInput.value = publicacionId; // Guardar el ID de la publicación en el campo oculto
+    document.querySelectorAll('.comment-action').forEach(function (element) {
+      element.addEventListener('click', function () {
+        const publicacionId = this.getAttribute('data-id');
+        publicacionIdInput.value = publicacionId; // Guardar el ID de la publicación en el campo oculto
 
-              fetch('/usuarios/getComments', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({ publicacionId: publicacionId })
-              })
-              .then(response => response.json())
-              .then(data => {
-                  if (data.success) {
-                      commentsContainer.innerHTML = ''; // Clear existing comments
-                      if (data.comments.length > 0) {
-                          data.comments.forEach(comment => {
-                              const commentElement = document.createElement('div');
-                              commentElement.classList.add('comment');
-                              commentElement.innerHTML = `<p><strong>${comment.nombre}</strong>: ${comment.comentario}</p>`;
-                              commentsContainer.appendChild(commentElement);
-                          });
-                      } else {
-                          commentsContainer.innerHTML = '<p>No hay comentarios aún. Sé el primero en comentar.</p>';
-                      }
-                      modal.style.display = "block";
-                  } else {
-                    Swal.fire("Error", "Hubo un problema al eliminar la publicación:" + data.message, "error");
-                  }
-              })
-              .catch(error => {
-                Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
-              });
-          });
-      });
-
-      // Event listener para el formulario de comentarios
-      commentForm.addEventListener('submit', function(event) {
-          event.preventDefault();
-
-          const comentario = document.getElementById(newCommentId).value;
-          const publicacionId = publicacionIdInput.value;
-
-          fetch('/usuarios/agregarComentario', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ publicacionId: publicacionId, comentario: comentario })
-          })
+        fetch('/usuarios/getComments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ publicacionId: publicacionId })
+        })
           .then(response => response.json())
           .then(data => {
-              if (data.success) {
-                  const newCommentElement = document.createElement('div');
-                  newCommentElement.classList.add('comment');
-                  newCommentElement.innerHTML = `<p><strong>${data.usuario}</strong>: ${data.comentario}</p>`;
-                  commentsContainer.appendChild(newCommentElement);
-                  document.getElementById(newCommentId).value = ''; // Clear the input field
+            if (data.success) {
+              commentsContainer.innerHTML = ''; // Clear existing comments
+              if (data.comments.length > 0) {
+                data.comments.forEach(comment => {
+                  const commentElement = document.createElement('div');
+                  commentElement.classList.add('comment');
+                  commentElement.innerHTML = `<p><strong>${comment.nombre}</strong>: ${comment.comentario}</p>`;
+                  commentsContainer.appendChild(commentElement);
+                });
               } else {
-                Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
+                commentsContainer.innerHTML = '<p>No hay comentarios aún. Sé el primero en comentar.</p>';
               }
-          })
-          .catch(error => {
-            Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
-          });
-      });
-
-      // Event listeners para cerrar el modal
-      span.onclick = function() {
-          modal.style.display = "none";
-      }
-
-      window.onclick = function(event) {
-          if (event.target == modal) {
-              modal.style.display = "none";
-          }
-      }
-
-      
-  }
-
-// Inicialización para muro principal
-initCommentEvents('commentsModal', 'modal-comments-container', 'commentForm', 'newComment', 'publicacionIdInput');
-
-// Inicialización para muro personal
-initCommentEvents('commentsModalp', 'modal-comments-containerp', 'commentFormp', 'newCommentp', 'publicacionIdInputp');
-
-});
-
-//LIKES
-document.addEventListener('DOMContentLoaded', function() {
-  // Like action
-  document.querySelectorAll('.like-action').forEach(function(element) {
-      element.addEventListener('click', function() {
-          const publicacionId = this.getAttribute('data-id');
-          const likesCountElement = this.parentElement.querySelector('.likes-count'); // Seleccionar el contador de likes
-          
-          fetch('/usuarios/likePublicacion', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ publicacionId: publicacionId })
-          })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          })
-          .then(data => {
-              if (data.success) {
-                  // Actualizar el contador de likes en el frontend
-                  const newLikes = parseInt(likesCountElement.textContent.trim()) + 1 || 1; // Incrementar el contador
-                  likesCountElement.textContent = newLikes;
-              } else {
-                Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
-              }
+              modal.style.display = "block";
+            } else {
+              Swal.fire("Error", "Hubo un problema al eliminar la publicación:" + data.message, "error");
+            }
           })
           .catch(error => {
             Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
           });
       });
+    });
+
+    // Event listener para el formulario de comentarios
+    commentForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const comentario = document.getElementById(newCommentId).value;
+      const publicacionId = publicacionIdInput.value;
+
+      fetch('/usuarios/agregarComentario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ publicacionId: publicacionId, comentario: comentario })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const newCommentElement = document.createElement('div');
+            newCommentElement.classList.add('comment');
+            newCommentElement.innerHTML = `<p><strong>${data.usuario}</strong>: ${data.comentario}</p>`;
+            commentsContainer.appendChild(newCommentElement);
+            document.getElementById(newCommentId).value = ''; // Clear the input field
+          } else {
+            Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
+          }
+        })
+        .catch(error => {
+          Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
+        });
+    });
+
+    // Event listeners para cerrar el modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+
+  }
+
+  // Inicialización para muro principal
+  initCommentEvents('commentsModal', 'modal-comments-container', 'commentForm', 'newComment', 'publicacionIdInput');
+
+  // Inicialización para muro personal
+  initCommentEvents('commentsModalp', 'modal-comments-containerp', 'commentFormp', 'newCommentp', 'publicacionIdInputp');
+
+});
+
+//LIKES
+document.addEventListener('DOMContentLoaded', function () {
+  // Like action
+  document.querySelectorAll('.like-action').forEach(function (element) {
+    element.addEventListener('click', function () {
+      const publicacionId = this.getAttribute('data-id');
+      const likesCountElement = this.parentElement.querySelector('.likes-count'); // Seleccionar el contador de likes
+
+      fetch('/usuarios/likePublicacion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ publicacionId: publicacionId })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            // Actualizar el contador de likes en el frontend
+            const newLikes = parseInt(likesCountElement.textContent.trim()) + 1 || 1; // Incrementar el contador
+            likesCountElement.textContent = newLikes;
+          } else {
+            Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+          }
+        })
+        .catch(error => {
+          Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+        });
+    });
   });
 });
 
@@ -1935,47 +2046,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // REPORTES
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Report action
-  document.querySelectorAll('.report-action').forEach(function(element) {
-      element.addEventListener('click', function() {
-          const publicacionId = this.getAttribute('data-id');
-          const reportsCountElement = this.parentElement.querySelector('.reports-count'); // Seleccionar el contador de reportes
-          
-          fetch('/usuarios/reportarPublicacion', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ publicacionId: publicacionId })
-          })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          })
-          .then(data => {
-              if (data.success) {
-                  // Actualizar el contador de reportes en el frontend
-                  let currentReportsCount = parseInt(reportsCountElement.textContent.trim()) || 0; // Convertir a número o asignar 0 si no es válido
-                  const newReportsCount = currentReportsCount + 1;
-                  reportsCountElement.textContent = newReportsCount;
+  document.querySelectorAll('.report-action').forEach(function (element) {
+    element.addEventListener('click', function () {
+      const publicacionId = this.getAttribute('data-id');
+      const reportsCountElement = this.parentElement.querySelector('.reports-count'); // Seleccionar el contador de reportes
 
-                  if (newReportsCount >= 3) {
-                      // Ocultar la publicación o realizar alguna acción adicional
-                      const publicacionContainer = element.closest('.tweet-card');
-                      publicacionContainer.style.display = 'none';
-                  }
+      fetch('/usuarios/reportarPublicacion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ publicacionId: publicacionId })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            // Actualizar el contador de reportes en el frontend
+            let currentReportsCount = parseInt(reportsCountElement.textContent.trim()) || 0; // Convertir a número o asignar 0 si no es válido
+            const newReportsCount = currentReportsCount + 1;
+            reportsCountElement.textContent = newReportsCount;
 
-              } else {
-                Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
-              }
-          })
-          .catch(error => {
+            if (newReportsCount >= 3) {
+              // Ocultar la publicación o realizar alguna acción adicional
+              const publicacionContainer = element.closest('.tweet-card');
+              publicacionContainer.style.display = 'none';
+            }
+
+          } else {
             Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
-          });
-      });
+          }
+        })
+        .catch(error => {
+          Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+        });
+    });
   });
 });
->>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
+

@@ -620,7 +620,6 @@ function getCurso() {
 
         data.forEach(row => {
           const fila = `
-<<<<<<< HEAD
         <tr>
           <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
           <td class="hidden">${row.id}</td>
@@ -628,16 +627,6 @@ function getCurso() {
           <td>${row.emitidopor}</td>
           <td>${row.fechaCreacion}</td>
         </tr>`;
-=======
-            <tr>
-              <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
-              <td>${row.id}</td>
-              <td>${row.nombre}</td>
-              <td>${row.emitidopor}</td>
-              <td>${row.fechaCreacion}</td>
-              <td><a href="#" onclick="verOferta(${row.id})">Ver Curso</a></td>
-            </tr>`;
->>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
           tbody.append(fila);
         });
 
@@ -818,7 +807,6 @@ function getReportes() {
 
         data.forEach(row => {
           const fila = `
-<<<<<<< HEAD
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
           
@@ -829,18 +817,6 @@ function getReportes() {
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-=======
-            <tr>
-              <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
-              <td>${row.id}</td>
-              <td>${row.idcomentario}</td>
-              <td>${row.rutusuario}</td>
-              <td>${row.idpublicacion}</td>
-              <td>${row.fechaCreacion}</td>
-              <td>${row.activo}</td>
-              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-            </tr>`;
->>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
           tbody.append(fila);
         });
 
@@ -1175,7 +1151,6 @@ function getPublicacion() {
 
         data.forEach(row => {
           const fila = `
-<<<<<<< HEAD
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
          
@@ -1186,18 +1161,6 @@ function getPublicacion() {
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
-=======
-            <tr>
-              <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion" name="select-all"></td>
-              <td style="display: none;">${row.id}</td>
-              <td>${row.rutusuario}</td>
-              <td>${row.publicacion}</td>
-              <td>${row.nreportes}</td>
-              <td>${row.fechaCreacion}</td>
-              <td>${row.activo}</td>
-              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-            </tr>`;
->>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
           tbody.append(fila);
         });
 
@@ -1447,7 +1410,6 @@ function getExpLaboral() {
     });
 }
 
-<<<<<<< HEAD
 //...............DELETE CURSO...............
 document.getElementById('deleteSelectedCurso').addEventListener('click', function () {
   const selectedIds = [];
@@ -1537,8 +1499,6 @@ document.getElementById('ForUpdateCurso').addEventListener('submit', function (e
     });
 });
 
-=======
->>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
 
 
 //--------------DELETE GLOBAL --------------//
