@@ -3,7 +3,7 @@
 //CONECCION BBDD    
 define('db_host', 'localhost');
 define('db_name', 'redleones');
-define('BASE_URL', 'http://localhost/');
+define('BASE_URL', 'http://localhost:8080/');
 define('db_user', 'root');
 define('de_pass', '');
 

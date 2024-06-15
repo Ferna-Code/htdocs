@@ -78,7 +78,7 @@ class PublicacionesModel
 
 public function insertPublicacion($rut_, $publicacion_, $fecha_actual_, $activate_)
 {
-    $validateQuery = "INSERT INTO publicaciones (rutusuario, publicacion, fechaCreacion, activate) VALUES (?, ?, ?, ?)";
+    $validateQuery = "INSERT INTO publicaciones (rutusuario, publicacion, fechaCreacion, activo) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($this->db->getConnection(), $validateQuery);
     if (!$stmt) {
         die('Error en la preparación de la consulta: ' . mysqli_error($this->db->getConnection()));
@@ -98,7 +98,7 @@ public function verPublicaciones()
     $activated = 1;
     
     // Prepare the SQL statement
-    $stmt = mysqli_prepare($this->db->getConnection(), "SELECT * FROM publicaciones WHERE activate = ? AND fechaEliminacion IS NULL ORDER BY id DESC");
+    $stmt = mysqli_prepare($this->db->getConnection(), "SELECT * FROM publicaciones WHERE activo = ? AND fechaEliminacion IS NULL ORDER BY id DESC");
     
     if ($stmt === false) {
         die('Error preparing the statement: ' . htmlspecialchars(mysqli_error($this->db->getConnection())));
