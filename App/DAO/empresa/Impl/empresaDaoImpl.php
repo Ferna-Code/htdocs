@@ -16,16 +16,31 @@ class EmpresaDaoImpl implements EmpresaDao
 
 
     public function insertData($tipoTrabajo, $categoria, $cargo, $nombreEmpresa, $rutEmpresa, $email, $descripcionCargo, $rangoSalarial, $activate)
-    {
-
-        $validateQuery = "INSERT INTO ofertas(tipoOferta, idcategoria, cargo, nombreEmpresa, rutempresa, correocontacto, descripcion, rangosalarial, fechacreacion, activate) 
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
-        $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
-        mysqli_stmt_bind_param($stmt, "ssssssssi", $tipoTrabajo, $categoria, $cargo, $nombreEmpresa, $rutEmpresa, $email, $descripcionCargo, $rangoSalarial, $activate);
-        $result = mysqli_stmt_execute($stmt);
-
-        return $result;
+{
+    // Query SQL con marcadores de posición (?)
+    $validateQuery = "INSERT INTO ofertas (tipoOferta, idcategoria, cargo, nombreEmpresa, rutempresa, correocontacto, descripcion, rangosalarial, fechacreacion, fechaeliminacion, activate) 
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), DATE_ADD(NOW(), INTERVAL 3 MONTH), ?)";
+    
+    // Preparar la consulta
+    $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
+    if ($stmt === false) {
+        // Manejar el error si la preparación falla
+        die('Error al preparar la consulta: ' . mysqli_error($this->db->conec()));
     }
+    
+    // Vincular los parámetros a la consulta preparada
+    mysqli_stmt_bind_param($stmt, "sssssssss", $tipoTrabajo, $categoria, $cargo, $nombreEmpresa, $rutEmpresa, $email, $descripcionCargo, $rangoSalarial, $activate);
+    
+    // Ejecutar la consulta
+    $result = mysqli_stmt_execute($stmt);
+    if ($result === false) {
+        // Manejar el error si la ejecución falla
+        die('Error al ejecutar la consulta: ' . mysqli_stmt_error($stmt));
+    }
+    
+    // Devolver el resultado de la ejecución (true si fue exitosa, false si no)
+    return $result;
+}
 
     public function checkData(Empresa_model $admin)
     {
