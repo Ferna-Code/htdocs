@@ -6,7 +6,7 @@
     <script src="../../../../Public/js/check.js"></script>
     <script>
         // Llamada en una vista
-        initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
+       
     </script>
     
 </body>

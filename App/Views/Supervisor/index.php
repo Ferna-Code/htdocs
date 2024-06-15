@@ -11,13 +11,13 @@ header('Pragma: no-cache');
 
 // Verifica si el usuario está logeado
 if (!isset($_SESSION['idperfil'])) {
-    header('Location: http://localhost:8080/');
+    header('Location: http://localhost/');
     exit();
 }
 
 require_once 'App/Controllers/accessController.php';
 
-require_once 'C:\Xampp1\htdocs\App\Controllers\PerfilController.php';
+require_once 'C:\xampp\htdocs\App\Controllers\PerfilController.php';
 
 
 $perfilesPermitidos = 2;
@@ -170,7 +170,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../Public/js/supervisor.js"></script>
 
     <!-- JS card -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--Modal-->

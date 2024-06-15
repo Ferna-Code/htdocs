@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\Xampp11\htdocs\App\DAO\categorias\categoriasDAO';
+require_once 'C:\xampp1\htdocs\App\DAO\categorias\categoriasDAO';
 require_once __DIR__ . '/../../../Models/categorias_model.php';
 require_once __DIR__ . '/../../../Models/conexion.php';
 
