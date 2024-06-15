@@ -17,6 +17,7 @@ class PublicacionesController {
     public function procesarPublicacion($comentario) {
         $rutUsuario = $_SESSION['rut']; // Obtenemos el rut de sesión
          $comentario = htmlspecialchars($comentario);
+
         if ($this->verificarLimitePublicaciones($rutUsuario)) {
             $mensaje = "Has alcanzado el límite diario de publicaciones..";
             $_SESSION['publicacionNoCreada'] = "limite diario";
@@ -36,7 +37,7 @@ class PublicacionesController {
     
     private function verificarLimitePublicaciones($rutUsuario) {
         $numPublicaciones = $this->publicaciones_model->contarPublicacionesHoy($rutUsuario);
-        return $numPublicaciones >= 33;
+        return $numPublicaciones >= 3;
     }
 
 

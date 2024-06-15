@@ -22,8 +22,6 @@
         <div style="margin: 10px;">
             <div class="containerFiltro">
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearPerfil">Nuevo</button>
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarPerfil">Editar</button>
-                <button type="button" id="deleteSelectedPerfiles" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
             <table id="tablePerfils" class="tabla table">

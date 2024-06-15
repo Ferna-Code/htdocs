@@ -94,6 +94,21 @@ $publicaciones = $controlador->mostrarPublicaciones();
         }
         ?>
 
+        <div id="commentsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-comments-container">
+                    <!-- Aquí se mostrarán los comentarios -->
+                </div>
+                <form id="commentForm">
+                    <input type="hidden" id="publicacionIdInput">
+                    <textarea id="newComment" placeholder="Escribe tu comentario..." required></textarea>
+                    <button type="submit">Agregar comentario</button>
+                </form>
+            </div>
+        </div>
+
+
 
 
     </div>

@@ -191,7 +191,7 @@ function controlVisi8() {
 
   // Oculta todos los módulos
   ocultarModulos();
-  getUsuarios();
+  getUsuariostable();
   // Muestra el módulo 1
   elemento8.style.display = "flex";
 
@@ -364,9 +364,7 @@ async function getCarrera() {
     }
     const dataCarreras = await responseCarreras.json();
 
-    // Obtener un mapa de ID de categoría a nombre de categoría
     const categoriasMap = await obtenerCategoriasMap();
-
     const tbody = $("#bodyCarreras");
     tbody.empty();
 
@@ -387,11 +385,29 @@ async function getCarrera() {
     });
 
     initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+
+    // Capturar el elemento de entrada de búsqueda
+    const filtroInput = document.getElementById('filtroCarreras');
+    filtroInput.addEventListener('input', function() {
+      const filtro = filtroInput.value.toLowerCase(); // Convertir a minúsculas para hacer la búsqueda no sensible a mayúsculas
+
+      // Filtrar las filas de la tabla
+      dataCarreras.forEach(row => {
+        const nombre = row.nombre.toLowerCase();
+        const fila = tbody.find(`tr:contains(${filtro})`);
+        if (nombre.includes(filtro)) {
+          fila.show();
+        } else {
+          fila.hide();
+        }
+      });
+    });
   } catch (error) {
     console.error("Error en la solicitud Fetch: ", error);
-    alert("Error en la solicitud: ", error.message);
+    Swal.fire("Error", "Error en la solicitud" + data.message, "error");
   }
 }
+
 
 async function obtenerCategoriasMap() {
   try {
@@ -412,11 +428,9 @@ async function obtenerCategoriasMap() {
   }
 }
 
-
-
-// EDITAR CARRERA
-
-async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
+ // EDITAR CARRERA
+  
+ async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
   try {
     // Obtener el mapa de ID de categoría a nombre de categoría
     const categoriasMap = await obtenerCategoriasMap();
@@ -481,16 +495,6 @@ async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
   getCarrera()
 }
 
-  
-
-
-
-
-//FIN EDITAR CARRERA
-
-
-// OBTENER CATEGORIAS
-
 function getCategoria() {
   fetch("/Administrador/getCategoria")
     .then((response) => {
@@ -506,35 +510,62 @@ function getCategoria() {
 
         data.forEach(row => {
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
-          <td class="hidden">${row.id}</td>
-          <td>${row.nombre}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
-        </tr>`; 
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
+              <td style="display: none;">${row.id}</td>
+              <td>${row.nombre}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+              <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
+            </tr>`;
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
 
+        // Implementación del filtro
+        const filtroInput = document.getElementById('filtroCategorias');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.toLowerCase();
+
+          // Filtrar las filas de la tabla
+          data.forEach(row => {
+            const nombre = row.nombre.toLowerCase();
+            const fila = tbody.find(`tr:contains(${filtro})`);
+            if (nombre.includes(filtro)) {
+              fila.show();
+            } else {
+              fila.hide();
+            }
+          });
+        });
+
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps();
     });
 }
+
+
+function alertOps(){
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Algo salio mal, intenta en unos minutos."
+  });
+}
+// EDITAR CATEGORIAS
 
 async function editarCategoria(id, nombre) {
   const { value: formValues } = await Swal.fire({
     title: "Editar Categoría",
     html: `
-      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="Nuevo nombre" value="${nombre}">
+      <input id="swal-input2" style="width: 90%;" class="swal2-input" placeholder="Nuevo nombre" value="${nombre}">
     `,
     confirmButtonText: 'Actualizar',
     focusConfirm: false,
@@ -571,17 +602,6 @@ async function editarCategoria(id, nombre) {
   }
 }
 
-document.getElementById('editarButton').addEventListener('click', function(event) {
-  event.preventDefault(); 
-  editarCategoria();
-  editarDiccionario();
-  editarCarrera()
-});
-
-
-
-// Llamar a la función para cargar las categorías
-getCategoria();
 
 
 //--------------CURSOS---------------//
@@ -599,8 +619,8 @@ function getCurso() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
+<<<<<<< HEAD
         <tr>
           <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
           <td class="hidden">${row.id}</td>
@@ -608,10 +628,34 @@ function getCurso() {
           <td>${row.emitidopor}</td>
           <td>${row.fechaCreacion}</td>
         </tr>`;
+=======
+            <tr>
+              <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
+              <td>${row.id}</td>
+              <td>${row.nombre}</td>
+              <td>${row.emitidopor}</td>
+              <td>${row.fechaCreacion}</td>
+              <td><a href="#" onclick="verOferta(${row.id})">Ver Curso</a></td>
+            </tr>`;
+>>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllCursos', 'checkboxCursos');
+
+        // Implementación del filtro
+        const filtroInput = document.getElementById('filtroCursos');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const textoFila = $(this).text().toLowerCase();
+            const filaVisible = textoFila.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -619,7 +663,7 @@ function getCurso() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
@@ -666,6 +710,7 @@ function getCursoById(id) {
 }
 
 
+
 function getDiccionario() {
   fetch("/Administrador/getDiccionario")
     .then((response) => {
@@ -680,22 +725,33 @@ function getDiccionario() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
-          <td class="hidden">${row.id}</td>
-          <td>${row.palabra}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-          <td><button type="button" class="btn-supervisor btn-editar" onclick="editardiccionario(${row.id},'${row.palabra}')">Editar</button></td>
-   
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
+              <td class="hidden">${row.id}</td>
+              <td>${row.palabra}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllPalabras', 'checkboxPalabra');
+
+        // Implementación del filtro
+        const filtroInput = $("#filtroDiccionario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const textoFila = $(this).text().toLowerCase();
+            const filaVisible = textoFila.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -703,52 +759,10 @@ function getDiccionario() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
-async function editardiccionario(id, palabra) {
-  const { value: formValues } = await Swal.fire({
-    title: "Editar Palabra Prohibida",
-    html: `
-      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="palabra" value="${palabra}">
-    `,
-    confirmButtonText: 'Actualizar',
-    focusConfirm: false,
-    preConfirm: () => {
-      return [
-        document.getElementById("swal-input2").value
-      ];
-    }
-  });
-
-  if (formValues) {
-    const nuevaPalabra = formValues[0];
-
-    fetch('/Administrador/updateDiccionario', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ id, nuevaPalabra })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        Swal.fire('Palabra actualizada con éxito');
-        getDiccionario(); // Vuelve a cargar la tabla
-      } else {
-        Swal.fire('Error al actualizar la Palabra');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      Swal.fire('Error al actualizar la Palabra');
-    });
-  }
-}
-
-// PERFIL
 
 function getPerfil() {
   fetch("/Administrador/getPerfil")
@@ -802,10 +816,9 @@ function getReportes() {
         const tbody = $("#bodyReportes");
         tbody.empty();
 
-
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
+<<<<<<< HEAD
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
           
@@ -816,23 +829,49 @@ function getReportes() {
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
+=======
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
+              <td>${row.id}</td>
+              <td>${row.idcomentario}</td>
+              <td>${row.rutusuario}</td>
+              <td>${row.idpublicacion}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
+>>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
 
-      } /*else {
-        alert("Sin Datos Cargados.");
-      }*/
+        // Implementación del filtro por rutusuario
+        const filtroInput = $("#filtroRutUsuarioReportes");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(4)').text().toLowerCase(); // Ajustar según la posición de la columna rutusuario
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
-function getUsuarios() {
+
+function getUsuariostable() {
   fetch("/Administrador/getUsuarios")
     .then((response) => {
       if (!response.ok) {
@@ -845,30 +884,70 @@ function getUsuarios() {
         const tbody = $("#bodyUsuarios");
         tbody.empty();
 
-
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
-          <td>${row.rut}</td>
-          <td>${row.nombre}</td>
-          <td>${row.fechaNacimiento}</td>
-          <td>${row.idperfil}</td>
-          <td>${row.correo}</td>
-          <td>${row.idcarrera}</td>
-          <td>${row.avance}</td>
-          <td>${row.cargo}</td>
-          <td>${row.clave}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
+              <td>${row.rut}</td>
+              <td>${row.nombre}</td>
+              <td>${row.fechaNacimiento}</td>
+              <td style="display: none;">${row.idperfil}</td>
+              <td>${row.nombreperfil}</td>
+              <td>${row.correo}</td>
+              <td style="display: none;">${row.idcarrera}</td>
+              <td>${row.nombrecarrera}</td>
+              <td>${row.avance}</td>
+              <td>${row.telefono}</td>
+              <td>${row.direccion}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+              <td><button type="button" class="btn-editar" data-rut="${row.rut}">Editar</button></td>
+            </tr>`;
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllUsuarios', 'checkboxUsuario');
+
+        // Implementación del filtro por rut
+        const filtroInput = $("#filtroRutUsuario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(2)').text().toLowerCase(); // Ajustar según la posición de la columna rut en tu tabla
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
+
+        // Añadir el manejador de eventos para los botones de edición
+        $(".btn-editar").click(function() {
+          const rut = $(this).data("rut");
+          const row = $(this).closest("tr");
+
+          // Extraer los datos de la fila
+          const datos = {
+            rut: row.find("td:nth-child(2)").text(),
+            nombre: row.find("td:nth-child(3)").text(),
+            fechaNacimiento: row.find("td:nth-child(4)").text(),
+            idperfil: row.find("td:nth-child(5)").text(),
+            nombreperfil: row.find("td:nth-child(6)").text(),
+            correo: row.find("td:nth-child(7)").text(),
+            idcarrera: row.find("td:nth-child(8)").text(),
+            nombrecarrera: row.find("td:nth-child(9)").text(),
+            avance: row.find("td:nth-child(10)").text(),
+            telefono: row.find("td:nth-child(11)").text(),
+            direccion: row.find("td:nth-child(12)").text(),
+            fechaCreacion: row.find("td:nth-child(13)").text(),
+            fechaEliminacion: row.find("td:nth-child(14)").text()
+          };
+
+          // Levantar el popup con los datos
+          editarUsuario(datos);
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -876,9 +955,125 @@ function getUsuarios() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
+
+async function obtenerPerfiles() {
+  try {
+    const response = await fetch('/Administrador/getPerfil');
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching perfiles:', error);
+    return [];
+  }
+}
+
+async function obtenerCarreras() {
+  try {
+    const response = await fetch('/Administrador/getCarrera');
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching carreras:', error);
+    return [];
+  }
+}
+
+
+async function editarUsuario(datos) {
+  const perfiles = await obtenerPerfiles();
+  const carreras = await obtenerCarreras();
+
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Usuario",
+    html: `
+      <style>
+        .swal2-popup {
+          width: 40% !important; /* Ancho personalizado para la alerta */
+        }
+        .swal2-select {
+          width: calc(80% - 10px); /* Ajuste del ancho del select */
+          margin: 10px; /* Espacio entre los selects */
+        }
+      </style>
+      <table style="width: 100%;">
+        <tr><td><label for="swal-rut">RUT:</label></td><td><input type="text" id="swal-rut" class="swal2-input" value="${datos.rut}" readonly></td></tr>
+        <tr><td><label for="swal-nombre">Nombre:</label></td><td><input type="text" id="swal-nombre" class="swal2-input" value="${datos.nombre}"></td></tr>
+        <tr><td><label for="swal-fechaNacimiento">Fecha de Nacimiento:</label></td><td><input type="date" id="swal-fechaNacimiento" class="swal2-input" value="${datos.fechaNacimiento}"></td></tr>
+        <tr><td><label for="swal-idperfil">Perfil:</label></td><td>
+          <select id="swal-idperfil" class="swal2-select">
+            ${perfiles.map(perfil => `<option value="${perfil.id}" ${perfil.id === datos.idperfil ? 'selected' : ''}>${perfil.nombre}</option>`).join('')}
+          </select>
+        </td></tr>
+        <tr><td><label for="swal-correo">Correo:</label></td><td><input type="email" id="swal-correo" class="swal2-input" value="${datos.correo}"></td></tr>
+        <tr><td><label for="swal-idcarrera">Carrera:</label></td><td>
+          <select id="swal-idcarrera" class="swal2-select">
+            ${carreras.map(carrera => `<option value="${carrera.id}" ${carrera.id === datos.idcarrera ? 'selected' : ''}>${carrera.nombre}</option>`).join('')}
+          </select>
+        </td></tr>
+        <tr><td><label for="swal-telefono">Teléfono:</label></td><td><input type="text" id="swal-telefono" class="swal2-input" value="${datos.telefono}"></td></tr>
+        <tr><td><label for="swal-direccion">Dirección:</label></td><td><input type="text" id="swal-direccion" class="swal2-input" value="${datos.direccion}"></td></tr>
+      </table>
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    showCancelButton: true,
+    preConfirm: () => {
+      return {
+        rut: document.getElementById('swal-rut').value,
+        nombre: document.getElementById('swal-nombre').value,
+        fechaNacimiento: document.getElementById('swal-fechaNacimiento').value,
+        idperfil: document.getElementById('swal-idperfil').value,
+        nombreperfil: document.getElementById('swal-idperfil').options[document.getElementById('swal-idperfil').selectedIndex].text,
+        correo: document.getElementById('swal-correo').value,
+        idcarrera: document.getElementById('swal-idcarrera').value,
+        nombrecarrera: document.getElementById('swal-idcarrera').options[document.getElementById('swal-idcarrera').selectedIndex].text,
+        telefono: document.getElementById('swal-telefono').value,
+        direccion: document.getElementById('swal-direccion').value
+      };
+    }
+  });
+
+  if (formValues) {
+    const datosEditados = formValues;
+
+    fetch('/Administrador/updateUsuario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datosEditados)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Usuario actualizado con éxito');
+        getUsuariostable(); // Vuelve a cargar la tabla de usuarios
+      } else {
+        Swal.fire('Error al actualizar el usuario');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar el usuario');
+    });
+  }
+}
+
+
+
+
+
+
 
 function getArchivos() {
   fetch("/Administrador/getArchivos")
@@ -966,7 +1161,6 @@ function getComentarios() {
 }
 
 function getPublicacion() {
-  console.log("controladorPubliacion");
   fetch("/Administrador/getPublicacion")
     .then((response) => {
       if (!response.ok) {
@@ -979,12 +1173,9 @@ function getPublicacion() {
         const tbody = $("#bodyPublicaciones");
         tbody.empty();
 
-        //itera sobre cada elemento en la data y añade fila a la tabla
-        //data.array.forEach(element => {});
-        // (class="checkboxPublicacion),id se cambia a class para que el checkboxAll seleccione todos los check de las filas de la tabla
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
+<<<<<<< HEAD
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
          
@@ -995,11 +1186,36 @@ function getPublicacion() {
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
+=======
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion" name="select-all"></td>
+              <td style="display: none;">${row.id}</td>
+              <td>${row.rutusuario}</td>
+              <td>${row.publicacion}</td>
+              <td>${row.nreportes}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
+>>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
+
+        // Implementación del filtro por rutusuario
+        const filtroInput = $("#filtroRutUsuario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(2)').text().toLowerCase(); // Ajustar según la posición de la columna rutusuario
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -1007,9 +1223,10 @@ function getPublicacion() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 function getOfertas() {
   fetch("/Administrador/getOfertas")
@@ -1155,10 +1372,11 @@ function getExpAcademica() {
 
 
         data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
-          <td type="hidden">${row.ID}</td>
+          <td>${row.ID}</td>
           <td>${row.rutusuario}</td>
           <td>${row.fechafinalizacion}</td>
           <td>${row.titulobtenido}</td>
@@ -1198,6 +1416,7 @@ function getExpLaboral() {
 
 
         data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxLaboral" name="select-all"></td>
@@ -1228,6 +1447,7 @@ function getExpLaboral() {
     });
 }
 
+<<<<<<< HEAD
 //...............DELETE CURSO...............
 document.getElementById('deleteSelectedCurso').addEventListener('click', function () {
   const selectedIds = [];
@@ -1317,6 +1537,8 @@ document.getElementById('ForUpdateCurso').addEventListener('submit', function (e
     });
 });
 
+=======
+>>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
 
 
 //--------------DELETE GLOBAL --------------//
@@ -1334,11 +1556,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       deleteSelectedCategoriasBtn.addEventListener('click', deleteSelectedCategoriasHandler);
   }
 
-  // const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
-  // if (deleteSelectedCursosBtn) {
-  //   deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
-  //   deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
-  // }
+  const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
+  if (deleteSelectedCursosBtn) {
+    deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
+    deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
+  }
 
   const deleteSelectedDiccionariosBtn = document.getElementById('deleteSelectedDiccionario');
   if (deleteSelectedDiccionariosBtn) {
@@ -1366,6 +1588,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   const deleteSelectedUsuariosBtn = document.getElementById('deleteSelectedUsuarios');
   if (deleteSelectedUsuariosBtn) {
+   
     deleteSelectedUsuariosBtn.removeEventListener('click', deleteSelectedUsuariosHandler);
     deleteSelectedUsuariosBtn.addEventListener('click', deleteSelectedUsuariosHandler);
   }
@@ -1418,9 +1641,9 @@ function deleteSelectedCategoriasHandler() {
     deleteSelectedRows('checkboxCategoria', '/Administrador/deleteCategorias');
 }
 
-// function deleteSelectedCursosHandler() {
-//   deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
-// }
+function deleteSelectedCursosHandler() {
+  deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
+}
 
 function deleteSelectedDiccionarioHandler() {
   deleteSelectedRows('checkboxPalabra', '/Administrador/deleteDiccionario');
@@ -1472,50 +1695,62 @@ function deleteSelectedExpLaboralHandler() {
 function deleteSelectedRows(checkboxClass, apiEndpoint) {
   const selectedIds = [];
   document.querySelectorAll('.' + checkboxClass + ':checked').forEach(checkbox => {
-      const row = checkbox.closest('tr');
-      const id = row.cells[1].textContent; // Assuming the ID is in the second cell
-      selectedIds.push(id);
+    const row = checkbox.closest('tr');
+    const id = row.cells[1].textContent.trim(); // Assuming the ID is in the second cell, trim to remove extra whitespace
+    console.log(id);
+    selectedIds.push(id);
   });
 
   if (selectedIds.length === 0) {
-      alert("No hay filas seleccionadas");
-      return;
+    alert("No hay filas seleccionadas");
+    return;
   }
 
-  // Preguntar al usuario para confirmar la eliminación
-  if (!confirm(`¿Está seguro que desea eliminar las filas con ID: ${selectedIds.join(', ')}?`)) {
-    return; // Abortar la eliminación si el usuario cancela
-  }
-
-  fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
+  Swal.fire({
+    title: "¿Está seguro que desea eliminar las filas seleccionadas?",
+    showCancelButton: true,
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+    icon: "warning",
+    dangerMode: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
           'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ids: selectedIds }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      if (data.success) {
+        },
+        body: JSON.stringify({ ids: selectedIds }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
           selectedIds.forEach(id => {
-              document.querySelectorAll(`tr`).forEach(row => {
-                  if (row.cells[1] && row.cells[1].textContent == id) {
-                      row.remove();
-                  }
-              });
+            document.querySelectorAll(`tr`).forEach(row => {
+              if (row.cells[1] && row.cells[1].textContent.trim() === id) {
+                row.remove();
+              }
+            });
           });
-          alert('Eliminación exitosa');
-      } else {
-          alert('Error al eliminar fila(s): ' + data.message);
-      }
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      alert('Error al eliminar fila(s): ' + error.message);
+          Swal.fire("¡Eliminación exitosa!", "", "success");
+        } else {
+          Swal.fire("Error", `Error al eliminar fila(s): ${data.message}`, "error");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire("Error", `Error al eliminar fila(s): ${error.message}`, "error");
+      });
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire("Operación cancelada", "", "info");
+    }
   });
 }
-
-
 
 //--------------- INSERT GLOBAL ---------------- //
 

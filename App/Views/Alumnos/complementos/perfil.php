@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
 </head>
 
 <body>
-    <div style="width: 80%; color:">
+    <div style="width: 80%;">
         <form method="POST" id="formAlumno" enctype="multipart/form-data" class="form">
             <!-- Perfil del Usuario -->
             <div class="cards">

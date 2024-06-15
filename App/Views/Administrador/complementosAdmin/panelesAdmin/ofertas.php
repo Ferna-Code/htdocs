@@ -5,17 +5,7 @@
 <title>Administrador de Ofertas</title>
 
 <body>
-    <!--<div class="btn-panel">        
-        <div>
-            <a href="creaOfertas" class="btn  btn-primary">Ingresar Oferta</a>
-            <label for="filtroUsuario">Filtrar por Título:</label>
-            <input type="text" id="filtroUsuario">
-        </div>
-        <div>
-            <label for="filtroCentro">Filtrar por Carrera:</label>
-            <input type="text" id="filtroCentro">
-        </div>
-    </div>-->
+    
     <hr>
     <h1>Ofertas Laborales</h1>
     <div class="body-panel">

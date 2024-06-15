@@ -30,8 +30,10 @@ verificarAcceso($perfilesPermitidos);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
     <!-- Estilo card -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,7 +43,8 @@ verificarAcceso($perfilesPermitidos);
     <link rel="stylesheet" href="../../../../Public/css/panelAdministrador.css">
     <link rel="stylesheet" href="../../../../Public/css/sb-admin-2.css"><!--CSS DE LA PAGINA-->
     <link rel="stylesheet" href="../../../../Public/css/global.css">
-    
+
+
 
 
     <title>Panel Administrador</title>
@@ -53,7 +56,7 @@ verificarAcceso($perfilesPermitidos);
 
         <?php include_once 'complementosAdmin/body-page/parteSuperior.php'; ?>
 
-        
+
         <div class="contenedor-body" id="modulo1" style="display:none">
             <?php include 'complementosAdmin/panelesAdmin/carreras.php' ?>
         </div>
@@ -97,7 +100,7 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo11" style='display:none'>
             <?php include 'complementosAdmin/panelesAdmin/ofertas.php' ?>
         </div>
-        
+
         <div class="contenedor-body" id="modulo12" style='display:none'>
             <?php include 'complementosAdmin/panelesAdmin/Postulaciones.php' ?>
         </div>
@@ -111,7 +114,7 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'complementosAdmin/panelesAdmin/experienciaLaboral.php' ?>
         </div>
 
-        <div class="contenedor-body" id="modulo15" >
+        <div class="contenedor-body" id="modulo15">
             <?php include 'complementosAdmin/panelesAdmin/perfilAdministrador.php' ?>
         </div>
 
@@ -119,6 +122,7 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'App/Views/Supervisor/complementos/formularios/ingresarCurso.php' ?>
         </div>
 
+<<<<<<< HEAD
         <div class="contenedor-body" id="modulo18" style="display:none">
             <?php include 'App/Views/Supervisor/complementos/formularios/verCurso.php' ?>
         </div>
@@ -128,11 +132,14 @@ verificarAcceso($perfilesPermitidos);
         </div>
 
             
+=======
+
+>>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
     </div>
 
-    <?php include_once 'complementosAdmin/body-page/parteInferior.php'; ?> 
+    <?php include_once 'complementosAdmin/body-page/parteInferior.php'; ?>
 
- <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
     <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
     <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -157,12 +164,16 @@ verificarAcceso($perfilesPermitidos);
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- sweetalert2 -->
+    <script src="../../../../public/js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!--Modal-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    
+    <script src="../../../../public/js/perfil.js"></script>
 
 </body>
 
