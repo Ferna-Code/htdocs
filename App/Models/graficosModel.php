@@ -44,4 +44,34 @@ class GraficosModel
         $row = $result->fetch_assoc();
         return $row['total'];
     }
+
+    public function obtenerReportes()
+    {
+        $sql = "SELECT * FROM publicaciones WHERE nreportes > 0";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function obtenerComentarios()
+    {
+        $sql = "SELECT * FROM comentarios";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function obtenerUsuarios()
+    {
+        $sql = "SELECT * FROM usuarios";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function obtenerLikes()
+    {
+        $sql = "SELECT * FROM publicaciones WHERE nlikes > 0";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
 }
+
