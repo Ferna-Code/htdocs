@@ -391,7 +391,7 @@ function centrarModulo(modulo) {
 
 //CATEGORIA
 $("#addCategoria").on("submit", function (event) {
-  event.preventDefault();
+   event.preventDefault();
 
   var formData = { // guardamos el cuerpo del mensaje por medio del ID
     nuevaCategoria: $("#nuevaCategoria").val(),
