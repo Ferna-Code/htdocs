@@ -40,7 +40,20 @@ $datosLikes = $dataModel->obtenerLikes();
         <div class="medioDash">
             <div id="piechart" style="width: 700px; height: 400px;"></div>
         </div>
-        <div id="table_div" class="tablaGraficos"></div>
+        <div id="table_div" class="tablaGraficos">
+    <!-- Tabla -->
+    <table class="google-visualization-table-table">
+        <thead class="google-visualization-table-head">
+            <!-- Encabezados de columna -->
+        </thead>
+        <tbody class="google-visualization-table-body">
+            <!-- Fila de muestra cuando no hay datos -->
+            <tr class="google-visualization-table-tr-even">
+                <td class="google-visualization-table-td" colspan="3">No hay datos disponibles</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
         <a href="supervisor">Volver</a>
     </div>
 
@@ -59,15 +72,17 @@ $datosLikes = $dataModel->obtenerLikes();
         google.charts.setOnLoadCallback(drawCharts);
 
         function drawCharts() {
-            drawCurveChart();
-            drawPieChart();
+            drawCurveChart();//funcion que dibuja el grafico de linea
+            drawPieChart();//funcion que dibuja el grafico circular
         }
 
         // Gráfico de línea
-        function drawCurveChart() {
+        function drawCurveChart() {//grafico de linea
+             // Se crea y se llena el objeto DataTable con los datos de las publicaciones por fecha
             var data = google.visualization.arrayToDataTable([
                 ['Fecha', 'Cantidad de Publicaciones'],
                 <?php
+                // Se realiza una consulta SQL para obtener la cantidad de publicaciones por fecha
                 $sql = "SELECT fechaCreacion, COUNT(*) as cantidad FROM publicaciones GROUP BY fechaCreacion";
                 $consulta = mysqli_query($conexion, $sql);
                 while ($resultado = mysqli_fetch_assoc($consulta)) {
@@ -76,6 +91,7 @@ $datosLikes = $dataModel->obtenerLikes();
                 ?>
             ]);
 
+            // Se configuran las opciones del gráfico de líneas
             var options = {
                 title: 'Cantidad de publicaciones',
                 curveType: 'function',
@@ -84,13 +100,14 @@ $datosLikes = $dataModel->obtenerLikes();
                 hAxis: { title: 'Fecha' },
                 vAxis: { title: 'Cantidad de Publicaciones' }
             };
-
+            // Se crea y se dibuja el gráfico de líneas en el elemento con el ID 'curve_chart'
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
             chart.draw(data, options);
         }
 
         // Gráfico circular
         function drawPieChart() {
+             // Se crea y se llena el objeto DataTable con los datos de distribución de datos entre las categorías
             var data = google.visualization.arrayToDataTable([
                 ['Tabla', 'Cantidad de datos'],
                 ['Publicaciones reportadas', <?php echo $reportes; ?>],
@@ -99,12 +116,14 @@ $datosLikes = $dataModel->obtenerLikes();
                 ['Publicaciones con Likes', <?php echo $likes; ?>],
             ]);
 
+            // Se configuran las opciones del gráfico circular
             var options = {
                 title: 'Distribución de Datos'
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
+             // Se añade un listener para cargar la tabla correspondiente al hacer clic en una sección del gráfico circular
             google.visualization.events.addListener(chart, 'select', function() {
                 var selectedItem = chart.getSelection()[0];
                 if (selectedItem) {
@@ -122,11 +141,13 @@ $datosLikes = $dataModel->obtenerLikes();
             var rows = [];
 
             if (topping === 'Publicaciones reportadas') {
+                 // Se añaden columnas al DataTable para las publicaciones reportadas
                 dataTable.addColumn('number', 'ID');
                 dataTable.addColumn('string', 'RUT Usuario');
                 dataTable.addColumn('number', 'ID Publicación');
                 dataTable.addColumn('string', 'Fecha Creación');
                 dataTable.addColumn('boolean', 'Activo');
+                // Se llenan las filas con los datos correspondientes
                 rows = datosReportes.map(row => [parseInt(row.id), row.rutusuario, parseInt(row.idpublicacion), row.fechaCreacion, Boolean(row.activo)]);
             } else if (topping === 'Comentarios') {
                 dataTable.addColumn('number', 'ID');
@@ -155,7 +176,7 @@ $datosLikes = $dataModel->obtenerLikes();
                 dataTable.addColumn('number', 'N Likes');
                 rows = datosLikes.map(row => [parseInt(row.id), row.rutusuario, row.publicacion, parseInt(row.nreportes), row.fechaCreacion, Boolean(row.activo), parseInt(row.nlikes)]);
             }
-
+             // Se agregan las filas al DataTable
             dataTable.addRows(rows);
 
             var table = new google.visualization.Table(document.getElementById('table_div'));
