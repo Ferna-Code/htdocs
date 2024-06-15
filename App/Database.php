@@ -42,6 +42,14 @@ class Database
         }
     }
 
+    public function query($sql) {
+        $result = $this->conn->query($sql);
+        if ($result === FALSE) {
+            die("Error en la consulta: " . $this->conn->error);
+        }
+        return $result;
+    }
+    
     public function getConnection(){
         return $this->conn;
     }

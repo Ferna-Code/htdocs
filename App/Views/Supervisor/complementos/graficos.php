@@ -1,8 +1,16 @@
 <?php
 require_once("./App/Models/conexion.php");
+require_once("./App/Models/graficosModel.php");
 
 $db = new conexion();
 $conexion = $db->conec();
+
+$dataModel = new GraficosModel();
+
+$reportes = $dataModel->cantidadReportes();
+$comentarios = $dataModel->cantidadComentarios();
+$usuarios = $dataModel->cantidadUsuarios();
+$likes = $dataModel->cantidadLike();
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +28,16 @@ $conexion = $db->conec();
     <div class="DashBoard">
         <div>
             <button id="Publicaciones">Publicaciones</button>
-            
+
             <button id="Comentarios">Comentarios</button>
             <button id="ofertas">ofertas</button>
         </div>
         <div class="superiorDash">
-        <div id="curve_chart" style="width: 100%; height: 400px"></div>
+            <div id="curve_chart" style="width: 100%; height: 400px"></div>
             <!-- <div id="chart_div" class="divChart"></div> -->
-
-
+        </div>
+        <div>
+        <div id="piechart" style="width: 700px; height: 400px;"></div>
         </div>
         <a href="supervisor">Volver</a>
     </div>
@@ -75,7 +84,8 @@ $conexion = $db->conec();
         }
     </script> -->
 
-    <script type="text/javascript">//grafigo de linea
+    <script type="text/javascript">
+        //grafigo de linea
         google.charts.load('current', {
             'packages': ['corechart']
         });
@@ -116,6 +126,30 @@ $conexion = $db->conec();
 
             chart.draw(data, options);
         }
+    </script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Tabla', 'Cantidad de datos'],
+          ['Publicaciones reportadas',<?php echo $reportes; ?>],
+          ['comentarios',<?php echo $comentarios; ?>],
+          ['usuarios',<?php echo $usuarios; ?>],
+          ['Publicaciones con Likes',<?php echo $likes; ?>],
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
     </script>
 </body>
 
