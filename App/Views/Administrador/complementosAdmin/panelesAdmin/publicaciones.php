@@ -32,7 +32,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllPublicacion" name="select-all"></th>
-                        <th class="anchoId">ID</th>
+                        
                         <th>Rut Usuario</th>
                         <th>Publicación</th>
                         <th>N° de Reportes</th>

@@ -1035,65 +1035,63 @@ function getArchivos() {
       });
 }
 
-// Obtener la tabla de comentarios al cargar la página
-document.addEventListener("DOMContentLoaded", function() {
-  getComentarios();
-});
 
 function getComentarios() {
   fetch("/Administrador/getComentarios")
-      .then((response) => {
-          if (!response.ok) {
-              throw new Error(`HTTP error: ${response.status}`);
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const tbody = document.getElementById("bodyComentarios");
+      tbody.innerHTML = ""; // Limpiar el cuerpo de la tabla
+
+      if (data && data.length > 0) {
+        data.forEach(row => {
+          const fila = `
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxComentario" name="select-all"></td>
+              <td style="display:none;">${row.id}</td>
+              <td>${row.rutusuario}</td>
+              <td style="display:none;">${row.idpublicacion}</td>
+              <td>${row.comentario}</td>
+              <td>${row.nreportes}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
+          tbody.insertAdjacentHTML('beforeend', fila);
+        });
+
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
+        initializeCheckboxMaster('checkAllComentarios', 'checkboxComentario');
+
+        // Implementación del filtro por rutusuario
+        const filtroInput = document.getElementById('filtroRutUsuarioComentarios');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.getElementsByTagName('tr');
+          for (let i = 0; i < filas.length; i++) {
+            const rutUsuario = filas[i].getElementsByTagName('td')[2].textContent.toLowerCase(); // RutUsuario se encuentra en la tercera columna (índice 2)
+            const filaVisible = rutUsuario.includes(filtro);
+            filas[i].style.display = filaVisible ? "" : "none";
           }
-          return response.json();
-      })
-      .then((data) => {
-          const tbody = document.getElementById("bodyComentarios");
-          tbody.innerHTML = ""; // Limpiar el cuerpo de la tabla
+        });
 
-          if (data && data.length > 0) {
-              data.forEach(row => {
-                  const fila = `
-                      <tr>
-                          <td class="widthCheck"><input type="checkbox" class="checkboxComentario" name="select-all"></td>
-                          <td style="display:none;">${row.id}</td>
-                          <td>${row.rutusuario}</td>
-                          <td style="display:none;>${row.idpublicacion}</td>
-                          <td>${row.comentario}</td>
-                          <td>${row.nreportes}</td>
-                          <td>${row.fechaCreacion}</td>
-                          <td>${row.activo}</td>
-                          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-                      </tr>`;
-                  tbody.insertAdjacentHTML("beforeend", fila);
-              });
-
-              // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
-              initializeCheckboxMaster('checkAllComentarios', 'checkboxComentario');
-
-              // Implementación del filtro por rutusuario
-              const filtroInput = document.getElementById('filtroRutUsuarioComentarios');
-              filtroInput.addEventListener('input', function() {
-                  const filtro = filtroInput.value.trim().toLowerCase();
-
-                  // Filtrar las filas de la tabla
-                  const filas = tbody.getElementsByTagName('tr');
-                  for (let i = 0; i < filas.length; i++) {
-                      const rutUsuario = filas[i].getElementsByTagName('td')[2].textContent.toLowerCase(); // RutUsuario se encuentra en la tercera columna (índice 2)
-                      const filaVisible = rutUsuario.includes(filtro);
-                      filas[i].style.display = filaVisible ? "" : "none";
-                  }
-              });
-
-          } else {
-            alertOps()
-          }
-      })
-      .catch((error) => {
-        alertOps()
-      });
+      } else {
+        alert("No se encontraron datos de comentarios.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
+    });
 }
+
 
 
 function getPublicacion() {
@@ -1167,9 +1165,9 @@ function getOfertas() {
                   const fila = `
                       <tr>
                           <td class="widthCheck"><input type="checkbox" class="checkboxOferta" name="select-all"></td>
-                          <td>${row.id}</td>
+                          <td style="display: none;">${row.id}</td>
                           <td>${row.tipoOferta}</td>
-                          <td>${row.idcategoria}</td>
+                          <td style="display: none;">${row.idcategoria}</td>
                           <td>${row.cargo}</td>
                           <td>${row.nombreEmpresa}</td>
                           <td>${row.rutempresa}</td>

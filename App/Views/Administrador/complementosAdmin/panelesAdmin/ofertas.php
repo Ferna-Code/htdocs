@@ -23,9 +23,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllOfertas" name="select-all"></th>
-                        <th class="anchoId">ID</th>
                         <th>Tipo de Oferta</th>
-                        <th>ID de Categoría</th>
                         <th>Rargo</th>
                         <th>Empresa</th>
                         <th>Rut Empresa</th>
