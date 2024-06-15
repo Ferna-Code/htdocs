@@ -342,6 +342,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.like-action').forEach(function(element) {
       element.addEventListener('click', function() {
           const publicacionId = this.getAttribute('data-id');
+          // const likesCountElement = this.nextElementSibling;
+          // const likesCountElement = this.closest('.like-container').querySelector('.likes-count');  
           const likesCountElement = this.parentElement.querySelector('.likes-count'); // Seleccionar el contador de likes
           
           fetch('/usuarios/likePublicacion', {
