@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../../Models/logsEliminacion_model.php';
 require_once __DIR__ . '/../../../Models/conexion.php';
-require_once 'C:\xampp\htdocs\App\DAO\Administrador\logsEliminacionDao.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\Administrador\logsEliminacionDao.php';
 
 class logsEliminacionDaoImpl implements logsEliminacionDao
 {
