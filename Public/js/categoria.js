@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                return response.text().then(text => {
+                    throw new Error(`Network response was not ok: ${text}`);
+                });
             }
             return response.json();
         })
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data && data.categorias) {
                 const categorias = data.categorias;
                 const categoriasContainer = document.getElementById("categoriasContainer");
-    
+
                 categorias.forEach((categoria, index) => {
                     const cardcategoria = document.createElement("div");
                     cardcategoria.className = "col-xs-12 col-sm-6 col-md-4";
@@ -46,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Error al obtener los datos de las categorías:', error);
         });
     }
-    
 
     // Llamar a getCategorias automáticamente al cargar la página
     getCategorias();

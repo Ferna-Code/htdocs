@@ -12,13 +12,12 @@
         <div style="margin: 10px;">
 
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <input type="submit" class="btnFiltro" value="Filtrar">
+            <input style="margin-bottom: 15px;" type="text" id="filtroCategorias" placeholder="Buscar por nombre...">
                 <br>
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCategoria">
                     Nuevo
                 </button>
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarCategoriar">Editar</button>
+                
                 <button type="button" id="deleteSelectedCategorias" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -31,6 +30,7 @@
                         <th class="anchoFecha">Fecha de Creación</th>
                         <th class="anchoActiv">Activo</th>
                         <th class="anchoFecha">Fecha de Eliminación</th>
+                        <th> Editar</th>
                     </tr>
                 </thead>
                 <tbody id="bodyCategorias">
@@ -38,28 +38,7 @@
                 </tbody>
             </table>
             <!-- sesion footer -->
-            <div class="footer-tools">
-                <div class="list-items">
-                    Mostrar
-                    <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
-                    </select>
-                    Entradas
-                </div>
-                <div class="pages">
-                    <ul>
-                        <li><span class="active">1</span></li>
-                        <li><button>2</button></li>
-                        <li><button>3</button></li>
-                        <li><span>...</span></li>
-                        <li><button>9</button></li>
-                        <li><button>10</button></li>
-                    </ul>
 
-                </div>
-            </div>
         </div>
     </div>
 

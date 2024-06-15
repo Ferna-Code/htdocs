@@ -1,6 +1,6 @@
 <section style="margin: 10px;">
     <div class="">
-
+    <input style="margin-bottom: 15px" type="text" id="filtroDiccionario" placeholder="Buscar por nombre...">
         <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal2">
             Agregar palabra
         </button>

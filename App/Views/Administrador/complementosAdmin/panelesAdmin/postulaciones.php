@@ -12,9 +12,7 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Postulante">
-                <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Empresa">
+            <input type="text" id="filtroRutUsuarioPostulacion"  placeholder="Filtrar por Rut de Usuario...">
                 <button type="button" id="deleteSelectedPostulaciones" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -24,11 +22,10 @@
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllPostulaciones" name="select-all"></th>
-                    <th class="anchoId">ID</th>
                     <th>Rut Usuario</th>
-                    <th>ID Carrera</th>
+                    <th>Nombre Carrera</th>
                     <th>Rut Empresa</th>
-                    <th>ID Oferta</th>
+                    <th>Cargo</th>
                     <th>Fecha de Ingreso</th>
                     <th>Fecha de Eliminacion</th>
                 </tr>
@@ -37,29 +34,7 @@
  
             </tbody>
         </table>
-                        <!-- seccion footer -->
-                        <div class="footer-tools">
-                <div class="list-items">
-                    Mostrar
-                    <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
-                    </select>
-                    Entradas
-                </div>   
-                <div class="pages">
-                    <ul>
-                        <li><span class="active">1</span></li>
-                        <li><button>2</button></li>
-                        <li><button>3</button></li>
-                        <li><span>...</span></li>
-                        <li><button>9</button></li>
-                        <li><button>10</button></li>
-                    </ul>
-
-                </div>
-        </div>
+ 
         </div>
     </div>
 

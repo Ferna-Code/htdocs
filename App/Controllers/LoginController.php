@@ -29,6 +29,8 @@ class LoginController
                  case 'CERRAR_SESION':
                      $this->logout();
                      break;
+                 default:
+                     break;
              }
          }
      }
@@ -48,7 +50,7 @@ class LoginController
          header('Cache-Control: post-check=0, pre-check=0', false);
          header('Pragma: no-cache');
      
-         header('Location: http://localhost:8080/');
+         header('Location: http://localhost/');
          exit();
      }
      
@@ -67,6 +69,8 @@ class LoginController
             case 3:
                 $_SESSION['pagina_local'] = 'alumno';
                 break;
+            default:
+                break;
         }
 
         echo "<script language='javascript'>window.location='" . $_SESSION['pagina_local'] . "'</script>;";
@@ -79,21 +83,24 @@ class LoginController
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $rut = htmlspecialchars($_POST['rut'] ?? '');
-        $clave = htmlspecialchars($_POST['clave'] ?? '');
+
+        $rut = isset($_POST['rut']) ? trim(htmlspecialchars($_POST['rut'])) : '';
+        $clave = isset($_POST['clave']) ? trim(htmlspecialchars($_POST['clave'])) : '';
+        if (empty($rut) || empty($clave)) {
+            $_SESSION['errorsesionfallida'] = 'RUT y clave son obligatorios';
+            return;
+        }
         $accessModel = new Access_model();
         $loginResult = $accessModel->iniciarSesion($rut, $clave);
         if ($loginResult) {
             unset($_SESSION['errorsesionfallida']);
             $idperfil = $loginResult['idperfil'];
-            // Almacenar valores en la sesión
             $_SESSION['idperfil'] = $idperfil;
             $_SESSION['rut'] = $rut;
-            $this->checklevelPage($idperfil); // Redirigir según nivel de acceso
+            $this->checklevelPage($idperfil); 
         } else {
-        // Autenticación fallida
-        $_SESSION['errorsesionfallida'] = 'Usuario no existe o clave inválida';
-        
+            $_SESSION['errorsesionfallida'] = 'Usuario no existe o clave inválida';
         }
     }
+    
 }

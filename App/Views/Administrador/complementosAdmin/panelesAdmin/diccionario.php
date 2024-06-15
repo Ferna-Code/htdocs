@@ -11,9 +11,8 @@
     <div class="body-panel">
         <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="text" class="ofertaFiltro" placeholder="Palabra clave">
+            <input style="margin-bottom: 15px" type="text" id="filtroDiccionario" placeholder="Buscar por nombre...">
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearPalabra">Nuevo</button>
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarPalabra">Editar</button>
                 <button type="button" id="deleteSelectedDiccionario" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -38,27 +37,7 @@
                 </tbody>
             </table>
             <!-- seccion footer -->
-            <div class="footer-tools">
-                <div class="list-items">
-                    Mostrar
-                    <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
-                    </select>
-                    Entradas
-                </div>
-                <div class="pages">
-                    <ul>
-                        <li><span class="active">1</span></li>
-                        <li><button>2</button></li>
-                        <li><button>3</button></li>
-                        <li><span>...</span></li>
-                        <li><button>9</button></li>
-                        <li><button>10</button></li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
     </div>
 

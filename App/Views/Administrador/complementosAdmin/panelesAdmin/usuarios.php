@@ -11,15 +11,7 @@
     <div class="body-panel">
         <div style="margin: 10px 10px;">
             <div class="containerFiltro">
-                <input type="text" class="ofertaFiltro" placeholder="Nombre">
-                <input type="text" class="ofertaFiltro" placeholder="Rut">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Cargo 1</option>
-                    <option value="Práctica">Cargo 2</option>
-                    <option value="Práctica">cargo 3</option>
-                </select>
-                <button type="button" class="btnFiltro">Filtrar</button><br>
-                <button type="button" class="btn-supervisor marginBtn" data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
+            <input style="margin-bottom: 15px" type="text" id="filtroRutUsuario" placeholder="Buscar por Rut..."><br>
                 <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -35,44 +27,21 @@
                         <th>Rut</th>
                         <th>Nombre</th>
                         <th>Fecha de Nacimiento</th>
-                        <th>ID Perfil</th>
+                        <th>Perfil</th>
                         <th>Correo</th>
-                        <th>ID Carrera</th>
+                        <th>Carrera</th>
                         <th>Avance</th>
                         <th>Cargo</th>
                         <th>Clave</th>
                         <th>F. Ingreso</th>
-                        <th>Activo</th>
                         <th>F.Eliminación</th>
+                        <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody id="bodyUsuarios">
 
                 </tbody>
             </table>
-            <!-- seccion footer -->
-            <div class="footer-tools">
-                <div class="list-items">
-                    Mostrar
-                    <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
-                    </select>
-                    Entradas
-                </div>
-                <div class="pages">
-                    <ul>
-                        <li><span class="active">1</span></li>
-                        <li><button>2</button></li>
-                        <li><button>3</button></li>
-                        <li><span>...</span></li>
-                        <li><button>9</button></li>
-                        <li><button>10</button></li>
-                    </ul>
-
-                </div>
-            </div>
         </div>
     </div>
     <!-- Modal Editar -->

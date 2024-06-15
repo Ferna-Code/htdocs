@@ -4,7 +4,7 @@
         <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal1">
             Nuevo perfil
         </button>
-        <button type="button" id="deleteSelectedPerfil" class="btn-supervisor marginBtn">Eliminar</button>
+       
         <table id="tableUsers" class="tabla table">
             <thead>
                 <tr>

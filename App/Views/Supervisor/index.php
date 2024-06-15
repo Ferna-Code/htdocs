@@ -43,6 +43,7 @@ verificarAcceso($perfilesPermitidos);
     <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
     <link rel="stylesheet" href="../../../../Public/css/global.css">
     <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
+    
 
     <!--Modal-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -59,7 +60,13 @@ verificarAcceso($perfilesPermitidos);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+      
+
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+
+        <div class="contenedor-body" id="modulo20" style="display:none">
+            <?php include 'complementos/graficos.php'; ?>
+        </div>
 
         <div class="contenedor-body" id="modulo19">
             <?php include 'complementos/menuPrincipal.php'; ?>
@@ -136,6 +143,8 @@ verificarAcceso($perfilesPermitidos);
         <div class="contenedor-body" id="modulo17" style="display:none">
             <?php include 'complementos/formularios/verUsuario.php'; ?>
         </div>
+
+
 
     </div>
 

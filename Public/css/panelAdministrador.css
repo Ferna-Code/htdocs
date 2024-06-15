@@ -26,7 +26,6 @@ body {
 }
 
 
-
 .contenedor-body {
     display: flex;
     flex-direction: column;
@@ -35,6 +34,10 @@ body {
     flex: 2;
 
 }
+
+.hidden-cell {
+    display: none;
+  }  
 
 .link-nav{
     color: var(--letra-panel);
@@ -67,7 +70,8 @@ body {
    padding-left: 40px;
     width: 87.5%;
     height: 12%;
-    border: 1px solid black;
+    border: 1px solid orange;
+    background-color: white ;
     border-radius: 5px;
      justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
@@ -78,7 +82,8 @@ body {
     margin-top: 5%;
     width: 90%;
     height: 70%;
-    border: 1px solid black;
+    border: 1px solid orange;
+    background-color: white ;
     border-radius: 5px;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */

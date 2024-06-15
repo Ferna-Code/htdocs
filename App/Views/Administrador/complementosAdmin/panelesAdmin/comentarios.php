@@ -11,13 +11,7 @@
     <div class="body-panel">
         <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="text" class="ofertaFiltro" placeholder="Rut">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">01</option>
-                    <option value="Práctica">02</option>
-                    <option value="Práctica">03</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
+            <input type="text" id="filtroRutUsuarioComentarios" placeholder="Filtrar por Rut Usuario...">
                     <button type="button" id="deleteSelectedComentarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -30,9 +24,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllComentarios" name="select-all"></th>
-                        <th class="anchoId">ID</th>
                         <th>Rut</th>
-                        <th>ID Publicación</th>
                         <th>Comentario</th>
                         <th>N° de Reportes</th>
                         <th>Fecha de Creación</th>
@@ -45,27 +37,6 @@
                 </tbody>
             </table>
             <!-- seccion footer -->
-            <div class="footer-tools">
-                <div class="list-items">
-                    Mostrar
-                    <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
-                    </select>
-                    Entradas
-                </div>
-                <div class="pages">
-                    <ul>
-                        <li><span class="active">1</span></li>
-                        <li><button>2</button></li>
-                        <li><button>3</button></li>
-                        <li><span>...</span></li>
-                        <li><button>9</button></li>
-                        <li><button>10</button></li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 
