@@ -191,7 +191,7 @@ function controlVisi8() {
 
   // Oculta todos los módulos
   ocultarModulos();
-  getUsuarios();
+  getUsuariostable();
   // Muestra el módulo 1
   elemento8.style.display = "flex";
 
@@ -472,11 +472,12 @@ function getCategoria() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
-          <td class="hidden">${row.id}</td>
+          <td style="display: none;">${row.id}</td>
           <td>${row.nombre}</td>
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
         </tr>`;
           tbody.append(fila);
         });
@@ -484,22 +485,29 @@ function getCategoria() {
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps()
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps();
     });
 }
 
+function alertOps(){
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Algo salio mal, intenta en unos minutos."
+  });
+}
 // EDITAR CATEGORIAS
 
 async function editarCategoria(id, nombre) {
   const { value: formValues } = await Swal.fire({
     title: "Editar Categoría",
     html: `
-      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="Nuevo nombre" value="${nombre}">
+      <input id="swal-input2" style="width: 90%;" class="swal2-input" placeholder="Nuevo nombre" value="${nombre}">
     `,
     confirmButtonText: 'Actualizar',
     focusConfirm: false,
@@ -700,7 +708,7 @@ function getReportes() {
     });
 }
 
-function getUsuarios() {
+function getUsuariostable() {
   fetch("/Administrador/getUsuarios")
     .then((response) => {
       if (!response.ok) {
@@ -713,30 +721,57 @@ function getUsuarios() {
         const tbody = $("#bodyUsuarios");
         tbody.empty();
 
-
         data.forEach(row => {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
-          <td>${row.rut}</td>
-          <td>${row.nombre}</td>
-          <td>${row.fechaNacimiento}</td>
-          <td>${row.idperfil}</td>
-          <td>${row.correo}</td>
-          <td>${row.idcarrera}</td>
-          <td>${row.avance}</td>
-          <td>${row.cargo}</td>
-          <td>${row.clave}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
+              <td>${row.rut}</td>
+              <td>${row.nombre}</td>
+              <td>${row.fechaNacimiento}</td>
+              <td style="display: none;">${row.idperfil}</td>
+              <td>${row.nombreperfil}</td>
+              <td>${row.correo}</td>
+              <td style="display: none;">${row.idcarrera}</td>
+              <td>${row.nombrecarrera}</td>
+              <td>${row.avance}</td>
+              <td>${row.telefono}</td>
+              <td>${row.direccion}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+              <td><button type="button" class="btn-editar" data-rut="${row.rut}">Editar</button></td>
+            </tr>`;
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllUsuarios', 'checkboxUsuario');
+
+        // Añadir el manejador de eventos para los botones de edición
+        $(".btn-editar").click(function() {
+          const rut = $(this).data("rut");
+          const row = $(this).closest("tr");
+
+          // Extraer los datos de la fila
+          const datos = {
+            rut: row.find("td:nth-child(2)").text(),
+            nombre: row.find("td:nth-child(3)").text(),
+            fechaNacimiento: row.find("td:nth-child(4)").text(),
+            idperfil: row.find("td:nth-child(5)").text(),
+            nombreperfil: row.find("td:nth-child(6)").text(),
+            correo: row.find("td:nth-child(7)").text(),
+            idcarrera: row.find("td:nth-child(8)").text(),
+            nombrecarrera: row.find("td:nth-child(9)").text(),
+            avance: row.find("td:nth-child(10)").text(),
+            telefono: row.find("td:nth-child(11)").text(),
+            direccion: row.find("td:nth-child(12)").text(),
+            fechaCreacion: row.find("td:nth-child(13)").text(),
+            fechaEliminacion: row.find("td:nth-child(14)").text()
+          };
+
+          // Levantar el popup con los datos
+          editarUsuario(datos);
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -748,10 +783,121 @@ function getUsuarios() {
     });
 }
 
-function deleteUsuario(rut){
-
-
+async function obtenerPerfiles() {
+  try {
+    const response = await fetch('/Administrador/getPerfil');
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching perfiles:', error);
+    return [];
+  }
 }
+
+async function obtenerCarreras() {
+  try {
+    const response = await fetch('/Administrador/getCarrera');
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching carreras:', error);
+    return [];
+  }
+}
+
+
+async function editarUsuario(datos) {
+  const perfiles = await obtenerPerfiles();
+  const carreras = await obtenerCarreras();
+
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Usuario",
+    html: `
+      <style>
+        .swal2-popup {
+          width: 40% !important; /* Ancho personalizado para la alerta */
+        }
+        .swal2-select {
+          width: calc(80% - 10px); /* Ajuste del ancho del select */
+          margin: 10px; /* Espacio entre los selects */
+        }
+      </style>
+      <table style="width: 100%;">
+        <tr><td><label for="swal-rut">RUT:</label></td><td><input type="text" id="swal-rut" class="swal2-input" value="${datos.rut}" readonly></td></tr>
+        <tr><td><label for="swal-nombre">Nombre:</label></td><td><input type="text" id="swal-nombre" class="swal2-input" value="${datos.nombre}"></td></tr>
+        <tr><td><label for="swal-fechaNacimiento">Fecha de Nacimiento:</label></td><td><input type="date" id="swal-fechaNacimiento" class="swal2-input" value="${datos.fechaNacimiento}"></td></tr>
+        <tr><td><label for="swal-idperfil">Perfil:</label></td><td>
+          <select id="swal-idperfil" class="swal2-select">
+            ${perfiles.map(perfil => `<option value="${perfil.id}" ${perfil.id === datos.idperfil ? 'selected' : ''}>${perfil.nombre}</option>`).join('')}
+          </select>
+        </td></tr>
+        <tr><td><label for="swal-correo">Correo:</label></td><td><input type="email" id="swal-correo" class="swal2-input" value="${datos.correo}"></td></tr>
+        <tr><td><label for="swal-idcarrera">Carrera:</label></td><td>
+          <select id="swal-idcarrera" class="swal2-select">
+            ${carreras.map(carrera => `<option value="${carrera.id}" ${carrera.id === datos.idcarrera ? 'selected' : ''}>${carrera.nombre}</option>`).join('')}
+          </select>
+        </td></tr>
+        <tr><td><label for="swal-telefono">Teléfono:</label></td><td><input type="text" id="swal-telefono" class="swal2-input" value="${datos.telefono}"></td></tr>
+        <tr><td><label for="swal-direccion">Dirección:</label></td><td><input type="text" id="swal-direccion" class="swal2-input" value="${datos.direccion}"></td></tr>
+      </table>
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    showCancelButton: true,
+    preConfirm: () => {
+      return {
+        rut: document.getElementById('swal-rut').value,
+        nombre: document.getElementById('swal-nombre').value,
+        fechaNacimiento: document.getElementById('swal-fechaNacimiento').value,
+        idperfil: document.getElementById('swal-idperfil').value,
+        nombreperfil: document.getElementById('swal-idperfil').options[document.getElementById('swal-idperfil').selectedIndex].text,
+        correo: document.getElementById('swal-correo').value,
+        idcarrera: document.getElementById('swal-idcarrera').value,
+        nombrecarrera: document.getElementById('swal-idcarrera').options[document.getElementById('swal-idcarrera').selectedIndex].text,
+        telefono: document.getElementById('swal-telefono').value,
+        direccion: document.getElementById('swal-direccion').value
+      };
+    }
+  });
+
+  if (formValues) {
+    const datosEditados = formValues;
+
+    fetch('/Administrador/updateUsuario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datosEditados)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Usuario actualizado con éxito');
+        getUsuariostable(); // Vuelve a cargar la tabla de usuarios
+      } else {
+        Swal.fire('Error al actualizar el usuario');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar el usuario');
+    });
+  }
+}
+
+
+
+
+
+
+
 function getArchivos() {
   fetch("/Administrador/getArchivos")
     .then((response) => {

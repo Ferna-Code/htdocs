@@ -692,8 +692,6 @@ class AdministradorController
 
         $json = file_get_contents('php://input'); //escucha el input dentro del PHP
         $data = json_decode($json, true);
-        echo "<script>alert('controlador')</script>";
-        echo "<script>console.log('controlador')</script>";
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
             return;
@@ -714,5 +712,29 @@ class AdministradorController
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
+
+
+    // Método para actualizar un usuario
+    public function updateUsuario()
+    {
+        // Obtener el JSON de la solicitud
+        $json = file_get_contents('php://input');
+        $datos = json_decode($json, true);
+
+        if ($datos === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos' . json_last_error_msg() . '']);
+            return;
+        }
+
+        $admin = new AdministradorDaoImpl(); 
+        $success = $admin->actualizarUsuario($datos);
+    
+        if ($success) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+
 }
   
