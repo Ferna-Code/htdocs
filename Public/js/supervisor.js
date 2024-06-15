@@ -1883,6 +1883,27 @@ function noData(){
 
 
 
+//------------MODAL--------------
+function showModal(content) {
+  getPublicacionById(content);
+  const modal = document.getElementById("publicacionModal");
+  const modalContent = document.getElementById("modalPublic");
+  modalContent.innerText = content;
+  modal.style.display = "block";
+
+  // Para cerrar el modal cuando se hace clic en el botón de cerrar
+  const closeBtn = document.getElementsByClassName("close")[0];
+  closeBtn.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // Para cerrar el modal cuando se hace clic fuera de él
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
 
 //Comentarios
 
