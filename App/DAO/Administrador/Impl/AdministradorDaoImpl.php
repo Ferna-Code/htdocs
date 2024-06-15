@@ -13,13 +13,13 @@ require_once __DIR__ . '/../../../Models/adminComentarios_model.php';
 require_once __DIR__ . '/../../../Models/adminOfertas_model.php';
 //require_once __DIR__ . '/../../../Models/adminPostulaciones_model.php';//
 require_once __DIR__ . '/../../../Models/conexion.php';
-require_once 'C:\xampp\htdocs\App\DAO\usuario\Impl\usuarioDaoImpl.php';
-require_once 'C:\xampp\htdocs\App\DAO\usuario\Impl\experienciaacademicaDaoImpl.php';
-require_once 'C:\xampp\htdocs\App\DAO\Administrador\Impl\logsEliminacionDaoImpl.php';
-require_once 'C:\xampp\htdocs\App\DAO\usuario\Impl\experiencialaboralDaoImpl.php';
-require_once 'C:\xampp\htdocs\App\DAO\usuario\Impl\ofertaDaoImpl.php';
-require_once 'C:\xampp\htdocs\App\DAO\postulaciones\Impl\postulaciondesDaoImpl.php';
-require_once 'C:\xampp\htdocs\App\DAO\usuario\Impl\archivocvDaoImpl.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\usuario\Impl\usuarioDaoImpl.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\usuario\Impl\experienciaacademicaDaoImpl.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\Administrador\Impl\logsEliminacionDaoImpl.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\usuario\Impl\experiencialaboralDaoImpl.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\usuario\Impl\ofertaDaoImpl.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\postulaciones\Impl\postulaciondesDaoImpl.php';
+require_once 'C:\Xampp1\htdocs\App\DAO\usuario\Impl\archivocvDaoImpl.php';
 class AdministradorDaoImpl implements AdministradorDao
 {
     private $db;
