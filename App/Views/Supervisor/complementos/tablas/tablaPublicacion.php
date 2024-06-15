@@ -16,11 +16,12 @@
                 <thead>
                     <tr><!--CHECK PRINCIPAL-->
                         <th  class="widthCheck"><input type="checkbox" id="checkAllPublicacion" name="select-all"></th>
-                        <th>ID Publicación</th>
+                      
                         <th>RUT Usuario</th>
+                        <th>Publicacion</th>
                         <th>Cantidad de reportes</th>
                         <th>Fecha Creación</th>
-                        <th>Fecha Eliminación</th>
+                        
                     </tr>
                 </thead>
                 <tbody id="tbodyPublicacion">
@@ -31,3 +32,12 @@
 
     </div>
 </section>
+
+<!-- Modal -->
+<div id="publicacionModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Información de la Publicación</h2>
+    <p id="modalPublic"></p>
+  </div>
+</div>

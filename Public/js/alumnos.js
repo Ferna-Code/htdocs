@@ -249,6 +249,7 @@ function getOfertaByID(id) {
               cardofert.innerHTML = `
                   <div class="cardo mb-4">
                       <div class="cardo-details">
+                          <p style="display: none;" class="text-title">id: ${oferta.id}</p>
                           <p class="text-title">Tipo Oferta: ${oferta.tipoOferta}</p>
                           <p class="text-body">Cargo: ${oferta.cargo}</p>
                           <p class="text-body">Descripción: ${oferta.descripcion}</p>
@@ -256,7 +257,7 @@ function getOfertaByID(id) {
                           <p class="text-body">Rango Salarial: ${oferta.rangosalarial}</p>
                           <p class="text-body">Fecha de publicación: ${oferta.fechacreacion}</p>
                       </div>
-                      <button class="cardo-button" onclick="enviarPostulacion()">Postular</button>
+                      <button class="cardo-button" onclick="enviarPostulacion(${oferta.id})">Postular</button>
                   </div>
               `;
             
@@ -272,7 +273,8 @@ function getOfertaByID(id) {
   })
 }
 
-function enviarPostulacion(){
+function enviarPostulacion(id){
+  const idOferta = id
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -290,6 +292,7 @@ function enviarPostulacion(){
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
+      postular(idOferta)
       swalWithBootstrapButtons.fire({
         title: "Postulación enviada",
         text: "Tu perfil ha sido enviado",
@@ -307,4 +310,122 @@ function enviarPostulacion(){
     }
   });
 }
+
+function postular(idOferta){
+  fetch("postulaciones/insertData/", {
+            method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idOferta: idOferta })
+  })
+      .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then((data) => {
+      if(!data.success){
+        alert("Postulación enviada")
+
+      }
+    }).catch((error) => {
+      console.log("Error en la solicitud Fetch: ", error);
+    })
+
+}
+
+//LIKES
+document.addEventListener('DOMContentLoaded', function() {
+  // Like action
+  document.querySelectorAll('.like-action').forEach(function(element) {
+      element.addEventListener('click', function() {
+          const publicacionId = this.getAttribute('data-id');
+          // const likesCountElement = this.nextElementSibling;
+          const likesCountElement = this.closest('.like-container').querySelector('.likes-count');  
+          
+          fetch('/usuarios/likePublicacion', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ publicacionId: publicacionId })
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              if (data.success) {
+                  // Actualizar el contador de likes en el frontend
+                  const newLikes = parseInt(likesCountElement.textContent) + 1;
+                  likesCountElement.textContent = newLikes;
+                 
+                  // document.getElementById("likeId").value = newLikes;
+                  this.classList.add('nlikes'); 
+              } else {
+                  alert('Hubo un problema al dar like a la publicación. ' + data.message); 
+              }
+          })
+          .catch(error => {
+              console.error('Error al procesar la solicitud:', error);
+              alert('Hubo un problema al procesar la solicitud. catch');
+          });
+      });
+  });
+});
+
+
+
+
+// REPORTES
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Report action
+  document.querySelectorAll('.report-action').forEach(function(element) {
+      element.addEventListener('click', function() {
+          const publicacionId = this.getAttribute('data-id');
+          const reportsCountElement = this.parentElement.querySelector('.reports-count'); // Seleccionar el contador de reportes
+          
+          fetch('/usuarios/reportarPublicacion', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ publicacionId: publicacionId })
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              if (data.success) {
+                  // Actualizar el contador de reportes en el frontend
+                  let currentReportsCount = parseInt(reportsCountElement.textContent.trim()) || 0; // Convertir a número o asignar 0 si no es válido
+                  const newReportsCount = currentReportsCount + 1;
+                  reportsCountElement.textContent = newReportsCount;
+
+                  if (newReportsCount >= 3) {
+                      // Ocultar la publicación o realizar alguna acción adicional
+                      const publicacionContainer = element.closest('.tweet-card');
+                      publicacionContainer.style.display = 'none';
+                  }
+
+              } else {
+                  alert('Hubo un problema al reportar la publicación: ' + data.message);
+              }
+          })
+          .catch(error => {
+              console.error('Error al procesar la solicitud:', error);
+              alert('Hubo un problema al procesar la solicitud.');
+          });
+      });
+  });
+});
+
 

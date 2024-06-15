@@ -14,7 +14,7 @@ class EmpresaController{
 
     }
 
-    public function insertData(){
+    public function checkData(){
        
         $json = file_get_contents('php://input');//escucha el input dentro del PHP
         $data = json_decode($json, true);
@@ -44,7 +44,7 @@ class EmpresaController{
         $empresaModel->setDescripcionCargo($descripcionCargo);
         $empresaModel->setDasSalarial($rangoSalarial);
 
-        $result = $admin->insertData($empresaModel);
+        $result = $admin->checkData($empresaModel);
 
         if ($result) {
             echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);

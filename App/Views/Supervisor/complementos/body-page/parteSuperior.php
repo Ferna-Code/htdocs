@@ -100,6 +100,14 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="graficos" onclick="">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Graficos</span>
+        </a>
+        
+    </li>
+
 
 
    

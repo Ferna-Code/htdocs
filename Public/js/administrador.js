@@ -310,6 +310,31 @@ function controlVisi17() {
   // Centra el módulo 1
   centrarModulo(elemento17);
 }
+function controlVisi18(id) {
+  var elemento18 = document.getElementById("modulo18");
+  getCursoById(id);
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  elemento18.style.display = "flex";
+  
+  // Centra el módulo 1
+  centrarModulo(elemento17);
+}
+
+function controlVisi19(id) {
+  var eleme = document.getElementById("modulo19");
+  getOfertaById(id);
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo correspondiente
+  eleme.style.display = "flex";
+
+  // Centra el módulo mostrado
+  centrarModulo(eleme);
+}
 
 
 
@@ -331,56 +356,140 @@ function centrarModulo(modulo) {
 
 /*-------------Mostrar info en Tablas--------------*/
 
-function getCarrera() {
-  fetch("/Administrador/getCarrera")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data && data.length > 0) {
-        const tbody = $("#bodyCarreras");
-        tbody.empty();
+async function getCarrera() {
+  try {
+    const responseCarreras = await fetch("/Administrador/getCarrera");
+    if (!responseCarreras.ok) {
+      throw new Error(`HTTP error: ${responseCarreras.status}`);
+    }
+    const dataCarreras = await responseCarreras.json();
 
-        data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
-          let categoria;
-          if (row.idcategorias == '1') {
-            categoria = "Educación, bienestar y calidad";
-          } else if (row.idcategorias == '2') {
-            categoria = "Informática, tecnología y productividad";
-          } else if (row.idcategorias == '3') {
-            categoria = "Negocios, gestión e innovación";
-          } else {
-            categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
-          }
+    // Obtener un mapa de ID de categoría a nombre de categoría
+    const categoriasMap = await obtenerCategoriasMap();
 
-          const fila = `
-            <tr>
-              <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
-              <td class="hidden">${row.id}</td>
-              <td>${row.nombre}</td>
-              <td>${categoria}</td>
-              <td>${row.fechaCreacion}</td>
-              <td>${row.activo}</td>
-              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-            </tr>`;
-          tbody.append(fila);
-        });
+    const tbody = $("#bodyCarreras");
+    tbody.empty();
 
-        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
-
-      } else {
-        alert("No se encontraron datos para actualizar");
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+    dataCarreras.forEach(row => {
+      const categoriaNombre = categoriasMap.get(row.idcategorias) || 'Categoría desconocida';
+      const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
+          <td class="hidden">${row.id}</td>
+          <td>${row.nombre}</td>
+          <td>${categoriaNombre}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCarrera(${row.id},'${row.nombre}',${row.idcategorias},'${categoriaNombre}')">Editar</button></td>
+        </tr>`;
+      tbody.append(fila);
     });
+
+    initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+  } catch (error) {
+    console.error("Error en la solicitud Fetch: ", error);
+    alert("Error en la solicitud: ", error.message);
+  }
 }
+
+async function obtenerCategoriasMap() {
+  try {
+    const responseCategorias = await fetch("/Administrador/getCategoria");
+    if (!responseCategorias.ok) {
+      throw new Error(`HTTP error: ${responseCategorias.status}`);
+    }
+    const dataCategorias = await responseCategorias.json();
+
+    // Construir un mapa de ID de categoría a nombre de categoría
+    const categoriasMap = new Map();
+    dataCategorias.forEach(row => {
+      categoriasMap.set(row.id, row.nombre);
+    });
+    return categoriasMap;
+  } catch (error) {
+    throw new Error(`Error al obtener las categorías: ${error.message}`);
+  }
+}
+
+
+
+// EDITAR CARRERA
+
+async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
+  try {
+    // Obtener el mapa de ID de categoría a nombre de categoría
+    const categoriasMap = await obtenerCategoriasMap();
+
+    // Construir las opciones del select
+    let opcionesSelect = '';
+    categoriasMap.forEach((nombre, id) => {
+      opcionesSelect += `<option value="${id}">${nombre}</option>`;
+    });
+
+    const { value: formValues } = await Swal.fire({
+      title: "Editar Carrera",
+      html: `
+        <input id="swal-input1" type="hidden" class="swal2-input" value="${id}">
+        <br>
+        <input id="swal-input2" class="swal2-input" value="${nombre}">
+        <select id="swal-input3" class="swal2-input">${opcionesSelect}</select>
+      `,
+      
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById("swal-input1").value,
+          document.getElementById("swal-input2").value,
+          document.getElementById("swal-input3").value
+        ];
+      }
+    });
+
+    if (formValues) {
+      const id = formValues[0];
+      const nuevoNombre = formValues[1];
+      const idCategoriaSeleccionada = formValues[2];
+      const nombreCategoriaSeleccionada = categoriasMap.get(idCategoriaSeleccionada);
+
+      fetch('/Administrador/updateCarrera', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, nuevoNombre,idCategoriaSeleccionada })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          Swal.fire('Carrera actualizada con éxito');
+          getCategoria(); // Vuelve a cargar la tabla de Carreras
+        } else {
+          Swal.fire('Error al actualizar la Carrera');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error al actualizar la Carrera');
+      });
+    }
+  } catch (error) {
+    console.error("Error al editar carrera: ", error);
+    Swal.fire('Error al editar carrera');
+  }
+
+  getCarrera()
+}
+
+  
+
+
+
+
+//FIN EDITAR CARRERA
+
+
+// OBTENER CATEGORIAS
 
 function getCategoria() {
   fetch("/Administrador/getCategoria")
@@ -396,7 +505,6 @@ function getCategoria() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
@@ -405,7 +513,8 @@ function getCategoria() {
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
+        </tr>`; 
           tbody.append(fila);
         });
 
@@ -420,6 +529,59 @@ function getCategoria() {
       alert("Error en la solicitud: ", error.message);
     });
 }
+
+async function editarCategoria(id, nombre) {
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Categoría",
+    html: `
+      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="Nuevo nombre" value="${nombre}">
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    preConfirm: () => {
+      return [
+        document.getElementById("swal-input2").value
+      ];
+    }
+  });
+
+  if (formValues) {
+    const nuevoNombre = formValues[0];
+
+    fetch('/Administrador/updateCategoria', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id, nuevoNombre })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Categoría actualizada con éxito');
+        getCategoria(); // Vuelve a cargar la tabla de categorías
+      } else {
+        Swal.fire('Error al actualizar la categoría');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar la categoría');
+    });
+  }
+}
+
+document.getElementById('editarButton').addEventListener('click', function(event) {
+  event.preventDefault(); 
+  editarCategoria();
+  editarDiccionario();
+  editarCarrera()
+});
+
+
+
+// Llamar a la función para cargar las categorías
+getCategoria();
 
 
 //--------------CURSOS---------------//
@@ -442,10 +604,9 @@ function getCurso() {
         <tr>
           <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
           <td class="hidden">${row.id}</td>
-          <td>${row.nombre}</td>
+          <td class="widthName"><a href="#" class="linkTabla" onclick="controlVisi18(${row.id})">${row.nombre}</a></td>
           <td>${row.emitidopor}</td>
           <td>${row.fechaCreacion}</td>
-          <td><a href="#" onclick="veroferta(${row.id})">Ver Curso</a></td>
         </tr>`;
           tbody.append(fila);
         });
@@ -459,6 +620,48 @@ function getCurso() {
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getCursoById(id) {
+  fetch("/supervisor/getCursoById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      // Asignar datos a los elementos de la vista
+      const curso = data.curso;
+      if (curso.idcategoria == 1) {
+        categoria = "Educación, bienestar y calidad";
+      } else if (curso.idcategoria == 2) {
+        categoria = "Informática, tecnología y productividad";
+      } else if (curso.idcategoria == 3) {
+        categoria = "Negocios, gestión e innovación";
+      } else {
+        categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+      }
+      document.getElementById("verNombreCurso").value = curso.nombre;
+      document.getElementById("verCodigoCurso").value = curso.id;
+      document.getElementById("verIdCurso").value = curso.id;
+      document.getElementById("verCategoriaCurso").value = categoria;
+      document.getElementById("verCentroCurso").value = curso.emitidopor;
+      document.getElementById("verFechaCurso").value = curso.fechaCreacion;
+      document.getElementById("verEliminacionCurso").value = (curso.fechaEliminacion || '');
+      document.getElementById("verDescripcionCurso").value = curso.descripcion;
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
@@ -486,6 +689,8 @@ function getDiccionario() {
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editardiccionario(${row.id},'${row.palabra}')">Editar</button></td>
+   
         </tr>`;
           tbody.append(fila);
         });
@@ -501,6 +706,49 @@ function getDiccionario() {
       alert("Error en la solicitud: ", error.message);
     });
 }
+
+async function editardiccionario(id, palabra) {
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Palabra Prohibida",
+    html: `
+      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="palabra" value="${palabra}">
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    preConfirm: () => {
+      return [
+        document.getElementById("swal-input2").value
+      ];
+    }
+  });
+
+  if (formValues) {
+    const nuevaPalabra = formValues[0];
+
+    fetch('/Administrador/updateDiccionario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id, nuevaPalabra })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Palabra actualizada con éxito');
+        getDiccionario(); // Vuelve a cargar la tabla
+      } else {
+        Swal.fire('Error al actualizar la Palabra');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar la Palabra');
+    });
+  }
+}
+
+// PERFIL
 
 function getPerfil() {
   fetch("/Administrador/getPerfil")
@@ -560,7 +808,7 @@ function getReportes() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
-          <td>${row.id}</td>
+          
           <td>${row.idcomentario}</td>
           <td>${row.rutusuario}</td>
           <td>${row.idpublicacion}</td>
@@ -739,7 +987,7 @@ function getPublicacion() {
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
-          <td>${row.id}</td>
+         
           <td>${row.rutusuario}</td>
           <td>${row.publicacion}</td>
           <td>${row.nreportes}</td>
@@ -780,19 +1028,14 @@ function getOfertas() {
         data.forEach(row => {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxOferta" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.tipoOferta}</td>
-          <td>${row.idcategoria}</td>
-          <td>${row.cargo}</td>
-          <td>${row.nombreEmpresa}</td>
-          <td>${row.rutempresa}</td>
-          <td>${row.correocontacto}</td>
-          <td>${row.descripcion}</td>
-          <td>${row.rangosalarial}</td>
+        <tr class="table table-striped">
+          <td><input type="checkbox" class="checkboxOfertas" id="checkboxOfertas" name="checkId"></td>
+          <td class="hidden">${row.id}</a></td>
+          <td><a href="#" class="linkTabla" onclick="controlVisi19(${row.id})">${row.cargo}</a></td>
+          <td>${row.nombreEmpresa}</a></td>
+          <td>${row.tipoOferta}</a></td>
           <td>${row.fechacreacion}</td>
-          <td>${row.fechaeliminacion ? row.fechaeliminacion : 'N/A'}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
         </tr>`;
           tbody.append(fila);
         });
@@ -807,6 +1050,50 @@ function getOfertas() {
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
+    });
+}
+
+function getOfertaById(id) {
+  fetch("/supervisor/getOfertaById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+
+      // Asignar datos a los elementos de la vista
+      const oferta = data.curso;
+      if (oferta.idcategoria == 1) {
+        categoria = "Educación, bienestar y calidad";
+      } else if (oferta.idcategoria == 2) {
+        categoria = "Informática, tecnología y productividad";
+      } else if (oferta.idcategoria == 3) {
+        categoria = "Negocios, gestión e innovación";
+      } else {
+        categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
+      }
+      document.getElementById("verIdOferta").value = oferta.id;
+      document.getElementById("cargoOferta").value = oferta.cargo;
+      document.getElementById("tipoOferta").value = oferta.tipoOferta;
+      document.getElementById("categoriaOferta").value = categoria;
+      document.getElementById("empresaOferta").value = oferta.nombreEmpresa;
+      document.getElementById("rutEmpresa").value = oferta.rutempresa;
+      document.getElementById("correoOferta").value = oferta.correocontacto;
+      document.getElementById("salarioOferta").value = oferta.rangosalarial;
+      document.getElementById("creacionOferta").value = oferta.fechacreacion;
+      document.getElementById("descripcionOferta").value = oferta.descripcion;
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
@@ -868,7 +1155,6 @@ function getExpAcademica() {
 
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
@@ -912,7 +1198,6 @@ function getExpLaboral() {
 
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxLaboral" name="select-all"></td>
@@ -988,6 +1273,49 @@ function deleteCurso(ids) {
     });
     
 }
+
+//--------------UPDATE-----------
+
+document.getElementById('ForUpdateCurso').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const formData = {
+    idCurso: document.getElementById('verIdCurso').value,
+    nombre: document.getElementById('verNombreCurso').value,
+    categoria: document.getElementById('verCategoriaCurso').value,
+    codigo: document.getElementById('verCodigoCurso').value,
+    centro: document.getElementById('verCentroCurso').value,
+    fecha: document.getElementById('verFechaCurso').value,
+    eliminacion: document.getElementById('verEliminacionCurso').value,
+    descripcion: document.getElementById('verDescripcionCurso').value,
+  };
+
+  fetch("/supervisor/updateCurso", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(formData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        alert("Curso actualizado exitosamente");
+        // Restablece los valores del formulario
+        document.getElementById('formCurso').reset();
+      } else {
+        alert("Error: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud Fetch: ", error);
+    });
+});
 
 
 

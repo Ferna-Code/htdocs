@@ -18,6 +18,7 @@ if (!isset($_SESSION['idperfil'])) {
 require_once 'App/Controllers/accessController.php';
 $perfilesPermitidos = 3;
 verificarAcceso($perfilesPermitidos);
+$rutsesion = $_SESSION['rut'];
 ?>
 
 <!DOCTYPE html>

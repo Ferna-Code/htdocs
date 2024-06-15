@@ -13,7 +13,6 @@
             <div class="containerFiltro">
                 <input type="text" class="ofertaFiltro" placeholder="Palabra clave">
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearPalabra">Nuevo</button>
-                <button type="button" class="btn-supervisor " data-bs-toggle="modal" data-bs-target="#editarPalabra">Editar</button>
                 <button type="button" id="deleteSelectedDiccionario" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 

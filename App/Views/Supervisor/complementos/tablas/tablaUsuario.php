@@ -14,7 +14,7 @@
                         <th>Perfil</th>
                         <th>Correo electronico</th>
                         <th>Fecha creación</th>
-                        <th>Fecha eliminación</th>
+                       
 
                     </tr>
                 </thead>
