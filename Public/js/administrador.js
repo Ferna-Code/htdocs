@@ -389,7 +389,7 @@ async function getCarrera() {
     initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
   } catch (error) {
     console.error("Error en la solicitud Fetch: ", error);
-    alert("Error en la solicitud: ", error.message);
+    Swal.fire("Error", "Error en la solicitud" + data.message, "error");
   }
 }
 
@@ -412,11 +412,9 @@ async function obtenerCategoriasMap() {
   }
 }
 
-
-
-// EDITAR CARRERA
-
-async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
+ // EDITAR CARRERA
+  
+ async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
   try {
     // Obtener el mapa de ID de categoría a nombre de categoría
     const categoriasMap = await obtenerCategoriasMap();
@@ -481,16 +479,6 @@ async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
   getCarrera()
 }
 
-  
-
-
-
-
-//FIN EDITAR CARRERA
-
-
-// OBTENER CATEGORIAS
-
 function getCategoria() {
   fetch("/Administrador/getCategoria")
     .then((response) => {
@@ -505,6 +493,7 @@ function getCategoria() {
         tbody.empty();
 
         data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
@@ -513,8 +502,7 @@ function getCategoria() {
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
-        </tr>`; 
+        </tr>`;
           tbody.append(fila);
         });
 
@@ -529,6 +517,8 @@ function getCategoria() {
       alert("Error en la solicitud: ", error.message);
     });
 }
+
+// EDITAR CATEGORIAS
 
 async function editarCategoria(id, nombre) {
   const { value: formValues } = await Swal.fire({
@@ -571,17 +561,6 @@ async function editarCategoria(id, nombre) {
   }
 }
 
-document.getElementById('editarButton').addEventListener('click', function(event) {
-  event.preventDefault(); 
-  editarCategoria();
-  editarDiccionario();
-  editarCarrera()
-});
-
-
-
-// Llamar a la función para cargar las categorías
-getCategoria();
 
 
 //--------------CURSOS---------------//
@@ -689,8 +668,6 @@ function getDiccionario() {
           <td>${row.fechaCreacion}</td>
           <td>${row.activo}</td>
           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-          <td><button type="button" class="btn-supervisor btn-editar" onclick="editardiccionario(${row.id},'${row.palabra}')">Editar</button></td>
-   
         </tr>`;
           tbody.append(fila);
         });
@@ -706,49 +683,6 @@ function getDiccionario() {
       alert("Error en la solicitud: ", error.message);
     });
 }
-
-async function editardiccionario(id, palabra) {
-  const { value: formValues } = await Swal.fire({
-    title: "Editar Palabra Prohibida",
-    html: `
-      <input id="swal-input2" style="width: 300px;" class="swal2-input" placeholder="palabra" value="${palabra}">
-    `,
-    confirmButtonText: 'Actualizar',
-    focusConfirm: false,
-    preConfirm: () => {
-      return [
-        document.getElementById("swal-input2").value
-      ];
-    }
-  });
-
-  if (formValues) {
-    const nuevaPalabra = formValues[0];
-
-    fetch('/Administrador/updateDiccionario', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ id, nuevaPalabra })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        Swal.fire('Palabra actualizada con éxito');
-        getDiccionario(); // Vuelve a cargar la tabla
-      } else {
-        Swal.fire('Error al actualizar la Palabra');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      Swal.fire('Error al actualizar la Palabra');
-    });
-  }
-}
-
-// PERFIL
 
 function getPerfil() {
   fetch("/Administrador/getPerfil")
@@ -880,6 +814,10 @@ function getUsuarios() {
     });
 }
 
+function deleteUsuario(rut){
+
+
+}
 function getArchivos() {
   fetch("/Administrador/getArchivos")
     .then((response) => {
@@ -1155,6 +1093,7 @@ function getExpAcademica() {
 
 
         data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
@@ -1198,6 +1137,7 @@ function getExpLaboral() {
 
 
         data.forEach(row => {
+          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxLaboral" name="select-all"></td>
@@ -1334,11 +1274,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       deleteSelectedCategoriasBtn.addEventListener('click', deleteSelectedCategoriasHandler);
   }
 
-  // const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
-  // if (deleteSelectedCursosBtn) {
-  //   deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
-  //   deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
-  // }
+  const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
+  if (deleteSelectedCursosBtn) {
+    deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
+    deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
+  }
 
   const deleteSelectedDiccionariosBtn = document.getElementById('deleteSelectedDiccionario');
   if (deleteSelectedDiccionariosBtn) {
@@ -1366,6 +1306,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   const deleteSelectedUsuariosBtn = document.getElementById('deleteSelectedUsuarios');
   if (deleteSelectedUsuariosBtn) {
+   
     deleteSelectedUsuariosBtn.removeEventListener('click', deleteSelectedUsuariosHandler);
     deleteSelectedUsuariosBtn.addEventListener('click', deleteSelectedUsuariosHandler);
   }
@@ -1418,9 +1359,9 @@ function deleteSelectedCategoriasHandler() {
     deleteSelectedRows('checkboxCategoria', '/Administrador/deleteCategorias');
 }
 
-// function deleteSelectedCursosHandler() {
-//   deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
-// }
+function deleteSelectedCursosHandler() {
+  deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
+}
 
 function deleteSelectedDiccionarioHandler() {
   deleteSelectedRows('checkboxPalabra', '/Administrador/deleteDiccionario');
@@ -1492,50 +1433,62 @@ function deleteSelectedExpLaboralHandler() {
 function deleteSelectedRows(checkboxClass, apiEndpoint) {
   const selectedIds = [];
   document.querySelectorAll('.' + checkboxClass + ':checked').forEach(checkbox => {
-      const row = checkbox.closest('tr');
-      const id = row.cells[1].textContent; 
-      selectedIds.push(id);
+    const row = checkbox.closest('tr');
+    const id = row.cells[1].textContent.trim(); // Assuming the ID is in the second cell, trim to remove extra whitespace
+    console.log(id);
+    selectedIds.push(id);
   });
 
   if (selectedIds.length === 0) {
-      alert("No hay filas seleccionadas");
-      return;
+    alert("No hay filas seleccionadas");
+    return;
   }
 
-  // Preguntar al usuario para confirmar la eliminación
-  if (!confirm(`¿Está seguro que desea eliminar las filas con ID: ${selectedIds.join(', ')}?`)) {
-    return; // Abortar la eliminación si el usuario cancela
-  }
-
-  fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
+  Swal.fire({
+    title: "¿Está seguro que desea eliminar las filas seleccionadas?",
+    showCancelButton: true,
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+    icon: "warning",
+    dangerMode: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
           'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ids: selectedIds }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      if (data.success) {
+        },
+        body: JSON.stringify({ ids: selectedIds }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
           selectedIds.forEach(id => {
-              document.querySelectorAll(`tr`).forEach(row => {
-                  if (row.cells[1] && row.cells[1].textContent == id) {
-                      row.remove();
-                  }
-              });
+            document.querySelectorAll(`tr`).forEach(row => {
+              if (row.cells[1] && row.cells[1].textContent.trim() === id) {
+                row.remove();
+              }
+            });
           });
-          alert('Eliminación exitosa');
-      } else {
-          alert('Error al eliminar fila(s): ' + data.message);
-      }
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      alert('Error al eliminar fila(s): ' + error.message);
+          Swal.fire("¡Eliminación exitosa!", "", "success");
+        } else {
+          Swal.fire("Error", `Error al eliminar fila(s): ${data.message}`, "error");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire("Error", `Error al eliminar fila(s): ${error.message}`, "error");
+      });
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire("Operación cancelada", "", "info");
+    }
   });
 }
-
-
 
 //--------------- INSERT GLOBAL ---------------- //
 

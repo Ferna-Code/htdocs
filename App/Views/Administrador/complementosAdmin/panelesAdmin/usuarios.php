@@ -19,7 +19,6 @@
                     <option value="Práctica">cargo 3</option>
                 </select>
                 <button type="button" class="btnFiltro">Filtrar</button><br>
-                <button type="button" class="btn-supervisor marginBtn" data-bs-toggle="modal" data-bs-target="#editarUsuario">Editar</button>
                 <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -35,15 +34,15 @@
                         <th>Rut</th>
                         <th>Nombre</th>
                         <th>Fecha de Nacimiento</th>
-                        <th>ID Perfil</th>
+                        <th>Perfil</th>
                         <th>Correo</th>
-                        <th>ID Carrera</th>
+                        <th>Carrera</th>
                         <th>Avance</th>
                         <th>Cargo</th>
                         <th>Clave</th>
                         <th>F. Ingreso</th>
-                        <th>Activo</th>
                         <th>F.Eliminación</th>
+                        <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody id="bodyUsuarios">
