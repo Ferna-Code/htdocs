@@ -33,6 +33,26 @@ class archivocvDaoImpl implements archivocvDao
         return $documentos;
     }
 
+    public function getDataById($id)
+    {
+        $sql = "SELECT id, rutusuario, documento, fechaCreacion FROM cvarchivos WHERE id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $documentos = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $documentos[] = $row;
+        }
+
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+
+        return $documentos;
+    }
+
     public function getId($rutusuario)
     {
         $sql = "SELECT id FROM cvarchivos WHERE rutusuario = ?";

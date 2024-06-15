@@ -1,5 +1,9 @@
 <section style="margin: 10px;">
     <div class="">
+    <div class="containerFiltro">
+            <input style="margin-bottom: 15px" type="text" id="filtroUsuario" placeholder="Buscar por RUT">
+
+            </div>
         <form action="">
             <a href="/importarExcel" class="btn-supervisor marginBtn btnAgregar">Agregar usuario</a>
            

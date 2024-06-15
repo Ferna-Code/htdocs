@@ -11,7 +11,7 @@ $("#formOferta").on("submit", function (event) {
         descripcionCargo: $("#descripcion-cargo").val(),
         rangoSalarial: $("#rango-salarial").val(),
     };
-    fetch("/empresa/insertData", {//Se envia el cuerpo del mensaje a la funcion
+    fetch("/empresa/checkData", {//Se envia el cuerpo del mensaje a la funcion
         headers: {
             "Content-Type": "application/json",
         },

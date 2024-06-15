@@ -12,18 +12,8 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-            <select class="categoriaFiltro">
-                    <option value="Práctica">Categoría 1</option>
-                    <option value="Práctica">Categoría 2</option>
-                    <option value="Práctica">Categoría 3</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Diplomado en Gestión de Proyectos TI</option>
-                    <option value="Práctica">Diplomado en metodologia Scrum</option>
-                    <option value="Práctica">Networking Essentials</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar"><br>
+            <input style="margin-bottom: 15px" type="text" id="filtroCursos" placeholder="Buscar por nombre...">
+            <br>
                 <a href="#" onclick="controlVisi17()" class="btn-supervisor marginBtn ">Agregar</a>
                 <button type="button" id="deleteSelectedCurso" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
@@ -35,7 +25,7 @@
             <thead>
                 <tr>
                 <th class="widthCheck"><input type="checkbox" id="checkAllCursos" name="select-all"></th>
-                   
+                <th>ID</th>
                     <th>Nombre</th>               
                     <th>Centro de capacitación</th>               
                     <th>Fecha de Creación</th>
@@ -46,29 +36,7 @@
 
             </tbody>
         </table>
-                      <!-- seccion footer -->
-                      <div class="footer-tools">
-                <div class="list-items">
-                    Mostrar
-                    <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
-                    </select>
-                    Entradas
-                </div>   
-                <div class="pages">
-                    <ul>
-                        <li><span class="active">1</span></li>
-                        <li><button>2</button></li>
-                        <li><button>3</button></li>
-                        <li><span>...</span></li>
-                        <li><button>9</button></li>
-                        <li><button>10</button></li>
-                    </ul>
 
-                </div>
-        </div>
         </div>
     </div>
 </form>

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="../../../../Public/css/categorias.css">
-<div  style="width: 80%; margin-top: 5%">
-    <h1 class="mt-2 mb-2">Ofertas Laborales</h1>
+<div  style="margin-top: 5%">
+    <h1 class="mb-4">Ofertas Laborales</h1>
     <div>
     <form method="post" action="Registro.php">
                     <div class="form-row">

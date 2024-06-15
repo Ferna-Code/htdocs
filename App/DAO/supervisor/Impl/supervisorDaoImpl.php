@@ -90,34 +90,33 @@ class SupervisorDaoImpl implements SupervidorDao
 
     public function insertCurso(SupervisorModel $admin)
     {
-        $validateQuery = "INSERT INTO cursos (nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+        $validateQuery = "INSERT INTO cursos (nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, fechaEliminacion, activo) 
+                          VALUES (?, ?, ?, ?, ?, NOW(), DATE_ADD(NOW(), INTERVAL 3 MONTH), ?)";
+    
         $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
-
+    
         if (!$stmt) {
             throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
         }
-
+    
         $nombre = $admin->getNombreCurso();
         $descripcion = $admin->getDescripcionCurso();
         $emitido = $admin->getCentro();
         $link = $admin->getLink();
         $categoria = $admin->getCategoriaCurso();
-        $fecha = $admin->getFechaInicio();
-        $activo = $admin->getactivo();
-
-        mysqli_stmt_bind_param($stmt, "sssssss", $nombre, $descripcion, $emitido, $link, $categoria, $fecha, $activo);
+        $activo = $admin->getActivo(); // Ajustado a getActivo(), asegúrate de que el método en SupervisorModel sea correcto
+    
+        mysqli_stmt_bind_param($stmt, "sssssi", $nombre, $descripcion, $emitido, $link, $categoria, $activo);
         $result = mysqli_stmt_execute($stmt);
-
+    
         if ($result) {
-
-
             return array("success" => true, "message" => "Datos agregados correctamente");
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+    
+    
     public function getCurso($limit = 10) {
         $consulta = "SELECT * FROM cursos WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
@@ -171,6 +170,19 @@ class SupervisorDaoImpl implements SupervidorDao
     }
     public function getOfertaById($id) {
         $sql = "SELECT * FROM ofertas WHERE id = ?";
+        $conn = $this->db->conec();
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id); // Cambiado a "s" para string
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $data = mysqli_fetch_assoc($result); // Asegúrate de obtener una sola fila de resultados
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        return $data;
+    }
+    public function getPublicacionById($id){
+        $sql = "SELECT * FROM publicaciones WHERE id = ?";
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "i", $id); // Cambiado a "s" para string

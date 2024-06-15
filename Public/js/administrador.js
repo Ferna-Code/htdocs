@@ -191,7 +191,7 @@ function controlVisi8() {
 
   // Oculta todos los módulos
   ocultarModulos();
-  getUsuarios();
+  getUsuariostable();
   // Muestra el módulo 1
   elemento8.style.display = "flex";
 
@@ -356,55 +356,143 @@ function centrarModulo(modulo) {
 
 /*-------------Mostrar info en Tablas--------------*/
 
-function getCarrera() {
-  fetch("/Administrador/getCarrera")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data && data.length > 0) {
-        const tbody = $("#bodyCarreras");
-        tbody.empty();
+async function getCarrera() {
+  try {
+    const responseCarreras = await fetch("/Administrador/getCarrera");
+    if (!responseCarreras.ok) {
+      throw new Error(`HTTP error: ${responseCarreras.status}`);
+    }
+    const dataCarreras = await responseCarreras.json();
 
-        data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
-          let categoria;
-          if (row.idcategorias == '1') {
-            categoria = "Educación, bienestar y calidad";
-          } else if (row.idcategorias == '2') {
-            categoria = "Informática, tecnología y productividad";
-          } else if (row.idcategorias == '3') {
-            categoria = "Negocios, gestión e innovación";
-          } else {
-            categoria = "Categoría desconocida"; // Si hay más categorías o ninguna coincide
-          }
+    const categoriasMap = await obtenerCategoriasMap();
+    const tbody = $("#bodyCarreras");
+    tbody.empty();
 
-          const fila = `
-            <tr>
-              <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
-              <td class="hidden">${row.id}</td>
-              <td>${row.nombre}</td>
-              <td>${categoria}</td>
-              <td>${row.fechaCreacion}</td>
-              <td>${row.activo}</td>
-              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-            </tr>`;
-          tbody.append(fila);
-        });
-
-        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
-
-      } else {
-        alert("No se encontraron datos para actualizar");
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+    dataCarreras.forEach(row => {
+      const categoriaNombre = categoriasMap.get(row.idcategorias) || 'Categoría desconocida';
+      const fila = `
+        <tr>
+          <td class="widthCheck"><input type="checkbox" class="checkboxCarrera" name="select-all"></td>
+          <td class="hidden">${row.id}</td>
+          <td>${row.nombre}</td>
+          <td>${categoriaNombre}</td>
+          <td>${row.fechaCreacion}</td>
+          <td>${row.activo}</td>
+          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCarrera(${row.id},'${row.nombre}',${row.idcategorias},'${categoriaNombre}')">Editar</button></td>
+        </tr>`;
+      tbody.append(fila);
     });
+
+    initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+
+    // Capturar el elemento de entrada de búsqueda
+    const filtroInput = document.getElementById('filtroCarreras');
+    filtroInput.addEventListener('input', function() {
+      const filtro = filtroInput.value.toLowerCase(); // Convertir a minúsculas para hacer la búsqueda no sensible a mayúsculas
+
+      // Filtrar las filas de la tabla
+      dataCarreras.forEach(row => {
+        const nombre = row.nombre.toLowerCase();
+        const fila = tbody.find(`tr:contains(${filtro})`);
+        if (nombre.includes(filtro)) {
+          fila.show();
+        } else {
+          fila.hide();
+        }
+      });
+    });
+  } catch (error) {
+    console.error("Error en la solicitud Fetch: ", error);
+    Swal.fire("Error", "Error en la solicitud" + data.message, "error");
+  }
+}
+
+
+async function obtenerCategoriasMap() {
+  try {
+    const responseCategorias = await fetch("/Administrador/getCategoria");
+    if (!responseCategorias.ok) {
+      throw new Error(`HTTP error: ${responseCategorias.status}`);
+    }
+    const dataCategorias = await responseCategorias.json();
+
+    // Construir un mapa de ID de categoría a nombre de categoría
+    const categoriasMap = new Map();
+    dataCategorias.forEach(row => {
+      categoriasMap.set(row.id, row.nombre);
+    });
+    return categoriasMap;
+  } catch (error) {
+    throw new Error(`Error al obtener las categorías: ${error.message}`);
+  }
+}
+
+ // EDITAR CARRERA
+  
+ async function editarCarrera(id, nombre, idcategorias, categoriaNombre) {
+  try {
+    // Obtener el mapa de ID de categoría a nombre de categoría
+    const categoriasMap = await obtenerCategoriasMap();
+
+    // Construir las opciones del select
+    let opcionesSelect = '';
+    categoriasMap.forEach((nombre, id) => {
+      opcionesSelect += `<option value="${id}">${nombre}</option>`;
+    });
+
+    const { value: formValues } = await Swal.fire({
+      title: "Editar Carrera",
+      html: `
+        <input id="swal-input1" type="hidden" class="swal2-input" value="${id}">
+        <br>
+        <input id="swal-input2" class="swal2-input" value="${nombre}">
+        <select id="swal-input3" class="swal2-input">${opcionesSelect}</select>
+      `,
+      
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById("swal-input1").value,
+          document.getElementById("swal-input2").value,
+          document.getElementById("swal-input3").value
+        ];
+      }
+    });
+
+    if (formValues) {
+      const id = formValues[0];
+      const nuevoNombre = formValues[1];
+      const idCategoriaSeleccionada = formValues[2];
+      const nombreCategoriaSeleccionada = categoriasMap.get(idCategoriaSeleccionada);
+
+      fetch('/Administrador/updateCarrera', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, nuevoNombre,idCategoriaSeleccionada })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          Swal.fire('Carrera actualizada con éxito');
+          getCategoria(); // Vuelve a cargar la tabla de Carreras
+        } else {
+          Swal.fire('Error al actualizar la Carrera');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error al actualizar la Carrera');
+      });
+    }
+  } catch (error) {
+    console.error("Error al editar carrera: ", error);
+    Swal.fire('Error al editar carrera');
+  }
+
+  getCarrera()
 }
 
 function getCategoria() {
@@ -421,30 +509,99 @@ function getCategoria() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
-          <td class="hidden">${row.id}</td>
-          <td>${row.nombre}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
+              <td style="display: none;">${row.id}</td>
+              <td>${row.nombre}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+              <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
+            </tr>`;
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
 
+        // Implementación del filtro
+        const filtroInput = document.getElementById('filtroCategorias');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.toLowerCase();
+
+          // Filtrar las filas de la tabla
+          data.forEach(row => {
+            const nombre = row.nombre.toLowerCase();
+            const fila = tbody.find(`tr:contains(${filtro})`);
+            if (nombre.includes(filtro)) {
+              fila.show();
+            } else {
+              fila.hide();
+            }
+          });
+        });
+
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps();
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps();
     });
 }
+
+
+function alertOps(){
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Algo salio mal, intenta en unos minutos."
+  });
+}
+// EDITAR CATEGORIAS
+
+async function editarCategoria(id, nombre) {
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Categoría",
+    html: `
+      <input id="swal-input2" style="width: 90%;" class="swal2-input" placeholder="Nuevo nombre" value="${nombre}">
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    preConfirm: () => {
+      return [
+        document.getElementById("swal-input2").value
+      ];
+    }
+  });
+
+  if (formValues) {
+    const nuevoNombre = formValues[0];
+
+    fetch('/Administrador/updateCategoria', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id, nuevoNombre })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Categoría actualizada con éxito');
+        getCategoria(); // Vuelve a cargar la tabla de categorías
+      } else {
+        Swal.fire('Error al actualizar la categoría');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar la categoría');
+    });
+  }
+}
+
 
 
 //--------------CURSOS---------------//
@@ -457,32 +614,46 @@ function getCurso() {
       return response.json();
     })
     .then((data) => {
-      if (data && data.length > 0) {
-        const tbody = $("#bodyCursos");
-        tbody.empty();
+      const tbody = document.getElementById("bodyCursos");
+      tbody.innerHTML = ""; // Limpiar contenido previo
 
+      if (data && data.length > 0) {
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
-          <td class="hidden">${row.id}</td>
-          <td class="widthName"><a href="#" class="linkTabla" onclick="controlVisi18(${row.id})">${row.nombre}</a></td>
-          <td>${row.emitidopor}</td>
-          <td>${row.fechaCreacion}</td>
-        </tr>`;
-          tbody.append(fila);
+            <tr>
+              <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
+              <td>${row.id}</td>
+              <td>${row.nombre}</td>
+              <td>${row.emitidopor}</td>
+              <td>${row.fechaCreacion}</td>
+              <td><a href="#" onclick="verCurso(${row.id})">Ver Curso</a></td>
+            </tr>`;
+          tbody.insertAdjacentHTML('beforeend', fila);
         });
 
-        initializeCheckboxMaster('checkAllCursos', 'checkboxCursos');
+        initializeCheckboxMaster('checkAllCursos', 'checkboxCurso');
+
+        // Implementación del filtro por nombre y emitidopor
+        const filtroInput = document.getElementById('filtroCursos');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.getElementsByTagName('tr');
+          for (let i = 0; i < filas.length; i++) {
+            const textoFila = filas[i].innerText.toLowerCase();
+            const filaVisible = textoFila.includes(filtro);
+            filas[i].style.display = filaVisible ? '' : 'none';
+          }
+        });
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps(); 
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps(); 
     });
 }
 
@@ -529,6 +700,8 @@ function getCursoById(id) {
 }
 
 
+
+
 function getDiccionario() {
   fetch("/Administrador/getDiccionario")
     .then((response) => {
@@ -543,30 +716,43 @@ function getDiccionario() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
-          <td class="hidden">${row.id}</td>
-          <td>${row.palabra}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
+              <td class="hidden">${row.id}</td>
+              <td>${row.palabra}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllPalabras', 'checkboxPalabra');
 
+        // Implementación del filtro
+        const filtroInput = $("#filtroDiccionario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const textoFila = $(this).text().toLowerCase();
+            const filaVisible = textoFila.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
+
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps()
       }
     })
     .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps()
     });
 }
+
 
 function getPerfil() {
   fetch("/Administrador/getPerfil")
@@ -598,12 +784,11 @@ function getPerfil() {
         initializeCheckboxMaster('checkAllPerfiles', 'checkboxPerfil');
 
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps()
       }
     })
     .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps()
     });
 }
 
@@ -620,9 +805,7 @@ function getReportes() {
         const tbody = $("#bodyReportes");
         tbody.empty();
 
-
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
@@ -637,107 +820,288 @@ function getReportes() {
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
 
-      } /*else {
-        alert("Sin Datos Cargados.");
-      }*/
+        // Implementación del filtro por rutusuario
+        const filtroInput = $("#filtroRutUsuarioReportes");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(4)').text().toLowerCase(); // Ajustar según la posición de la columna rutusuario
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
+
+      } else {
+        alertOps()
+      }
     })
     .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps()
     });
 }
 
-function getUsuarios() {
+
+// Obtener la tabla de usuarios al cargar la página
+document.addEventListener("DOMContentLoaded", function() {
+  getUsuariostable();
+});
+
+function getUsuariostable() {
   fetch("/Administrador/getUsuarios")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error(`HTTP error: ${response.status}`);
+          }
+          return response.json();
+      })
+      .then((data) => {
+          const tbody = document.getElementById("bodyUsuarios");
+          tbody.innerHTML = ""; // Limpiar el cuerpo de la tabla
+
+          if (data && data.length > 0) {
+              data.forEach(row => {
+                  const fila = `
+                      <tr>
+                          <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
+                          <td>${row.rut}</td>
+                          <td>${row.nombre}</td>
+                          <td>${row.fechaNacimiento}</td>
+                          <td style="display: none;">${row.idperfil}</td>
+                          <td>${row.nombreperfil}</td>
+                          <td>${row.correo}</td>
+                          <td style="display: none;">${row.idcarrera}</td>
+                          <td>${row.nombrecarrera}</td>
+                          <td>${row.avance}</td>
+                          <td>${row.telefono}</td>
+                          <td>${row.direccion}</td>
+                          <td>${row.fechaCreacion}</td>
+                          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+                          <td><button type="button" class="btn-supervisor btn-editar" data-rut="${row.rut}">Editar</button></td>
+                      </tr>`;
+                  tbody.insertAdjacentHTML("beforeend", fila);
+              });
+
+              // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
+              initializeCheckboxMaster('checkAllUsuarios', 'checkboxUsuario');
+
+              // Añadir el manejador de eventos para los botones de edición
+              const editarButtons = document.querySelectorAll(".btn-editar");
+              editarButtons.forEach(button => {
+                  button.addEventListener("click", function() {
+                      const rut = this.dataset.rut;
+                      const row = this.closest("tr");
+
+                      // Extraer los datos de la fila
+                      const datos = {
+                          rut: row.cells[1].textContent,
+                          nombre: row.cells[2].textContent,
+                          fechaNacimiento: row.cells[3].textContent,
+                          idperfil: row.cells[4].textContent,
+                          nombreperfil: row.cells[5].textContent,
+                          correo: row.cells[6].textContent,
+                          idcarrera: row.cells[7].textContent,
+                          nombrecarrera: row.cells[8].textContent,
+                          avance: row.cells[9].textContent,
+                          telefono: row.cells[10].textContent,
+                          direccion: row.cells[11].textContent,
+                          fechaCreacion: row.cells[12].textContent,
+                          fechaEliminacion: row.cells[13].textContent === 'N/A' ? null : row.cells[13].textContent
+                      };
+
+                      // Levantar el popup con los datos
+                      editarUsuario(datos);
+                  });
+              });
+
+              // Implementación del filtro por rutUsuario
+              const filtroInput = document.getElementById('filtroRutUsuario');
+              filtroInput.addEventListener('input', function() {
+                  const filtro = filtroInput.value.trim().toLowerCase();
+
+                  // Filtrar las filas de la tabla
+                  const filas = tbody.getElementsByTagName('tr');
+                  for (let i = 0; i < filas.length; i++) {
+                      const rutUsuario = filas[i].getElementsByTagName('td')[1].textContent.toLowerCase(); // Rut se encuentra en la segunda columna (índice 1)
+                      const filaVisible = rutUsuario.includes(filtro);
+                      filas[i].style.display = filaVisible ? "" : "none";
+                  }
+              });
+
+          } else {
+            alertOps()
+          }
+      })
+      .catch((error) => {
+        alertOps()
+      });
+}
+
+async function obtenerPerfiles() {
+  try {
+    const response = await fetch('/Administrador/getPerfil');
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching perfiles:', error);
+    return [];
+  }
+}
+
+async function obtenerCarreras() {
+  try {
+    const response = await fetch('/Administrador/getCarrera');
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching carreras:', error);
+    return [];
+  }
+}
+
+
+async function editarUsuario(datos) {
+  const perfiles = await obtenerPerfiles();
+  const carreras = await obtenerCarreras();
+
+  const { value: formValues } = await Swal.fire({
+    title: "Editar Usuario",
+    html: `
+      <style>
+        .swal2-popup {
+          width: 40% !important; /* Ancho personalizado para la alerta */
+        }
+        .swal2-select {
+          width: calc(80% - 10px); /* Ajuste del ancho del select */
+          margin: 10px; /* Espacio entre los selects */
+        }
+      </style>
+      <table style="width: 100%;">
+        <tr><td><label for="swal-rut">RUT:</label></td><td><input type="text" id="swal-rut" class="swal2-input" value="${datos.rut}" readonly></td></tr>
+        <tr><td><label for="swal-nombre">Nombre:</label></td><td><input type="text" id="swal-nombre" class="swal2-input" value="${datos.nombre}"></td></tr>
+        <tr><td><label for="swal-fechaNacimiento">Fecha de Nacimiento:</label></td><td><input type="date" id="swal-fechaNacimiento" class="swal2-input" value="${datos.fechaNacimiento}"></td></tr>
+        <tr><td><label for="swal-idperfil">Perfil:</label></td><td>
+          <select id="swal-idperfil" class="swal2-select">
+            ${perfiles.map(perfil => `<option value="${perfil.id}" ${perfil.id === datos.idperfil ? 'selected' : ''}>${perfil.nombre}</option>`).join('')}
+          </select>
+        </td></tr>
+        <tr><td><label for="swal-correo">Correo:</label></td><td><input type="email" id="swal-correo" class="swal2-input" value="${datos.correo}"></td></tr>
+        <tr><td><label for="swal-idcarrera">Carrera:</label></td><td>
+          <select id="swal-idcarrera" class="swal2-select">
+            ${carreras.map(carrera => `<option value="${carrera.id}" ${carrera.id === datos.idcarrera ? 'selected' : ''}>${carrera.nombre}</option>`).join('')}
+          </select>
+        </td></tr>
+        <tr><td><label for="swal-telefono">Teléfono:</label></td><td><input type="text" id="swal-telefono" class="swal2-input" value="${datos.telefono}"></td></tr>
+        <tr><td><label for="swal-direccion">Dirección:</label></td><td><input type="text" id="swal-direccion" class="swal2-input" value="${datos.direccion}"></td></tr>
+      </table>
+    `,
+    confirmButtonText: 'Actualizar',
+    focusConfirm: false,
+    showCancelButton: true,
+    preConfirm: () => {
+      return {
+        rut: document.getElementById('swal-rut').value,
+        nombre: document.getElementById('swal-nombre').value,
+        fechaNacimiento: document.getElementById('swal-fechaNacimiento').value,
+        idperfil: document.getElementById('swal-idperfil').value,
+        nombreperfil: document.getElementById('swal-idperfil').options[document.getElementById('swal-idperfil').selectedIndex].text,
+        correo: document.getElementById('swal-correo').value,
+        idcarrera: document.getElementById('swal-idcarrera').value,
+        nombrecarrera: document.getElementById('swal-idcarrera').options[document.getElementById('swal-idcarrera').selectedIndex].text,
+        telefono: document.getElementById('swal-telefono').value,
+        direccion: document.getElementById('swal-direccion').value
+      };
+    }
+  });
+
+  if (formValues) {
+    const datosEditados = formValues;
+
+    fetch('/Administrador/updateUsuario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datosEditados)
     })
-    .then((data) => {
-      if (data && data.length > 0) {
-        const tbody = $("#bodyUsuarios");
-        tbody.empty();
-
-
-        data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
-          const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
-          <td>${row.rut}</td>
-          <td>${row.nombre}</td>
-          <td>${row.fechaNacimiento}</td>
-          <td>${row.idperfil}</td>
-          <td>${row.correo}</td>
-          <td>${row.idcarrera}</td>
-          <td>${row.avance}</td>
-          <td>${row.cargo}</td>
-          <td>${row.clave}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-          tbody.append(fila);
-        });
-
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
-        initializeCheckboxMaster('checkAllUsuarios', 'checkboxUsuario');
-
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        Swal.fire('Usuario actualizado con éxito');
+        getUsuariostable(); // Vuelve a cargar la tabla de usuarios
       } else {
-        alert("No se encontraron datos para actualizar");
+        Swal.fire('Error al actualizar el usuario');
       }
     })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire('Error al actualizar el usuario');
     });
+  }
 }
 
 function getArchivos() {
   fetch("/Administrador/getArchivos")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data && data.length > 0) {
-        const tbody = $("#bodyArchivos");
-        tbody.empty();
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error(`HTTP error: ${response.status}`);
+          }
+          return response.json();
+      })
+      .then((data) => {
+          const tbody = document.getElementById("bodyArchivos");
+          tbody.innerHTML = ""; // Limpiar el cuerpo de la tabla
 
+          if (data && data.length > 0) {
+              data.forEach(row => {
+                  const fila = `
+                      <tr>
+                          <td class="widthCheck"><input type="checkbox" class="checkboxArchivo" name="select-all"></td>
+                          <td>${row.id}</td>
+                          <td>${row.rutusuario}</td>
+                          <td>${row.documento}</td>
+                          <td>${row.fechaCreacion}</td>
+                          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+                      </tr>`;
+                  tbody.insertAdjacentHTML("beforeend", fila);
+              });
 
-        data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
-          const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxArchivo" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.rutusuario}</td>
-          <td>${row.documento}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-          tbody.append(fila);
-        });
+              // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
+              initializeCheckboxMaster('checkAllArchivos', 'checkboxArchivo');
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
-        initializeCheckboxMaster('checkAllArchivos', 'checkboxArchivo');
+              // Implementación del filtro por rutusuario
+              const filtroInput = document.getElementById('filtroRutUsuarioArchivo');
+              filtroInput.addEventListener('input', function() {
+                  const filtro = filtroInput.value.trim().toLowerCase();
 
-      } else {
-        alert("No se encontraron datos para actualizar");
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
-    });
+                  // Filtrar las filas de la tabla
+                  const filas = tbody.getElementsByTagName('tr');
+                  for (let i = 0; i < filas.length; i++) {
+                      const rutUsuario = filas[i].getElementsByTagName('td')[2].textContent.toLowerCase(); // RutUsuario se encuentra en la tercera columna (índice 2)
+                      const filaVisible = rutUsuario.includes(filtro);
+                      filas[i].style.display = filaVisible ? "" : "none";
+                  }
+              });
+
+          } else {
+            alertOps()
+          }
+      })
+      .catch((error) => {
+        alertOps()
+      });
 }
+
 
 function getComentarios() {
   fetch("/Administrador/getComentarios")
@@ -748,43 +1112,56 @@ function getComentarios() {
       return response.json();
     })
     .then((data) => {
+      const tbody = document.getElementById("bodyComentarios");
+      tbody.innerHTML = ""; // Limpiar el cuerpo de la tabla
+
       if (data && data.length > 0) {
-        const tbody = $("#bodyComentarios");
-        tbody.empty();
-
-
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxComentario" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.rutusuario}</td>
-          <td>${row.idpublicacion}</td>
-          <td>${row.comentario}</td>
-          <td>${row.nreportes}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-          tbody.append(fila);
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxComentario" name="select-all"></td>
+              <td style="display:none;">${row.id}</td>
+              <td>${row.rutusuario}</td>
+              <td style="display:none;">${row.idpublicacion}</td>
+              <td>${row.comentario}</td>
+              <td>${row.nreportes}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
+          tbody.insertAdjacentHTML('beforeend', fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllComentarios', 'checkboxComentario');
 
+        // Implementación del filtro por rutusuario
+        const filtroInput = document.getElementById('filtroRutUsuarioComentarios');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.getElementsByTagName('tr');
+          for (let i = 0; i < filas.length; i++) {
+            const rutUsuario = filas[i].getElementsByTagName('td')[2].textContent.toLowerCase(); // RutUsuario se encuentra en la tercera columna (índice 2)
+            const filaVisible = rutUsuario.includes(filtro);
+            filas[i].style.display = filaVisible ? "" : "none";
+          }
+        });
+
       } else {
-        alert("No se encontraron datos para actualizar");
+        alert("No se encontraron datos de comentarios.");
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
 
+
+
 function getPublicacion() {
-  console.log("controladorPubliacion");
   fetch("/Administrador/getPublicacion")
     .then((response) => {
       if (!response.ok) {
@@ -797,11 +1174,7 @@ function getPublicacion() {
         const tbody = $("#bodyPublicaciones");
         tbody.empty();
 
-        //itera sobre cada elemento en la data y añade fila a la tabla
-        //data.array.forEach(element => {});
-        // (class="checkboxPublicacion),id se cambia a class para que el checkboxAll seleccione todos los check de las filas de la tabla
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr>
           <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
@@ -816,33 +1189,66 @@ function getPublicacion() {
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
 
+        // Implementación del filtro por rutusuario
+        const filtroInput = $("#filtroRutUsuario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(2)').text().toLowerCase(); // Ajustar según la posición de la columna rutusuario
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
+
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps()
       }
     })
     .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps()
     });
 }
 
+
 function getOfertas() {
   fetch("/Administrador/getOfertas")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data && data.length > 0) {
-        const tbody = $("#bodyOfertas");
-        tbody.empty();
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error(`HTTP error: ${response.status}`);
+          }
+          return response.json();
+      })
+      .then((data) => {
+          const tbody = document.getElementById("bodyOfertas");
+          tbody.innerHTML = ""; // Limpiar el cuerpo de la tabla
 
+          if (data && data.length > 0) {
+              data.forEach(row => {
+                  const fila = `
+                      <tr>
+                          <td class="widthCheck"><input type="checkbox" class="checkboxOferta" name="select-all"></td>
+                          <td style="display: none;">${row.id}</td>
+                          <td>${row.tipoOferta}</td>
+                          <td style="display: none;">${row.idcategoria}</td>
+                          <td>${row.cargo}</td>
+                          <td>${row.nombreEmpresa}</td>
+                          <td>${row.rutempresa}</td>
+                          <td>${row.correocontacto}</td>
+                          <td>${row.descripcion}</td>
+                          <td>${row.rangosalarial}</td>
+                          <td>${row.fechacreacion}</td>
+                          <td>${row.fechaeliminacion ? row.fechaeliminacion : 'N/A'}</td>
+                      </tr>`;
+                  tbody.insertAdjacentHTML("beforeend", fila);
+              });
 
+              // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
+              initializeCheckboxMaster('checkAllOfertas', 'checkboxOferta');
         data.forEach(row => {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
@@ -858,17 +1264,44 @@ function getOfertas() {
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
-        initializeCheckboxMaster('checkAllOfertas', 'checkboxOferta');
+              // Implementación del filtro por cargo y nombre de empresa
+              const filtroCargo = document.getElementById('filtroCargo');
+              const filtroNombreEmpresa = document.getElementById('filtroNombreEmpresa');
 
-      } else {
-        alert("No se encontraron datos para actualizar");
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
-    });
+              // Event listener para el filtro por cargo
+              filtroCargo.addEventListener('input', function() {
+                  const filtroCargoTexto = filtroCargo.value.trim().toLowerCase();
+                  filtrarOfertas(filtroCargoTexto, filtroNombreEmpresa.value.trim().toLowerCase());
+              });
+
+              // Event listener para el filtro por nombre de empresa
+              filtroNombreEmpresa.addEventListener('input', function() {
+                  const filtroNombreEmpresaTexto = filtroNombreEmpresa.value.trim().toLowerCase();
+                  filtrarOfertas(filtroCargo.value.trim().toLowerCase(), filtroNombreEmpresaTexto);
+              });
+
+          } else {
+            alertOps()
+          }
+      })
+      .catch((error) => {
+        alertOps()
+      });
+}
+
+function filtrarOfertas(filtroCargo, filtroNombreEmpresa) {
+  const filas = document.getElementById('bodyOfertas').getElementsByTagName('tr');
+
+  for (let i = 0; i < filas.length; i++) {
+      const tdCargo = filas[i].getElementsByTagName('td')[4]; // Columna del cargo (índice 4)
+      const tdNombreEmpresa = filas[i].getElementsByTagName('td')[5]; // Columna del nombre de empresa (índice 5)
+
+      const cargo = tdCargo.textContent.trim().toLowerCase();
+      const nombreEmpresa = tdNombreEmpresa.textContent.trim().toLowerCase();
+
+      const mostrarFila = (cargo.includes(filtroCargo) && nombreEmpresa.includes(filtroNombreEmpresa));
+      filas[i].style.display = mostrarFila ? "" : "none";
+  }
 }
 
 function getOfertaById(id) {
@@ -925,38 +1358,53 @@ function getPostulaciones() {
     })
     .then((data) => {
       if (data && data.length > 0) {
-        const tbody = $("#bodyPostulaciones");
-        tbody.empty();
-
+        const tbody = document.getElementById("bodyPostulaciones");
+        tbody.innerHTML = ""; // Limpiar contenido previo
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxPostulacion" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.rutusuario}</td>
-          <td>${row.idcarrera}</td>
-          <td>${row.rutempresa}</td>
-          <td>${row.idoferta}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-          tbody.append(fila);
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxPostulacion" name="select-all"></td>
+              <td style="display: none;">${row.id}</td>
+              <td>${row.rutusuario}</td>
+              <td style="display: none;">${row.idcarrera}</td>
+              <td>${row.nombreCarrera}</td>
+              <td>${row.rutempresa}</td>
+              <td style="display: none;">${row.idoferta}</td>
+              <td>${row.cargo}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
+          tbody.insertAdjacentHTML('beforeend', fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllPostulaciones', 'checkboxPostulacion');
 
+        // Implementación del filtro por rut de usuario
+        const filtroInput = document.getElementById('filtroRutUsuarioPostulacion');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.getElementsByTagName('tr');
+          for (let i = 0; i < filas.length; i++) {
+            const textoRutUsuario = filas[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+            const filaVisible = textoRutUsuario.includes(filtro);
+            filas[i].style.display = filaVisible ? '' : 'none';
+          }
+        });
+
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps()
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps()
     });
 }
+
 
 function getExpAcademica() {
   fetch("/Administrador/getExpAcademica")
@@ -968,39 +1416,52 @@ function getExpAcademica() {
     })
     .then((data) => {
       if (data && data.length > 0) {
-        const tbody = $("#bodyAcademica");
-        tbody.empty();
-
+        const tbody = document.getElementById("bodyAcademica");
+        tbody.innerHTML = ""; // Limpiar contenido previo
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.rutusuario}</td>
-          <td>${row.fechafinalizacion}</td>
-          <td>${row.titulobtenido}</td>
-          <td>${row.cursaactualmente}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-          tbody.append(fila);
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxAcademica" name="select-all"></td>
+              <td style="display: none;">${row.ID}</td>
+              <td>${row.rutusuario}</td>
+              <td>${row.fechafinalizacion}</td>
+              <td>${row.titulobtenido}</td>
+              <td>${row.cursaactualmente}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
+          tbody.insertAdjacentHTML('beforeend', fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllAcademicas', 'checkboxAcademica');
 
+        // Implementación del filtro por rut de usuario
+        const filtroInput = document.getElementById('filtroRutUsuarioExpAcademica');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.getElementsByTagName('tr');
+          for (let i = 0; i < filas.length; i++) {
+            const textoRutUsuario = filas[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+            const filaVisible = textoRutUsuario.includes(filtro);
+            filas[i].style.display = filaVisible ? '' : 'none';
+          }
+        });
+
       } else {
-        alert("No se encontraron datos para actualizar");
+        alertOps()
       }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps()
     });
 }
+
 
 function getExpLaboral() {
   fetch("/Administrador/getExpLaboral")
@@ -1012,39 +1473,51 @@ function getExpLaboral() {
     })
     .then((data) => {
       if (data && data.length > 0) {
-        const tbody = $("#bodyLaboral");
-        tbody.empty();
-
+        const tbody = document.getElementById("bodyLaboral");
+        tbody.innerHTML = ""; // Limpiar contenido previo
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxLaboral" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.rutusuario}</td>
-          <td>${row.fechadesde}</td>
-          <td>${row.fechahasta}</td>
-          <td>${row.puesto}</td>
-          <td>${row.descripcion}</td>
-          <td>${row.trabajaactualmente}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
-          tbody.append(fila);
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxLaboral" name="select-all"></td>
+              <td>${row.ID}</td>
+              <td>${row.rutusuario}</td>
+              <td>${row.fechadesde}</td>
+              <td>${row.fechahasta}</td>
+              <td>${row.puesto}</td>
+              <td>${row.descripcion}</td>
+              <td>${row.trabajaactualmente}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
+          tbody.insertAdjacentHTML('beforeend', fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
+        // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllLaborales', 'checkboxLaboral');
 
-      } /*else {
-        alert("No se encontraron datos para actualizar");
-      }*/
+        // Implementación del filtro por rut de usuario
+        const filtroInput = document.getElementById('filtroRutLaboral');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.getElementsByTagName('tr');
+          for (let i = 0; i < filas.length; i++) {
+            const textoRutUsuario = filas[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+            const filaVisible = textoRutUsuario.includes(filtro);
+            filas[i].style.display = filaVisible ? '' : 'none';
+          }
+        });
+
+      } else {
+        alertOps()
+      }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alertOps()
     });
 }
 
@@ -1139,6 +1612,7 @@ document.getElementById('ForUpdateCurso').addEventListener('submit', function (e
 
 
 
+
 //--------------DELETE GLOBAL --------------//
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -1154,11 +1628,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       deleteSelectedCategoriasBtn.addEventListener('click', deleteSelectedCategoriasHandler);
   }
 
-  // const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
-  // if (deleteSelectedCursosBtn) {
-  //   deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
-  //   deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
-  // }
+  const deleteSelectedCursosBtn = document.getElementById('deleteSelectedCursos');
+  if (deleteSelectedCursosBtn) {
+    deleteSelectedCursosBtn.removeEventListener('click', deleteSelectedCursosHandler);
+    deleteSelectedCursosBtn.addEventListener('click', deleteSelectedCursosHandler);
+  }
 
   const deleteSelectedDiccionariosBtn = document.getElementById('deleteSelectedDiccionario');
   if (deleteSelectedDiccionariosBtn) {
@@ -1186,6 +1660,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   const deleteSelectedUsuariosBtn = document.getElementById('deleteSelectedUsuarios');
   if (deleteSelectedUsuariosBtn) {
+   
     deleteSelectedUsuariosBtn.removeEventListener('click', deleteSelectedUsuariosHandler);
     deleteSelectedUsuariosBtn.addEventListener('click', deleteSelectedUsuariosHandler);
   }
@@ -1238,9 +1713,9 @@ function deleteSelectedCategoriasHandler() {
     deleteSelectedRows('checkboxCategoria', '/Administrador/deleteCategorias');
 }
 
-// function deleteSelectedCursosHandler() {
-//   deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
-// }
+function deleteSelectedCursosHandler() {
+  deleteSelectedRows('checkboxCursos', '/Administrador/deleteCursos');
+}
 
 function deleteSelectedDiccionarioHandler() {
   deleteSelectedRows('checkboxPalabra', '/Administrador/deleteDiccionario');
@@ -1292,50 +1767,62 @@ function deleteSelectedExpLaboralHandler() {
 function deleteSelectedRows(checkboxClass, apiEndpoint) {
   const selectedIds = [];
   document.querySelectorAll('.' + checkboxClass + ':checked').forEach(checkbox => {
-      const row = checkbox.closest('tr');
-      const id = row.cells[1].textContent; // Assuming the ID is in the second cell
-      selectedIds.push(id);
+    const row = checkbox.closest('tr');
+    const id = row.cells[1].textContent.trim(); // Assuming the ID is in the second cell, trim to remove extra whitespace
+    console.log(id);
+    selectedIds.push(id);
   });
 
   if (selectedIds.length === 0) {
-      alert("No hay filas seleccionadas");
-      return;
+    alertOps()
+    return;
   }
 
-  // Preguntar al usuario para confirmar la eliminación
-  if (!confirm(`¿Está seguro que desea eliminar las filas con ID: ${selectedIds.join(', ')}?`)) {
-    return; // Abortar la eliminación si el usuario cancela
-  }
-
-  fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
+  Swal.fire({
+    title: "¿Está seguro que desea eliminar las filas seleccionadas?",
+    showCancelButton: true,
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+    icon: "warning",
+    dangerMode: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
           'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ids: selectedIds }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      if (data.success) {
+        },
+        body: JSON.stringify({ ids: selectedIds }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
           selectedIds.forEach(id => {
-              document.querySelectorAll(`tr`).forEach(row => {
-                  if (row.cells[1] && row.cells[1].textContent == id) {
-                      row.remove();
-                  }
-              });
+            document.querySelectorAll(`tr`).forEach(row => {
+              if (row.cells[1] && row.cells[1].textContent.trim() === id) {
+                row.remove();
+              }
+            });
           });
-          alert('Eliminación exitosa');
-      } else {
-          alert('Error al eliminar fila(s): ' + data.message);
-      }
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      alert('Error al eliminar fila(s): ' + error.message);
+          Swal.fire("¡Eliminación exitosa!", "", "success");
+        } else {
+          Swal.fire("Error", `Error al eliminar fila(s): ${data.message}`, "error");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire("Error", `Error al eliminar fila(s): ${error.message}`, "error");
+      });
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire("Operación cancelada", "", "info");
+    }
   });
 }
-
-
 
 //--------------- INSERT GLOBAL ---------------- //
 
@@ -1363,7 +1850,7 @@ $("#addCategoria").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Categoria agregada");
+        cambiosGuardados()
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1374,7 +1861,7 @@ $("#addCategoria").on("submit", function (event) {
         getCategoria();
 
       } else {
-        alert("Error" + data.message);
+        alertOps()
       }
     })
     .catch((error) => {
@@ -1407,7 +1894,7 @@ $("#addPalabra").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Dato(s) agregado(s)");
+        cambiosGuardados()
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1418,7 +1905,7 @@ $("#addPalabra").on("submit", function (event) {
         getDiccionario();
 
       } else {
-        alert("Error" + data.message);
+        alertOps()
       }
     })
     .catch((error) => {
@@ -1450,7 +1937,7 @@ $("#addCarrera").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Dato(s) agregado(s)");
+        cambiosGuardados()
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1461,7 +1948,7 @@ $("#addCarrera").on("submit", function (event) {
         getCarrera();
 
       } else {
-        alert("Error" + data.message);
+        alertOps()
       }
     })
     .catch((error) => {
@@ -1493,7 +1980,7 @@ $("#addPerfil").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Perfil agregado");
+        cambiosGuardados()
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1504,7 +1991,7 @@ $("#addPerfil").on("submit", function (event) {
         getPerfil();
 
       } else {
-        alert("Error" + data.message);
+        alertOps()
       }
     })
     .catch((error) => {
@@ -1541,7 +2028,7 @@ $("#crearCurso").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        alert("Curso agregado");
+        cambiosGuardados()
         //resto del cuerpo para manejar respuesta exitosa
 
         $(
@@ -1549,7 +2036,7 @@ $("#crearCurso").on("submit", function (event) {
         ).val("");
 
       } else {
-        alert("Error" + data.message);
+        alertOps()
       }
     })
     .catch((error) => {

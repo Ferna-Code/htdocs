@@ -1,89 +1,89 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   let userDataOriginal;
 
   function getUsuarios() {
-      fetch("/Supervisor/getdataUsuario/", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-      })
+    fetch("/Supervisor/getdataUsuario/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then(response => response.json())
       .then(result => {
-          console.log(result)
-          if (result.success) {
-              const userData = result.data;
-              document.getElementById('nombrep').innerText = userData.nombre;
-              document.getElementById('rut').value = userData.rut;
-              document.getElementById('email').value = userData.correo;
-              document.getElementById('fechanac').value = userData.fechaNacimiento;
-              document.getElementById('telefono').value = userData.telefono;
-              document.getElementById('direccion').value = userData.direccion;
-              document.getElementById('password').value = userData.clave;
-              document.getElementById('cargo').innerText = userData.cargo;
-              cargo
-              userDataOriginal = userData;
-          } else {
-              console.error("Error obtener datos Usuario:", result.message);
-          }
+        console.log(result)
+        if (result.success) {
+          const userData = result.data;
+          document.getElementById('nombrep').innerText = userData.nombre;
+          document.getElementById('rut').value = userData.rut;
+          document.getElementById('email').value = userData.correo;
+          document.getElementById('fechanac').value = userData.fechaNacimiento;
+          document.getElementById('telefono').value = userData.telefono;
+          document.getElementById('direccion').value = userData.direccion;
+          document.getElementById('password').value = userData.clave;
+          document.getElementById('cargo').innerText = userData.cargo;
+          cargo
+          userDataOriginal = userData;
+        } else {
+          console.error("Error obtener datos Usuario:", result.message);
+        }
       })
       .catch(error => {
-          console.error('Error al obtener los datos del usuario:', error);
+        console.error('Error al obtener los datos del usuario:', error);
       });
   }
 
   getUsuarios();
 
   function guardarCambiosPersonales(event) {
-      event.preventDefault();
+    event.preventDefault();
 
-      const camposModificados = {};
-      const rut = document.getElementById('rut').value;
-      const correo = document.getElementById('email').value;
-      const telefono = document.getElementById('telefono').value;
-      const direccion = document.getElementById('direccion').value;
-      const fechaNacimiento = document.getElementById('fechanac').value;
-      const clave = document.getElementById('password').value;
-      const imagenInput = document.getElementById('imagen');
+    const camposModificados = {};
+    const rut = document.getElementById('rut').value;
+    const correo = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
+    const direccion = document.getElementById('direccion').value;
+    const fechaNacimiento = document.getElementById('fechanac').value;
+    const clave = document.getElementById('password').value;
+    const imagenInput = document.getElementById('imagen');
 
-      if (correo !== userDataOriginal.correo) camposModificados.correo = correo;
-      if (telefono !== userDataOriginal.telefono) camposModificados.telefono = telefono;
-      if (direccion !== userDataOriginal.direccion) camposModificados.direccion = direccion;
-      if (fechaNacimiento !== userDataOriginal.fechaNacimiento) camposModificados.fechaNacimiento = fechaNacimiento;
-      if (clave !== userDataOriginal.clave) camposModificados.clave = clave;
+    if (correo !== userDataOriginal.correo) camposModificados.correo = correo;
+    if (telefono !== userDataOriginal.telefono) camposModificados.telefono = telefono;
+    if (direccion !== userDataOriginal.direccion) camposModificados.direccion = direccion;
+    if (fechaNacimiento !== userDataOriginal.fechaNacimiento) camposModificados.fechaNacimiento = fechaNacimiento;
+    if (clave !== userDataOriginal.clave) camposModificados.clave = clave;
 
-      const formData = new FormData();
-      formData.append('rut', rut);
+    const formData = new FormData();
+    formData.append('rut', rut);
 
-      for (const key in camposModificados) {
-          formData.append(key, camposModificados[key]);
-      }
+    for (const key in camposModificados) {
+      formData.append(key, camposModificados[key]);
+    }
 
-      if (imagenInput.files.length > 0) {
-          formData.append('imagen', imagenInput.files[0]);
-      }
+    if (imagenInput.files.length > 0) {
+      formData.append('imagen', imagenInput.files[0]);
+    }
 
-      fetch("/Supervisor/guardardatospersonales", {
-          method: "POST",
-          body: formData
-      })
+    fetch("/Supervisor/guardardatospersonales", {
+      method: "POST",
+      body: formData
+    })
       .then(response => response.json())
       .then(result => {
-          if (result.success) {
-            cambiosGuardados()
-          } else {
-              console.error(result.message);
-          }
+        if (result.success) {
+          cambiosGuardados()
+        } else {
+          console.error(result.message);
+        }
       })
       .catch(error => {
-          console.error('Error al guardar los cambios del usuario:', error);
+        console.error('Error al guardar los cambios del usuario:', error);
       });
   }
 
   document.getElementById('guardar-cambios-usuario-btn').addEventListener('click', guardarCambiosPersonales);
 });
 
-function cambiosGuardados(){
+function cambiosGuardados() {
   Swal.fire({
     position: "top-end",
     icon: "success",
@@ -237,7 +237,7 @@ function controlVisi10(id) {
 //ingresarCurso
 function controlVisi11() {
   var eleme = document.getElementById("modulo11");
-  
+
   // Oculta todos los módulos
   ocultarModulos();
 
@@ -362,6 +362,19 @@ function controlVisi19() {
   centrarModulo(eleme);
 }
 
+function controlVisi20() {
+  var eleme = document.getElementById("modulo20");
+
+  // Oculta todos los módulos
+  ocultarModulos();
+
+  // Muestra el módulo 1
+  eleme.style.display = "flex";
+
+  // Centra el módulo 1
+  centrarModulo(eleme);
+}
+
 
 function ocultarModulos() {
   console.log("estoy aqui");
@@ -445,6 +458,21 @@ function getCategoria() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
+          // Implementación del filtro
+          const filtroInput = $("#filtroCategoria");
+          filtroInput.on('input', function () {
+            const filtro = filtroInput.val().trim().toLowerCase();
+  
+            // Filtrar las filas de la tabla
+            const filas = tbody.find('tr');
+            filas.each(function () {
+              const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+              console.log(textoColumna);
+              const filaVisible = textoColumna.includes(filtro);
+              $(this).toggle(filaVisible);
+            });
+          });
       } else {
         noData()
       }
@@ -528,6 +556,21 @@ function getCurso() {
         </tr>`;
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllCurso', 'checkboxCurso');
+         // Implementación del filtro
+         const filtroInput = $("#filtroCurso");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         noData()
       }
@@ -677,20 +720,35 @@ function getPalabra() {
     .then((data) => {
       if (data && data.length > 0) {
         const tbody = $("#tbodyPalabra");
-        tbody.empty()
-        //itera sobre cada elemento en la data y añade fila a la tabla
-        //data.array.forEach(element => {});
+        tbody.empty();
+
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-         <tr>
-           <td><input type="checkbox" class="checkboxPalabra" id="checkboxPalabra" name="checkboxPalabra"></td>
-           <td class="hidden">${row.id}</td>
-           <td>${row.palabra}</td>
-           <td>${row.fechaCreacion}</td>
-           <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-         </tr>`;
+                      <tr>
+                          <td><input type="checkbox" class="checkboxPalabra" id="checkboxPalabra" name="checkboxPalabra"></td>
+                          <td class="hidden">${row.id}</td>
+                          <td>${row.palabra}</td>
+                          <td>${row.fechaCreacion}</td>
+                          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+                      </tr>`;
           tbody.append(fila);
+        });
+
+        initializeCheckboxMaster('checkAllPalabra', 'checkboxPalabra');
+
+        // Implementación del filtro
+        const filtroInput = $("#filtroDiccionario");
+        filtroInput.on('input', function () {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function () {
+            const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+            console.log(textoColumna);
+            const filaVisible = textoColumna.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
         });
       } else {
         noData()
@@ -698,9 +756,10 @@ function getPalabra() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 
 //INGRESAR USUARIO
@@ -778,7 +837,7 @@ function getPublicacion() {
           <td><input type="checkbox" id="tableUsers" class="checkboxPublicacion" name="checkId"></td>
           <td class="hidden">${row.id}</td>
           <td>${row.rutusuario}</a></td>
-          <td>${row.publicacion}</a></td>
+          <td><a href="#" class="linkTabla" onclick="showModal('${row.id}')">${row.publicacion}</a></td>
           <td>${row.nreportes ? row.nreportes : 'SIN REPORTES'}</a></td>
           <td>${row.fechaCreacion}</td>
          
@@ -786,6 +845,21 @@ function getPublicacion() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
+         // Implementación del filtro
+         const filtroInput = $("#filtroPublicaciones");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(4)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         noData()
       }
@@ -794,6 +868,28 @@ function getPublicacion() {
       console.error("Error en la solicitud Fetch: ", error);
       alert("Error en la solicitud: ", error.message);
     });
+}
+
+function getPublicacionById(id) {
+  fetch("/supervisor/getPublicacionById", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: id }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Llama a la función showModal con los datos de la publicación
+      showModal(data.curso.publicacion);
+
+    })
+
 }
 
 //REPORTE
@@ -826,6 +922,21 @@ function getReporte() {
         </tr>`;
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
+         // Implementación del filtro
+         const filtroInput = $("#filtroReporte");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         noData()
       }
@@ -866,6 +977,21 @@ function getOferta() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllOferta', 'checkboxOfertas');
+         // Implementación del filtro
+         const filtroInput = $("#filtroOfertas");
+         filtroInput.on('input', function () {
+           const filtro = filtroInput.val().trim().toLowerCase();
+ 
+           // Filtrar las filas de la tabla
+           const filas = tbody.find('tr');
+           filas.each(function () {
+             const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+             console.log(textoColumna);
+             const filaVisible = textoColumna.includes(filtro);
+             $(this).toggle(filaVisible);
+           });
+         });
       } else {
         noData()
       }
@@ -949,6 +1075,7 @@ function getPerfil() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllPerfil', 'checkboxPerfil');
       } else {
         noData()
       }
@@ -978,7 +1105,7 @@ function getCarrera() {
           console.log("Cuerpo del mensaje: ", row);
           const fila = `
         <tr class="">
-          <td><input type="checkbox" class="checkboxCarrera" name="checkId"></td>
+          <td><input type="checkbox" class="checkboxCarrera" name="checkboxCarrera"></td>
           <td class="hidden">${row.id}</td>
           <td><a href="#" class="linkTabla" onclick="">${row.nombre}</a></td>
           <td>${row.idcategorias}</td>
@@ -988,6 +1115,21 @@ function getCarrera() {
 
           tbody.append(fila);
         });
+        initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+          // Implementación del filtro
+          const filtroInput = $("#filtroCarrera");
+          filtroInput.on('input', function () {
+            const filtro = filtroInput.val().trim().toLowerCase();
+  
+            // Filtrar las filas de la tabla
+            const filas = tbody.find('tr');
+            filas.each(function () {
+              const textoColumna = $(this).find('td:nth-child(3)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+              console.log(textoColumna);
+              const filaVisible = textoColumna.includes(filtro);
+              $(this).toggle(filaVisible);
+            });
+          });
       } else {
         noData()
       }
@@ -1027,6 +1169,20 @@ function getUsuario() {
           
         </tr>`;
           tbody.append(fila);
+        });
+        initializeCheckboxMaster('checkAllUsuario', 'checkboxUsuarios');
+        const filtroInput = $("#filtroUsuario");
+        filtroInput.on('input', function () {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function () {
+            const textoColumna = $(this).find('td:nth-child(2)').text().toLowerCase(); // Obtener texto de la segunda columna (palabra)
+            console.log(textoColumna);
+            const filaVisible = textoColumna.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
         });
       } else {
         noData();
@@ -1646,7 +1802,7 @@ document.getElementById('ForUpdateOferta').addEventListener('submit', function (
 
 //---------------ALERTAS-------------------
 
-function notData(){
+function notData() {
   Swal.fire({
     title: "No hay datos seleccionados para eliminar",
     showClass: {
@@ -1667,7 +1823,7 @@ function notData(){
 }
 
 //--------------DELETE----------------
-function confirmarEliminado(){
+function confirmarEliminado() {
   Swal.fire({
     position: "top-end",
     icon: "success",
@@ -1677,7 +1833,7 @@ function confirmarEliminado(){
   });
 }
 
-function errorEliminar(){
+function errorEliminar() {
   Swal.fire({
     position: "top-end",
     icon: "success",
@@ -1687,7 +1843,7 @@ function errorEliminar(){
   });
 }
 
-function cannotDeleted(){
+function cannotDeleted() {
   Swal.fire({
     title: "No se pueden eliminar los datos seleccionados",
     showClass: {
@@ -1724,3 +1880,216 @@ function confirmarDelete(selectedIds) {
 function noData(){
   Swal.fire("No se encontraron datos para actualizar");
 }
+
+
+
+//------------MODAL--------------
+function showModal(content) {
+  getPublicacionById(content);
+  const modal = document.getElementById("publicacionModal");
+  const modalContent = document.getElementById("modalPublic");
+  modalContent.innerText = content;
+  modal.style.display = "block";
+
+  // Para cerrar el modal cuando se hace clic en el botón de cerrar
+  const closeBtn = document.getElementsByClassName("close")[0];
+  closeBtn.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // Para cerrar el modal cuando se hace clic fuera de él
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
+
+//Comentarios
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Función para inicializar eventos para comentarios
+  function initCommentEvents(modalId, commentsContainerId, commentFormId, newCommentId, publicacionIdInputId) {
+    const modal = document.getElementById(modalId);
+    const span = modal.getElementsByClassName("close")[0];
+    const commentsContainer = document.getElementById(commentsContainerId);
+    const commentForm = document.getElementById(commentFormId);
+    const publicacionIdInput = document.getElementById(publicacionIdInputId);
+
+    document.querySelectorAll('.comment-action').forEach(function (element) {
+      element.addEventListener('click', function () {
+        const publicacionId = this.getAttribute('data-id');
+        publicacionIdInput.value = publicacionId; // Guardar el ID de la publicación en el campo oculto
+
+        fetch('/usuarios/getComments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ publicacionId: publicacionId })
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              commentsContainer.innerHTML = ''; // Clear existing comments
+              if (data.comments.length > 0) {
+                data.comments.forEach(comment => {
+                  const commentElement = document.createElement('div');
+                  commentElement.classList.add('comment');
+                  commentElement.innerHTML = `<p><strong>${comment.nombre}</strong>: ${comment.comentario}</p>`;
+                  commentsContainer.appendChild(commentElement);
+                });
+              } else {
+                commentsContainer.innerHTML = '<p>No hay comentarios aún. Sé el primero en comentar.</p>';
+              }
+              modal.style.display = "block";
+            } else {
+              Swal.fire("Error", "Hubo un problema al eliminar la publicación:" + data.message, "error");
+            }
+          })
+          .catch(error => {
+            Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+          });
+      });
+    });
+
+    // Event listener para el formulario de comentarios
+    commentForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const comentario = document.getElementById(newCommentId).value;
+      const publicacionId = publicacionIdInput.value;
+
+      fetch('/usuarios/agregarComentario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ publicacionId: publicacionId, comentario: comentario })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const newCommentElement = document.createElement('div');
+            newCommentElement.classList.add('comment');
+            newCommentElement.innerHTML = `<p><strong>${data.usuario}</strong>: ${data.comentario}</p>`;
+            commentsContainer.appendChild(newCommentElement);
+            document.getElementById(newCommentId).value = ''; // Clear the input field
+          } else {
+            Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
+          }
+        })
+        .catch(error => {
+          Swal.fire("Error", "Hubo un problema al eliminar la publicación: " + data.message, "error");
+        });
+    });
+
+    // Event listeners para cerrar el modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+
+  }
+
+  // Inicialización para muro principal
+  initCommentEvents('commentsModal', 'modal-comments-container', 'commentForm', 'newComment', 'publicacionIdInput');
+
+  // Inicialización para muro personal
+  initCommentEvents('commentsModalp', 'modal-comments-containerp', 'commentFormp', 'newCommentp', 'publicacionIdInputp');
+
+});
+
+//LIKES
+document.addEventListener('DOMContentLoaded', function () {
+  // Like action
+  document.querySelectorAll('.like-action').forEach(function (element) {
+    element.addEventListener('click', function () {
+      const publicacionId = this.getAttribute('data-id');
+      const likesCountElement = this.parentElement.querySelector('.likes-count'); // Seleccionar el contador de likes
+
+      fetch('/usuarios/likePublicacion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ publicacionId: publicacionId })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            // Actualizar el contador de likes en el frontend
+            const newLikes = parseInt(likesCountElement.textContent.trim()) + 1 || 1; // Incrementar el contador
+            likesCountElement.textContent = newLikes;
+          } else {
+            Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+          }
+        })
+        .catch(error => {
+          Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+        });
+    });
+  });
+});
+
+
+
+
+
+// REPORTES
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Report action
+  document.querySelectorAll('.report-action').forEach(function (element) {
+    element.addEventListener('click', function () {
+      const publicacionId = this.getAttribute('data-id');
+      const reportsCountElement = this.parentElement.querySelector('.reports-count'); // Seleccionar el contador de reportes
+
+      fetch('/usuarios/reportarPublicacion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ publicacionId: publicacionId })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            // Actualizar el contador de reportes en el frontend
+            let currentReportsCount = parseInt(reportsCountElement.textContent.trim()) || 0; // Convertir a número o asignar 0 si no es válido
+            const newReportsCount = currentReportsCount + 1;
+            reportsCountElement.textContent = newReportsCount;
+
+            if (newReportsCount >= 3) {
+              // Ocultar la publicación o realizar alguna acción adicional
+              const publicacionContainer = element.closest('.tweet-card');
+              publicacionContainer.style.display = 'none';
+            }
+
+          } else {
+            Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+          }
+        })
+        .catch(error => {
+          Swal.fire("Error", "Hubo un problema al realizar esta acción:" + data.message, "error");
+        });
+    });
+  });
+});
+

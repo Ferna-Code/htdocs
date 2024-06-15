@@ -86,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] 
                     </div>
                 </div>
             </div>
-
             <!-- Guardar Cambios -->
             <button id="guardar-cambios-usuario-btn" type="button" class="btn-supervisor mt-2">Guardar Cambios</button>
         </form>

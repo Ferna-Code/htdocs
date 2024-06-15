@@ -56,6 +56,10 @@ body {
     text-decoration: none;
 }
 
+.hidden-cell {
+    display: none;
+  } 
+
 .btn-sspp:hover{
     background: rgba(255, 255, 255, .3);
 }
@@ -78,7 +82,7 @@ body {
     margin-top: 5%;
     width: 90%;
     height: 70%;
-    border: 1px solid black;
+   
     border-radius: 5px;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */

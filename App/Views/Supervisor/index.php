@@ -11,7 +11,7 @@ header('Pragma: no-cache');
 
 // Verifica si el usuario está logeado
 if (!isset($_SESSION['idperfil'])) {
-    header('Location: http://localhost:8080/');
+    header('Location: http://localhost/');
     exit();
 }
 
@@ -43,6 +43,7 @@ verificarAcceso($perfilesPermitidos);
     <link rel="stylesheet" href="../../../../Public/css/panelSupervisor.css">
     <link rel="stylesheet" href="../../../../Public/css/global.css">
     <link rel="stylesheet" href="../../../../Public/css/perfilalumno.css">
+    
 
     <!--Modal-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -59,7 +60,13 @@ verificarAcceso($perfilesPermitidos);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+      
+
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
+
+        <div class="contenedor-body" id="modulo20" style="display:none">
+            <?php include 'complementos/graficos.php'; ?>
+        </div>
 
         <div class="contenedor-body" id="modulo19">
             <?php include 'complementos/menuPrincipal.php'; ?>
@@ -137,6 +144,8 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'complementos/formularios/verUsuario.php'; ?>
         </div>
 
+
+
     </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
@@ -161,7 +170,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../Public/js/supervisor.js"></script>
 
     <!-- JS card -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--Modal-->

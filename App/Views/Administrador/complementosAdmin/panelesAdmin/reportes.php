@@ -11,13 +11,7 @@
     <div class="body-panel">
         <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">11111111-1</option>
-                    <option value="Práctica">22222222-2</option>
-                    <option value="Práctica">33333333-3</option>
-                </select>
-                <input type="submit" class="btn-supervisor marginBtn" value="Filtrar">
+            <input style="margin-bottom: 15px" type="text" id="filtroRutUsuarioReportes" placeholder="Buscar por Rut...">
                 
                 <button type="button" id="deleteSelectedReportes" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
@@ -44,29 +38,7 @@
 
                 </tbody>
             </table>
-            <!-- seccion footer -->
-            <div class="footer-tools">
-                <div class="list-items">
-                    Mostrar
-                    <select name="n-entries" id="n-entries" class="n-entries">
-                        <option value="10">10</option>
-                        <option value="15" selected>20</option>
-                        <option value="20">50</option>
-                    </select>
-                    Entradas
-                </div>
-                <div class="pages">
-                    <ul>
-                        <li><span class="active">1</span></li>
-                        <li><button>2</button></li>
-                        <li><button>3</button></li>
-                        <li><span>...</span></li>
-                        <li><button>9</button></li>
-                        <li><button>10</button></li>
-                    </ul>
 
-                </div>
-            </div>
         </div>
     </div>
 

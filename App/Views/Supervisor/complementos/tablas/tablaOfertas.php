@@ -1,23 +1,10 @@
 <section style="margin: 10px;">
     <div class="">
-        <form method="POST" action="#">
+        
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <select class="ofertaFiltro">
-                    <option value="Práctica">Práctica</option>
-                    <option value="Práctica">Part Time</option>
-                    <option value="Práctica">Full Time</option>
-                </select>
-
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
-                </select>
-
-                <input type="submit" class="btnFiltro" value="Filtrar">
+            <input style="margin-bottom: 15px" type="text" id="filtroOfertas" placeholder="Buscar por cargo">
             </div>
-        </form>
+        
 
         <form action="" method="POST">
         <button type="button" id="deleteSelectedOfertas" class="btn-supervisor marginBtn">Eliminar</button>

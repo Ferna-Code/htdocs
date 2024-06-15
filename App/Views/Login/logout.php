@@ -1,6 +1,6 @@
 <?php
 // Espera 1 segundos antes de redirigir a la página de inicio
-header('refresh:1; url=http://localhost:8080/');
+header('refresh:1; url=http://localhost/');
 ?>
 
 <!DOCTYPE html>
