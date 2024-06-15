@@ -11,17 +11,8 @@
     <div class="body-panel">
         <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Full time</option>
-                    <option value="Práctica">Part Time</option>
-                    <option value="Práctica">Practica Laboral</option>
-                </select>
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Categoria 1</option>
-                    <option value="Práctica">Categoria 2</option>
-                    <option value="Práctica">Categoria 3</option>
-                </select>
+            <input type="text" id="filtroCargo"  placeholder="Filtrar por Cargo...">
+            <input type="text" id="filtroNombreEmpresa"  placeholder="Filtrar por Nombre de Empresa...">
 
                 <a href="Administrador/editarOfertas" class="btn-supervisor marginBtn">Editar</a>
                 <button type="button" id="deleteSelectedOfertas" class="btn-supervisor marginBtn">Eliminar</button>

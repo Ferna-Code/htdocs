@@ -289,9 +289,21 @@ class AdministradorDaoImpl implements AdministradorDao
         return $result;
     }
 
-    public function getPostulaciones($limit = 10)
+    public function getPostulaciones($limit = 20)
     {
-        $consulta = "SELECT * FROM postulaciones WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT
+         p.id,
+        p.rutusuario,
+        p.idcarrera,
+        c.nombre as nombreCarrera,
+        p.rutempresa,
+        p.idoferta,
+        o.cargo as cargo,
+        p.fechaCreacion,
+        p.fechaEliminacion
+        FROM postulaciones as p
+        INNER join carreras as c on c.id = p.idcarrera
+        inner join ofertas as o on o.id = p.idoferta ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");

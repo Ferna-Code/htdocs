@@ -12,9 +12,7 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Postulante">
-                <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Empresa">
+            <input type="text" id="filtroRutUsuarioPostulacion"  placeholder="Filtrar por Rut de Usuario...">
                 <button type="button" id="deleteSelectedPostulaciones" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -24,11 +22,10 @@
             <thead>
                 <tr>
                     <th class="widthCheck"><input type="checkbox" id="checkAllPostulaciones" name="select-all"></th>
-                    <th class="anchoId">ID</th>
                     <th>Rut Usuario</th>
-                    <th>ID Carrera</th>
+                    <th>Nombre Carrera</th>
                     <th>Rut Empresa</th>
-                    <th>ID Oferta</th>
+                    <th>Cargo</th>
                     <th>Fecha de Ingreso</th>
                     <th>Fecha de Eliminacion</th>
                 </tr>

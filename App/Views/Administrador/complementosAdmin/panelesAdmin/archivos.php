@@ -12,8 +12,7 @@
 <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut Propietario">
+            <input type="text" id="filtroRutUsuarioArchivo" placeholder="Filtrar por Rut Usuario...">
                 <button type="button" id="deleteSelectedArchivos" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
