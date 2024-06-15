@@ -11,13 +11,7 @@
     <div class="body-panel">
         <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">11111111-1</option>
-                    <option value="Práctica">22222222-2</option>
-                    <option value="Práctica">33333333-3</option>
-                </select>
-                <input type="submit" class="btn-supervisor marginBtn" value="Filtrar">
+            <input style="margin-bottom: 15px" type="text" id="filtroRutUsuarioReportes" placeholder="Buscar por Rut...">
                 
                 <button type="button" id="deleteSelectedReportes" class="btn-supervisor marginBtn">Eliminar</button>
             </div>

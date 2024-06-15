@@ -339,9 +339,7 @@ async function getCarrera() {
     }
     const dataCarreras = await responseCarreras.json();
 
-    // Obtener un mapa de ID de categoría a nombre de categoría
     const categoriasMap = await obtenerCategoriasMap();
-
     const tbody = $("#bodyCarreras");
     tbody.empty();
 
@@ -362,11 +360,29 @@ async function getCarrera() {
     });
 
     initializeCheckboxMaster('checkAllCarrera', 'checkboxCarrera');
+
+    // Capturar el elemento de entrada de búsqueda
+    const filtroInput = document.getElementById('filtroCarreras');
+    filtroInput.addEventListener('input', function() {
+      const filtro = filtroInput.value.toLowerCase(); // Convertir a minúsculas para hacer la búsqueda no sensible a mayúsculas
+
+      // Filtrar las filas de la tabla
+      dataCarreras.forEach(row => {
+        const nombre = row.nombre.toLowerCase();
+        const fila = tbody.find(`tr:contains(${filtro})`);
+        if (nombre.includes(filtro)) {
+          fila.show();
+        } else {
+          fila.hide();
+        }
+      });
+    });
   } catch (error) {
     console.error("Error en la solicitud Fetch: ", error);
     Swal.fire("Error", "Error en la solicitud" + data.message, "error");
   }
 }
+
 
 async function obtenerCategoriasMap() {
   try {
@@ -468,24 +484,40 @@ function getCategoria() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
-          <td style="display: none;">${row.id}</td>
-          <td>${row.nombre}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-          <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxCategoria" name="select-all"></td>
+              <td style="display: none;">${row.id}</td>
+              <td>${row.nombre}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+              <td><button type="button" class="btn-supervisor btn-editar" onclick="editarCategoria(${row.id},'${row.nombre}')">Editar</button></td>
+            </tr>`;
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllCategoria', 'checkboxCategoria');
 
+        // Implementación del filtro
+        const filtroInput = document.getElementById('filtroCategorias');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.toLowerCase();
+
+          // Filtrar las filas de la tabla
+          data.forEach(row => {
+            const nombre = row.nombre.toLowerCase();
+            const fila = tbody.find(`tr:contains(${filtro})`);
+            if (nombre.includes(filtro)) {
+              fila.show();
+            } else {
+              fila.hide();
+            }
+          });
+        });
+
       } else {
-        alertOps()
+        alertOps();
       }
     })
     .catch((error) => {
@@ -493,6 +525,7 @@ function getCategoria() {
       alertOps();
     });
 }
+
 
 function alertOps(){
   Swal.fire({
@@ -561,20 +594,33 @@ function getCurso() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.nombre}</td>
-          <td>${row.emitidopor}</td>
-          <td>${row.fechaCreacion}</td>
-          <td><a href="#" onclick="veroferta(${row.id})">Ver Curso</a></td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" id="checkboxCurso" class="checkboxCurso" name="select-all"></td>
+              <td>${row.id}</td>
+              <td>${row.nombre}</td>
+              <td>${row.emitidopor}</td>
+              <td>${row.fechaCreacion}</td>
+              <td><a href="#" onclick="verOferta(${row.id})">Ver Curso</a></td>
+            </tr>`;
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllCursos', 'checkboxCursos');
+
+        // Implementación del filtro
+        const filtroInput = document.getElementById('filtroCursos');
+        filtroInput.addEventListener('input', function() {
+          const filtro = filtroInput.value.trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const textoFila = $(this).text().toLowerCase();
+            const filaVisible = textoFila.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -582,9 +628,10 @@ function getCurso() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 
 function getDiccionario() {
@@ -601,20 +648,33 @@ function getDiccionario() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
-          <td class="hidden">${row.id}</td>
-          <td>${row.palabra}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxPalabra" name="select-all"></td>
+              <td class="hidden">${row.id}</td>
+              <td>${row.palabra}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
           tbody.append(fila);
         });
 
         initializeCheckboxMaster('checkAllPalabras', 'checkboxPalabra');
+
+        // Implementación del filtro
+        const filtroInput = $("#filtroDiccionario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const textoFila = $(this).text().toLowerCase();
+            const filaVisible = textoFila.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -622,9 +682,10 @@ function getDiccionario() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 function getPerfil() {
   fetch("/Administrador/getPerfil")
@@ -678,35 +739,47 @@ function getReportes() {
         const tbody = $("#bodyReportes");
         tbody.empty();
 
-
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.idcomentario}</td>
-          <td>${row.rutusuario}</td>
-          <td>${row.idpublicacion}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxReporte" name="select-all"></td>
+              <td>${row.id}</td>
+              <td>${row.idcomentario}</td>
+              <td>${row.rutusuario}</td>
+              <td>${row.idpublicacion}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllReportes', 'checkboxReporte');
 
-      } /*else {
-        alert("Sin Datos Cargados.");
-      }*/
+        // Implementación del filtro por rutusuario
+        const filtroInput = $("#filtroRutUsuarioReportes");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(4)').text().toLowerCase(); // Ajustar según la posición de la columna rutusuario
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
+
+      } else {
+        alert("No se encontraron datos para actualizar");
+      }
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 function getUsuariostable() {
   fetch("/Administrador/getUsuarios")
@@ -722,7 +795,6 @@ function getUsuariostable() {
         tbody.empty();
 
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
             <tr>
               <td class="widthCheck"><input type="checkbox" class="checkboxUsuario" name="select-all"></td>
@@ -746,6 +818,20 @@ function getUsuariostable() {
 
         // Reinicializa la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllUsuarios', 'checkboxUsuario');
+
+        // Implementación del filtro por rut
+        const filtroInput = $("#filtroRutUsuario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(2)').text().toLowerCase(); // Ajustar según la posición de la columna rut en tu tabla
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
 
         // Añadir el manejador de eventos para los botones de edición
         $(".btn-editar").click(function() {
@@ -779,9 +865,10 @@ function getUsuariostable() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 async function obtenerPerfiles() {
   try {
@@ -984,7 +1071,6 @@ function getComentarios() {
 }
 
 function getPublicacion() {
-  console.log("controladorPubliacion");
   fetch("/Administrador/getPublicacion")
     .then((response) => {
       if (!response.ok) {
@@ -997,27 +1083,36 @@ function getPublicacion() {
         const tbody = $("#bodyPublicaciones");
         tbody.empty();
 
-        //itera sobre cada elemento en la data y añade fila a la tabla
-        //data.array.forEach(element => {});
-        // (class="checkboxPublicacion),id se cambia a class para que el checkboxAll seleccione todos los check de las filas de la tabla
         data.forEach(row => {
-          console.log("Cuerpo del mensaje: ", row);
           const fila = `
-        <tr>
-          <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion name="select-all"></td>
-          <td>${row.id}</td>
-          <td>${row.rutusuario}</td>
-          <td>${row.publicacion}</td>
-          <td>${row.nreportes}</td>
-          <td>${row.fechaCreacion}</td>
-          <td>${row.activo}</td>
-          <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
-        </tr>`;
+            <tr>
+              <td class="widthCheck"><input type="checkbox" class="checkboxPublicacion" name="select-all"></td>
+              <td style="display: none;">${row.id}</td>
+              <td>${row.rutusuario}</td>
+              <td>${row.publicacion}</td>
+              <td>${row.nreportes}</td>
+              <td>${row.fechaCreacion}</td>
+              <td>${row.activo}</td>
+              <td>${row.fechaEliminacion ? row.fechaEliminacion : 'N/A'}</td>
+            </tr>`;
           tbody.append(fila);
         });
 
-        // se reinicializa desde el JS la casilla de verificación maestra después de cargar nuevos datos
         initializeCheckboxMaster('checkAllPublicacion', 'checkboxPublicacion');
+
+        // Implementación del filtro por rutusuario
+        const filtroInput = $("#filtroRutUsuario");
+        filtroInput.on('input', function() {
+          const filtro = filtroInput.val().trim().toLowerCase();
+
+          // Filtrar las filas de la tabla
+          const filas = tbody.find('tr');
+          filas.each(function() {
+            const rutUsuario = $(this).find('td:nth-child(2)').text().toLowerCase(); // Ajustar según la posición de la columna rutusuario
+            const filaVisible = rutUsuario.includes(filtro);
+            $(this).toggle(filaVisible);
+          });
+        });
 
       } else {
         alert("No se encontraron datos para actualizar");
@@ -1025,9 +1120,10 @@ function getPublicacion() {
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
-      alert("Error en la solicitud: ", error.message);
+      alert("Error en la solicitud: " + error.message);
     });
 }
+
 
 function getOfertas() {
   fetch("/Administrador/getOfertas")
