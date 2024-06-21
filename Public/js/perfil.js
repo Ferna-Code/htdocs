@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (result.success) {
                 const userData = result.data;
                 document.getElementById('nombrep').innerText = userData.nombre;
+                document.getElementById('nombreH1').innerText = userData.nombre;
                 document.getElementById('rut').value = userData.rut;
                 document.getElementById('email').value = userData.correo;
                 document.getElementById('fechanac').value = userData.fechaNacimiento;

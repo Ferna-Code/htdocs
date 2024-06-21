@@ -2,7 +2,8 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-        <div class="sidebar-brand-text mx-3" id="nombreH1" >  <sup></sup></div>
+        
+        <h4 style="color: white;" id="nombreH1"></h4>
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
