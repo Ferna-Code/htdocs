@@ -136,7 +136,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         </label>
                     </div>
                 </div>
+                
             </div>
+            <hr>
         `;
         formularioContainer.appendChild(nuevoFormulario);
     }
