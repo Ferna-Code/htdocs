@@ -55,4 +55,30 @@ class EmpresaController{
 
     }
 
+    public function ForUpdateOferta()
+    {
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(['success' => false, 'message' => 'Error: Datos no recibidos']);
+            return;
+        }
+
+        $idOferta = $data['id'];
+
+        $admin = new EmpresaDaoImpl();
+        $empresaModel = new Empresa_model();
+
+        $empresaModel->setId($idOferta);
+
+        $result = $admin->ForUpdateOferta($empresaModel);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Actualización exitosa']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
+        }
+    }
+
 }

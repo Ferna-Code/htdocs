@@ -576,4 +576,5 @@ class SupervisorController
             echo json_encode(['success' => false, 'message' => 'Error en la actualización']);
         }
     }
+    
 }

@@ -9,8 +9,12 @@ class Empresa_model{
     private $email;
     private $descripcionCargo;
     private $rangoSalarial;
+    private $id;
 
     //GET
+    public function getId(){
+        return $this->id;
+    }
 
     public function getTipoTrabajo(){
         return $this->tipoTrabajo;
@@ -45,6 +49,10 @@ class Empresa_model{
     }
 
     //SETTERS
+
+    public function setId($id){
+        $this->id = $id;
+    }
 
     public function setTipoTrabajo($tipoTrabajo){
         $this->tipoTrabajo = $tipoTrabajo;
