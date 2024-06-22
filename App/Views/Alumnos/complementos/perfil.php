@@ -5,13 +5,13 @@ $rutsesion = $_SESSION['rut'];
 $imagen = $admin->obtenerImagenUsuario($rutsesion);
 $carrera = $admin->obtenerCarreraUsuario($rutsesion);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] === 'getData') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
     $controller = new PerfilController();
     $controller->getData();
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] === 'saveData') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'saveData') {
     $controller = new PerfilController();
     $controller->guardarDatosAlumno();
     exit;
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] 
 
             <!-- Datos Personales -->
 
-            <div>
+            <div style="background-color: white; padding: 3%; border-radius: 2%">
 
                 <h3 style="font-size: 30px;  color: red;" class="mt-3">Datos Personales</h3>
                 <div class="grid">
@@ -89,8 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] && $_GET['action'] 
 
             <div class="mt-4">
                 <hr>
-                <h3 style="font-size: 30px;  color: red;" class="mt-3">Experiencia Laboral</h3>
-                <div id="formularioexperiencialaboral"></div>
+                <div style="background-color: white; padding: 3%; border-radius: 2%">
+                    <h3 style="font-size: 30px;  color: red;" class="mt-3">Experiencia Laboral</h3>
+                    <div id="formularioexperiencialaboral"></div>
+                </div>
+
                 <button type="button" class="btn-supervisor mt-2" id="agregar-experiencia-btn">Agregar Trabajo</button>
                 <div id="mensaje-error" class="text-red-500 mt-1"></div>
             </div>

@@ -53,4 +53,4 @@ class logsEliminacionDaoImpl implements logsEliminacionDao
     }
     
 }
-?>
+

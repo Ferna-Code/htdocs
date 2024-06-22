@@ -1,5 +1,5 @@
 <body>
-    <h1>Usuarios del sistema</h1>
+    <h1>Registro de ofertas</h1>
     <div class="body-panel">
         <?php include 'tablas/tablaUsuario.php' ?>
     </div>

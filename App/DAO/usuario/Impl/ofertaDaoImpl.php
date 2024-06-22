@@ -16,7 +16,7 @@ class ofertaDaoImpl implements ofertaDao
 
     public function getData()
     {
-        $sql = "SELECT id, tipoOferta, idcategoria, cargo, nombreEmpresa, rutempresa, correocontacto, descripcion, rangosalarial, fechacreacion, fechaeliminacion FROM ofertas WHERE fechaEliminacion IS NULL";
+        $sql = "SELECT id, tipoOferta, idcategoria, cargo, nombreEmpresa, rutempresa, correocontacto, descripcion, rangosalarial, fechacreacion, fechaeliminacion FROM ofertas WHERE activate = 1";
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_execute($stmt);

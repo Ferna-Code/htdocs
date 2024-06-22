@@ -4,10 +4,10 @@
             <input style="margin-bottom: 15px" type="text" id="filtroCategoria" placeholder="Buscar por Categorias">
         </div>
         <form action="">
-<!-- 
+
             <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Nueva categoria
-            </button> -->
+            </button>
 
             <button type="button" id="deleteSelected" class="btn-supervisor marginBtn">Eliminar</button>
             <table id="tablaCategoria" class="tabla table">
