@@ -17,7 +17,7 @@ if (!isset($_SESSION['idperfil'])) {
 
 require_once 'App/Controllers/accessController.php';
 
-require_once 'C:\Xampp1\htdocs\App\Controllers\PerfilController.php';
+require_once 'C:\xampp\htdocs\App\Controllers\PerfilController.php';
 
 
 $perfilesPermitidos = 2;

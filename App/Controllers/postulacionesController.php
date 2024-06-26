@@ -1,6 +1,6 @@
 <?php
 //require_once __DIR__ . '/../DAO/categorias/Impl/categoriasDaoImpl.php';
-require_once 'C:\Xampp1\htdocs\App\DAO\postulaciones\Impl\postulaciondesDaoImpl.php';
+require_once 'C:\xampp\htdocs\App\DAO\postulaciones\Impl\postulaciondesDaoImpl.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
