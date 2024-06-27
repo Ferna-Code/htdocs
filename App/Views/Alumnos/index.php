@@ -11,7 +11,7 @@ header('Pragma: no-cache');
 
 // Verifica si el usuario está logeado
 if (!isset($_SESSION['idperfil'])) {
-    header('Location: http://localhost:8080/');
+    header('Location: http://localhost/');
     exit();
 }
 

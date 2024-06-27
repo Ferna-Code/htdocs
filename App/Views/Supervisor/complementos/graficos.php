@@ -2,186 +2,168 @@
 require_once("./App/Models/conexion.php");
 require_once("./App/Models/graficosModel.php");
 
-$db = new conexion();
-$conexion = $db->conec();
-
 $dataModel = new GraficosModel();
 
 $reportes = $dataModel->cantidadReportes();
 $comentarios = $dataModel->cantidadComentarios();
 $usuarios = $dataModel->cantidadUsuarios();
+$cantidadOfertas = $dataModel->cantidadOfertas();
+$cantidadCursos = $dataModel->cantidadCursos();
 $likes = $dataModel->cantidadLike();
+$publicaciones = $dataModel->cantidadPublicacionesPorFecha(); // Nueva función que obtiene la cantidad de publicaciones por fecha
+$topPublicaciones = $dataModel->getTopPublicaciones(3);
+$topOfertas = $dataModel->getTopOfertas(3);
 
-$datosReportes = $dataModel->obtenerReportes();
-$datosComentarios = $dataModel->obtenerComentarios();
-$datosUsuarios = $dataModel->obtenerUsuarios();
-$datosLikes = $dataModel->obtenerLikes();
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../Public/css/StyleGrafic.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .ancho-a {
+            width: 20%;
+
+        }
+
+        .altura-a {
+            min-height: 75px;
+            max-height: 75px;
+        }
+
+        .altura-b {
+            min-height: 75px;
+            max-height: 90px;
+        }
+
+        .titulos {
+            background: black;
+            color: white;
+        }
+
+        .ancho-b {
+            width: 60%;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="DashBoard">
-        <div>
-            <button id="Publicaciones">Publicaciones</button>
-            <button id="Comentarios">Comentarios</button>
-            <button id="ofertas">Ofertas</button>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Publicaciones</h5>
+                        <p class="card-text"><?php echo $comentarios ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Total ofertas</h5>
+                        <p class="card-text"><?php echo $cantidadOfertas ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Total cursos</h5>
+                        <p class="card-text"><?php echo $cantidadCursos ?></p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="superiorDash">
-            <div id="curve_chart" style="width: 100%; height: 400px"></div>
+
+        <div class="row mt-4">
+            <div class="col-md-7 border">
+                <h6 class="titulos">Publicaciones por fecha</h6>
+                <div id="curve_chart" style="height: 400px; width:100%"></div>
+            </div>
+            <div class="col-6 col-md-5 border">
+                <h6 class="titulos">Grafico circular</h6>
+            </div>
         </div>
-        <div class="medioDash">
-            <div id="piechart" style="width: 700px; height: 400px;"></div>
+
+        <div class="row mt-4">
+            <div class="col-6 col-md-4 border">
+                <h6 class="titulos">Ultimas ofertas laborales</h6>
+                <table class="table table-striped">
+                    <thead></thead>
+                    <tbody>
+                        <?php if (is_array($topOfertas)) : ?>
+                            <?php foreach ($topOfertas as $ofertas) : ?>
+                                <tr class="">
+                                    <div class="card altura-b mt-3 mb-3">
+                                        <span class="small"><?php echo htmlspecialchars($ofertas['nombreEmpresa']); ?></span>
+                                        <span class="small"><?php echo htmlspecialchars($ofertas['tipoOferta']); ?></span>
+                                        <span class="small"><?php echo htmlspecialchars($ofertas['correocontacto']); ?></span>
+                                        <span class="small"><?php echo htmlspecialchars($ofertas['rangosalarial']); ?></span>
+                                    </div>
+                                </tr>
+                                <?php endforeach; ?>
+                                <?php else : ?>
+
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8 border">
+                <h6 class="titulos">Top 3 Publicaciones</h6>
+                
+                <table class="table table-striped">
+                    <thead>
+                        <th class="ancho-a">Usuario</th>
+                        <th class="ancho-b">Comentario</th>
+                    </thead>
+                    <tbody id="">
+                        <?php if (is_array($topPublicaciones)) : ?>
+                            <?php foreach ($topPublicaciones as $publicacion) : ?>
+                                <tr>
+                                    <td>
+                                        <div class="card altura-a">
+                                            <span class="small"><?php echo htmlspecialchars($publicacion['rutusuario']); ?></span>
+                                            <span class="small">Me gusta: <?php echo htmlspecialchars($publicacion['nlikes']); ?></span>
+                                            <span class="small">Reportes: <?php echo htmlspecialchars($publicacion['nreportes']); ?></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="card altura-a ">
+                                            <p class="small"><?php echo htmlspecialchars($publicacion['publicacion']); ?></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <tr>
+                                <td colspan="2">No se encontrarón datos.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div id="table_div" class="tablaGraficos">
-    <!-- Tabla -->
-    <table class="google-visualization-table-table">
-        <thead class="google-visualization-table-head">
-            <!-- Encabezados de columna -->
-        </thead>
-        <tbody class="google-visualization-table-body">
-            <!-- Fila de muestra cuando no hay datos -->
-            <tr class="google-visualization-table-tr-even">
-                <td class="google-visualization-table-td" colspan="3">No hay datos disponibles</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-        <a href="supervisor">Volver</a>
+
+
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        // Datos codificados en JSON
-        var datosReportes = <?php echo json_encode($datosReportes); ?>;
-        var datosComentarios = <?php echo json_encode($datosComentarios); ?>;
-        var datosUsuarios = <?php echo json_encode($datosUsuarios); ?>;
-        var datosLikes = <?php echo json_encode($datosLikes); ?>;
-
-        // Carga de los paquetes de Google Charts
-        google.charts.load('current', {
-            'packages': ['corechart', 'table']
+        var datosPublicaciones = <?php echo json_encode($publicaciones); ?>;
+        var datosReportes = <?php echo json_encode($reportes); ?>;
+        var datosComentarios = <?php echo json_encode($comentarios); ?>;
+        var datosUsuarios = <?php echo json_encode($usuarios); ?>;
+        var datosLikes = <?php echo json_encode($likes); ?>;
+        google.charts.setOnLoadCallback(function() {
+            drawPieChart(datosReportes, datosComentarios, datosUsuarios, datosLikes);
         });
-
-        google.charts.setOnLoadCallback(drawCharts);
-
-        function drawCharts() {
-            drawCurveChart();//funcion que dibuja el grafico de linea
-            drawPieChart();//funcion que dibuja el grafico circular
-        }
-
-        // Gráfico de línea
-        function drawCurveChart() {//grafico de linea
-             // Se crea y se llena el objeto DataTable con los datos de las publicaciones por fecha
-            var data = google.visualization.arrayToDataTable([
-                ['Fecha', 'Cantidad de Publicaciones'],
-                <?php
-                // Se realiza una consulta SQL para obtener la cantidad de publicaciones por fecha
-                $sql = "SELECT fechaCreacion, COUNT(*) as cantidad FROM publicaciones GROUP BY fechaCreacion";
-                $consulta = mysqli_query($conexion, $sql);
-                while ($resultado = mysqli_fetch_assoc($consulta)) {
-                    echo "['" . $resultado['fechaCreacion'] . "', " . $resultado['cantidad'] . "],";
-                }
-                ?>
-            ]);
-
-            // Se configuran las opciones del gráfico de líneas
-            var options = {
-                title: 'Cantidad de publicaciones',
-                curveType: 'function',
-                legend: { position: 'bottom' },
-                pointSize: 5,
-                hAxis: { title: 'Fecha' },
-                vAxis: { title: 'Cantidad de Publicaciones' }
-            };
-            // Se crea y se dibuja el gráfico de líneas en el elemento con el ID 'curve_chart'
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-            chart.draw(data, options);
-        }
-
-        // Gráfico circular
-        function drawPieChart() {
-             // Se crea y se llena el objeto DataTable con los datos de distribución de datos entre las categorías
-            var data = google.visualization.arrayToDataTable([
-                ['Tabla', 'Cantidad de datos'],
-                ['Publicaciones reportadas', <?php echo $reportes; ?>],
-                ['Comentarios', <?php echo $comentarios; ?>],
-                ['Usuarios', <?php echo $usuarios; ?>],
-                ['Publicaciones con Likes', <?php echo $likes; ?>],
-            ]);
-
-            // Se configuran las opciones del gráfico circular
-            var options = {
-                title: 'Distribución de Datos'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-             // Se añade un listener para cargar la tabla correspondiente al hacer clic en una sección del gráfico circular
-            google.visualization.events.addListener(chart, 'select', function() {
-                var selectedItem = chart.getSelection()[0];
-                if (selectedItem) {
-                    var topping = data.getValue(selectedItem.row, 0);
-                    loadTable(topping);
-                }
-            });
-
-            chart.draw(data, options);
-        }
-
-        // Función para cargar la tabla según el sector seleccionado
-        function loadTable(topping) {
-            var dataTable = new google.visualization.DataTable();
-            var rows = [];
-
-            if (topping === 'Publicaciones reportadas') {
-                 // Se añaden columnas al DataTable para las publicaciones reportadas
-                dataTable.addColumn('number', 'ID');
-                dataTable.addColumn('string', 'RUT Usuario');
-                dataTable.addColumn('number', 'ID Publicación');
-                dataTable.addColumn('string', 'Fecha Creación');
-                dataTable.addColumn('boolean', 'Activo');
-                // Se llenan las filas con los datos correspondientes
-                rows = datosReportes.map(row => [parseInt(row.id), row.rutusuario, parseInt(row.idpublicacion), row.fechaCreacion, Boolean(row.activo)]);
-            } else if (topping === 'Comentarios') {
-                dataTable.addColumn('number', 'ID');
-                dataTable.addColumn('string', 'RUT Usuario');
-                dataTable.addColumn('number', 'ID Publicación');
-                dataTable.addColumn('string', 'Comentario');
-                dataTable.addColumn('number', 'N Reportes');
-                dataTable.addColumn('string', 'Fecha Creación');
-                dataTable.addColumn('boolean', 'Activo');
-                rows = datosComentarios.map(row => [parseInt(row.id), row.rutusuario, parseInt(row.idpublicacion), row.comentario, parseInt(row.nreportes), row.fechaCreacion, Boolean(row.activo)]);
-            } else if (topping === 'Usuarios') {
-                dataTable.addColumn('string', 'RUT');
-                dataTable.addColumn('string', 'Nombre');
-                dataTable.addColumn('string', 'Fecha Nacimiento');
-                dataTable.addColumn('number', 'ID Perfil');
-                dataTable.addColumn('string', 'Correo');
-                dataTable.addColumn('number', 'ID Carrera');
-                rows = datosUsuarios.map(row => [row.rut, row.nombre, row.fechaNacimiento, parseInt(row.idperfil), row.correo, parseInt(row.idcarrera)]);
-            } else if (topping === 'Publicaciones con Likes') {
-                dataTable.addColumn('number', 'ID');
-                dataTable.addColumn('string', 'RUT Usuario');
-                dataTable.addColumn('string', 'Publicación');
-                dataTable.addColumn('number', 'N Reportes');
-                dataTable.addColumn('string', 'Fecha Creación');
-                dataTable.addColumn('boolean', 'Activo');
-                dataTable.addColumn('number', 'N Likes');
-                rows = datosLikes.map(row => [parseInt(row.id), row.rutusuario, row.publicacion, parseInt(row.nreportes), row.fechaCreacion, Boolean(row.activo), parseInt(row.nlikes)]);
-            }
-             // Se agregan las filas al DataTable
-            dataTable.addRows(rows);
-
-            var table = new google.visualization.Table(document.getElementById('table_div'));
-            table.draw(dataTable, { showRowNumber: true, width: '100%', height: '100%' });
-        }
     </script>
+    <script src="../../../../Public/js/graficos.js"></script>
 </body>
+
 </html>
