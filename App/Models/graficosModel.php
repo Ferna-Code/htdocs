@@ -21,6 +21,21 @@ class GraficosModel
         return $row['total'];
     }
 
+    public function cantidadPostulaciones()
+    {
+        $sql = "SELECT COUNT(*) as total FROM postulaciones";
+        $result = $this->db->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['total'];
+    }
+    public function cantidadCarreras()
+    {
+        $sql = "SELECT COUNT(*) as total FROM carreras";
+        $result = $this->db->query($sql);
+        $row = $result->fetch_assoc();
+        return $row['total'];
+    }
+
     public function cantidadComentarios()
     {
         $sql = "SELECT COUNT(*) as total FROM publicaciones";

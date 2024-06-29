@@ -78,5 +78,5 @@
     </div>
 </div>
 
-
+<script src="../../../../Public/js/deletes.js"></script>
 <!-- composer require phpoffice/phpspreadsheet -->

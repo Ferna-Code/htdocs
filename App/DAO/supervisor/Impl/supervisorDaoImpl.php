@@ -550,22 +550,24 @@ class SupervisorDaoImpl implements SupervidorDao
     
         return $success;
     }
-    public function deletePalabra($ids) {
-        $consulta = "UPDATE diccionario SET fechaEliminacion = NOW() WHERE id IN (" . implode(',', array_fill(0, count($ids), '?')) . ")";
-        $stmt = mysqli_prepare($this->db->conec(), $consulta);
-    
-        if (!$stmt) {
-            return false;
-        }
-    
-        $types = str_repeat('i', count($ids));
-        mysqli_stmt_bind_param($stmt, $types, ...$ids);
-    
-        $success = mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-    
-        return $success;
+    public function deletePalabra($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "UPDATE diccionario SET fechaEliminacion = NOW() WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+
+    if (!$stmt) {
+        return false;
     }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+
+    $success = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return $success;
+}
 
     //-----------------UPDATE--------------
 

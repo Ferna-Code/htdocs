@@ -9,6 +9,8 @@ $comentarios = $dataModel->cantidadComentarios();
 $usuarios = $dataModel->cantidadUsuarios();
 $cantidadOfertas = $dataModel->cantidadOfertas();
 $cantidadCursos = $dataModel->cantidadCursos();
+$cantidadPostulaciones = $dataModel->cantidadPostulaciones();
+$cantidadCarreras = $dataModel->cantidadCarreras();
 $likes = $dataModel->cantidadLike();
 $publicaciones = $dataModel->cantidadPublicacionesPorFecha(); // Nueva función que obtiene la cantidad de publicaciones por fecha
 $topPublicaciones = $dataModel->getTopPublicaciones(3);
@@ -22,38 +24,18 @@ $topOfertas = $dataModel->getTopOfertas(3);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="../../../../Public/css/graficos.css">
+    <title>RedLeones - Graficos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        .ancho-a {
-            width: 20%;
-
-        }
-
-        .altura-a {
-            min-height: 75px;
-            max-height: 75px;
-        }
-
-        .altura-b {
-            min-height: 75px;
-            max-height: 90px;
-        }
-
-        .titulos {
-            background: black;
-            color: white;
-        }
-
-        .ancho-b {
-            width: 60%;
-        }
+       
     </style>
 </head>
 
-<body>
+<body class="">
     <div class="container text-center">
-        <div class="row">
+        <a href="prueba">Graficos2</a>
+        <div class="row mt-4">
             <div class="col">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
@@ -81,12 +63,13 @@ $topOfertas = $dataModel->getTopOfertas(3);
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-7 border">
-                <h6 class="titulos">Publicaciones por fecha</h6>
+            <div class="col-md-7 border rounded-5">
+                <h6 class="titulos mt-2 rounded-5">Publicaciones por fecha</h6>
                 <div id="curve_chart" style="height: 400px; width:100%"></div>
             </div>
-            <div class="col-6 col-md-5 border">
-                <h6 class="titulos">Grafico circular</h6>
+            <div class="col-6 col-md-5 border rounded-5">
+                <h6 class="titulos mt-2 rounded-5">Grafico circular</h6>
+                <div id="donutchart" style="width: 440px; height: 350px;"></div>
             </div>
         </div>
 
@@ -106,8 +89,8 @@ $topOfertas = $dataModel->getTopOfertas(3);
                                         <span class="small"><?php echo htmlspecialchars($ofertas['rangosalarial']); ?></span>
                                     </div>
                                 </tr>
-                                <?php endforeach; ?>
-                                <?php else : ?>
+                            <?php endforeach; ?>
+                        <?php else : ?>
 
                         <?php endif; ?>
                     </tbody>
@@ -115,7 +98,7 @@ $topOfertas = $dataModel->getTopOfertas(3);
             </div>
             <div class="col-md-8 border">
                 <h6 class="titulos">Top 3 Publicaciones</h6>
-                
+
                 <table class="table table-striped">
                     <thead>
                         <th class="ancho-a">Usuario</th>
@@ -164,6 +147,33 @@ $topOfertas = $dataModel->getTopOfertas(3);
         });
     </script>
     <script src="../../../../Public/js/graficos.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load("current", {
+            packages: ["corechart"]
+        });
+        google.charts.setOnLoadCallback(drawPieChart);
+
+        function drawPieChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Tabla', 'Cantidad datos'],
+                ['Reportadas', <?php echo $reportes; ?>],
+                ['Usuarios', <?php echo $usuarios; ?>],
+                ['Total likes', <?php echo $likes; ?>],
+                ['Postulaciones', <?php echo $cantidadPostulaciones; ?>],
+                ['Carreras', <?php echo $cantidadCarreras; ?>]
+            ]);
+
+            var options = {
+                title: 'Otros datos',
+                pieHole: 0.3,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    </script>
+
 </body>
 
 </html>

@@ -7,7 +7,6 @@ google.charts.setOnLoadCallback(drawCharts);
 
 function drawCharts() {
     drawCurveChart(); //funcion que dibuja el grafico de linea
-    drawPieChart();
 }
 
 // Gráfico de línea
@@ -16,7 +15,7 @@ function drawCurveChart() { //grafico de linea
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Fecha');
     data.addColumn('number', 'Cantidad de Publicaciones');
-    datosPublicaciones.forEach(function(row) {
+    datosPublicaciones.forEach(function (row) {
         data.addRow([row.fechaCreacion, parseInt(row.cantidad)]);
     });
 

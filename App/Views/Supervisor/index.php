@@ -149,7 +149,7 @@ verificarAcceso($perfilesPermitidos);
     </div>
 
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
-
+    <script src="../../../../Public/js/supervisor.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
     <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -167,7 +167,7 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
     <script src="./../../../Public/js/perfil.js"></script>
-    <script src="../../../../Public/js/supervisor.js"></script>
+    
 
     <!-- JS card -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

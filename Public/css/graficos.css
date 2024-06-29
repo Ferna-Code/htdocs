@@ -1,0 +1,27 @@
+.cuerpo{
+    background: lightsalmon;
+}
+
+.ancho-a {
+    width: 20%;
+
+}
+
+.altura-a {
+    min-height: 75px;
+    max-height: 75px;
+}
+
+.altura-b {
+    min-height: 75px;
+    max-height: 90px;
+}
+
+.titulos {
+    background: black;
+    color: white;
+}
+
+.ancho-b {
+    width: 60%;
+}
