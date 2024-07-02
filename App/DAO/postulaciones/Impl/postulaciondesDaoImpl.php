@@ -1,9 +1,9 @@
 <?php
-require_once 'C:\Xampp1\htdocs\App\DAO\postulaciones\postulacionesDAO.php';
-require_once  'C:\Xampp1\htdocs\App\DAO\usuario\Impl\usuarioDaoImpl.php';
+require_once 'C:\xampp\htdocs\App\DAO\postulaciones\postulacionesDAO.php';
+require_once  'C:\xampp\htdocs\App\DAO\usuario\Impl\usuarioDaoImpl.php';
 require_once __DIR__ . '/../../../Models/postulaciones_model.php';
 require_once __DIR__ . '/../../../Models/conexion.php';
-require_once 'C:\Xampp1\htdocs\App\DAO\usuario\Impl\ofertaDaoImpl.php';
+require_once 'C:\xampp\htdocs\App\DAO\usuario\Impl\ofertaDaoImpl.php';
 
 class postulacionesDaoImpl implements postulacionesDAO
 {

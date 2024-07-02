@@ -25,7 +25,7 @@ $("#formOferta").on("submit", function (event) {
         return response.text();
     }).then((data) => {
         if (!data.success) {
-            ofertaCreada()
+            ofertaCreada();
             //resto del cuerpo para manejar respuesta exitosa
             
             $(
@@ -33,6 +33,7 @@ $("#formOferta").on("submit", function (event) {
             ).val("");
 
         } else {
+            
             alert("Error" + data.message);
         }
 
@@ -42,12 +43,57 @@ $("#formOferta").on("submit", function (event) {
     });
 });//FIN CUERPO 
 
+document.getElementById('ForUpdateOferta').addEventListener('submit', function (event) {
+    event.preventDefault();
+  
+    const formData = {
+     
+      id: document.getElementById('verIdOferta').value,
+     
+    };
+  
+    fetch("/empresa/ForUpdateOferta", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          alert("Datos actualizados exitosamente");
+         
+        } else {
+          alert("Error: " + data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud Fetch: ", error);
+      });
+  });
+
 
 function ofertaCreada(){
     Swal.fire({
       position: "top-end",
       icon: "success",
       title: "Oferta enviada exitosamente",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+
+  function ofertaNoCreada(){
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "No se puede publicar la oferta, contiene palabras prohibidas",
       showConfirmButton: false,
       timer: 1500
     });

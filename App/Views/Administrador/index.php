@@ -131,6 +131,7 @@ verificarAcceso($perfilesPermitidos);
         </div>
 
             
+
     </div>
 
     <?php include_once 'complementosAdmin/body-page/parteInferior.php'; ?>

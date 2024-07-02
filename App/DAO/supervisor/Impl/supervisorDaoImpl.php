@@ -358,7 +358,7 @@ class SupervisorDaoImpl implements SupervidorDao
         return $datos;
     }
     public function getOferta($limit = 10) {
-        $consulta = "SELECT * FROM ofertas WHERE fechaeliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM ofertas ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");

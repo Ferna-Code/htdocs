@@ -13,7 +13,7 @@ class categoriasDaoImpl implements categoriasDAO
         $this->db = new conexion();
     }
 
-    public function getdata(){ 
+    public function getdata(){ //todos los cursos
         $query = "SELECT id	,nombre	,fechaCreacion	,activo	,fechaEliminacion FROM categorias";
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $query);
