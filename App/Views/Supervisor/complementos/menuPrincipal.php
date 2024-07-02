@@ -3,7 +3,7 @@ require_once ("App/Controllers/publicacionesController.php");
 require_once ("App/Controllers/usuariosController.php");
 require_once 'app/DAO/usuario/Impl/usuarioDaoImpl.php';
 
-
+$rutsesion = $_SESSION['rut'];
 $comentario = '';
 $sw = "";
 
@@ -86,6 +86,11 @@ $publicaciones = $controlador->mostrarPublicaciones();
                             <i class="fa fa-flag report-action" data-id="<?php echo $p['id']; ?>"></i>
                         </div>
                         <i class="far fa-comment comment-action" data-id="<?php echo $p['id']; ?>"></i>
+                        <div>
+                            <?php if ($p['rutusuario'] == $rutsesion) { ?>
+                                <i class="fa fa-trash delete-action" data-id="<?php echo $p['id']; ?>"></i>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
                 <?php

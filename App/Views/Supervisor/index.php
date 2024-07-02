@@ -168,6 +168,8 @@ verificarAcceso($perfilesPermitidos);
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
     <script src="./../../../Public/js/perfil.js"></script>
     <script src="../../../../Public/js/supervisor.js"></script>
+    <script src="../../../../Public/js/muroSupervisorAcciones.js"></script>
+
 
     <!-- JS card -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
