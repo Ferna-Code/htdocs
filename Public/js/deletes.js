@@ -66,7 +66,7 @@ document.getElementById('deleteSelectedPalabra').addEventListener('click', funct
   });
   
   function deleteUsuario(ids) {
-    const excludedRuts = ['111111111', '11111111-1', '22222222-2', '33333333-3'];
+    const excludedRuts = ['11111111-1', '22222222-2', '33333333-3'];
     console.log(ids);
     // Verificar si alguno de los ids está en la lista de RUTs que no se pueden eliminar
     const forbiddenIds = ids.filter(id => excludedRuts.includes(id));
