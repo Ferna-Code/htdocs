@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.delete-action').forEach(function(element) {
     element.addEventListener('click', function() {
       const publicacionId = this.getAttribute('data-id');
-
+console.log('delete-action')
       Swal.fire({
         title: "¿Estás seguro?",
         text: "¡No podrás revertir esto!",
