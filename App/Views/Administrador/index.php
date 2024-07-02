@@ -122,7 +122,6 @@ verificarAcceso($perfilesPermitidos);
             <?php include 'App/Views/Supervisor/complementos/formularios/ingresarCurso.php' ?>
         </div>
 
-<<<<<<< HEAD
         <div class="contenedor-body" id="modulo18" style="display:none">
             <?php include 'App/Views/Supervisor/complementos/formularios/verCurso.php' ?>
         </div>
@@ -132,9 +131,7 @@ verificarAcceso($perfilesPermitidos);
         </div>
 
             
-=======
 
->>>>>>> 7605e01a0b5b9f8a2dce45a7529ae96c0614358c
     </div>
 
     <?php include_once 'complementosAdmin/body-page/parteInferior.php'; ?>

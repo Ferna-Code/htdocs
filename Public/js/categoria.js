@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data && data.categorias) {
                 const categorias = data.categorias;
                 const categoriasContainer = document.getElementById("categoriasContainer");
-
+                categoriasContainer.innerHTML = ''; // Limpiar el contenedor 
                 categorias.forEach((categoria, index) => {
                     const cardcategoria = document.createElement("div");
                     cardcategoria.className = "col-xs-12 col-sm-6 col-md-4";
@@ -49,6 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Llamar a getCategorias automáticamente al cargar la página
+
     getCategorias();
 });
