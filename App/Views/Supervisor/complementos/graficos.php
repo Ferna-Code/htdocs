@@ -34,7 +34,6 @@ $topOfertas = $dataModel->getTopOfertas(3);
 
 <body class="">
     <div class="container text-center">
-        <a href="prueba">Graficos2</a>
         <div class="row mt-4">
             <div class="col">
                 <div class="card" style="width: 18rem;">

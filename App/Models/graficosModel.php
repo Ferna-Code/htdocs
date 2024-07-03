@@ -10,9 +10,6 @@ class GraficosModel
     {
         $this->db = new Database();
     }
-
-    
-
     public function cantidadReportes()
     {
         $sql = "SELECT COUNT(*) as total FROM publicaciones WHERE nreportes > 0";
@@ -116,8 +113,8 @@ class GraficosModel
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getTopPublicaciones($limit = 3) {
-        $consulta = "SELECT rutusuario, publicacion, nreportes, nlikes 
+    public function getTopPublicaciones($limit = 3, $maxLength = 200) {
+        $consulta = "SELECT rutusuario, LEFT(publicacion, ?) AS publicacion_resumida, nreportes, nlikes 
                      FROM publicaciones 
                      WHERE nlikes >= 3
                      ORDER BY id DESC 
@@ -126,7 +123,7 @@ class GraficosModel
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la búsqueda");
         }
-        mysqli_stmt_bind_param($stmt, "i", $limit);
+        mysqli_stmt_bind_param($stmt, "ii", $maxLength, $limit);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
     
@@ -136,12 +133,16 @@ class GraficosModel
         
         $publicaciones = [];
         while ($row = mysqli_fetch_assoc($result)) {
+            // Agregar el resultado al array, utilizando publicacion_resumida para el texto truncado
+            $row['publicacion'] = $row['publicacion_resumida'];
+            unset($row['publicacion_resumida']); // Opcional: eliminar la columna temporal si no se necesita
             $publicaciones[] = $row;
         }
         
         mysqli_stmt_close($stmt);
         return $publicaciones;
     }
+    
 
     public function getTopOfertas($limit = 3) {
         $consulta = "SELECT tipoOferta, nombreEmpresa, correocontacto, rangosalarial 
