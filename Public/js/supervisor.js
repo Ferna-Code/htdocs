@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById('guardar-cambios-usuario-btn').addEventListener('click', guardarCambiosPersonales);
 });
 
-function cambiosGuardados() {
+function cambiosGuardados(mensaje) {
   Swal.fire({
     position: "top-end",
     icon: "success",
@@ -389,48 +389,6 @@ function centrarModulo(modulo) {
   modulo.style.alignItems = "center"; // Centra verticalmente
 }
 
-//CATEGORIA
-$("#addCategoria").on("submit", function (event) {
-  event.preventDefault();
-
-  var formData = { // guardamos el cuerpo del mensaje por medio del ID
-    nuevaCategoria: $("#nuevaCategoria").val(),
-  };
-
-  fetch("/supervisor/insertData", { // Asegúrate de que esta ruta sea correcta
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(formData),
-    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.text(); // Temporalmente usa text() para verificar la respuesta
-    })
-    .then((data) => {
-      if (!data.success) {
-        alert("Categoria agregada");
-        //resto del cuerpo para manejar respuesta exitosa
-
-        $(
-          "#nuevaCategoria"
-        ).val("");
-        // Cerrar el modal
-        $("#exampleModal").modal("hide");
-        getCategoria();
-
-      } else {
-        alert("Error" + data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-    });
-});
 function getCategoria() {
   fetch("/supervisor/getCategoria")
     .then((response) => {
@@ -614,8 +572,10 @@ function getCursoById(id) {
       document.getElementById("verCategoriaCurso").value = categoria;
       document.getElementById("verCentroCurso").value = curso.emitidopor;
       document.getElementById("verFechaCurso").value = curso.fechaCreacion;
+      document.getElementById("urlCurso").value = curso.linkpostular;
       document.getElementById("verEliminacionCurso").value = (curso.fechaEliminacion || '');
       document.getElementById("verDescripcionCurso").value = curso.descripcion;
+      
     })
     .catch((error) => {
       console.error("Error en la solicitud Fetch: ", error);
@@ -623,92 +583,6 @@ function getCursoById(id) {
     });
 }
 
-
-
-//INGRESAR PERFIL
-$("#FormPerfil").on("submit", function (event) {
-  event.preventDefault();
-
-  var formData = { // guardamos el cuerpo del mensaje por medio del ID
-    nuevoPerfil: $("#nuevoPerfil").val(),
-  };
-
-  fetch("/supervisor/insertPerfil", { // Asegúrate de que esta ruta sea correcta
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(formData),
-    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.text(); // Temporalmente usa text() para verificar la respuesta
-    })
-    .then((data) => {
-      if (!data.success) {
-        alert("Perfil agregado");
-        //resto del cuerpo para manejar respuesta exitosa
-
-        $(
-          "#nuevoPerfil"
-        ).val("");
-        // Cerrar el modal
-        $("#exampleModal1").modal("hide");
-        getPerfil();
-
-      } else {
-        alert("Error" + data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-    });
-});// FIN CUERPO
-
-//INGRESAR PALABRA
-$("#formPalabra").on("submit", function (event) {
-  event.preventDefault();
-
-  var formData = { // Guardamos el cuerpo del mensaje por medio del ID
-    palabra: $("#nuevaPalabra").val(),
-  };
-
-  fetch("/supervisor/insertPalabra", { // Asegúrate de que esta ruta sea correcta
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(formData),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // Parseamos la respuesta como JSON
-    })
-    .then((data) => {
-
-      if (data.success) {
-        alert("Nueva palabra agregada");
-        $("#nuevaPalabra").val("");
-        // Cerrar el modal
-        $("#exampleModal2").modal("hide");
-        // Actualizar la tabla con los datos más recientes
-        console.log(data);
-        console.log(data.palabras)
-        tableName = 'diccionario';
-        getPalabra();
-      } else {
-        alert("Error: " + data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud Fetch: ", error);
-    });
-});
 function getPalabra() {
   fetch("/supervisor/getPalabra")
     .then((response) => {

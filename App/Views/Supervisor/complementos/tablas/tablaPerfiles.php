@@ -1,7 +1,7 @@
 <section style="margin: 10px;">
     <div class="">
 
-        <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+        <button type="button" class="btn-supervisor marginBtn btnAgregar" onclick="agregarPerfil()">
             Nuevo perfil
         </button>
        

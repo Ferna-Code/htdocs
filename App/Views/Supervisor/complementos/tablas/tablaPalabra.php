@@ -1,8 +1,7 @@
 <section style="margin: 10px;">
     <div class="">
         <input style="margin-bottom: 15px" type="text" id="filtroDiccionario" placeholder="Buscar por nombre...">
-        <button type="button" class="btn-supervisor marginBtn btnAgregar" data-bs-toggle="modal"
-            data-bs-target="#exampleModal2">
+        <button type="button" class="btn-supervisor marginBtn btnAgregar" onclick="agregarPalabra()">
             Agregar palabra
         </button>
 
@@ -27,27 +26,6 @@
     </div>
 </section>
 
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar nueva palabra</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" id="formPalabra" action="">
-                    <label for="nuevaPalabra">Palabra: </label>
-                    <input type="text" name="nuevaPalabra" id="nuevaPalabra">
-                    <div class="modal-footer">
-                        <button type="button" class="btn-supervisor marginBtn" data-bs-dismiss="modal">Cerrar</button>
-                        <input type="submit" class="btn-supervisor marginBtn" value="Agregar">
-                    </div>
-                </form>
-            </div>
 
-        </div>
-    </div>
-</div> -->
 <script src="../../../../Public/js/deletes.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
