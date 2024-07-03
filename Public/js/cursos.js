@@ -99,7 +99,7 @@ function getCursos(categoriaId) {
                   </div>
               `;
               
-              if (index % 4 === 0) {
+              if (index % 3 === 0) {
                   rowContainer = document.createElement("div");
                   rowContainer.className = "row";
                   cursosContainer.appendChild(rowContainer);

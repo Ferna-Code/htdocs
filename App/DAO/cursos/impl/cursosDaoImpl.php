@@ -32,7 +32,7 @@ class cursosDaoImpl implements cursosDAO
     }
 
     public function getdatabycategory($idCategoria){ //Categoria
-        $query = "SELECT id, nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo, fechaEliminacion FROM cursos where idcategoria = ?";
+        $query = "SELECT id, nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo, fechaEliminacion FROM cursos where idcategoria = ? and fechaEliminacion is null";
         $conn = $this->db->conec();
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "i", $idCategoria);

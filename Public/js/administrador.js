@@ -1840,7 +1840,7 @@ $("#addCategoria").on("submit", function (event) {
     },
     method: "POST",
     body: JSON.stringify(formData),
-    // Convierte un valor de JavaScript en una cadena de notación de objetos de JavaScript (JSON)
+    
   })
     .then((response) => {
       if (!response.ok) {
@@ -1850,7 +1850,7 @@ $("#addCategoria").on("submit", function (event) {
     })
     .then((data) => {
       if (!data.success) {
-        cambiosGuardados()
+        cambiosGuardados()//ALERTA
         //resto del cuerpo para manejar respuesta exitosa
 
         $(

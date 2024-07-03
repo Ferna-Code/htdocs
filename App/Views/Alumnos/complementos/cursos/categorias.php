@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['action'] === 'getData') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $controller = new categoriascontroller();
     $controller->getData();
     exit;
