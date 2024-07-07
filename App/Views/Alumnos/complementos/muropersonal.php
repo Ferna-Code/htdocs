@@ -52,7 +52,7 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
                     <div class="tweet-actions">
                         <i><?php echo $p['fechaCreacion']; ?></i>
                         <div class="like-container">
-                            <span class="likes-count"><?php echo $p['nlikes']; ?></span>
+                            <span class="likes-count" id="likeId"><?php echo $p['nlikes']; ?></span>
                             <i class="far fa-thumbs-up like-action" data-id="<?php echo $p['id']; ?>"></i>
                         </div>
                         <div class="like-container">
@@ -60,7 +60,12 @@ $publicaciones = $controlador->mostrarPublicacionesUsuario($_SESSION['rut']);
                             <i class="fa fa-flag report-action" data-id="<?php echo $p['id']; ?>"></i>
                         </div>
                         <i class="far fa-comment comment-action" data-id="<?php echo $p['id']; ?>"></i>
-                        <i class="fa fa-trash delete-action" data-id="<?php echo $p['id']; ?>" aria-hidden="true"></i>
+                        <div>
+                            <?php if ($p['rutusuario'] == $rutsesion) { ?>
+                                <i class="fa fa-trash delete-action" data-id="<?php echo $p['id']; ?>"></i>
+                            <?php } ?>
+                        </div>
+
                     </div>
                 </div>
                 <?php

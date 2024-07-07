@@ -49,7 +49,7 @@
                     <label for="correoUser">Descripción</label>
                     <input type="text" class="inputCurso" id="correoUser" name="correoUser">                </div>
 
-                <button type="submit" id="updateCurso" class="btn-supervisor marginBtn">Actualizar</button>
+                <button type="submit" id="updateUsuario" class="btn-supervisor marginBtn">Actualizar</button>
 
             </form>
 

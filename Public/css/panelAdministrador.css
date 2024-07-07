@@ -35,6 +35,10 @@ body {
 
 }
 
+.hidden-cell {
+    display: none;
+  }  
+
 .link-nav{
     color: var(--letra-panel);
 }

@@ -11,7 +11,7 @@ header('Pragma: no-cache');
 
 // Verifica si el usuario está logeado
 if (!isset($_SESSION['idperfil'])) {
-    header('Location: http://localhost:8080/');
+    header('Location: http://localhost/');
     exit();
 }
 
@@ -55,128 +55,127 @@ verificarAcceso($perfilesPermitidos);
 
 </head>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de tu página</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilos personalizados -->
+    <link href="../../../../Public/css/graficos.css" rel="stylesheet">
+
+    <!-- Scripts de Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Otros estilos o scripts personalizados -->
+    <style>
+        /* Estilos personalizados si es necesario */
+    </style>
+</head>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-      
-
+        <!-- Incluir parte superior de la página -->
         <?php include_once 'complementos/body-page/parteSuperior.php'; ?>
 
+        <!-- Contenedor de módulos -->
         <div class="contenedor-body" id="modulo20" style="display:none">
             <?php include 'complementos/graficos.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo19">
             <?php include 'complementos/menuPrincipal.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo18" style="display:none">
             <?php include 'complementos/formularios/perfilSupervisor.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo7" style="display:none">
             <?php include 'complementos/categorias.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo3" style="display:none">
             <?php include 'complementos/carreras.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo2" style="display:none">
             <?php include 'complementos/publicaciones.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo1" style="display:none">
             <?php include 'complementos/reportes.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo4" style="display:none">
             <?php include 'complementos/cursos.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo5" style="display:none">
             <?php include 'complementos/perfiles.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo6" style="display:none">
             <?php include 'complementos/usuarios.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo8" style="display:none">
             <?php include 'complementos/diccionario.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo9" style="display:none">
             <?php include 'complementos/ofertasLaborales.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo10" style="display:none">
             <?php include 'complementos/formularios/verOferta.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo11" style="display:none">
             <?php include 'complementos/formularios/ingresarCurso.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo12" style="display:none">
             <?php include 'complementos/formularios/verCurso.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo13" style="display:none">
             <?php include 'complementos/formularios/verCarrera.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo14" style="display:none">
             <?php include 'complementos/formularios/carrerasCategorias.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo15" style="display:none">
             <?php include 'complementos/formularios/verReporte.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo16" style="display:none">
             <?php include 'complementos/formularios/verPublicacion.php'; ?>
         </div>
-
         <div class="contenedor-body" id="modulo17" style="display:none">
             <?php include 'complementos/formularios/verUsuario.php'; ?>
         </div>
 
-
-
     </div>
 
+    <!-- Incluir parte inferior de la página -->
     <?php include_once 'complementos/body-page/parteInferior.php'; ?>
 
-    <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript -->
     <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
     <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
+    <!-- Core plugin JavaScript -->
     <script src="../../../../public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
+    <!-- Scripts personalizados para todas las páginas -->
     <script src="../../../../public/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
+    <!-- Plugins a nivel de página -->
     <script src="../../../../public/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
+    <!-- Scripts personalizados a nivel de página -->
     <script src="../../../../public/js/demo/chart-area-demo.js"></script>
     <script src="../../../../public/js/demo/chart-pie-demo.js"></script>
-    <script src="./../../../Public/js/perfil.js"></script>
+    <script src="../../../../Public/js/perfil.js"></script>
     <script src="../../../../Public/js/supervisor.js"></script>
-
-    <!-- JS card -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!--Modal-->
-    <!-- <script src="../../../../Public/js/modalExcel.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../../../../Public/js/inputModel.js"></script>
 
 </body>
+
+</html>
+
 
 </html>

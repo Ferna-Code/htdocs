@@ -1,5 +1,5 @@
 <body>
-    <h1>Registro de Perfiles</h1>
+    <h1>Perfiles</h1>
     <div class="body-panel">
         <?php include 'tablas/tablaPerfiles.php' ?>
     </div>

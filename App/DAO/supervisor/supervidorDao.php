@@ -22,4 +22,5 @@ interface SupervidorDao{
     public function getUsuario();
     public function getCarrera();
     
+    
 }

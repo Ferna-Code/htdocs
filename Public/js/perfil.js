@@ -136,7 +136,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         </label>
                     </div>
                 </div>
+                
             </div>
+            <hr>
         `;
         formularioContainer.appendChild(nuevoFormulario);
     }
@@ -292,10 +294,10 @@ function obtenerArchivoCV(event) {
                     // Generar un botón para abrir el archivo CV
                     const abrirArchivoBtn = document.createElement('button');
                     abrirArchivoBtn.textContent = 'Abrir Archivo CV';
-                    abrirArchivoBtn.classList.add('btn', 'btn-supervisor');
+                    abrirArchivoBtn.classList.add('btn', 'btn-primary');
                     abrirArchivoBtn.type = 'button';
                     abrirArchivoBtn.addEventListener('click', () => {
-                        window.open(rutaArchivoCV, '_blank'); 
+                        window.open(rutaArchivoCV, '_blank'); // Abrir la ruta del archivo en una nueva pestaña
                     });
 
                     // Agregar el botón al documento

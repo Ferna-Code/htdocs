@@ -12,8 +12,7 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-            <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Rut">
-            <input type="text" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro" placeholder="Cargo">
+            <input type="text" id="filtroRutLaboral"  placeholder="Filtrar por Rut de Usuario...">
             <button type="button" id="deleteSelectedExpLaboral" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 

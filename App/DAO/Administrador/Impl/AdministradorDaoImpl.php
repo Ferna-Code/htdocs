@@ -176,22 +176,19 @@ class AdministradorDaoImpl implements AdministradorDao
         u.rut,
         u.nombre,
         u.fechaNacimiento,
-        p.id as idperfil,
-        p.nombre as perfil,
+        u.idperfil,
+        p.nombre as nombreperfil,
         u.correo,
-        c.id as idcarrera,
-        c.nombre as carrera,
+        u.idcarrera,
+        c.nombre as nombrecarrera,
         u.avance,
-        u.cargo,
         u.telefono,
         u.direccion,
-        u.clave,
-        u.fechaCreacion,
-        u.activo
-        FROM `usuarios` as u
-        inner join `perfiles` as p on p.id = u.idperfil
-        inner join `carreras` as c on c.id = u.idcarrera 
-        WHERE u.fechaEliminacion IS NULL ORDER BY u.rut DESC LIMIT ?";
+        u.fechaCreacion
+        FROM usuarios as u
+        inner join perfiles as p on p.id = u.idperfil
+        inner join carreras as c on c.id = u.idcarrera
+        ORDER BY u.rut DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -292,9 +289,21 @@ class AdministradorDaoImpl implements AdministradorDao
         return $result;
     }
 
-    public function getPostulaciones($limit = 10)
+    public function getPostulaciones($limit = 20)
     {
-        $consulta = "SELECT * FROM postulaciones WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT
+         p.id,
+        p.rutusuario,
+        p.idcarrera,
+        c.nombre as nombreCarrera,
+        p.rutempresa,
+        p.idoferta,
+        o.cargo as cargo,
+        p.fechaCreacion,
+        p.fechaEliminacion
+        FROM postulaciones as p
+        INNER join carreras as c on c.id = p.idcarrera
+        inner join ofertas as o on o.id = p.idoferta ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -1005,5 +1014,45 @@ class AdministradorDaoImpl implements AdministradorDao
         mysqli_stmt_close($stmt); // Cerrar la declaración
 
         return array("success" => $success, "message" => $message);
+    }
+
+    public function actualizarUsuario($datos)
+    {
+        $sql = "UPDATE usuarios SET 
+                nombre = ?,
+                fechaNacimiento = ?,
+                idperfil = ?,
+                correo = ?,
+                idcarrera = ?,
+                avance = ?,
+                telefono = ?,
+                direccion = ?
+                WHERE rut = ?";
+
+        $conn = $this->db->conec(); 
+        $stmt = mysqli_prepare($conn, $sql);
+
+        
+        if (!$stmt) {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ssississs",
+            $datos['nombre'],
+            $datos['fechaNacimiento'],
+            $datos['idperfil'],
+            $datos['correo'],
+            $datos['idcarrera'],
+            $datos['avance'],
+            $datos['telefono'],
+            $datos['direccion'],
+            $datos['rut']
+        );
+
+        $success = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+
+        return $success;
     }
 }

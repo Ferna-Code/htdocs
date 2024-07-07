@@ -11,7 +11,7 @@
     <div class="body-panel">
         <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="text" class="ofertaFiltro" placeholder="Palabra clave">
+            <input style="margin-bottom: 15px" type="text" id="filtroDiccionario" placeholder="Buscar por nombre...">
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearPalabra">Nuevo</button>
                 <button type="button" id="deleteSelectedDiccionario" class="btn-supervisor marginBtn">Eliminar</button>
             </div>

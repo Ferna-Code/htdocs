@@ -491,16 +491,22 @@ class SupervisorController{
     public function deletePalabra()
     {
         $admin = new SupervisorDaoImpl();
-        $ids = json_decode(file_get_contents('php://input'), true)['ids'];
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        if (!isset($input['ids']) || !is_array($input['ids'])) {
+            echo json_encode(['success' => false, 'message' => 'Invalid input data.']);
+            return;
+        }
+
+        $ids = $input['ids'];
         $success = $admin->deletePalabra($ids);
 
         if ($success) {
-            echo json_encode(['success' => true, 'message' => 'Ofertas eliminadas correctamente.']);
+            echo json_encode(['success' => true, 'message' => 'Palabras eliminadas correctamente.']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error al eliminar las Ofertas.']);
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar las palabras.']);
         }
     }
-
     //----------------UPDATE-----------------
 
     public function updateCurso()
@@ -555,7 +561,7 @@ class SupervisorController{
         $telefono = $data['telefono'];
         $direccion = $data['direccion'];
         $correo = $data['correo'];
-       
+
 
 
         $admin = new SupervisorDaoImpl();

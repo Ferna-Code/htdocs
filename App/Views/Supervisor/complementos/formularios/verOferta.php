@@ -60,7 +60,7 @@
                     <textarea class="textareaCurso" rows="5" cols="10" id="descripcionOferta" name="descripcionOferta"></textarea> 
                </div>
 
-                <button type="submit" id="updateOferta" class="btn-supervisor marginBtn">Actualizar</button>
+                <button type="submit" id="updateOferta" class="btn-supervisor marginBtn">Publicar</button>
 
             </form>
 

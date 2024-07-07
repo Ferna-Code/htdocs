@@ -11,14 +11,7 @@
     <div class="body-panel">
         <div style="margin: 10px 10px;">
             <div class="containerFiltro">
-                <input type="text" class="ofertaFiltro" placeholder="Nombre">
-                <input type="text" class="ofertaFiltro" placeholder="Rut">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Cargo 1</option>
-                    <option value="Práctica">Cargo 2</option>
-                    <option value="Práctica">cargo 3</option>
-                </select>
-                <button type="button" class="btnFiltro">Filtrar</button><br>
+            <input style="margin-bottom: 15px" type="text" id="filtroRutUsuario" placeholder="Buscar por Rut..."><br>
                 <button type="button" id="deleteSelectedUsuarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 

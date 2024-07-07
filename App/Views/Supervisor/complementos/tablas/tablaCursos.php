@@ -2,15 +2,8 @@
     <div class="">
         <form method="POST" action="#">
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
+            <input style="margin-bottom: 15px" type="text" id="filtroCurso" placeholder="Buscar por Curso">
 
-                <input type="text" class="ofertaFiltro" placeholder="Palabra clave">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Educación y Bienestar</option>
-                    <option value="Práctica">Tecnología y productividad</option>
-                    <option value="Práctica">Negocios e Innovación</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
             </div>
         </form>
 

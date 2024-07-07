@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<title>Categorías</title>
+<title>Categorias</title>
 
 <body>
     <hr>
@@ -12,8 +12,7 @@
         <div style="margin: 10px;">
 
             <div class="containerFiltro">
-                <input type="date" class="fechaFiltro" name="fechaFiltro" id="fechaFiltro">
-                <input type="submit" class="btnFiltro" value="Filtrar">
+            <input style="margin-bottom: 15px;" type="text" id="filtroCategorias" placeholder="Buscar por nombre...">
                 <br>
                 <button type="button" class="btn-supervisor marginBtn " data-bs-toggle="modal" data-bs-target="#crearCategoria">
                     Nuevo
@@ -26,7 +25,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllCategoria" name="select-all"></th>
-                        <th>ID</th>
+                        
                         <th>Categoría</th>
                         <th class="anchoFecha">Fecha de Creación</th>
                         <th class="anchoActiv">Activo</th>

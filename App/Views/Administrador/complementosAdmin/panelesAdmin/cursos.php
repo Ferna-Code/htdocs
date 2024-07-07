@@ -12,18 +12,8 @@
     <div class="body-panel">
     <div style="margin: 10px;">
             <div class="containerFiltro">
-            <select class="categoriaFiltro">
-                    <option value="Práctica">Categoría 1</option>
-                    <option value="Práctica">Categoría 2</option>
-                    <option value="Práctica">Categoría 3</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">Diplomado en Gestión de Proyectos TI</option>
-                    <option value="Práctica">Diplomado en metodologia Scrum</option>
-                    <option value="Práctica">Networking Essentials</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar"><br>
+            <input style="margin-bottom: 15px" type="text" id="filtroCursos" placeholder="Buscar por nombre...">
+            <br>
                 <a href="#" onclick="controlVisi17()" class="btn-supervisor marginBtn ">Agregar</a>
                 <button type="button" id="deleteSelectedCurso" class="btn-supervisor marginBtn">Eliminar</button>
             </div>

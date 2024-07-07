@@ -11,13 +11,7 @@
     <div class="body-panel">
         <div style="margin: 10px;">
             <div class="containerFiltro">
-                <input type="text" class="ofertaFiltro" placeholder="Rut">
-                <select class="categoriaFiltro">
-                    <option value="Práctica">01</option>
-                    <option value="Práctica">02</option>
-                    <option value="Práctica">03</option>
-                </select>
-                <input type="submit" class="btnFiltro" value="Filtrar">
+            <input type="text" id="filtroRutUsuarioComentarios" placeholder="Filtrar por Rut Usuario...">
                     <button type="button" id="deleteSelectedComentarios" class="btn-supervisor marginBtn">Eliminar</button>
             </div>
 
@@ -30,9 +24,7 @@
                 <thead>
                     <tr>
                         <th class="widthCheck"><input type="checkbox" id="checkAllComentarios" name="select-all"></th>
-                        <th class="anchoId">ID</th>
                         <th>Rut</th>
-                        <th>ID Publicación</th>
                         <th>Comentario</th>
                         <th>N° de Reportes</th>
                         <th>Fecha de Creación</th>

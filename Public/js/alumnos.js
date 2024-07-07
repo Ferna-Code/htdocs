@@ -247,7 +247,7 @@ function getOfertaByID(id) {
               const cardofert = document.createElement("div");
               cardofert.className = "";
               cardofert.innerHTML = `
-                  <div class="cardo mb-4">
+                  <div class="cardo mb-4" style="width: 71%; margin-left: 5%;">
                       <div class="cardo-details">
                           <p style="display: none;" class="text-title">id: ${oferta.id}</p>
                           <p class="text-title">Tipo Oferta: ${oferta.tipoOferta}</p>
@@ -262,7 +262,6 @@ function getOfertaByID(id) {
               `;
             
                   rowContainer = document.createElement("div");
-                  rowContainer.className = "row";
                   ofertaIDContainer.appendChild(rowContainer);
               
               rowContainer.appendChild(cardofert);
@@ -342,6 +341,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.like-action').forEach(function(element) {
       element.addEventListener('click', function() {
           const publicacionId = this.getAttribute('data-id');
+          // const likesCountElement = this.nextElementSibling;
+          // const likesCountElement = this.closest('.like-container').querySelector('.likes-count');  
           const likesCountElement = this.parentElement.querySelector('.likes-count'); // Seleccionar el contador de likes
           
           fetch('/usuarios/likePublicacion', {
@@ -432,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.delete-action').forEach(function(element) {
     element.addEventListener('click', function() {
       const publicacionId = this.getAttribute('data-id');
-
+console.log('delete-action')
       Swal.fire({
         title: "¿Estás seguro?",
         text: "¡No podrás revertir esto!",

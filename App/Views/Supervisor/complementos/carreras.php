@@ -1,5 +1,5 @@
 <body>
-    <h1>Cursos</h1>
+    <h1>Carreras</h1>
     <div class="body-panel">
         <?php include 'tablas/tablaCarreras.php' ?>
     </div>

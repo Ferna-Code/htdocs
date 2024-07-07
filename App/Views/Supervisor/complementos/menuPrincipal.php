@@ -67,9 +67,13 @@ $publicaciones = $controlador->mostrarPublicaciones();
                             <p class="h1">
                                 <?php
                                 $nombreUsuario = $controladorUsuarios->buscarUsuario($p['rutusuario']);
+                                if(is_array($nombreUsuario)){
                                 foreach ($nombreUsuario as $usuario) {
                                     echo $usuario['nombre'];
                                 }
+                            }else{
+                                echo "Usuario no encontrado";
+                            }
                                 ?>
                             </p>
                             <p class="p"><?php echo $p['publicacion']; ?></p>

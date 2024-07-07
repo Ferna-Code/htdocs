@@ -90,34 +90,33 @@ class SupervisorDaoImpl implements SupervidorDao
 
     public function insertCurso(SupervisorModel $admin)
     {
-        $validateQuery = "INSERT INTO cursos (nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, activo) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+        $validateQuery = "INSERT INTO cursos (nombre, descripcion, emitidopor, linkpostular, idcategoria, fechaCreacion, fechaEliminacion, activo) 
+                          VALUES (?, ?, ?, ?, ?, NOW(), DATE_ADD(NOW(), INTERVAL 3 MONTH), ?)";
+    
         $stmt = mysqli_prepare($this->db->conec(), $validateQuery);
-
+    
         if (!$stmt) {
             throw new Exception("Error en la preparación de la consulta: " . mysqli_error($this->db->conec()));
         }
-
+    
         $nombre = $admin->getNombreCurso();
         $descripcion = $admin->getDescripcionCurso();
         $emitido = $admin->getCentro();
         $link = $admin->getLink();
         $categoria = $admin->getCategoriaCurso();
-        $fecha = $admin->getFechaInicio();
-        $activo = $admin->getactivo();
-
-        mysqli_stmt_bind_param($stmt, "sssssss", $nombre, $descripcion, $emitido, $link, $categoria, $fecha, $activo);
+        $activo = $admin->getActivo(); // Ajustado a getActivo(), asegúrate de que el método en SupervisorModel sea correcto
+    
+        mysqli_stmt_bind_param($stmt, "sssssi", $nombre, $descripcion, $emitido, $link, $categoria, $activo);
         $result = mysqli_stmt_execute($stmt);
-
+    
         if ($result) {
-
-
             return array("success" => true, "message" => "Datos agregados correctamente");
         } else {
             return array("success" => false, "message" => "Error al agregar datos: " . mysqli_stmt_error($stmt));
         }
     }
+    
+    
     public function getCurso($limit = 10) {
         $consulta = "SELECT * FROM cursos WHERE fechaEliminacion IS NULL ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
@@ -359,7 +358,7 @@ class SupervisorDaoImpl implements SupervidorDao
         return $datos;
     }
     public function getOferta($limit = 10) {
-        $consulta = "SELECT * FROM ofertas WHERE fechaeliminacion IS NULL ORDER BY id DESC LIMIT ?";
+        $consulta = "SELECT * FROM ofertas ORDER BY id DESC LIMIT ?";
         $stmt = mysqli_prepare($this->db->conec(), $consulta);
         if (!$stmt) {
             return array("success" => false, "message" => "Error en la busqueda");
@@ -551,22 +550,24 @@ class SupervisorDaoImpl implements SupervidorDao
     
         return $success;
     }
-    public function deletePalabra($ids) {
-        $consulta = "UPDATE diccionario SET fechaEliminacion = NOW() WHERE id IN (" . implode(',', array_fill(0, count($ids), '?')) . ")";
-        $stmt = mysqli_prepare($this->db->conec(), $consulta);
-    
-        if (!$stmt) {
-            return false;
-        }
-    
-        $types = str_repeat('i', count($ids));
-        mysqli_stmt_bind_param($stmt, $types, ...$ids);
-    
-        $success = mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-    
-        return $success;
+    public function deletePalabra($ids)
+{
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $consulta = "UPDATE diccionario SET fechaEliminacion = NOW() WHERE id IN ($placeholders)";
+    $stmt = mysqli_prepare($this->db->conec(), $consulta);
+
+    if (!$stmt) {
+        return false;
     }
+
+    $types = str_repeat('i', count($ids));
+    mysqli_stmt_bind_param($stmt, $types, ...$ids);
+
+    $success = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return $success;
+}
 
     //-----------------UPDATE--------------
 
