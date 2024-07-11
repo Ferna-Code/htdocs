@@ -95,7 +95,7 @@ function getCursos(categoriaId) {
                           <p class="text-body">Emitido por: ${curso.emitidopor}</p>
                           <p class="text-body">Fecha de creación: ${curso.fechaCreacion}</p>
                       </div>
-                      <button class="cardc-button" onclick="controlVisi6()">Ver más</button>
+                      <button class="cardc-button" onclick="redireccionarCurso(${curso.linkpostular})">Ver más</button>
                   </div>
               `;
               
@@ -110,4 +110,8 @@ function getCursos(categoriaId) {
           console.error("Error message: ", data.message, "Error en la respuesta del servidor");
       }
   })
+}
+
+function redireccionarCurso(link){
+  window.open("link");
 }
